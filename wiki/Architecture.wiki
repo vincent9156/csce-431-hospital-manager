@@ -47,3 +47,7 @@ Views are the entities that contain anything the user sees and interacts with. F
 Here is an example of what a page request may look like.
 
 http://imgur.com/knru6.png
+
+= External Links =
+[http://channel9.msdn.com/blogs/matthijs/aspnet-mvc-2-basics-introduction-by-scott-hanselman MVC 2 Basics Introduction] (Video)
+[http://www.asp.net/mvc/tutorials/getting-started-with-mvc-part1 Getting started with MVC] (Reading)
