@@ -1,5 +1,4 @@
 #summary The architecture of our project
-
 = Introduction =
 
 This will outline our architecture for the rest of the assignment. It is using MVC (Model-View-Controller) in C# on ASP.NET.
