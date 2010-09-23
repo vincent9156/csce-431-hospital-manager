@@ -1,4 +1,6 @@
 #summary The architecture of our project
+<wiki:toc max_depth="4" />
+
 = Introduction =
 
 This will outline our architecture for the rest of the assignment. It is using MVC (Model-View-Controller) in C# on ASP.NET.
@@ -9,7 +11,7 @@ http://imgur.com/Ve06W.png
 
 == Logic ==
 
-==== Controllers ====
+=== Controllers ====
 Controllers contain the business logic for our program.
 
 An example of something found in a controller would be determining if a user's username is properly formatted (eg. contains no spaces) or checking whether or not a user made a mistake when inputting his credit card number (eg. with the [http://en.wikipedia.org/wiki/Luhn_algorithm Luhn Algorithm]).
@@ -18,28 +20,28 @@ Controllers interact with the database through the [#Repositories repository] la
 
 == Data ==
 
-==== Models ====
+=== Models ====
 Models are an object representation of an entity in the database.
 
 For instance, if we have a "People" table containing the columns "Name" and "Address", we would also have a model called "Person" containing the attributes "Name" and "Address". It is important to note that models are not always this simple. A model can contain data pulled from multiple tables and relations.
 
 Models' data members are populated by the [#Repositories repository] layer when retrieving data from the database and by the [#Controllers controller] when inserting into the database. Models are a main source of data for the [#Controllers controller].
 
-==== View Models ====
+=== View Models ====
 View Models are like [#Models models] in that they are an object representing some entity. The difference is that view models may not contain all of the data that a model may contain. To phrase it differently, a view model is often a subset of some model.
 
 View models are necessary to keep data away from the view that does not need to be displayed. For instance if we have a Person object that contains a field "SocialSecurityNumber", we would not want that data accessible to the view. In this case, we can create a PersonViewModel that contains all of the data members of the Person object except for the SocialSecurityNumber data member.
 
 View Models are populated by the [#Controllers controller] before being passed to the [#Views view] to be used.
 
-==== Repositories ====
+=== Repositories ====
 Repositories are a layer of abstraction that sits on top of the database that separates the [#Controllers controller] from having concern itself with how we store the data. A repository contains a link to some data context object and uses [http://en.wikipedia.org/wiki/Language_Integrated_Query Linq] to pull data from the database.
 
 Repository classes are called on by controllers to pull data from the database and return to them [#Models models] that contain the requested data. Repositories may also have methods that take models and insert them into the database or edit existing values in the database.
 
 == Presentation ==
 
-==== Views ====
+=== Views ====
 Views are the entities that contain anything the user sees and interacts with. For instance, this is where all of our HTML will exist. For the view to obtain data the user inputted or from the database, it must receive it from the [#Controllers controller]. Most of the time, data from the database is passed to it as a [#View_Models view model] object.
 
 = Overview =
