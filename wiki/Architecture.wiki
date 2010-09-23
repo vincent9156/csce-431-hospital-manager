@@ -50,4 +50,5 @@ http://imgur.com/knru6.png
 
 = External Links =
 [http://channel9.msdn.com/blogs/matthijs/aspnet-mvc-2-basics-introduction-by-scott-hanselman MVC 2 Basics Introduction] (Video)
+
 [http://www.asp.net/mvc/tutorials/getting-started-with-mvc-part1 Getting started with MVC] (Reading)
