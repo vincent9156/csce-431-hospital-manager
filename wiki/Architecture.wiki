@@ -44,7 +44,7 @@ Repository classes are called on by controllers to pull data from the database a
 === Views ====
 Views are the entities that contain anything the user sees and interacts with. For instance, this is where all of our HTML will exist. For the view to obtain data the user inputted or from the database, it must receive it from the [#Controllers controller]. Most of the time, data from the database is passed to it as a [#View_Models view model] object.
 
-= Overview =
+= Summary =
 Here is an example of what a page request may look like.
 
 http://imgur.com/knru6.png
