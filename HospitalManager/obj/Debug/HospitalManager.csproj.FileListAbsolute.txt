@@ -3,3 +3,8 @@ D:\My Dropbox\Programming\Visual Studio 2010\Projects\HospitalManager\HospitalMa
 D:\My Dropbox\Programming\Visual Studio 2010\Projects\HospitalManager\HospitalManager\bin\HospitalManager.pdb
 D:\My Dropbox\Programming\Visual Studio 2010\Projects\HospitalManager\HospitalManager\obj\Debug\HospitalManager.dll
 D:\My Dropbox\Programming\Visual Studio 2010\Projects\HospitalManager\HospitalManager\obj\Debug\HospitalManager.pdb
+D:\Code\CSCE-431\HospitalManager\bin\HospitalManager.dll
+D:\Code\CSCE-431\HospitalManager\bin\HospitalManager.pdb
+D:\Code\CSCE-431\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
+D:\Code\CSCE-431\HospitalManager\obj\Debug\HospitalManager.dll
+D:\Code\CSCE-431\HospitalManager\obj\Debug\HospitalManager.pdb
