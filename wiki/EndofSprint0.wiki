@@ -1,0 +1,8 @@
+-create history page (clarify)
+-meet outside of class
+-train each other
+-create tasks
+-integration
+  - group meeting
+  -integration stories
+  -integration captains
