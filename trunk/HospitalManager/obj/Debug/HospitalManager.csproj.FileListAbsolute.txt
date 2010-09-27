@@ -8,3 +8,9 @@ D:\Code\CSCE-431\HospitalManager\bin\HospitalManager.pdb
 D:\Code\CSCE-431\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
 D:\Code\CSCE-431\HospitalManager\obj\Debug\HospitalManager.dll
 D:\Code\CSCE-431\HospitalManager\obj\Debug\HospitalManager.pdb
+D:\Code\CSCE-431\HospitalManager\bin\App_Data\HospitalManagerDB.mdf
+D:\Code\CSCE-431\HospitalManager\bin\App_Data\HospitalManagerDB_log.ldf
+D:\Code\CSCE-431\HospitalManager\bin\Views\Users\Create.aspx
+D:\Code\CSCE-431\HospitalManager\bin\Views\Users\Index.aspx
+D:\Code\CSCE-431\HospitalManager\bin\Controllers\UsersController.cs
+D:\Code\CSCE-431\HospitalManager\bin\Models\HospitalManagerDBModel.Designer.cs
