@@ -1,8 +1,10 @@
-create history page (clarify)
-meet outside of class
-train each other
-create tasks
-integration
-  group meeting
-  integration stories
-  integration captains
+#summary The goals after Sprint 0
+
+=Create history page (clarify)=
+=Meet outside of class=
+=Train each other=
+=Create tasks=
+=Integration=
+ ==group meeting==
+ ==integration stories==
+ ==integration captains==
