@@ -10,6 +10,6 @@
 
 *Integration
 
- #group meeting
- #integration stories
- #integration captains
+ # group meeting
+ # integration stories
+ # integration captains
