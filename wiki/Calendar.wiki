@@ -1,0 +1,3 @@
+#summary Google Calendar for meetings etc.
+
+[http://www.google.com/calendar/feeds/609rqcsjtg5r3mrfm44aoq800o%40group.calendar.google.com/private-09b09813372def2744413c4c0295bf53/basic XML] [http://www.google.com/calendar/ical/609rqcsjtg5r3mrfm44aoq800o%40group.calendar.google.com/private-09b09813372def2744413c4c0295bf53/basic.ics iCal] [http://www.google.com/calendar/embed?src=609rqcsjtg5r3mrfm44aoq800o%40group.calendar.google.com&ctz=America/Chicago&pvttk=09b09813372def2744413c4c0295bf53 HTML]
