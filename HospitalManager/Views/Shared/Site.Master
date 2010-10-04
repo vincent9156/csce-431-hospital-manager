@@ -1,12 +1,66 @@
-﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+<link href="../../Content/style.css" rel="Stylesheet" type="text/css" />
 </head>
 
 <body>
-    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+<div id="main_header">
+<div id="header">
+  <ul>
+    <li><a href="#" class="home" title="home">home</a></li>
+    <li><a href="#" class="user" title="user">user</a></li>
+    <li><a href="#" class="contact" title="contact">contact</a></li>
+  </ul>
+  <ul class="free">
+
+  </ul>
+  
+  <ul class="navi">
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+    <li><a href="#">Link 3</a></li>
+    <li><a href="#">Oh look another link!</a></li>
+    <li class="li1"><a href="#">And 1 more</a></li>
+  </ul>
+</div>
+</div>
+
+
+ <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+
+
+
+<div id="main_footer">
+<div id="footer"><!--footer navigation start -->
+<ul>
+<li><a href="#" class="mg">Link 1</a>|</li>
+<li><a href="#">Link 2</a>|</li>
+<li><a href="#">Link 3</a>|</li>
+<li><a href="#">Oh look another link!</a>|</li>
+<li><a href="#">And 1 more</a></li>
+</ul>
+<ul class="ad">
+<li><a>Fake Fake Road Thonhill Canada</a></li>
+<li class="nobor1"><a><span>ph:</span>
+800-121-4545 759-121-5454</a></li>
+<li class="nobor"><a><span>fax:</span>
+759-121-5454 800-121-4545</a></li>
+</ul>
+<p>&copy; appleweb. All rights reserved.</p>
+<p class="de">Designed by: <a href="http://www.templateworld.com/">Template World</a></p>
+</div><!--footer navigation end -->
+</div>
+
 </body>
 </html>
+
+
+
+
