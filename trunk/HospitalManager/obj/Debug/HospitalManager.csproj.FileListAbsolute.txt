@@ -25,3 +25,12 @@ C:\Documents and Settings\pfrith\CSCE 431 local\HospitalManager\bin\HospitalMana
 C:\Documents and Settings\pfrith\CSCE 431 local\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\pfrith\CSCE 431 local\HospitalManager\obj\Debug\HospitalManager.dll
 C:\Documents and Settings\pfrith\CSCE 431 local\HospitalManager\obj\Debug\HospitalManager.pdb
+C:\Documents and Settings\risley\New Folder (2)\HospitalManager\bin\App_Data\HospitalManagerDB.mdf
+C:\Documents and Settings\risley\New Folder (2)\HospitalManager\bin\App_Data\HospitalManagerDB_log.ldf
+C:\Documents and Settings\risley\New Folder (2)\HospitalManager\bin\Views\Users\Create.aspx
+C:\Documents and Settings\risley\New Folder (2)\HospitalManager\bin\Views\Users\Index.aspx
+C:\Documents and Settings\risley\New Folder (2)\HospitalManager\bin\HospitalManager.dll
+C:\Documents and Settings\risley\New Folder (2)\HospitalManager\bin\HospitalManager.pdb
+C:\Documents and Settings\risley\New Folder (2)\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\risley\New Folder (2)\HospitalManager\obj\Debug\HospitalManager.dll
+C:\Documents and Settings\risley\New Folder (2)\HospitalManager\obj\Debug\HospitalManager.pdb
