@@ -14,7 +14,18 @@ namespace HospitalManager.Libraries
     {
         // Does this role need a staff ID to register?
         RegisterWithoutStaffID = 0x01,
-        ViewSchedule = 0x02
+        // Can this user view the schedule
+        ViewSchedule = 0x00,
+        // Can this user EditMedicalHistory
+        EditMedicalHistory = 0x04,
+        // Can this user EditAppointments
+        EditAppointments = 0x10,
+        // Can this user ViewPrescriptions
+        ViewPrescriptions = 0x20,
+        // Can this user EditPrescriptions
+        EditPrescriptions = 0x40,
+        // Can this user ViewCurrentBilling
+        ViewCurrentBill = 0x80
 
     }
 
