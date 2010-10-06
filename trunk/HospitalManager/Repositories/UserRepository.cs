@@ -57,5 +57,16 @@ namespace HospitalManager.Repositories
             usersDb.SubmitChanges();
             return user.UserID;
         }
+
+        /**
+         * Get a queryable collection of all the user types
+         */
+        public IQueryable<UserType> GetUserTypes()
+        {
+            var result = from userType in usersDb.UserTypes
+                         select userType;
+
+            return result;
+        }
     }
 }
