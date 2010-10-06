@@ -13,7 +13,9 @@ namespace HospitalManager.Libraries
     public enum AccessOptions
     {
         // Does this role need a staff ID to register?
-        RegisterWithoutStaffID = 0x01
+        RegisterWithoutStaffID = 0x01,
+        ViewSchedule = 0x02
+
     }
 
     public class PermissionsManager
