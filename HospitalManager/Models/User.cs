@@ -27,7 +27,7 @@ namespace HospitalManager.Models
          * model since updating the auto-generated code causes it to no longer be updated
          * after editting the dbml file
          */
-        public void encryptAndSetPassword(string password)
+        public void EncryptAndSetPassword(string password)
         {
             Password = MD5Encrypter.GetMD5Hash(password + HashSalt);
         }
@@ -35,7 +35,7 @@ namespace HospitalManager.Models
         /**
          * Sees if the stored password is equal to the passed password
          */
-        public bool encryptedPasswordEquals(string password)
+        public bool EncryptedPasswordEquals(string password)
         {
             return Password == MD5Encrypter.GetMD5Hash(password + HashSalt);
         }

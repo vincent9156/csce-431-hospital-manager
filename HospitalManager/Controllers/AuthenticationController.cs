@@ -57,9 +57,11 @@ namespace HospitalManager.Controllers
                     newUser = new Pharmacist();
                     break;
             }
-            return View(newUser);
+            return View("RegisterUserType", newUser);
         }
+        
         /*
+        [HttpPost]
         public ActionResult Register(User user)
         {
 

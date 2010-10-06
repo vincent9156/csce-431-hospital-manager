@@ -43,7 +43,7 @@ namespace HospitalManager.Controllers
             // Ensure the input's state is valid before adding the user
             if (ModelState.IsValid)
             {
-                doctor.encryptAndSetPassword(doctor.Password);
+                doctor.EncryptAndSetPassword(doctor.Password);
                 userRepository.AddUser(doctor);
 
                 // Redirect the user to show them information about who they submitted

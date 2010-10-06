@@ -131,6 +131,7 @@
     <Content Include="Content\images\welcome_pic.gif" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Authentication\RegisterUserType.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\PermissionsTest\AddDoctor.aspx" />
     <Content Include="Views\PermissionsTest\ShowUser.aspx" />
@@ -153,7 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
-    <Folder Include="Views\Authentication\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
