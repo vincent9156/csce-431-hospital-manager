@@ -131,6 +131,7 @@
     <Content Include="Content\images\welcome_pic.gif" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\Authentication\RegisterUserType.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\UserLog.aspx" />
