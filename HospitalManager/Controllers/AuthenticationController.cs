@@ -45,8 +45,8 @@ namespace HospitalManager.Controllers
             if (user == null)
             {
                 // bad username
-                // TODO: inform user of their mistake
-                return Redirect("/Authentication/Login");
+                ModelState.AddModelError("username", "Username or password is incorrect");
+                return View();
             }
             else if (user.EncryptedPasswordEquals(password))
             {
@@ -56,22 +56,24 @@ namespace HospitalManager.Controllers
                 Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 
                 // TODO: redirect to user's home page (right now it just returns to the login form)
-                return View(user);
+                ModelState.AddModelError("username", "Login success!");
+                return View();
             }
             else
             {
                 // bad password or some other problem
-                // TODO: inform user of their mistake
-                return Redirect("/Authentication/Login");
+                ModelState.AddModelError("username", "Username or password is incorrect");
+                return View();
             }
         }
 
-        public string Whoami()
+        public ActionResult Logoff()
         {
-            // THIS CLASS IS JUST FOR TESTING AND WILL LIKELY DISAPPEAR
+            // set the cookie to expire yesterday
             HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
-            return ticket.Name;
+            cookie.Expires = DateTime.Now.AddDays(-1d);
+            Response.Cookies.Add(cookie);
+            return Redirect("/");
         }
 
         public ActionResult Register()

@@ -6,27 +6,46 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+<div id="main_body">
+<div id="body">
     <h2>Login</h2>
 
     <% using (Html.BeginForm())
        { %>
     
-    <fieldset>
-        <p>
-            <%= Html.LabelFor(Model => Model.Username)%>
-            <%= Html.TextBoxFor(Model => Model.Username)%>
-            <%= Html.ValidationMessageFor(Model => Model.Username)%>
-        </p>
-        <p>
-            <%= Html.LabelFor(Model => Model.Password)%>
-            <%= Html.PasswordFor(Model => Model.Password)%>
-            <%= Html.ValidationMessageFor(Model => Model.Password)%>
-        </p>
-        <p>
-            <input type="submit" value="Login" />
-        </p>
+    <fieldset style="border:none">
+    <table>
+        <tr>
+            <td>
+                <%= Html.LabelFor(Model => Model.Username)%>
+            </td>
+            <td>
+                <%= Html.TextBoxFor(Model => Model.Username)%>
+            </td>
+            <td>
+                <%= Html.ValidationMessageFor(Model => Model.Username)%>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= Html.LabelFor(Model => Model.Password)%>
+            </td>
+            <td>
+                <%= Html.PasswordFor(Model => Model.Password)%>
+            </td>
+            <td>
+                <%= Html.ValidationMessageFor(Model => Model.Password)%>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+        </tr>
+    </table>
     </fieldset>
 
     <% } %>
-
+    </div>
+    </div>
 </asp:Content>

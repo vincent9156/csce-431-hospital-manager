@@ -79,6 +79,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Libraries\AuthenticationChecker.cs" />
     <Compile Include="Libraries\Bootstrapper.cs" />
     <Compile Include="Libraries\MD5Encrypter.cs" />
     <Compile Include="Libraries\PermissionsManager.cs" />
@@ -138,6 +139,7 @@
     <Content Include="Views\PermissionsTest\AddDoctor.aspx" />
     <Content Include="Views\PermissionsTest\ShowUser.aspx" />
     <Content Include="Views\PermissionsTest\UserDisplay.ascx" />
+    <Content Include="Views\Shared\LoginCheck.ascx" />
     <Content Include="Views\Users\Create.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
