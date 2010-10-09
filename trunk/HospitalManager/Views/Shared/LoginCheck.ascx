@@ -4,5 +4,5 @@
 Welcome <b><%: AuthenticationChecker.AuthenticatedUser() %></b>!
 [ <%: Html.ActionLink("Log off", "LogOff", "Authentication") %> ]
 <% } else { %>
-[ <%: Html.ActionLink("Login", "Login", "Authentication") %> ]
+[ <%: Html.ActionLink("Login", "Login", "Authentication") %> ] [ <%: Html.ActionLink("Register", "Register", "Authentication") %> ]
 <% } %>
