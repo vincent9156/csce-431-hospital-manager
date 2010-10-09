@@ -19,6 +19,11 @@ namespace HospitalManager.Libraries
             Mapper.CreateMap<User, UserViewModel>()
                   .ForMember(userVm => userVm.Permissions,
                              opt => opt.MapFrom(user => user.UserType.Permissions));
+
+            Mapper.CreateMap<UserRegistrationViewModel, Patient>();
+            Mapper.CreateMap<UserRegistrationViewModel, Doctor>();
+            Mapper.CreateMap<UserRegistrationViewModel, Nurse>();
+            Mapper.CreateMap<UserRegistrationViewModel, Pharmacist>();
         }
 
         /**

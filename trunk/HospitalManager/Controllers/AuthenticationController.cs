@@ -13,19 +13,14 @@ namespace HospitalManager.Controllers
 {
     public class AuthenticationController : Controller
     {
-        /**
-         * Get an instance of the user repository
-         */
-        UserRepository userRepository;
+        UserRepository UserRep;
 
         public AuthenticationController()
         {
-            userRepository = new UserRepository();
+            UserRep = new UserRepository();
         }
 
-        //
         // GET: /Authentication/
-
         public ActionResult Index()
         {
             return Redirect("/Authentication/Login/");
@@ -40,7 +35,7 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-            User user = userRepository.GetUserByUsername(username);
+            User user = UserRep.GetUserByUsername(username);
 
             if (user == null)
             {
@@ -80,20 +75,19 @@ namespace HospitalManager.Controllers
         {
             var types = new UserTypesViewModel
             {
-                UserTypes = userRepository.GetUserTypes()
+                UserTypes = UserRep.GetUserTypes()
             };
-            return View(types);
+            return View("RegisterUserType", types);
         }
 
         [HttpPost]
-        public ActionResult Register(UserType type)
+        public ActionResult Register(UserTypesViewModel userTypes)
         {
-            User newUser = null;
-            switch (type.TypeID)
+            /*
+            // Load a clean model depending on their user type
+            User newUser;
+            switch (userTypes.TypeID)
             {
-                case UserType.PatientTypeID:
-                    newUser = new Patient();
-                    break;
                 case UserType.DoctorTypeID:
                     newUser = new Doctor();
                     break;
@@ -103,16 +97,56 @@ namespace HospitalManager.Controllers
                 case UserType.PharmacistTypeID:
                     newUser = new Pharmacist();
                     break;
+                default: // Anything else, just pick patient
+                    newUser = new Patient();
+                    break;
             }
-            return View("RegisterUserType", newUser);
+            */
+            var newUser = new UserRegistrationViewModel();
+
+            // Load the user's permissions
+            newUser.Permissions = UserRep.GetUserTypeByID(userTypes.TypeID).Permissions;
+
+            return View("RegisterUser", newUser);
         }
         
-        /*
         [HttpPost]
-        public ActionResult Register(User user)
+        public ActionResult RegisterUser(UserRegistrationViewModel user, int staffID = -1)
         {
+            // Load the user's permissions
+            user.Permissions = UserRep.GetUserTypeByID(user.TypeID).Permissions;
 
+            // Validate their input
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
+
+            // Register the user
+
+            User newUser;
+            switch (user.TypeID)
+            {
+                case UserType.DoctorTypeID:
+                    newUser = Mapper.Map<UserRegistrationViewModel, Doctor>(user);
+                    break;
+                case UserType.NurseTypeID:
+                    newUser = Mapper.Map<UserRegistrationViewModel, Nurse>(user);
+                    break;
+                case UserType.PharmacistTypeID:
+                    newUser = Mapper.Map<UserRegistrationViewModel, Pharmacist>(user);
+                    break;
+                default:
+                    newUser = Mapper.Map<UserRegistrationViewModel, Patient>(user);
+                    break;
+            }
+            
+            newUser.EncryptAndSetPassword(newUser.Password);
+            UserRep.AddUser(newUser);
+
+            // Display a success page
+            UserViewModel userVM = Mapper.Map<User, UserViewModel>(newUser);
+            return View("RegistrationSuccessful", userVM);
         }
-        */
     }
 }

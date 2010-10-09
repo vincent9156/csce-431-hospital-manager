@@ -36,9 +36,9 @@ namespace HospitalManager.Models
     partial void InsertUserType(UserType instance);
     partial void UpdateUserType(UserType instance);
     partial void DeleteUserType(UserType instance);
-    partial void InsertStaff(Staff instance);
-    partial void UpdateStaff(Staff instance);
-    partial void DeleteStaff(Staff instance);
+    partial void InsertStaffMember(StaffMember instance);
+    partial void UpdateStaffMember(StaffMember instance);
+    partial void DeleteStaffMember(StaffMember instance);
     #endregion
 		
 		public UsersDatabase() : 
@@ -87,11 +87,11 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Staff> Staffs
+		public System.Data.Linq.Table<StaffMember> StaffMembers
 		{
 			get
 			{
-				return this.GetTable<Staff>();
+				return this.GetTable<StaffMember>();
 			}
 		}
 	}
@@ -118,6 +118,8 @@ namespace HospitalManager.Models
 		
 		private string _Password;
 		
+		private string _Email;
+		
 		private EntityRef<UserType> _UserType;
 		
     #region Extensibility Method Definitions
@@ -136,6 +138,8 @@ namespace HospitalManager.Models
     partial void OnUsernameChanged();
     partial void OnPasswordChanging(string value);
     partial void OnPasswordChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
     #endregion
 		
 		public User()
@@ -264,6 +268,26 @@ namespace HospitalManager.Models
 					this._Password = value;
 					this.SendPropertyChanged("Password");
 					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
 				}
 			}
 		}
@@ -397,6 +421,8 @@ namespace HospitalManager.Models
 		
 		private EntitySet<User> _Users;
 		
+		private EntitySet<StaffMember> _Staffs;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -412,6 +438,7 @@ namespace HospitalManager.Models
 		public UserType()
 		{
 			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
+			this._Staffs = new EntitySet<StaffMember>(new Action<StaffMember>(this.attach_Staffs), new Action<StaffMember>(this.detach_Staffs));
 			OnCreated();
 		}
 		
@@ -488,6 +515,19 @@ namespace HospitalManager.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserType_StaffMember", Storage="_Staffs", ThisKey="TypeID", OtherKey="TypeID")]
+		public EntitySet<StaffMember> StaffMembers
+		{
+			get
+			{
+				return this._Staffs;
+			}
+			set
+			{
+				this._Staffs.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -519,10 +559,22 @@ namespace HospitalManager.Models
 			this.SendPropertyChanging();
 			entity.UserType = null;
 		}
+		
+		private void attach_Staffs(StaffMember entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserType = this;
+		}
+		
+		private void detach_Staffs(StaffMember entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserType = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Staff")]
-	public partial class Staff : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class StaffMember : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -530,6 +582,8 @@ namespace HospitalManager.Models
 		private int _StaffID;
 		
 		private int _TypeID;
+		
+		private EntityRef<UserType> _UserType;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -541,8 +595,9 @@ namespace HospitalManager.Models
     partial void OnTypeIDChanged();
     #endregion
 		
-		public Staff()
+		public StaffMember()
 		{
+			this._UserType = default(EntityRef<UserType>);
 			OnCreated();
 		}
 		
@@ -577,11 +632,49 @@ namespace HospitalManager.Models
 			{
 				if ((this._TypeID != value))
 				{
+					if (this._UserType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnTypeIDChanging(value);
 					this.SendPropertyChanging();
 					this._TypeID = value;
 					this.SendPropertyChanged("TypeID");
 					this.OnTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserType_StaffMember", Storage="_UserType", ThisKey="TypeID", OtherKey="TypeID", IsForeignKey=true)]
+		public UserType UserType
+		{
+			get
+			{
+				return this._UserType.Entity;
+			}
+			set
+			{
+				UserType previousValue = this._UserType.Entity;
+				if (((previousValue != value) 
+							|| (this._UserType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._UserType.Entity = null;
+						previousValue.StaffMembers.Remove(this);
+					}
+					this._UserType.Entity = value;
+					if ((value != null))
+					{
+						value.StaffMembers.Add(this);
+						this._TypeID = value.TypeID;
+					}
+					else
+					{
+						this._TypeID = default(int);
+					}
+					this.SendPropertyChanged("UserType");
 				}
 			}
 		}

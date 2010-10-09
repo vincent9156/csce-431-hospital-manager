@@ -8,6 +8,7 @@
       <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="UserName" Member="Username" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="UserType_User" Member="UserType" ThisKey="TypeID" OtherKey="TypeID" Type="UserType" IsForeignKey="true" />
       <Type Name="Doctor" InheritanceCode="2" />
       <Type Name="Patient" InheritanceCode="1" IsInheritanceDefault="true" />
@@ -21,12 +22,14 @@
       <Column Name="TypeName" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
       <Column Name="Permissions" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="UserType_User" Member="Users" ThisKey="TypeID" OtherKey="TypeID" Type="User" />
+      <Association Name="UserType_StaffMember" Member="StaffMembers" Storage="_Staffs" ThisKey="TypeID" OtherKey="TypeID" Type="StaffMember" />
     </Type>
   </Table>
-  <Table Name="dbo.Staff" Member="Staffs">
-    <Type Name="Staff">
+  <Table Name="dbo.Staff" Member="StaffMembers">
+    <Type Name="StaffMember">
       <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="UserType_StaffMember" Member="UserType" ThisKey="TypeID" OtherKey="TypeID" Type="UserType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
