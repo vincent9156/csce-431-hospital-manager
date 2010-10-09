@@ -9,5 +9,6 @@ namespace HospitalManager.ViewModels
     public class UserTypesViewModel
     {
         public IEnumerable<UserType> UserTypes { get; set; }
+        public int TypeID { get; set; }
     }
 }
