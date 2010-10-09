@@ -71,6 +71,9 @@ namespace HospitalManager.Controllers
             return Redirect("/");
         }
 
+        /**
+         * Begin registering a user.
+         */
         public ActionResult Register()
         {
             var types = new UserTypesViewModel
@@ -80,28 +83,12 @@ namespace HospitalManager.Controllers
             return View("RegisterUserType", types);
         }
 
+        /**
+         * After we have their user type in registration, get their user information.
+         */
         [HttpPost]
         public ActionResult Register(UserTypesViewModel userTypes)
         {
-            /*
-            // Load a clean model depending on their user type
-            User newUser;
-            switch (userTypes.TypeID)
-            {
-                case UserType.DoctorTypeID:
-                    newUser = new Doctor();
-                    break;
-                case UserType.NurseTypeID:
-                    newUser = new Nurse();
-                    break;
-                case UserType.PharmacistTypeID:
-                    newUser = new Pharmacist();
-                    break;
-                default: // Anything else, just pick patient
-                    newUser = new Patient();
-                    break;
-            }
-            */
             var newUser = new UserRegistrationViewModel();
 
             // Load the user's permissions
@@ -110,6 +97,9 @@ namespace HospitalManager.Controllers
             return View("RegisterUser", newUser);
         }
         
+        /**
+         * Complete user registration and validate all of their information.
+         */
         [HttpPost]
         public ActionResult RegisterUser(UserRegistrationViewModel user, int staffID = -1)
         {
@@ -123,7 +113,6 @@ namespace HospitalManager.Controllers
             }
 
             // Register the user
-
             User newUser;
             switch (user.TypeID)
             {
