@@ -14,10 +14,12 @@ namespace HospitalManager.Controllers
     public class AuthenticationController : Controller
     {
         UserRepository UserRep;
+        SessionRepository SessionRep;
 
         public AuthenticationController()
         {
             UserRep = new UserRepository();
+            SessionRep = new SessionRepository();
         }
 
         // GET: /Authentication/
@@ -136,6 +138,32 @@ namespace HospitalManager.Controllers
             // Display a success page
             UserViewModel userVM = Mapper.Map<User, UserViewModel>(newUser);
             return View("RegistrationSuccessful", userVM);
+        }
+
+        /**
+         * Some test methods to demonstrate use of the session repository
+         */
+        public ActionResult LoginTest()
+        {
+            SessionRep.Login( UserRep.GetUserByUsername("Patient") );
+            ViewData["Message"] = "Logged in";
+            ViewData["User"] = SessionRep.GetUser();
+            return View("LoginTest");
+        }
+
+        public ActionResult LogoutTest()
+        {
+            SessionRep.Logout();
+            ViewData["Message"] = "Logged out";
+            ViewData["User"] = SessionRep.GetUser();
+            return View("LoginTest");
+        }
+
+        public ActionResult StatusTest()
+        {
+            ViewData["Message"] = "Logged in: " + SessionRep.IsLoggedIn().ToString(); ;
+            ViewData["User"] = SessionRep.GetUser();
+            return View("LoginTest");
         }
     }
 }
