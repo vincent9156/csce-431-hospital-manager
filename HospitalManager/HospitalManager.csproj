@@ -82,6 +82,11 @@
     <Compile Include="Libraries\Bootstrapper.cs" />
     <Compile Include="Libraries\MD5Encrypter.cs" />
     <Compile Include="Libraries\PermissionsManager.cs" />
+    <Compile Include="Models\Schedules.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Schedules.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Users.designer.cs">
       <AutoGen>True</AutoGen>
@@ -90,6 +95,7 @@
     </Compile>
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ScheduleRepository.cs" />
     <Compile Include="Repositories\SessionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
@@ -166,12 +172,21 @@
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Models\Schedules.dbml.layout">
+      <DependentUpon>Schedules.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\images\header_pic.psd" />
+    <None Include="Models\Schedules.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Schedules.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Models\Users.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Users.designer.cs</LastGenOutput>
