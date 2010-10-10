@@ -49,8 +49,6 @@ C:\Documents and Settings\mill1988\HospitalManager\HospitalManager\obj\Debug\Hos
 C:\Documents and Settings\mill1988\HospitalManager\HospitalManager\obj\Debug\HospitalManager.pdb
 C:\Users\matt\tamu\10fall\cs431\csce-431-hospital-manager\HospitalManager\bin\App_Data\HospitalManagerDB.mdf
 C:\Users\matt\tamu\10fall\cs431\csce-431-hospital-manager\HospitalManager\bin\App_Data\HospitalManagerDB_log.ldf
-C:\Users\matt\tamu\10fall\cs431\csce-431-hospital-manager\HospitalManager\bin\Views\Users\Create.aspx
-C:\Users\matt\tamu\10fall\cs431\csce-431-hospital-manager\HospitalManager\bin\Views\Users\Index.aspx
 C:\Users\matt\tamu\10fall\cs431\csce-431-hospital-manager\HospitalManager\bin\HospitalManager.dll
 C:\Users\matt\tamu\10fall\cs431\csce-431-hospital-manager\HospitalManager\bin\HospitalManager.pdb
 C:\Users\matt\tamu\10fall\cs431\csce-431-hospital-manager\HospitalManager\obj\Debug\ResolveAssemblyReference.cache

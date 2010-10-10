@@ -27,6 +27,7 @@ namespace HospitalManager.Repositories
         public void Login(User user)
         {
             Session["User"] = user;
+            Session["Username"] = user.Username;
             Session["AuthString"] = GetAuthString();
         }
 
@@ -36,6 +37,7 @@ namespace HospitalManager.Repositories
         public void Logout()
         {
             Session.Remove("User");
+            Session.Remove("Username");
             Session.Remove("AuthString");
         }
 
