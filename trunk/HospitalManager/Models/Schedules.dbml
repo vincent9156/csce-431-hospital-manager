@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HospitalManagerDB" Class="SchedulesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\HospitalManagerDB.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HospitalManagerDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Apr" Member="Aprs">
+    <Type Name="Apr">
+      <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[0930]" Member="_0930" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1000]" Member="_1000" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1030]" Member="_1030" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1100]" Member="_1100" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1130]" Member="_1130" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1200]" Member="_1200" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1230]" Member="_1230" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1300]" Member="_1300" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1330]" Member="_1330" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1400]" Member="_1400" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1430]" Member="_1430" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1500]" Member="_1500" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Feb" Member="Febs">
+    <Type Name="Feb">
+      <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[0930]" Member="_0930" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1000]" Member="_1000" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1030]" Member="_1030" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1100]" Member="_1100" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1130]" Member="_1130" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1200]" Member="_1200" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1230]" Member="_1230" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1300]" Member="_1300" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1330]" Member="_1330" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1400]" Member="_1400" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1430]" Member="_1430" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1500]" Member="_1500" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Jan" Member="Jans">
+    <Type Name="Jan">
+      <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[0930]" Member="_0930" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1000]" Member="_1000" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1030]" Member="_1030" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1100]" Member="_1100" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1130]" Member="_1130" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1200]" Member="_1200" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1230]" Member="_1230" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1300]" Member="_1300" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1330]" Member="_1330" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1400]" Member="_1400" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1430]" Member="_1430" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1500]" Member="_1500" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Jun" Member="Juns">
+    <Type Name="Jun">
+      <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[0930]" Member="_0930" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1000]" Member="_1000" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1030]" Member="_1030" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1100]" Member="_1100" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1130]" Member="_1130" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1200]" Member="_1200" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1230]" Member="_1230" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1300]" Member="_1300" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1330]" Member="_1330" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1400]" Member="_1400" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1430]" Member="_1430" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1500]" Member="_1500" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mar" Member="Mars">
+    <Type Name="Mar">
+      <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[0930]" Member="_0930" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1000]" Member="_1000" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1030]" Member="_1030" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1100]" Member="_1100" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1130]" Member="_1130" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1200]" Member="_1200" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1230]" Member="_1230" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1300]" Member="_1300" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1330]" Member="_1330" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1400]" Member="_1400" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1430]" Member="_1430" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1500]" Member="_1500" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.May" Member="Mays">
+    <Type Name="May">
+      <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[0930]" Member="_0930" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1000]" Member="_1000" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1030]" Member="_1030" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1100]" Member="_1100" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1130]" Member="_1130" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1200]" Member="_1200" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1230]" Member="_1230" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1300]" Member="_1300" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1330]" Member="_1330" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1400]" Member="_1400" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1430]" Member="_1430" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1500]" Member="_1500" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VwDoctors" Member="Doctors">
+    <Type Name="Doctors">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
