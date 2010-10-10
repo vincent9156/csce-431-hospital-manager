@@ -48,9 +48,7 @@ namespace HospitalManager.Controllers
             else if (user.EncryptedPasswordEquals(password))
             {
                 // success
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(username, false, 120);
-                string encTicket = FormsAuthentication.Encrypt(ticket);
-                Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+                SessionRep.Login(user);
 
                 // TODO: redirect to user's home page (right now it just returns to the login form)
                 ModelState.AddModelError("username", "Login success!");
@@ -66,10 +64,7 @@ namespace HospitalManager.Controllers
 
         public ActionResult Logoff()
         {
-            // set the cookie to expire yesterday
-            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            cookie.Expires = DateTime.Now.AddDays(-1d);
-            Response.Cookies.Add(cookie);
+            SessionRep.Logout();
             return Redirect("/");
         }
 
@@ -135,28 +130,12 @@ namespace HospitalManager.Controllers
             newUser.EncryptAndSetPassword(newUser.Password);
             UserRep.AddUser(newUser);
 
+            // Log the user into their new account
+            SessionRep.Login(newUser);
+
             // Display a success page
             UserViewModel userVM = Mapper.Map<User, UserViewModel>(newUser);
             return View("RegistrationSuccessful", userVM);
-        }
-
-        /**
-         * Some test methods to demonstrate use of the session repository
-         */
-        public ActionResult LoginTest()
-        {
-            SessionRep.Login( UserRep.GetUserByUsername("Patient") );
-            ViewData["Message"] = "Logged in";
-            ViewData["User"] = SessionRep.GetUser();
-            return View("LoginTest");
-        }
-
-        public ActionResult LogoutTest()
-        {
-            SessionRep.Logout();
-            ViewData["Message"] = "Logged out";
-            ViewData["User"] = SessionRep.GetUser();
-            return View("LoginTest");
         }
 
         public ActionResult StatusTest()

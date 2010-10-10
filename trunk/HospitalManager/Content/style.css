@@ -27,6 +27,14 @@ ul{
 {
     position:fixed; right:20px;
 }
+#userinfo a
+{
+    color:#ffffff;
+}
+#userinfo a:hover
+{
+    background:#0a5083;
+}
 #main_header #header ul li{
 	float:left; display:block; margin:0 23px 0 0;
 	}
@@ -110,6 +118,14 @@ ul{
 #body p a:hover{
 	background:url(images/more_bg_h.gif) no-repeat #0a2b43; color:#ff0033; 
 	}
+#body a
+{
+    color:#ffffff;
+}
+#body a:hover
+{
+    background:#0a5083
+}
 #event{
 	width:215px;  padding:0 0 0 40px; float:left; display:block;
 	}

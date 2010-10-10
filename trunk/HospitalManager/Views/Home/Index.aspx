@@ -13,20 +13,8 @@
   <p>Thank you for choosing BLAH Medical Hopsital for your health care provider. We are here to server you. Please log on using your username and password or whatever. First time user? Please click on Register. </p>
  
 <br/><br/>
-<form action="" method="get">
-<input name="Search" type="text" value="Username" maxlength="20" />
-</form>
-
-
-<form action="" method="get">
-<input name="Search" type="text" value="Password" maxlength="20" />
-</form>
-
-
-<form>
-<input type="submit" value="Submit" />
-<input type="submit" value="Register" />
-</form>
+<%: Html.ActionLink("Login", "Login", "Authentication") %><br />
+<%: Html.ActionLink("Register", "Register", "Authentication") %><br /><br />
 
 
 
