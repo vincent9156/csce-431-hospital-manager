@@ -5,10 +5,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<div id="main_body">
+<div id="body">
     <h2>Register</h2>
 
-    <p><%= Html.ActionLink("Back", "/Register/") %></p>
+    <%= Html.ActionLink("Back", "/Register/") %>
 
     <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
     <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
@@ -18,54 +19,101 @@
     <% using (Html.BeginForm("RegisterUser", "Authentication")) { %>
         
         <fieldset>
-            <p>
-                <%= Html.Label("Username") %>
-                <%= Html.TextBoxFor(m => m.Username) %>
-                <%= Html.ValidationMessageFor(m => m.Username) %>
-            </p>
-            <p>
-                <%= Html.Label("Password") %>
-                <%= Html.PasswordFor(m => m.Password) %>
-                <%= Html.ValidationMessageFor(m => m.Password) %>
-            </p>
-            <p>
-                <%= Html.Label("Repeat Password") %>
-                <%= Html.PasswordFor(m => m.PasswordRepeat) %>
-                <%= Html.ValidationMessageFor(m => m.PasswordRepeat) %>
-            </p>
-            <p>
-                <%= Html.Label("Email") %>
-                <%= Html.TextBoxFor(m => m.Email) %>
-                <%= Html.ValidationMessageFor(m => m.Email) %>
-            </p>
-            <p>
-                <%= Html.Label("First Name") %>
-                <%= Html.TextBoxFor(m => m.FirstName) %>
-                <%= Html.ValidationMessageFor(m => m.FirstName) %>
-            </p>
-            <p>
-                <%= Html.Label("Last Name") %>
-                <%= Html.TextBoxFor(m => m.LastName) %>
-                <%= Html.ValidationMessageFor(m => m.LastName) %>
-            </p>
+        <table>
+            <tr>
+                <td>
+                    <%= Html.Label("Username") %>
+                </td>
+                <td>
+                    <%= Html.TextBoxFor(m => m.Username) %>
+                </td>
+                <td>
+                    <%= Html.ValidationMessageFor(m => m.Username) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= Html.Label("Password") %>
+                </td>
+                <td>
+                    <%= Html.PasswordFor(m => m.Password) %>
+                </td>
+                <td>
+                    <%= Html.ValidationMessageFor(m => m.Password) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= Html.Label("Repeat Password") %>
+                </td>
+                <td>
+                    <%= Html.PasswordFor(m => m.PasswordRepeat) %>
+                </td>
+                <td>
+                    <%= Html.ValidationMessageFor(m => m.PasswordRepeat) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= Html.Label("Email") %>
+                </td>
+                <td>
+                    <%= Html.TextBoxFor(m => m.Email) %>
+                </td>
+                <td>
+                    <%= Html.ValidationMessageFor(m => m.Email) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= Html.Label("First Name") %>
+                </td>
+                <td>
+                    <%= Html.TextBoxFor(m => m.FirstName) %>
+                </td>
+                <td>
+                    <%= Html.ValidationMessageFor(m => m.FirstName) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= Html.Label("Last Name") %>
+                </td>
+                <td>
+                    <%= Html.TextBoxFor(m => m.LastName) %>
+                </td>
+                <td>
+                    <%= Html.ValidationMessageFor(m => m.LastName) %>
+                </td>
+            </tr>
 
             <% if(!Model.HasAccess(AccessOptions.RegisterWithoutStaffID)) { %>
-            <p>
-                <%= Html.Label("Staff ID") %>
-                <%= Html.TextBox("StaffID") %>
-            </p>
+            <tr>
+                <td>
+                    <%= Html.Label("Staff ID") %>
+                </td>
+                <td>
+                    <%= Html.TextBox("StaffID") %>
+                </td>
+                <td></td>
+            </tr>
             <% } %>
             
-            <p>
-                <%= Html.ValidationSummary(true) %>
-            </p>
-            <p>
-                <%= Html.HiddenFor(m => m.TypeID) %>
-                <input type="submit" value="Register" />
-            </p>
-
+            <tr>
+                <td colspan="3">
+                    <%= Html.ValidationSummary(true) %>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <%= Html.HiddenFor(m => m.TypeID) %>
+                    <input type="submit" value="Register" />
+                </td>
+            </tr>
+        </table>
         </fieldset>
 
     <% } %>
-
+    </div>
+    </div>
 </asp:Content>
