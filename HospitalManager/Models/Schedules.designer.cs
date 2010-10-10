@@ -30,12 +30,12 @@ namespace HospitalManager.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertFeb(Feb instance);
-    partial void UpdateFeb(Feb instance);
-    partial void DeleteFeb(Feb instance);
-    partial void InsertJan(Jan instance);
-    partial void UpdateJan(Jan instance);
-    partial void DeleteJan(Jan instance);
+    partial void InsertFebSchedule(FebSchedule instance);
+    partial void UpdateFebSchedule(FebSchedule instance);
+    partial void DeleteFebSchedule(FebSchedule instance);
+    partial void InsertJanSchedule(JanSchedule instance);
+    partial void UpdateJanSchedule(JanSchedule instance);
+    partial void DeleteJanSchedule(JanSchedule instance);
     #endregion
 		
 		public SchedulesDataContext() : 
@@ -68,51 +68,51 @@ namespace HospitalManager.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Apr> Aprs
+		public System.Data.Linq.Table<AprSchedule> AprSchedules
 		{
 			get
 			{
-				return this.GetTable<Apr>();
+				return this.GetTable<AprSchedule>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Feb> Febs
+		public System.Data.Linq.Table<FebSchedule> FebSchedules
 		{
 			get
 			{
-				return this.GetTable<Feb>();
+				return this.GetTable<FebSchedule>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Jan> Jans
+		public System.Data.Linq.Table<JanSchedule> JanSchedules
 		{
 			get
 			{
-				return this.GetTable<Jan>();
+				return this.GetTable<JanSchedule>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Jun> Juns
+		public System.Data.Linq.Table<JunSchedule> JunSchedules
 		{
 			get
 			{
-				return this.GetTable<Jun>();
+				return this.GetTable<JunSchedule>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Mar> Mars
+		public System.Data.Linq.Table<MarSchedule> MarSchedules
 		{
 			get
 			{
-				return this.GetTable<Mar>();
+				return this.GetTable<MarSchedule>();
 			}
 		}
 		
-		public System.Data.Linq.Table<May> Mays
+		public System.Data.Linq.Table<MaySchedule> MaySchedules
 		{
 			get
 			{
-				return this.GetTable<May>();
+				return this.GetTable<MaySchedule>();
 			}
 		}
 		
@@ -126,7 +126,7 @@ namespace HospitalManager.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Apr")]
-	public partial class Apr
+	public partial class AprSchedule
 	{
 		
 		private int _StaffID;
@@ -165,7 +165,7 @@ namespace HospitalManager.Models
 		
 		private System.Nullable<int> @__1630;
 		
-		public Apr()
+		public AprSchedule()
 		{
 		}
 		
@@ -459,7 +459,7 @@ namespace HospitalManager.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Feb")]
-	public partial class Feb : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class FebSchedule : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -542,7 +542,7 @@ namespace HospitalManager.Models
     partial void On_1630Changed();
     #endregion
 		
-		public Feb()
+		public FebSchedule()
 		{
 			OnCreated();
 		}
@@ -929,7 +929,7 @@ namespace HospitalManager.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Jan")]
-	public partial class Jan : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class JanSchedule : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1012,7 +1012,7 @@ namespace HospitalManager.Models
     partial void On_1630Changed();
     #endregion
 		
-		public Jan()
+		public JanSchedule()
 		{
 			OnCreated();
 		}
@@ -1399,7 +1399,7 @@ namespace HospitalManager.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Jun")]
-	public partial class Jun
+	public partial class JunSchedule
 	{
 		
 		private int _StaffID;
@@ -1438,7 +1438,7 @@ namespace HospitalManager.Models
 		
 		private System.Nullable<int> @__1630;
 		
-		public Jun()
+		public JunSchedule()
 		{
 		}
 		
@@ -1732,7 +1732,7 @@ namespace HospitalManager.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Mar")]
-	public partial class Mar
+	public partial class MarSchedule
 	{
 		
 		private int _StaffID;
@@ -1771,7 +1771,7 @@ namespace HospitalManager.Models
 		
 		private System.Nullable<int> @__1630;
 		
-		public Mar()
+		public MarSchedule()
 		{
 		}
 		
@@ -2065,7 +2065,7 @@ namespace HospitalManager.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.May")]
-	public partial class May
+	public partial class MaySchedule
 	{
 		
 		private int _StaffID;
@@ -2104,7 +2104,7 @@ namespace HospitalManager.Models
 		
 		private System.Nullable<int> @__1630;
 		
-		public May()
+		public MaySchedule()
 		{
 		}
 		

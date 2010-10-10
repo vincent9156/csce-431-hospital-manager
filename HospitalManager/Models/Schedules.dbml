@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HospitalManagerDB" Class="SchedulesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\HospitalManagerDB.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HospitalManagerDBConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Apr" Member="Aprs">
-    <Type Name="Apr">
+  <Table Name="dbo.Apr" Member="AprSchedules">
+    <Type Name="AprSchedule">
       <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -20,10 +20,11 @@
       <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Doctors_Apr" Member="Doctors" ThisKey="StaffID" OtherKey="UserID" Type="Doctors" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Feb" Member="Febs">
-    <Type Name="Feb">
+  <Table Name="dbo.Feb" Member="FebSchedules">
+    <Type Name="FebSchedule">
       <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -42,10 +43,11 @@
       <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Doctors_Feb" Member="Doctors" ThisKey="StaffID" OtherKey="UserID" Type="Doctors" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Jan" Member="Jans">
-    <Type Name="Jan">
+  <Table Name="dbo.Jan" Member="JanSchedules">
+    <Type Name="JanSchedule">
       <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -64,10 +66,11 @@
       <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Doctors_Jan" Member="Doctors" ThisKey="StaffID" OtherKey="UserID" Type="Doctors" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Jun" Member="Juns">
-    <Type Name="Jun">
+  <Table Name="dbo.Jun" Member="JunSchedules">
+    <Type Name="JunSchedule">
       <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -86,10 +89,11 @@
       <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Doctors_Jun" Member="Doctors" ThisKey="StaffID" OtherKey="UserID" Type="Doctors" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Mar" Member="Mars">
-    <Type Name="Mar">
+  <Table Name="dbo.Mar" Member="MarSchedules">
+    <Type Name="MarSchedule">
       <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -108,10 +112,11 @@
       <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Doctors_Mar" Member="Doctors" ThisKey="StaffID" OtherKey="UserID" Type="Doctors" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.May" Member="Mays">
-    <Type Name="May">
+  <Table Name="dbo.May" Member="MaySchedules">
+    <Type Name="MaySchedule">
       <Column Name="StaffID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="[0900]" Member="_0900" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -130,6 +135,7 @@
       <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Doctors_May" Member="Doctors" ThisKey="StaffID" OtherKey="UserID" Type="Doctors" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.VwDoctors" Member="Doctors">
@@ -137,6 +143,12 @@
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Doctors_Apr" Member="AprSchedules" Storage="_Aprs" ThisKey="UserID" OtherKey="StaffID" Type="AprSchedule" />
+      <Association Name="Doctors_Feb" Member="FebSchedules" Storage="_Febs" ThisKey="UserID" OtherKey="StaffID" Type="FebSchedule" />
+      <Association Name="Doctors_Jan" Member="JanSchedules" Storage="_Jans" ThisKey="UserID" OtherKey="StaffID" Type="JanSchedule" />
+      <Association Name="Doctors_Jun" Member="JunSchedules" Storage="_Juns" ThisKey="UserID" OtherKey="StaffID" Type="JunSchedule" />
+      <Association Name="Doctors_Mar" Member="MarSchedules" Storage="_Mars" ThisKey="UserID" OtherKey="StaffID" Type="MarSchedule" />
+      <Association Name="Doctors_May" Member="MaySchedules" Storage="_Mays" ThisKey="UserID" OtherKey="StaffID" Type="MaySchedule" />
     </Type>
   </Table>
 </Database>
