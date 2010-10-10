@@ -11,6 +11,10 @@ ul{
 .balnk{
 	font-size:0px; line-height:0px; clear:both;
 	}
+fieldset
+{
+    border:none;
+}
 /*--------------------------------header-------------------*/
 #main_header{
 	width:100%;	margin:0 auto;  background:url(images/bg.gif) repeat-x #0a2b43; color:#FFFFFF; height:216px;

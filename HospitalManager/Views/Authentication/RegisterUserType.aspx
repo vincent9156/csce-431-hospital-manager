@@ -5,7 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<div id="main_body">
+<div id="body">
     <h2>Register</h2>
     
     <% using (Html.BeginForm()) {%>
@@ -22,4 +23,6 @@
 
     <% } %>
 
+    </div>
+    </div>
 </asp:Content>

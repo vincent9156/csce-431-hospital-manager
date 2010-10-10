@@ -13,7 +13,7 @@
     <% using (Html.BeginForm())
        { %>
     
-    <fieldset style="border:none">
+    <fieldset>
     <table>
         <tr>
             <td>
@@ -38,7 +38,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td colspan="3">
                 <input type="submit" value="Login" />
             </td>
         </tr>
