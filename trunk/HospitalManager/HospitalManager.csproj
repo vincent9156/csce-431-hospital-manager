@@ -82,6 +82,7 @@
     <Compile Include="Libraries\Bootstrapper.cs" />
     <Compile Include="Libraries\MD5Encrypter.cs" />
     <Compile Include="Libraries\PermissionsManager.cs" />
+    <Compile Include="Models\IScheduleRepository.cs" />
     <Compile Include="Models\Schedules.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

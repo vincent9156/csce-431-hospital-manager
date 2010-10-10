@@ -1,48 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 8.5" name="Schedules">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Schedules">
   <DataContextMoniker Name="/SchedulesDataContext" />
   <nestedChildShapes>
     <classShape Id="c0d6f5cd-b34e-4672-9cb9-d39c01cd0540" isExpanded="false" absoluteBounds="0.75, 0.75, 2, 0.45">
-      <DataClassMoniker Name="/SchedulesDataContext/Apr" />
+      <DataClassMoniker Name="/SchedulesDataContext/AprSchedule" />
       <nestedChildShapes>
         <elementListCompartment Id="743daabb-2b33-451d-96aa-af6f92cd978c" absoluteBounds="0.765, 1.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="26b24ff6-01e2-4bb4-ab4c-18bcf37f928c" isExpanded="false" absoluteBounds="3.75, 0.75, 2, 0.45">
-      <DataClassMoniker Name="/SchedulesDataContext/Feb" />
+      <DataClassMoniker Name="/SchedulesDataContext/FebSchedule" />
       <nestedChildShapes>
         <elementListCompartment Id="ec4c7573-0425-43b8-958d-87eec6b8ba86" absoluteBounds="3.765, 1.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="178e6b9d-30db-41fa-8fb4-303b8b6ddfdf" isExpanded="false" absoluteBounds="6.75, 0.75, 2, 0.45">
-      <DataClassMoniker Name="/SchedulesDataContext/Jan" />
+      <DataClassMoniker Name="/SchedulesDataContext/JanSchedule" />
       <nestedChildShapes>
         <elementListCompartment Id="3549876c-ed13-46fc-86a1-cda36ba9fc0c" absoluteBounds="6.765, 1.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="a317c8d0-0dcd-4078-9193-73026072e218" isExpanded="false" absoluteBounds="0.75, 6.75, 2, 0.45">
-      <DataClassMoniker Name="/SchedulesDataContext/Jun" />
+      <DataClassMoniker Name="/SchedulesDataContext/JunSchedule" />
       <nestedChildShapes>
         <elementListCompartment Id="22019309-166a-4eaa-abc1-9b9f97cdfc12" absoluteBounds="0.765, 7.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="020b665d-07b4-4264-97f9-31391c2c5c68" isExpanded="false" absoluteBounds="3.75, 6.75, 2, 0.45">
-      <DataClassMoniker Name="/SchedulesDataContext/Mar" />
+      <DataClassMoniker Name="/SchedulesDataContext/MarSchedule" />
       <nestedChildShapes>
         <elementListCompartment Id="157419b3-6a96-4959-a0d2-505fc5b2c61a" absoluteBounds="3.765, 7.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="a039e63c-d111-44d6-a55a-9cc773991d02" isExpanded="false" absoluteBounds="6.75, 6.75, 2, 0.45">
-      <DataClassMoniker Name="/SchedulesDataContext/May" />
+      <DataClassMoniker Name="/SchedulesDataContext/MaySchedule" />
       <nestedChildShapes>
         <elementListCompartment Id="96b9fe62-1735-4ec4-b1d4-a32880e3c31d" absoluteBounds="6.765, 7.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="02748dad-389b-4b2e-a09a-42c8a16e449e" isExpanded="false" absoluteBounds="9.75, 0.75, 2, 0.45">
+    <classShape Id="02748dad-389b-4b2e-a09a-42c8a16e449e" isExpanded="false" absoluteBounds="4.375, 2.625, 2, 0.45">
       <DataClassMoniker Name="/SchedulesDataContext/Doctors" />
       <nestedChildShapes>
-        <elementListCompartment Id="114df484-9834-492c-85cf-33b23feed26e" absoluteBounds="9.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="114df484-9834-492c-85cf-33b23feed26e" absoluteBounds="4.3900000000000006, 3.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <associationConnector edgePoints="[(4.375 : 2.85); (1.75 : 2.85); (1.75 : 1.2)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SchedulesDataContext/Doctors/Doctors_Apr" />
+      <nodes>
+        <classShapeMoniker Id="02748dad-389b-4b2e-a09a-42c8a16e449e" />
+        <classShapeMoniker Id="c0d6f5cd-b34e-4672-9cb9-d39c01cd0540" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.0625 : 2.625); (5.0625 : 1.2)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SchedulesDataContext/Doctors/Doctors_Feb" />
+      <nodes>
+        <classShapeMoniker Id="02748dad-389b-4b2e-a09a-42c8a16e449e" />
+        <classShapeMoniker Id="26b24ff6-01e2-4bb4-ab4c-18bcf37f928c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.375 : 2.85); (7.75 : 2.85); (7.75 : 1.2)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SchedulesDataContext/Doctors/Doctors_Jan" />
+      <nodes>
+        <classShapeMoniker Id="02748dad-389b-4b2e-a09a-42c8a16e449e" />
+        <classShapeMoniker Id="178e6b9d-30db-41fa-8fb4-303b8b6ddfdf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.375 : 2.9937525); (2.25 : 2.9937525); (2.25 : 6.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SchedulesDataContext/Doctors/Doctors_Jun" />
+      <nodes>
+        <classShapeMoniker Id="02748dad-389b-4b2e-a09a-42c8a16e449e" />
+        <classShapeMoniker Id="a317c8d0-0dcd-4078-9193-73026072e218" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.0625 : 3.075); (5.0625 : 6.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SchedulesDataContext/Doctors/Doctors_Mar" />
+      <nodes>
+        <classShapeMoniker Id="02748dad-389b-4b2e-a09a-42c8a16e449e" />
+        <classShapeMoniker Id="020b665d-07b4-4264-97f9-31391c2c5c68" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.375 : 2.9937525); (7.25 : 2.9937525); (7.25 : 6.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SchedulesDataContext/Doctors/Doctors_May" />
+      <nodes>
+        <classShapeMoniker Id="02748dad-389b-4b2e-a09a-42c8a16e449e" />
+        <classShapeMoniker Id="a039e63c-d111-44d6-a55a-9cc773991d02" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
