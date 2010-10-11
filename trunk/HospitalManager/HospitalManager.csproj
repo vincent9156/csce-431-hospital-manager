@@ -74,7 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AuthenticationController.cs" />
-    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PermissionsTestController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
@@ -159,13 +158,13 @@
     <Content Include="Views\Authentication\RegisterUser.aspx" />
     <Content Include="Views\Authentication\RegisterUserType.aspx" />
     <Content Include="Views\Authentication\RegistrationSuccessful.aspx" />
-    <Content Include="Views\Doctor\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\UserLog.aspx" />
     <Content Include="Views\PermissionsTest\AddDoctor.aspx" />
     <Content Include="Views\PermissionsTest\ShowUser.aspx" />
     <Content Include="Views\PermissionsTest\UserDisplay.ascx" />
     <Content Include="Views\Schedule\Index.aspx" />
+    <Content Include="Views\Schedule\Jan.aspx" />
     <Content Include="Views\Shared\LoginCheck.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

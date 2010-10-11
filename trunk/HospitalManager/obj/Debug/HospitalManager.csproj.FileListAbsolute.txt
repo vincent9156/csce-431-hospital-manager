@@ -68,3 +68,10 @@ D:\Code\Hospital Manager\HospitalManager\bin\HospitalManager.pdb
 D:\Code\Hospital Manager\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
 D:\Code\Hospital Manager\HospitalManager\obj\Debug\HospitalManager.dll
 D:\Code\Hospital Manager\HospitalManager\obj\Debug\HospitalManager.pdb
+C:\Documents and Settings\csmith\hospital mang\HospitalManager\bin\App_Data\HospitalManagerDB.mdf
+C:\Documents and Settings\csmith\hospital mang\HospitalManager\bin\App_Data\HospitalManagerDB_log.ldf
+C:\Documents and Settings\csmith\hospital mang\HospitalManager\bin\HospitalManager.dll
+C:\Documents and Settings\csmith\hospital mang\HospitalManager\bin\HospitalManager.pdb
+C:\Documents and Settings\csmith\hospital mang\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\csmith\hospital mang\HospitalManager\obj\Debug\HospitalManager.dll
+C:\Documents and Settings\csmith\hospital mang\HospitalManager\obj\Debug\HospitalManager.pdb
