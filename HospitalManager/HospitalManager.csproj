@@ -74,19 +74,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PermissionsTestController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Libraries\Bootstrapper.cs" />
     <Compile Include="Libraries\MD5Encrypter.cs" />
     <Compile Include="Libraries\PermissionsManager.cs" />
-    <Compile Include="Models\IScheduleRepository.cs" />
-    <Compile Include="Models\Schedules.designer.cs">
+    <Compile Include="Models\Schedule.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Schedules.dbml</DependentUpon>
+      <DependentUpon>Schedule.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Users.designer.cs">
@@ -103,6 +104,7 @@
     <Compile Include="ViewModels\NurseViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\PharmacistViewModel.cs" />
+    <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\UserRegistrationViewModel.cs" />
     <Compile Include="ViewModels\UserTypesViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
@@ -157,11 +159,13 @@
     <Content Include="Views\Authentication\RegisterUser.aspx" />
     <Content Include="Views\Authentication\RegisterUserType.aspx" />
     <Content Include="Views\Authentication\RegistrationSuccessful.aspx" />
+    <Content Include="Views\Doctor\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\UserLog.aspx" />
     <Content Include="Views\PermissionsTest\AddDoctor.aspx" />
     <Content Include="Views\PermissionsTest\ShowUser.aspx" />
     <Content Include="Views\PermissionsTest\UserDisplay.ascx" />
+    <Content Include="Views\Schedule\Index.aspx" />
     <Content Include="Views\Shared\LoginCheck.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -174,18 +178,13 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\Schedules.dbml.layout">
-      <DependentUpon>Schedules.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\images\header_pic.psd" />
-    <None Include="Models\Schedules.dbml">
+    <None Include="Models\Schedule.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Schedules.designer.cs</LastGenOutput>
+      <LastGenOutput>Schedule.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Models\Users.dbml">
@@ -199,6 +198,12 @@
       <DependentUpon>Users.dbml</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\Schedule.dbml.layout">
+      <DependentUpon>Schedule.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

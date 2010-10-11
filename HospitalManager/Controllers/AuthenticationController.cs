@@ -52,7 +52,29 @@ namespace HospitalManager.Controllers
 
                 // TODO: redirect to user's home page (right now it just returns to the login form)
                 ModelState.AddModelError("username", "Login success!");
-                return View();
+
+                if (user.TypeID == 1)
+                    return Redirect("/Patient/Index/");
+
+                else if (user.TypeID == 2)
+                {
+                    var dModel = new DoctorViewModel
+                    {
+                        FName = user.FirstName,
+                        LName = user.LastName,
+                        id = user.UserID
+                    };
+
+                    return RedirectToAction("Index", "Doctor", dModel);
+                }
+                else if (user.TypeID == 3)
+                    return Redirect("/Nurse/Index/");
+
+                else if (user.TypeID == 4)
+                    return Redirect("/Pharmicist/Index/");
+
+                else
+                    return View();
             }
             else
             {
