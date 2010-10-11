@@ -13,10 +13,12 @@ namespace HospitalManager.Controllers
     public class HomeController : Controller
     {
         UserRepository repository;
+        SessionRepository sessRep;
 
         public HomeController()
         {
             repository = new UserRepository();
+            sessRep = new SessionRepository();
         }
 
         //
@@ -27,9 +29,9 @@ namespace HospitalManager.Controllers
         }
 
 
-        public ActionResult UserLog(String id)
+        public ActionResult UserLog()
         {
-            User user = repository.GetUserByUsername(id);
+            User user = sessRep.GetUser();
             UserViewModel userVm = Mapper.Map<User, UserViewModel>(user);
             return View(userVm);
 
