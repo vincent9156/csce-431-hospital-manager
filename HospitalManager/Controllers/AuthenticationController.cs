@@ -30,6 +30,9 @@ namespace HospitalManager.Controllers
 
         public ActionResult Login()
         {
+            // do not allow logging in if the user is already logged in
+            if (SessionRep.IsLoggedIn())
+                return Redirect("/");
             User user = new User();
             return View(user);
         }
@@ -37,6 +40,10 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
+            // do not allow logging in if the user is already logged in
+            if (SessionRep.IsLoggedIn())
+                return Redirect("/");
+
             User user = UserRep.GetUserByUsername(username);
 
             if (user == null)
