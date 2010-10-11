@@ -10,5 +10,8 @@ namespace HospitalManager.ViewModels
      */
     public class DoctorViewModel : UserViewModel
     {
+        public int id { get; set;}
+        public string FName { get; set; }
+        public string LName { get; set; }
     }
 }

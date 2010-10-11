@@ -6,22 +6,34 @@ using HospitalManager.Models;
 
 namespace HospitalManager.Repositories
 {
-    public class ScheduleRepository : IScheduleRepository
+    public class ScheduleRepository
     {
-        private SchedulesDataContext _db;
+        private ScheduleDataContext _dbSched;
 
         public ScheduleRepository()
         {
-            _db = new SchedulesDataContext();
+            _dbSched = new ScheduleDataContext();
         }
 
         //Return A List Of All Doctors
-        public IList<Doctors> ListAll()
+        public IList<ScheduleUsers> ListDoctors()
         {
-            var docs = from d in _db.Doctors
+            var docs = from d in _dbSched.ScheduleUsers
+                       where d.TypeID == 2
                        select d;
 
             return docs.ToList();
         }
+
+        //Return the schdule for a given doctor
+        public IList<Schedule> ListDoctorSchedule(int id, string month, int year)
+        {
+            var schd = from s in _dbSched.Schedules
+                       where s.UserID == id && s.Month == month && s.Year == year
+                       select s;
+
+            return schd.ToList();
+        }
+
     }
 }
