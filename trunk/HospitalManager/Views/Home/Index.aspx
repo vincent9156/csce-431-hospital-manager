@@ -10,7 +10,7 @@
 <div id="main_body">
 <div id="body">
 
-  <p>Thank you for choosing BLAH Medical Hopsital for your health care provider. We are here to server you. Please log on using your username and password or whatever. First time user? Please click on Register. </p>
+  <p>Thank you for choosing BLAH Medical Hopsital for your health care provider. We are here to serve you. Please log on using your username and password. First time user? Please click on Register. </p>
  
 <br/><br/>
 <%: Html.ActionLink("Login", "Login", "Authentication") %><br />
