@@ -77,6 +77,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PermissionsTestController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -104,6 +105,7 @@
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\PharmacistViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UserRegistrationViewModel.cs" />
     <Compile Include="ViewModels\UserTypesViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
