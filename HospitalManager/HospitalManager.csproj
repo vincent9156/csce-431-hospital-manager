@@ -157,7 +157,6 @@
     <Content Include="Views\Authentication\LoginTest.aspx" />
     <Content Include="Views\Authentication\RegisterUser.aspx" />
     <Content Include="Views\Authentication\RegisterUserType.aspx" />
-    <Content Include="Views\Authentication\RegistrationSuccessful.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\UserLog.aspx" />
     <Content Include="Views\PermissionsTest\AddDoctor.aspx" />
