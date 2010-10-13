@@ -170,6 +170,7 @@
     <Content Include="Views\Schedule\Jan.aspx" />
     <Content Include="Views\Schedule\Mar.aspx" />
     <Content Include="Views\Shared\LoginCheck.ascx" />
+    <Content Include="Views\Shared\PartialLink.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
