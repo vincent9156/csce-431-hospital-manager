@@ -79,7 +79,7 @@ fieldset
 	position:absolute; left:40px; top:74px; display:block;
 	}
 #main_header #header ul.navi{
-	width:491px; display:block; position:absolute; top:189px; left:131px; padding:0; margin:0; background:none;
+	width:auto; display:block; margin-left:auto; margin-right:auto; top:189px; padding:0; margin:0; background:none;
 	}
 #main_header #header ul.navi li{
 	background:url(images/saparation.gif) no-repeat right; height:22px; padding:0 14px 0 5px; margin:0;
