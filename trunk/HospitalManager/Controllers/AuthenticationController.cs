@@ -141,9 +141,8 @@ namespace HospitalManager.Controllers
             // Log the user into their new account
             SessionRep.Login(newUser);
 
-            // Display a success page
-            UserViewModel userVM = Mapper.Map<User, UserViewModel>(newUser);
-            return View("RegistrationSuccessful", userVM);
+            // redirect to homepage
+            return Redirect("/Home/UserLog/");
         }
 
         public ActionResult StatusTest()
