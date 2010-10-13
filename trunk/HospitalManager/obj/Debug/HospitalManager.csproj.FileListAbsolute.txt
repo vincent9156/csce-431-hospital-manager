@@ -40,8 +40,6 @@ H:\HospitalManager\HospitalManager\obj\Debug\HospitalManager.dll
 H:\HospitalManager\HospitalManager\obj\Debug\HospitalManager.pdb
 C:\Documents and Settings\mill1988\HospitalManager\HospitalManager\bin\App_Data\HospitalManagerDB.mdf
 C:\Documents and Settings\mill1988\HospitalManager\HospitalManager\bin\App_Data\HospitalManagerDB_log.ldf
-C:\Documents and Settings\mill1988\HospitalManager\HospitalManager\bin\Views\Users\Create.aspx
-C:\Documents and Settings\mill1988\HospitalManager\HospitalManager\bin\Views\Users\Index.aspx
 C:\Documents and Settings\mill1988\HospitalManager\HospitalManager\bin\HospitalManager.dll
 C:\Documents and Settings\mill1988\HospitalManager\HospitalManager\bin\HospitalManager.pdb
 C:\Documents and Settings\mill1988\HospitalManager\HospitalManager\obj\Debug\ResolveAssemblyReference.cache

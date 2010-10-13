@@ -9,7 +9,6 @@
 <div id="main_body">
 <div id="body">
     <h2>Login</h2>
-
     <% using (Html.BeginForm())
        { %>
     
