@@ -80,3 +80,10 @@ C:\Documents and Settings\ph3lpy\CSCE 431\HospitalManager\bin\HospitalManager.pd
 C:\Documents and Settings\ph3lpy\CSCE 431\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\ph3lpy\CSCE 431\HospitalManager\obj\Debug\HospitalManager.dll
 C:\Documents and Settings\ph3lpy\CSCE 431\HospitalManager\obj\Debug\HospitalManager.pdb
+C:\Documents and Settings\skl25\431\HospitalManager\bin\App_Data\HospitalManagerDB.mdf
+C:\Documents and Settings\skl25\431\HospitalManager\bin\App_Data\HospitalManagerDB_log.ldf
+C:\Documents and Settings\skl25\431\HospitalManager\bin\HospitalManager.dll
+C:\Documents and Settings\skl25\431\HospitalManager\bin\HospitalManager.pdb
+C:\Documents and Settings\skl25\431\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\skl25\431\HospitalManager\obj\Debug\HospitalManager.dll
+C:\Documents and Settings\skl25\431\HospitalManager\obj\Debug\HospitalManager.pdb

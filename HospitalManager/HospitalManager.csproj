@@ -164,8 +164,11 @@
     <Content Include="Views\PermissionsTest\AddDoctor.aspx" />
     <Content Include="Views\PermissionsTest\ShowUser.aspx" />
     <Content Include="Views\PermissionsTest\UserDisplay.ascx" />
+    <Content Include="Views\Schedule\Apr.aspx" />
+    <Content Include="Views\Schedule\Feb.aspx" />
     <Content Include="Views\Schedule\Index.aspx" />
     <Content Include="Views\Schedule\Jan.aspx" />
+    <Content Include="Views\Schedule\Mar.aspx" />
     <Content Include="Views\Shared\LoginCheck.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
