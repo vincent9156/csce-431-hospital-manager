@@ -25,17 +25,22 @@ namespace HospitalManager.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/Authentication/Login/");
         }
 
 
         public ActionResult UserLog()
         {
-            User user = sessRep.GetUser();
-            UserViewModel userVm = Mapper.Map<User, UserViewModel>(user);
-            return View(userVm);
-
+            if (sessRep.IsLoggedIn())
+            {
+                User user = sessRep.GetUser();
+                UserViewModel userVm = Mapper.Map<User, UserViewModel>(user);
+                return View(userVm);
+            }
+            else
+            {
+                return Redirect("/Authentication/Login/");
+            }
         }
-
     }
 }

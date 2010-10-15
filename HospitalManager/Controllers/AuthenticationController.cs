@@ -32,7 +32,7 @@ namespace HospitalManager.Controllers
         {
             // do not allow logging in if the user is already logged in
             if (SessionRep.IsLoggedIn())
-                return Redirect("/");
+                return Redirect("/Home/UserLog/");
             User user = new User();
             return View(user);
         }
@@ -42,7 +42,7 @@ namespace HospitalManager.Controllers
         {
             // do not allow logging in if the user is already logged in
             if (SessionRep.IsLoggedIn())
-                return Redirect("/");
+                return Redirect("/Home/UserLog/");
 
             User user = UserRep.GetUserByUsername(username);
 
@@ -73,7 +73,7 @@ namespace HospitalManager.Controllers
         public ActionResult Logoff()
         {
             SessionRep.Logout();
-            return Redirect("/");
+            return Redirect("/Authentication/Login/");
         }
 
         /**

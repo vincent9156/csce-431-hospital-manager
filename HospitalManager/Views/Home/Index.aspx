@@ -15,9 +15,6 @@
 <br/><br/>
 <%: Html.ActionLink("Login", "Login", "Authentication") %><br />
 <%: Html.ActionLink("Register", "Register", "Authentication") %><br /><br />
-
-
-
     </div>
     </div>
 </asp:Content>
