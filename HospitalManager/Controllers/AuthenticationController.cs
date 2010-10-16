@@ -36,6 +36,11 @@ namespace HospitalManager.Controllers
             User user = new User();
             return View(user);
         }
+        public ActionResult RegisterMessage()
+        {
+            return View("RegisterMessage");
+        }
+
 
         [HttpPost]
         public ActionResult Login(string username, string password)
@@ -81,11 +86,14 @@ namespace HospitalManager.Controllers
          */
         public ActionResult Register()
         {
-            var types = new UserTypesViewModel
-            {
-                UserTypes = UserRep.GetUserTypes()
-            };
-            return View("RegisterUserType", types);
+            if (SessionRep.IsLoggedIn())
+                return Redirect("/Authentication/RegisterMessage/");
+
+                var types = new UserTypesViewModel
+                {
+                    UserTypes = UserRep.GetUserTypes()
+                };
+                return View("RegisterUserType", types);
         }
 
         /**
@@ -101,6 +109,7 @@ namespace HospitalManager.Controllers
 
             return View("RegisterUser", newUser);
         }
+
         
         /**
          * Complete user registration and validate all of their information.
@@ -108,41 +117,44 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult RegisterUser(UserRegistrationViewModel user, int staffID = -1)
         {
-            // Load the user's permissions
-            user.Permissions = UserRep.GetUserTypeByID(user.TypeID).Permissions;
+            if (SessionRep.IsLoggedIn())
+                return Redirect("/Authentication/RegisterMessage/");
+                // Load the user's permissions
+                user.Permissions = UserRep.GetUserTypeByID(user.TypeID).Permissions;
 
-            // Validate their input
-            if (!ModelState.IsValid)
-            {
-                return View(user);
-            }
+                // Validate their input
+                if (!ModelState.IsValid)
+                {
+                    return View(user);
+                }
 
-            // Register the user
-            User newUser;
-            switch (user.TypeID)
-            {
-                case UserType.DoctorTypeID:
-                    newUser = Mapper.Map<UserRegistrationViewModel, Doctor>(user);
-                    break;
-                case UserType.NurseTypeID:
-                    newUser = Mapper.Map<UserRegistrationViewModel, Nurse>(user);
-                    break;
-                case UserType.PharmacistTypeID:
-                    newUser = Mapper.Map<UserRegistrationViewModel, Pharmacist>(user);
-                    break;
-                default:
-                    newUser = Mapper.Map<UserRegistrationViewModel, Patient>(user);
-                    break;
-            }
+                // Register the user
+                User newUser;
+                switch (user.TypeID)
+                {
+                    case UserType.DoctorTypeID:
+                        newUser = Mapper.Map<UserRegistrationViewModel, Doctor>(user);
+                        break;
+                    case UserType.NurseTypeID:
+                        newUser = Mapper.Map<UserRegistrationViewModel, Nurse>(user);
+                        break;
+                    case UserType.PharmacistTypeID:
+                        newUser = Mapper.Map<UserRegistrationViewModel, Pharmacist>(user);
+                        break;
+                    default:
+                        newUser = Mapper.Map<UserRegistrationViewModel, Patient>(user);
+                        break;
+                }
+
+                newUser.EncryptAndSetPassword(newUser.Password);
+                UserRep.AddUser(newUser);
+
+                // Log the user into their new account
+                SessionRep.Login(newUser);
+
+                // redirect to homepage
+                return Redirect("/Home/UserLog/");
             
-            newUser.EncryptAndSetPassword(newUser.Password);
-            UserRep.AddUser(newUser);
-
-            // Log the user into their new account
-            SessionRep.Login(newUser);
-
-            // redirect to homepage
-            return Redirect("/Home/UserLog/");
         }
 
         public ActionResult StatusTest()
