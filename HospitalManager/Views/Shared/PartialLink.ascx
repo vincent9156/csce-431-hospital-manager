@@ -18,34 +18,34 @@
 <% }
    else
    {%>
-
+    <%@ Import Namespace="HospitalManager.Models" %>
        <ul class="navi"> 
-    <% if (Model.HasAccess(AccessOptions.ViewSchedule))
+    <% if (((User)Session["User"]).HasAccess(AccessOptions.ViewSchedule))
        { %>
             <li> <%:Html.ActionLink("View Schedule", "Index", "Schedule")%></li> 
        <% } %> 
 
-    <% if (Model.HasAccess(AccessOptions.EditMedicalHistory))
+    <% if (((User)Session["User"]).HasAccess(AccessOptions.EditMedicalHistory))
        { %>
             <li> <%:Html.ActionLink("Medical History", " ")%> </li>  
        <% } %> 
 
-    <% if (Model.HasAccess(AccessOptions.EditAppointments))
+    <% if (((User)Session["User"]).HasAccess(AccessOptions.EditAppointments))
        { %>
             <li> <%:Html.ActionLink("Appointments", " ")%> </li>  
        <% } %> 
 
-    <% if (Model.HasAccess(AccessOptions.ViewPrescriptions))
+    <% if (((User)Session["User"]).HasAccess(AccessOptions.ViewPrescriptions))
        { %>
             <li> <%:Html.ActionLink("Prescriptions", " ")%> </li>  
        <% } %> 
 
-    <% if (Model.HasAccess(AccessOptions.EditPrescriptions))
+    <% if (((User)Session["User"]).HasAccess(AccessOptions.EditPrescriptions))
        { %>
             <li> <%:Html.ActionLink("Prescriptions", " ")%> </li>  
        <% } %> 
 
-    <% if (Model.HasAccess(AccessOptions.ViewCurrentBill))
+    <% if (((User)Session["User"]).HasAccess(AccessOptions.ViewCurrentBill))
        { %>
             <li> <%:Html.ActionLink("Current Bill", " ")%> </li>  
    <% } %> 
