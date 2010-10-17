@@ -28,6 +28,23 @@ namespace HospitalManager.Controllers
             return Redirect("/Authentication/Login/");
         }
 
+        public ActionResult ViewProfile()
+        {
+            if (sessRep.IsLoggedIn())
+            {
+                User user = sessRep.GetUser();
+                String FName = user.FirstName;
+                String LName = user.LastName;
+                String UName = user.Username;
+                UserType UType = user.UserType;
+                String EMail = user.Email;
+                ViewData["FName"] = FName;
+                ViewData["LName"] = LName;
+                ViewData["UName"] = UName;
+                ViewData["EMail"] = EMail;
+            }
+            return View();
+        }
 
         public ActionResult UserLog()
         {

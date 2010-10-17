@@ -162,6 +162,7 @@
     <Content Include="Views\Authentication\RegisterUserType.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\UserLog.aspx" />
+    <Content Include="Views\Home\ViewProfile.aspx" />
     <Content Include="Views\PermissionsTest\AddDoctor.aspx" />
     <Content Include="Views\PermissionsTest\ShowUser.aspx" />
     <Content Include="Views\PermissionsTest\UserDisplay.ascx" />
