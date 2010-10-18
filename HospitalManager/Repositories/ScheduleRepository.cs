@@ -25,11 +25,22 @@ namespace HospitalManager.Repositories
             return docs.ToList();
         }
 
-        //Return the schdule for a given doctor
-        public IList<Schedule> ListDoctorSchedule(int id, string month, int year)
+        //Return the schdule for a given user
+        public IList<Schedule> ListUserSchedule(int id, string month, int year)
         {
             var schd = from s in _dbSched.Schedules
                        where s.UserID == id && s.Month == month && s.Year == year
+                       select s;
+
+            return schd.ToList();
+        }
+
+        //return a doctors schedule
+        public IList<Schedule> ListDoctorSchedule(int id, string month, int year)
+        { 
+            var schd = from d in _dbSched.ScheduleUsers
+                       join s in _dbSched.Schedules on d.UserID equals s.UserID
+                       where (d.UserID==id) && (s.Month == month) && (s.Year == year)
                        select s;
 
             return schd.ToList();

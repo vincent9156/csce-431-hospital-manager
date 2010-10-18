@@ -9,7 +9,7 @@
       <Column Name="UserName" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="User_Schedule" Member="Schedules" ThisKey="UserID" OtherKey="UserID" Type="Schedule" />
+      <Association Name="ScheduleUsers_Schedule" Member="Schedules" ThisKey="UserID" OtherKey="UserID" Type="Schedule" />
     </Type>
   </Table>
   <Table Name="dbo.Schedules" Member="Schedules">
@@ -34,7 +34,7 @@
       <Column Name="[1530]" Member="_1530" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1600]" Member="_1600" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[1630]" Member="_1630" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="User_Schedule" Member="ScheduleUsers" Storage="_User" ThisKey="UserID" OtherKey="UserID" Type="ScheduleUsers" IsForeignKey="true" />
+      <Association Name="ScheduleUsers_Schedule" Member="ScheduleUsers" Storage="_User" ThisKey="UserID" OtherKey="UserID" Type="ScheduleUsers" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
