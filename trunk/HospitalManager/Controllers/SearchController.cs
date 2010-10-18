@@ -12,10 +12,18 @@ namespace HospitalManager.Controllers
 {
     public class SearchController : Controller
     {
+        UserRepository UserRep;
+        SessionRepository SessRep;
+
+        public ActionResult SearchUser()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult FindUser(string firstName, string lastName)
         {
-            IQueryable<User> users = new UserRepository().GetUserByName(firstName, lastName);
+            IQueryable<User> users = UserRep.GetUserByName(firstName, lastName);
             List<UserViewModel> userViewModels = new List<UserViewModel>();
             foreach (var user in users)
             {
@@ -24,7 +32,7 @@ namespace HospitalManager.Controllers
 
             var vm = new SearchViewModel
             {
-                LoggedInUser = new SessionRepository().GetUser(),
+                LoggedInUser = Mapper.Map<User, UserViewModel>(SessRep.GetUser()),
                 SearchResults = userViewModels
             };
             return View(vm);
