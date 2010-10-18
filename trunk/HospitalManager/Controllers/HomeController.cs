@@ -28,6 +28,12 @@ namespace HospitalManager.Controllers
             return Redirect("/Authentication/Login/");
         }
 
+        public ActionResult EditMedicalHistory()
+        {
+            return View();
+        }
+
+
         public ActionResult ViewProfile()
         {
             if (sessRep.IsLoggedIn())
