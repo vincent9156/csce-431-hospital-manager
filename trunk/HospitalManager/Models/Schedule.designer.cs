@@ -273,7 +273,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Schedule", Storage="_Schedules", ThisKey="UserID", OtherKey="UserID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ScheduleUsers_Schedule", Storage="_Schedules", ThisKey="UserID", OtherKey="UserID")]
 		public EntitySet<Schedule> Schedules
 		{
 			get
@@ -823,7 +823,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Schedule", Storage="_User", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ScheduleUsers_Schedule", Storage="_User", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
 		public ScheduleUsers ScheduleUsers
 		{
 			get

@@ -94,3 +94,10 @@ D:\csce-431-hospital-manager\HospitalManager\bin\HospitalManager.pdb
 D:\csce-431-hospital-manager\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
 D:\csce-431-hospital-manager\HospitalManager\obj\Debug\HospitalManager.dll
 D:\csce-431-hospital-manager\HospitalManager\obj\Debug\HospitalManager.pdb
+C:\Documents and Settings\csmith\hosp mangr\HospitalManager\bin\App_Data\HospitalManagerDB.mdf
+C:\Documents and Settings\csmith\hosp mangr\HospitalManager\bin\App_Data\HospitalManagerDB_log.ldf
+C:\Documents and Settings\csmith\hosp mangr\HospitalManager\bin\HospitalManager.dll
+C:\Documents and Settings\csmith\hosp mangr\HospitalManager\bin\HospitalManager.pdb
+C:\Documents and Settings\csmith\hosp mangr\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\csmith\hosp mangr\HospitalManager\obj\Debug\HospitalManager.dll
+C:\Documents and Settings\csmith\hosp mangr\HospitalManager\obj\Debug\HospitalManager.pdb

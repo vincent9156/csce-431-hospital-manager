@@ -167,10 +167,13 @@
     <Content Include="Views\PermissionsTest\ShowUser.aspx" />
     <Content Include="Views\PermissionsTest\UserDisplay.ascx" />
     <Content Include="Views\Schedule\Apr.aspx" />
+    <Content Include="Views\Schedule\Doctor.aspx" />
     <Content Include="Views\Schedule\Feb.aspx" />
     <Content Include="Views\Schedule\Index.aspx" />
     <Content Include="Views\Schedule\Jan.aspx" />
     <Content Include="Views\Schedule\Mar.aspx" />
+    <Content Include="Views\Schedule\Months.aspx" />
+    <Content Include="Views\Schedule\Patient.aspx" />
     <Content Include="Views\Shared\LoginCheck.ascx" />
     <Content Include="Views\Shared\PartialLink.ascx" />
     <Content Include="Web.config" />
