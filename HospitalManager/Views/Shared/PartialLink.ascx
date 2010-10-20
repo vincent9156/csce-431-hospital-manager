@@ -20,6 +20,7 @@
    {%>
     <%@ Import Namespace="HospitalManager.Models" %>
        <ul class="navi"> 
+
     <% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
        { %>
             <li> <%:Html.ActionLink("View Schedule", "Index", "Schedule")%></li> 

@@ -22,7 +22,10 @@ namespace HospitalManager.Libraries
         ViewPastMedicalHistories = 0x04,
 
         // Can this user edit his own past medical history?
-        EditOwnMedicalHistory = 0x08
+        EditOwnMedicalHistory = 0x08,
+
+        // Can this user view a schedule?
+        ViewSchedule = 0x00 // TODO: Should be editted to work in the future
     }
 
     public class PermissionsManager
