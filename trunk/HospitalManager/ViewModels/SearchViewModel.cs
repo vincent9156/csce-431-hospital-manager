@@ -8,7 +8,7 @@ namespace HospitalManager.ViewModels
 {
     public class SearchViewModel
     {
-        public User LoggedInUser;
+        public UserViewModel LoggedInUser;
         public IList<UserViewModel> SearchResults;
     }
 }
