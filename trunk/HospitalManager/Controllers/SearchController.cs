@@ -12,8 +12,8 @@ namespace HospitalManager.Controllers
 {
     public class SearchController : Controller
     {
-        UserRepository UserRep;
-        SessionRepository SessRep;
+        UserRepository UserRep = new UserRepository();
+        SessionRepository SessRep = new SessionRepository();
 
         public ActionResult SearchUser()
         {
