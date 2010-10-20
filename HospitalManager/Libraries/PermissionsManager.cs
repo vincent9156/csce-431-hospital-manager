@@ -12,25 +12,17 @@ namespace HospitalManager.Libraries
     [FlagsAttribute]
     public enum AccessOptions
     {
-        // Can this user view the schedule
-        ViewSchedule = 0x00, 
         // Does this role need a staff ID to register?
         RegisterWithoutStaffID = 0x01,
-        // Can this user ViewMedicalHistory
-        ViewMedicalHistory = 0x02,
-        // Can this user EditMedicalHistory
-        EditMedicalHistory = 0x04,
-        // Can this use ViewAppointments
-        ViewAppointments = 0x08,
-        // Can this user EditAppointments
-        EditAppointments = 0x10,
-        // Can this user ViewPrescriptions
-        ViewPrescriptions = 0x20,
-        // Can this user EditPrescriptions
-        EditPrescriptions = 0x40,
-        // Can this user ViewCurrentBilling
-        ViewCurrentBill = 0x80
 
+        // Can this user search other users?
+        SearchUsers = 0x02,
+
+        // Can this user view other user's past medical histories?
+        ViewPastMedicalHistories = 0x04,
+
+        // Can this user edit his own past medical history?
+        EditOwnMedicalHistory = 0x08
     }
 
     public class PermissionsManager
