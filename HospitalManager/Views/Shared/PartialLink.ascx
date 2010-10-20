@@ -30,7 +30,7 @@
 
     *********** Removed to free up permissions ************
 
-    <% if (Session.GetUser().HasAccess(AccessOptions.EditMedicalHistory))
+    <% /* if (Session.GetUser().HasAccess(AccessOptions.EditMedicalHistory))
        { %>
             <li> <%:Html.ActionLink("Medical History", " ")%> </li>  
        <% } %> 
@@ -53,7 +53,7 @@
     <% if (Session.GetUser().HasAccess(AccessOptions.ViewCurrentBill))
        { %>
             <li> <%:Html.ActionLink("Current Bill", " ")%> </li>  
-   <% } %> 
+   <% } */ %> 
    -->
 
 </ul>
