@@ -15,11 +15,11 @@
  
 <br/><br/>
 
-
 <Form>
  Age : <INPUT type="text" name="Age"><br />
  Height : <INPUT type="text" name="Height"><br />
  Weight : <INPUT type="text" name="Weight"><br />
+ Blood Pressure : <INPUT type="text" name="Blood Pressure"><br />
  Diagnosis : <INPUT type="text" name="Diagnosis"><br />
  Percriptions added: <INPUT type="text" name="Percriptions added"><br /> 
 
