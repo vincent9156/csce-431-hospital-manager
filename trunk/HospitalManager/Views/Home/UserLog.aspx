@@ -17,7 +17,12 @@
         <li> <%:Html.ActionLink ("Set Appointment","Index", "Schedule") %></li> 
    <% } %> 
 
-<% if (Model.HasAccess(AccessOptions.EditMedicalHistory))
+   <!--
+
+    ***** Removed to free up permissions *****
+
+<%
+     if (Model.HasAccess(AccessOptions.EditMedicalHistory))
    { %>
         <li> <%:Html.ActionLink ("Edit Medical History"," ") %> </li>  
    <% } %> 
@@ -42,8 +47,7 @@
         <li> <%:Html.ActionLink("View Current Bill", " ")%> </li>  
    <% } %> 
 
-
-
+   -->
 
 
 </ul>

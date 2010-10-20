@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HospitalManagerDB" Class="PastMedicalHistoryDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.FamilyConditions" Member="FamilyConditions">
+    <Type Name="FamilyCondition">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FamilyMemberID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ConditionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="FamilyCondition_MedicalCondition" Member="MedicalConditions" ThisKey="ConditionID" OtherKey="ConditionID" Type="MedicalCondition" />
+      <Association Name="FamilyCondition_FamilyMember" Member="FamilyMembers" ThisKey="FamilyMemberID" OtherKey="FamilyMemberID" Type="FamilyMember" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FamilyMembers" Member="FamilyMembers">
+    <Type Name="FamilyMember">
+      <Column Name="FamilyMemberID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MemberName" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="FamilyCondition_FamilyMember" Member="FamilyCondition" ThisKey="FamilyMemberID" OtherKey="FamilyMemberID" Type="FamilyCondition" IsForeignKey="true" />
+      <Association Name="OtherFamilyCondition_FamilyMember" Member="OtherFamilyCondition" ThisKey="FamilyMemberID" OtherKey="FamilyMemberID" Type="OtherFamilyCondition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PastMedicalHistories" Member="PastMedicalHistories">
+    <Type Name="PastMedicalHistory">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Height" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Ethnicity" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Allergies" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Operations" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="OtherConditions" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PatientConditions" Member="PatientConditions">
+    <Type Name="PatientCondition">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ConditionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="PatientCondition_MedicalCondition" Member="MedicalConditions" ThisKey="ConditionID" OtherKey="ConditionID" Type="MedicalCondition" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MedicalConditions" Member="MedicalConditions">
+    <Type Name="MedicalCondition">
+      <Column Name="ConditionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ConditionName" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="PatientCondition_MedicalCondition" Member="PatientCondition" ThisKey="ConditionID" OtherKey="ConditionID" Type="PatientCondition" IsForeignKey="true" />
+      <Association Name="FamilyCondition_MedicalCondition" Member="FamilyCondition" ThisKey="ConditionID" OtherKey="ConditionID" Type="FamilyCondition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OtherFamilyConditions" Member="OtherFamilyConditions">
+    <Type Name="OtherFamilyCondition">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FamilyMemberID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Condition" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="OtherFamilyCondition_FamilyMember" Member="FamilyMembers" ThisKey="FamilyMemberID" OtherKey="FamilyMemberID" Type="FamilyMember" />
+    </Type>
+  </Table>
+</Database>

@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
-<% HttpSessionState Session = HttpContext.Current.Session; %>
+<% var Session = new HospitalManager.Repositories.SessionRepository(); %>
 
 
 <%-- Default Links --%>
-<% if (Session["User"] == null)
+<% if (Session.GetUser() == null)
    { %>
 
 <ul class="navi">
@@ -20,36 +20,40 @@
    {%>
     <%@ Import Namespace="HospitalManager.Models" %>
        <ul class="navi"> 
-    <% if (((User)Session["User"]).HasAccess(AccessOptions.ViewSchedule))
+    <% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
        { %>
             <li> <%:Html.ActionLink("View Schedule", "Index", "Schedule")%></li> 
        <% } %> 
 
-    <% if (((User)Session["User"]).HasAccess(AccessOptions.EditMedicalHistory))
+    <!--
+
+    *********** Removed to free up permissions ************
+
+    <% if (Session.GetUser().HasAccess(AccessOptions.EditMedicalHistory))
        { %>
             <li> <%:Html.ActionLink("Medical History", " ")%> </li>  
        <% } %> 
 
-    <% if (((User)Session["User"]).HasAccess(AccessOptions.EditAppointments))
+    <% if (Session.GetUser().HasAccess(AccessOptions.EditAppointments))
        { %>
             <li> <%:Html.ActionLink("Appointments", " ")%> </li>  
        <% } %> 
 
-    <% if (((User)Session["User"]).HasAccess(AccessOptions.ViewPrescriptions))
+    <% if (Session.GetUser().HasAccess(AccessOptions.ViewPrescriptions))
        { %>
             <li> <%:Html.ActionLink("Prescriptions", " ")%> </li>  
        <% } %> 
 
-    <% if (((User)Session["User"]).HasAccess(AccessOptions.EditPrescriptions))
+    <% if (Session.GetUser().HasAccess(AccessOptions.EditPrescriptions))
        { %>
             <li> <%:Html.ActionLink("Prescriptions", " ")%> </li>  
        <% } %> 
 
-    <% if (((User)Session["User"]).HasAccess(AccessOptions.ViewCurrentBill))
+    <% if (Session.GetUser().HasAccess(AccessOptions.ViewCurrentBill))
        { %>
             <li> <%:Html.ActionLink("Current Bill", " ")%> </li>  
    <% } %> 
-
+   -->
 
 </ul>
 <% } %>
