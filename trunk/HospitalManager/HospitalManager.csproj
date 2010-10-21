@@ -163,7 +163,6 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\Authentication\LoginTest.aspx" />
-    <Content Include="Views\Authentication\RegisterMessage.aspx" />
     <Content Include="Views\Authentication\RegisterUser.aspx" />
     <Content Include="Views\Authentication\RegisterUserType.aspx" />
     <Content Include="Views\Home\Index.aspx" />
@@ -214,7 +213,6 @@
       <LastGenOutput>Users.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Shared\Login.Master" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Models\Users.dbml.layout">

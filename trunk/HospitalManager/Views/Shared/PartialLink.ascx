@@ -25,6 +25,10 @@
        { %>
             <li> <%:Html.ActionLink("View Schedule", "Index", "Schedule")%></li> 
        <% } %> 
+<% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
+       { %>
+            <li> <%:Html.ActionLink("View Profile", "ViewProfile", "Home")%></li> 
+       <% } %> 
 
     <!--
 

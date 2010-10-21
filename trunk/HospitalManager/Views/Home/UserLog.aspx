@@ -18,35 +18,33 @@
    <% } %> 
 
    <!--
+   
+    *********** Removed to free up permissions ************
 
-    ***** Removed to free up permissions *****
+    <% /* if (Session.GetUser().HasAccess(AccessOptions.EditMedicalHistory))
+       { %>
+            <li> <%:Html.ActionLink("Medical History", " ")%> </li>  
+       <% } %> 
 
-<%
-     if (Model.HasAccess(AccessOptions.EditMedicalHistory))
-   { %>
-        <li> <%:Html.ActionLink ("Edit Medical History"," ") %> </li>  
-   <% } %> 
+    <% if (Session.GetUser().HasAccess(AccessOptions.EditAppointments))
+       { %>
+            <li> <%:Html.ActionLink("Appointments", " ")%> </li>  
+       <% } %> 
 
-<% if (Model.HasAccess(AccessOptions.EditAppointments))
-   { %>
-        <li> <%:Html.ActionLink ("Edit Appointments"," ") %> </li>  
-   <% } %> 
+    <% if (Session.GetUser().HasAccess(AccessOptions.ViewPrescriptions))
+       { %>
+            <li> <%:Html.ActionLink("Prescriptions", " ")%> </li>  
+       <% } %> 
 
-<% if (Model.HasAccess(AccessOptions.ViewPrescriptions))
-   { %>
-        <li> <%:Html.ActionLink("View Prescriptions", " ")%> </li>  
-   <% } %> 
+    <% if (Session.GetUser().HasAccess(AccessOptions.EditPrescriptions))
+       { %>
+            <li> <%:Html.ActionLink("Prescriptions", " ")%> </li>  
+       <% } %> 
 
-<% if (Model.HasAccess(AccessOptions.EditPrescriptions))
-   { %>
-        <li> <%:Html.ActionLink("Edit Prescriptions", " ")%> </li>  
-   <% } %> 
-
-<% if (Model.HasAccess(AccessOptions.ViewCurrentBill))
-   { %>
-        <li> <%:Html.ActionLink("View Current Bill", " ")%> </li>  
-   <% } %> 
-
+    <% if (Session.GetUser().HasAccess(AccessOptions.ViewCurrentBill))
+       { %>
+            <li> <%:Html.ActionLink("Current Bill", " ")%> </li>  
+   <% } */ %> 
    -->
 
 
