@@ -25,14 +25,23 @@ namespace HospitalManager.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            return Redirect("/Authentication/Login/");
+            if (sessRep.IsLoggedIn())
+                return Redirect("/Home/UserLog");
+            return Redirect("/Authentication/Login");
         }
 
         public ActionResult EditMedicalHistory()
         {
+            if (sessRep.IsLoggedIn())
             return View();
+            return Redirect("/Authentication/Login/");
         }
 
+        [HttpPost]
+        public ActionResult EditProfile()
+        {
+            return Redirect("/Home/ViewProfile/");
+        }
 
         public ActionResult ViewProfile()
         {
@@ -42,14 +51,18 @@ namespace HospitalManager.Controllers
                 String FName = user.FirstName;
                 String LName = user.LastName;
                 String UName = user.Username;
-                UserType UType = user.UserType;
                 String EMail = user.Email;
                 ViewData["FName"] = FName;
                 ViewData["LName"] = LName;
                 ViewData["UName"] = UName;
                 ViewData["EMail"] = EMail;
+                ViewData["UType"] = user;
+                return View();
             }
-            return View();
+            else
+            {
+                return Redirect("/Authentication/Login/");
+            }
         }
 
         public ActionResult UserLog()

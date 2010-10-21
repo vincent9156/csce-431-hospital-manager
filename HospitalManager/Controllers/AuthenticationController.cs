@@ -25,6 +25,8 @@ namespace HospitalManager.Controllers
         // GET: /Authentication/
         public ActionResult Index()
         {
+            if (SessionRep.IsLoggedIn())
+                return Redirect("/Home/UserLog/");
             return Redirect("/Authentication/Login/");
         }
 
@@ -36,11 +38,6 @@ namespace HospitalManager.Controllers
             User user = new User();
             return View(user);
         }
-        public ActionResult RegisterMessage()
-        {
-            return View("RegisterMessage");
-        }
-
 
         [HttpPost]
         public ActionResult Login(string username, string password)
@@ -87,7 +84,7 @@ namespace HospitalManager.Controllers
         public ActionResult Register()
         {
             if (SessionRep.IsLoggedIn())
-                return Redirect("/Authentication/RegisterMessage/");
+                return Redirect("/Home/UserLog/");
 
                 var types = new UserTypesViewModel
                 {
@@ -118,7 +115,7 @@ namespace HospitalManager.Controllers
         public ActionResult RegisterUser(UserRegistrationViewModel user, int staffID = -1)
         {
             if (SessionRep.IsLoggedIn())
-                return Redirect("/Authentication/RegisterMessage/");
+                return Redirect("/Home/UserLog/");
                 // Load the user's permissions
                 user.Permissions = UserRep.GetUserTypeByID(user.TypeID).Permissions;
 
