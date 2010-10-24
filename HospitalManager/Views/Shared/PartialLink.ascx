@@ -5,21 +5,15 @@
 <%-- Default Links --%>
 <% if (Session.GetUser() == null)
    { %>
-
-<ul class="navi">
-    <li><a href="#">Link 1</a></li>
-    <li><a href="#">Link 2</a></li>
-    <li><a href="#">Link 3</a></li>
-    <li><a href="#">Oh look another link!</a></li>
-    <li class="li1"><a href="#">And 1 more</a></li>
-  </ul>-
-
+   <%-- display no links if no user is logged in --%>
 <%-- Get links based on user type --%>
 <% }
    else
    {%>
     <%@ Import Namespace="HospitalManager.Models" %>
-       <ul class="navi"> 
+       <ul class="navi">
+
+       <li> <%: Html.ActionLink("Home", "UserLog", "Home") %></li>
 
     <% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
        { %>

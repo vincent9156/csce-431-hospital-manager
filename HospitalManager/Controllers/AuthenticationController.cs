@@ -153,12 +153,5 @@ namespace HospitalManager.Controllers
                 return Redirect("/Home/UserLog/");
             
         }
-
-        public ActionResult StatusTest()
-        {
-            ViewData["Message"] = "Logged in: " + SessionRep.IsLoggedIn().ToString(); ;
-            ViewData["User"] = SessionRep.GetUser();
-            return View("LoginTest");
-        }
     }
 }
