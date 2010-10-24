@@ -19,13 +19,6 @@
   <ul class="free">
   </ul>
    <% Html.RenderPartial("PartialLink"); %>
-<%--  <ul class="navi">
-    <li><a href="../Home/UserLog">HOME</a></li>
-    <li><a href="#">Link 2</a></li>
-    <li><a href="#">Link 3</a></li>
-    <li><a href="#">Oh look another link!</a></li>
-    <li class="li1"><a href="#">And 1 more</a></li>
-  </ul>--%>
 </div>
 </div>
 
@@ -33,13 +26,7 @@
 
 <div id="main_footer">
 <div id="footer"><!--footer navigation start -->
-<ul>
-<li><a href="#" class="mg">link</a>|</li>
-<li><a href="#">Link 2</a>|</li>
-<li><a href="#">Link 3</a>|</li>
-<li><a href="#">Oh look another link!</a>|</li>
-<li><a href="#">And 1 more</a></li>
-</ul>
+<% Html.RenderPartial("PartialLink"); %>
 <ul class="ad">
 <li><a>Fake Fake Road Thonhill Canada</a></li>
 <li class="nobor1"><a><span>ph:</span>
