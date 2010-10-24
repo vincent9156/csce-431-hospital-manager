@@ -8,6 +8,7 @@ using HospitalManager.Models;
 using HospitalManager.ViewModels;
 using AutoMapper;
 
+
 namespace HospitalManager.Controllers
 {
     public class HomeController : Controller
@@ -38,8 +39,17 @@ namespace HospitalManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProfile()
+        public ActionResult EditProfile(String Username, String Password, String PasswordRepeat, String Firstname, String Lastname, String EMail)
         {
+            User user = sessRep.GetUser();
+
+            if(Password == PasswordRepeat);
+            user.Password = Password;
+            user.FirstName = Firstname;
+            user.LastName = Lastname;
+            user.Email = EMail;
+            repository.EditUserByUsername(Username, user);
+            user.Username = Username;
             return Redirect("/Home/ViewProfile/");
         }
 

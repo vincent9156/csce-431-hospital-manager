@@ -115,5 +115,19 @@ namespace HospitalManager.Repositories
 
             return result.First();
         }
+        public void EditUserByUsername(String NewUserName, User u)
+        {
+            var result = (from user in usersDb.Users
+                          where user.Username == u.Username
+                          select user).First();
+
+            result.FirstName = u.FirstName;
+            result.LastName = u.LastName;
+            result.Email = u.Email;
+            result.Username = NewUserName;
+            //result.Password = u.Password;
+            usersDb.SubmitChanges();
+        }
+
     }
 }
