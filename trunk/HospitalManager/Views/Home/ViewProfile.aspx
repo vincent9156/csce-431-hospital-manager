@@ -5,8 +5,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>ViewProfile</h2>
+<div id="main_body">
+<div id="body">
+    <h2>Your Profile</h2>
     <table>
         <tr><td><b>UserType </b>  </td><td> = </td><td><%= Html.ViewData["UType"] %></td></tr>
         <tr><td><b>E-Mail </b>    </td><td> = </td><td><%= Html.ViewData["EMail"] %></td></tr>
@@ -38,4 +39,6 @@
         </fieldset>
 
     <% } %>
+
+    </div></div>
 </asp:Content>

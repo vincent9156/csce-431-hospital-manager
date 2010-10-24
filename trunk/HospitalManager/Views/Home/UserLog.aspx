@@ -8,8 +8,13 @@
     }
 </script>
 
-<asp:Content ID = "linkcontent" ContentPlaceHolderID = "MainContent" runat= "server"> 
+<asp:Content ID="titlecontent" ContentPlaceHolderID="TitleContent" runat="server">
+    HM-Home
+</asp:Content>
 
+<asp:Content ID = "linkcontent" ContentPlaceHolderID = "MainContent" runat= "server"> 
+<div id="main_body">
+<div id="body">
 
 <ul> 
 <% if (Model.HasAccess(AccessOptions.ViewSchedule))
@@ -50,7 +55,8 @@
 
 </ul>
 
-
+<br />
+</div></div>
 </asp:Content>
 
 
