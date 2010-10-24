@@ -5,7 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<div id="main_body">
+<div id="body">
     <h2>Schedule</h2>
 
     <%:Html.ActionLink("January", "Jan", "Schedule") %> <br />
@@ -21,5 +22,6 @@
     <%:Html.ActionLink("November", "Nov", "Schedule") %> <br />
     <%:Html.ActionLink("December", "Dec", "Schedule") %> <br />
     
-
+    <br />
+    </div></div>
 </asp:Content>

@@ -5,7 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<div id="main_body">
+<div id="body">
     <h2>List of Current Doctors</h2>
 
     <table>
@@ -22,5 +23,7 @@
 
     </table>
 
+    <br />
+    </div></div>
 </asp:Content>
 
