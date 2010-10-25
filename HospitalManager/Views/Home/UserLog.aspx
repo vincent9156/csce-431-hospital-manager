@@ -26,6 +26,10 @@
     <li><%: Html.ActionLink("View Your Medical History", "Index", "PastMedicalHistory")%></li>
     <li><%: Html.ActionLink("Edit Your Medical History", "Edit", "PastMedicalHistory")%></li>
 <% } %>
+
+<% if (Model.HasAccess(AccessOptions.SearchUsers)) { %>
+    <li><%: Html.ActionLink("Search Patients", "SearchUser", "Search")%></li>
+<% } %>
    <!--
    
     *********** Removed to free up permissions ************
