@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\CurrentMedicalHistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PastMedicalHistoryController.cs" />
     <Compile Include="Controllers\PermissionsTestController.cs" />
@@ -85,6 +86,14 @@
     <Compile Include="Libraries\Bootstrapper.cs" />
     <Compile Include="Libraries\MD5Encrypter.cs" />
     <Compile Include="Libraries\PermissionsManager.cs" />
+    <Compile Include="Models\CurrentMedicalHistory.cs">
+      <DependentUpon>CurrentMedicalHistory.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CurrentMedicalHistory.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CurrentMedicalHistory.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\PastMedicalHistory.cs">
       <DependentUpon>PastMedicalHistory.dbml</DependentUpon>
     </Compile>
@@ -106,10 +115,12 @@
     </Compile>
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CurrentMedicalHistoryRepository.cs" />
     <Compile Include="Repositories\PastMedicalHistoryRepository.cs" />
     <Compile Include="Repositories\ScheduleRepository.cs" />
     <Compile Include="Repositories\SessionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="ViewModels\CurrentMedicalHistoryViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
     <Compile Include="ViewModels\NurseViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
@@ -169,6 +180,7 @@
     <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\Authentication\RegisterUser.aspx" />
     <Content Include="Views\Authentication\RegisterUserType.aspx" />
+    <Content Include="Views\CurrentMedicalHistory\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\UserLog.aspx" />
     <Content Include="Views\Home\ViewProfile.aspx" />
@@ -204,6 +216,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\images\header_pic.psd" />
+    <None Include="Models\CurrentMedicalHistory.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>CurrentMedicalHistory.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Models\PastMedicalHistory.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>PastMedicalHistory.designer.cs</LastGenOutput>
@@ -233,6 +250,11 @@
   <ItemGroup>
     <None Include="Models\PastMedicalHistory.dbml.layout">
       <DependentUpon>PastMedicalHistory.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\CurrentMedicalHistory.dbml.layout">
+      <DependentUpon>CurrentMedicalHistory.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
