@@ -23,7 +23,7 @@ namespace HospitalManager.Models
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="HospitalManagerDB")]
-	public partial class PastMedicalHistoryDataContext : System.Data.Linq.DataContext
+	public partial class PastMedicalHistoryDatabase : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -45,27 +45,39 @@ namespace HospitalManager.Models
     partial void InsertMedicalCondition(MedicalCondition instance);
     partial void UpdateMedicalCondition(MedicalCondition instance);
     partial void DeleteMedicalCondition(MedicalCondition instance);
+    partial void InsertOtherFamilyCondition(OtherFamilyCondition instance);
+    partial void UpdateOtherFamilyCondition(OtherFamilyCondition instance);
+    partial void DeleteOtherFamilyCondition(OtherFamilyCondition instance);
+    partial void InsertOtherPatientCondition(OtherPatientCondition instance);
+    partial void UpdateOtherPatientCondition(OtherPatientCondition instance);
+    partial void DeleteOtherPatientCondition(OtherPatientCondition instance);
     #endregion
 		
-		public PastMedicalHistoryDataContext(string connection) : 
+		public PastMedicalHistoryDatabase() : 
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["HospitalManagerDBConnectionString"].ConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		public PastMedicalHistoryDatabase(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public PastMedicalHistoryDataContext(System.Data.IDbConnection connection) : 
+		public PastMedicalHistoryDatabase(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public PastMedicalHistoryDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public PastMedicalHistoryDatabase(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public PastMedicalHistoryDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public PastMedicalHistoryDatabase(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -118,6 +130,14 @@ namespace HospitalManager.Models
 				return this.GetTable<OtherFamilyCondition>();
 			}
 		}
+		
+		public System.Data.Linq.Table<OtherPatientCondition> OtherPatientConditions
+		{
+			get
+			{
+				return this.GetTable<OtherPatientCondition>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FamilyConditions")]
@@ -132,9 +152,9 @@ namespace HospitalManager.Models
 		
 		private int _ConditionID;
 		
-		private EntitySet<MedicalCondition> _MedicalConditions;
+		private EntityRef<FamilyMember> _FamilyMembers;
 		
-		private EntitySet<FamilyMember> _FamilyMembers;
+		private EntitySet<MedicalCondition> _MedicalConditions;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -150,8 +170,8 @@ namespace HospitalManager.Models
 		
 		public FamilyCondition()
 		{
+			this._FamilyMembers = default(EntityRef<FamilyMember>);
 			this._MedicalConditions = new EntitySet<MedicalCondition>(new Action<MedicalCondition>(this.attach_MedicalConditions), new Action<MedicalCondition>(this.detach_MedicalConditions));
-			this._FamilyMembers = new EntitySet<FamilyMember>(new Action<FamilyMember>(this.attach_FamilyMembers), new Action<FamilyMember>(this.detach_FamilyMembers));
 			OnCreated();
 		}
 		
@@ -215,6 +235,35 @@ namespace HospitalManager.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FamilyCondition_FamilyMember", Storage="_FamilyMembers", ThisKey="FamilyMemberID", OtherKey="FamilyMemberID", IsUnique=true, IsForeignKey=false)]
+		public FamilyMember FamilyMembers
+		{
+			get
+			{
+				return this._FamilyMembers.Entity;
+			}
+			set
+			{
+				FamilyMember previousValue = this._FamilyMembers.Entity;
+				if (((previousValue != value) 
+							|| (this._FamilyMembers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._FamilyMembers.Entity = null;
+						previousValue.FamilyCondition = null;
+					}
+					this._FamilyMembers.Entity = value;
+					if ((value != null))
+					{
+						value.FamilyCondition = this;
+					}
+					this.SendPropertyChanged("FamilyMembers");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FamilyCondition_MedicalCondition", Storage="_MedicalConditions", ThisKey="ConditionID", OtherKey="ConditionID")]
 		public EntitySet<MedicalCondition> MedicalConditions
 		{
@@ -225,19 +274,6 @@ namespace HospitalManager.Models
 			set
 			{
 				this._MedicalConditions.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FamilyCondition_FamilyMember", Storage="_FamilyMembers", ThisKey="FamilyMemberID", OtherKey="FamilyMemberID")]
-		public EntitySet<FamilyMember> FamilyMembers
-		{
-			get
-			{
-				return this._FamilyMembers;
-			}
-			set
-			{
-				this._FamilyMembers.Assign(value);
 			}
 		}
 		
@@ -272,18 +308,6 @@ namespace HospitalManager.Models
 			this.SendPropertyChanging();
 			entity.FamilyCondition = null;
 		}
-		
-		private void attach_FamilyMembers(FamilyMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.FamilyCondition = this;
-		}
-		
-		private void detach_FamilyMembers(FamilyMember entity)
-		{
-			this.SendPropertyChanging();
-			entity.FamilyCondition = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FamilyMembers")]
@@ -298,6 +322,8 @@ namespace HospitalManager.Models
 		
 		private EntityRef<FamilyCondition> _FamilyCondition;
 		
+		private EntityRef<OtherFamilyCondition> _OtherFamilyCondition;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -311,6 +337,7 @@ namespace HospitalManager.Models
 		public FamilyMember()
 		{
 			this._FamilyCondition = default(EntityRef<FamilyCondition>);
+			this._OtherFamilyCondition = default(EntityRef<OtherFamilyCondition>);
 			OnCreated();
 		}
 		
@@ -325,7 +352,7 @@ namespace HospitalManager.Models
 			{
 				if ((this._FamilyMemberID != value))
 				{
-					if (this._FamilyCondition.HasLoadedOrAssignedValue)
+					if ((this._FamilyCondition.HasLoadedOrAssignedValue || this._OtherFamilyCondition.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -375,12 +402,12 @@ namespace HospitalManager.Models
 					if ((previousValue != null))
 					{
 						this._FamilyCondition.Entity = null;
-						previousValue.FamilyMembers.Remove(this);
+						previousValue.FamilyMembers = null;
 					}
 					this._FamilyCondition.Entity = value;
 					if ((value != null))
 					{
-						value.FamilyMembers.Add(this);
+						value.FamilyMembers = this;
 						this._FamilyMemberID = value.FamilyMemberID;
 					}
 					else
@@ -388,6 +415,40 @@ namespace HospitalManager.Models
 						this._FamilyMemberID = default(int);
 					}
 					this.SendPropertyChanged("FamilyCondition");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OtherFamilyCondition1_FamilyMember", Storage="_OtherFamilyCondition", ThisKey="FamilyMemberID", OtherKey="FamilyMemberID", IsForeignKey=true)]
+		public OtherFamilyCondition OtherFamilyCondition
+		{
+			get
+			{
+				return this._OtherFamilyCondition.Entity;
+			}
+			set
+			{
+				OtherFamilyCondition previousValue = this._OtherFamilyCondition.Entity;
+				if (((previousValue != value) 
+							|| (this._OtherFamilyCondition.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._OtherFamilyCondition.Entity = null;
+						previousValue.FamilyMembers = null;
+					}
+					this._OtherFamilyCondition.Entity = value;
+					if ((value != null))
+					{
+						value.FamilyMembers = this;
+						this._FamilyMemberID = value.FamilyMemberID;
+					}
+					else
+					{
+						this._FamilyMemberID = default(int);
+					}
+					this.SendPropertyChanged("OtherFamilyCondition");
 				}
 			}
 		}
@@ -421,13 +482,13 @@ namespace HospitalManager.Models
 		
 		private int _UserID;
 		
-		private int _Height;
+		private System.Nullable<int> _Height;
 		
-		private int _Weight;
+		private System.Nullable<int> _Weight;
 		
-		private int _Age;
+		private System.Nullable<int> _Age;
 		
-		private bool _Gender;
+		private string _Gender;
 		
 		private string _Ethnicity;
 		
@@ -435,21 +496,19 @@ namespace HospitalManager.Models
 		
 		private string _Operations;
 		
-		private string _OtherConditions;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnUserIDChanging(int value);
     partial void OnUserIDChanged();
-    partial void OnHeightChanging(int value);
+    partial void OnHeightChanging(System.Nullable<int> value);
     partial void OnHeightChanged();
-    partial void OnWeightChanging(int value);
+    partial void OnWeightChanging(System.Nullable<int> value);
     partial void OnWeightChanged();
-    partial void OnAgeChanging(int value);
+    partial void OnAgeChanging(System.Nullable<int> value);
     partial void OnAgeChanged();
-    partial void OnGenderChanging(bool value);
+    partial void OnGenderChanging(string value);
     partial void OnGenderChanged();
     partial void OnEthnicityChanging(string value);
     partial void OnEthnicityChanged();
@@ -457,8 +516,6 @@ namespace HospitalManager.Models
     partial void OnAllergiesChanged();
     partial void OnOperationsChanging(string value);
     partial void OnOperationsChanged();
-    partial void OnOtherConditionsChanging(string value);
-    partial void OnOtherConditionsChanged();
     #endregion
 		
 		public PastMedicalHistory()
@@ -466,7 +523,7 @@ namespace HospitalManager.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true)]
 		public int UserID
 		{
 			get
@@ -487,7 +544,7 @@ namespace HospitalManager.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Height", DbType="Int NOT NULL")]
-		public int Height
+		public System.Nullable<int> Height
 		{
 			get
 			{
@@ -507,7 +564,7 @@ namespace HospitalManager.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="Int NOT NULL")]
-		public int Weight
+		public System.Nullable<int> Weight
 		{
 			get
 			{
@@ -527,7 +584,7 @@ namespace HospitalManager.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="Int NOT NULL")]
-		public int Age
+		public System.Nullable<int> Age
 		{
 			get
 			{
@@ -546,8 +603,8 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit NOT NULL")]
-		public bool Gender
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Varchar(10) NOT NULL")]
+		public string Gender
 		{
 			get
 			{
@@ -566,7 +623,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ethnicity", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ethnicity", DbType="VarChar(50) NOT NULL")]
 		public string Ethnicity
 		{
 			get
@@ -622,26 +679,6 @@ namespace HospitalManager.Models
 					this._Operations = value;
 					this.SendPropertyChanged("Operations");
 					this.OnOperationsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherConditions", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string OtherConditions
-		{
-			get
-			{
-				return this._OtherConditions;
-			}
-			set
-			{
-				if ((this._OtherConditions != value))
-				{
-					this.OnOtherConditionsChanging(value);
-					this.SendPropertyChanging();
-					this._OtherConditions = value;
-					this.SendPropertyChanged("OtherConditions");
-					this.OnOtherConditionsChanged();
 				}
 			}
 		}
@@ -946,8 +983,12 @@ namespace HospitalManager.Models
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OtherFamilyConditions")]
-	public partial class OtherFamilyCondition
+	public partial class OtherFamilyCondition : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _OtherConditionID;
 		
 		private int _UserID;
 		
@@ -955,8 +996,46 @@ namespace HospitalManager.Models
 		
 		private string _Condition;
 		
+		private EntityRef<FamilyMember> _FamilyMembers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOtherConditionIDChanging(int value);
+    partial void OnOtherConditionIDChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnFamilyMemberIDChanging(int value);
+    partial void OnFamilyMemberIDChanged();
+    partial void OnConditionChanging(string value);
+    partial void OnConditionChanged();
+    #endregion
+		
 		public OtherFamilyCondition()
 		{
+			this._FamilyMembers = default(EntityRef<FamilyMember>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherConditionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int OtherConditionID
+		{
+			get
+			{
+				return this._OtherConditionID;
+			}
+			set
+			{
+				if ((this._OtherConditionID != value))
+				{
+					this.OnOtherConditionIDChanging(value);
+					this.SendPropertyChanging();
+					this._OtherConditionID = value;
+					this.SendPropertyChanged("OtherConditionID");
+					this.OnOtherConditionIDChanged();
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
@@ -970,7 +1049,11 @@ namespace HospitalManager.Models
 			{
 				if ((this._UserID != value))
 				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
 					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
 				}
 			}
 		}
@@ -986,7 +1069,11 @@ namespace HospitalManager.Models
 			{
 				if ((this._FamilyMemberID != value))
 				{
+					this.OnFamilyMemberIDChanging(value);
+					this.SendPropertyChanging();
 					this._FamilyMemberID = value;
+					this.SendPropertyChanged("FamilyMemberID");
+					this.OnFamilyMemberIDChanged();
 				}
 			}
 		}
@@ -1002,8 +1089,171 @@ namespace HospitalManager.Models
 			{
 				if ((this._Condition != value))
 				{
+					this.OnConditionChanging(value);
+					this.SendPropertyChanging();
 					this._Condition = value;
+					this.SendPropertyChanged("Condition");
+					this.OnConditionChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OtherFamilyCondition1_FamilyMember", Storage="_FamilyMembers", ThisKey="FamilyMemberID", OtherKey="FamilyMemberID", IsUnique=true, IsForeignKey=false)]
+		public FamilyMember FamilyMembers
+		{
+			get
+			{
+				return this._FamilyMembers.Entity;
+			}
+			set
+			{
+				FamilyMember previousValue = this._FamilyMembers.Entity;
+				if (((previousValue != value) 
+							|| (this._FamilyMembers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._FamilyMembers.Entity = null;
+						previousValue.OtherFamilyCondition = null;
+					}
+					this._FamilyMembers.Entity = value;
+					if ((value != null))
+					{
+						value.OtherFamilyCondition = this;
+					}
+					this.SendPropertyChanged("FamilyMembers");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OtherPatientConditions")]
+	public partial class OtherPatientCondition : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _OtherConditionID;
+		
+		private int _UserID;
+		
+		private string _Condition;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOtherConditionIDChanging(int value);
+    partial void OnOtherConditionIDChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnConditionChanging(string value);
+    partial void OnConditionChanged();
+    #endregion
+		
+		public OtherPatientCondition()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherConditionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int OtherConditionID
+		{
+			get
+			{
+				return this._OtherConditionID;
+			}
+			set
+			{
+				if ((this._OtherConditionID != value))
+				{
+					this.OnOtherConditionIDChanging(value);
+					this.SendPropertyChanging();
+					this._OtherConditionID = value;
+					this.SendPropertyChanged("OtherConditionID");
+					this.OnOtherConditionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+		public int UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Condition", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string Condition
+		{
+			get
+			{
+				return this._Condition;
+			}
+			set
+			{
+				if ((this._Condition != value))
+				{
+					this.OnConditionChanging(value);
+					this.SendPropertyChanging();
+					this._Condition = value;
+					this.SendPropertyChanged("Condition");
+					this.OnConditionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
