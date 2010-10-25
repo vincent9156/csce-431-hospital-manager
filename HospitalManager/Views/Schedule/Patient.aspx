@@ -1,29 +1,20 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<HospitalManager.Models.ScheduleUsers>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<HospitalManager.ViewModels.ScheduleViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Patient Scheduling
+	Patient
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<div id="main_body">
-<div id="body">
-    <h2>List of Current Doctors</h2>
 
-    <table>
+    <h2>Patient</h2>
 
-    <% foreach (var item in Model) { %>
-    
-        <tr>
-            <td>
-                <%: Html.ActionLink(item.FirstName + " " + item.LastName, "Months", "Schedule", new { id = item.UserID})%>
-            </td>
-        </tr>
-    
+    <% foreach (var item in Model.docs)
+       { %>
+     
+        <%: Html.ActionLink(item.FirstName + " " + item.LastName, "Months", "Schedule", (Int32)(item.UserID))%><br />
+        <a href="/Schedule/Months/<%= item.UserID %>"><%= item.FirstName + " " + item.LastName%></a>
+     
+     
     <% } %>
 
-    </table>
-
-    <br />
-    </div></div>
 </asp:Content>
-
