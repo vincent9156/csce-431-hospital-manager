@@ -9,7 +9,7 @@
 <div id="main_body">
 <div id="body">
     <h2>Search</h2>
-    <% using (Html.BeginForm("FindUser", "Search"))
+    <% using (Html.BeginForm("SearchUser", "Search", FormMethod.Get))
        { %>
     
     <fieldset>
@@ -39,6 +39,40 @@
     </fieldset>
 
     <% } %>
+
+    
+    <% if (Model != null) { %>
+
+    <h3>Results</h3>
+    <% /* TODO: Use css.... */ %>
+    <table cellpadding="10">
+    <% if (Model.SearchResults.Count != 0) { %>
+
+        <% foreach (var item in Model.SearchResults) { %>
+    
+            <tr>
+                <td>
+                    <%= item.FirstName%>
+                    <%= item.LastName%>
+                </td>
+                <% /* TODO: Check permissions of user before 
+                    * displaying these links (and make the links correct) */ %>
+                <td>
+                    <a href="#">Medical Record</a>
+                </td>
+            </tr>
+
+        <% } %>
+
+    <% } else { %>
+        
+        <tr><td>No user found by that name.</td></tr>
+
+    <% } %>
+
+    <% } %>
+    
+    </table>
     </div>
     </div>
 </asp:Content>

@@ -7,6 +7,7 @@ using HospitalManager.ViewModels;
 using AutoMapper;
 using HospitalManager.Models;
 using HospitalManager.Repositories;
+using HospitalManager.Libraries;
 
 namespace HospitalManager.Controllers
 {
@@ -15,27 +16,30 @@ namespace HospitalManager.Controllers
         UserRepository UserRep = new UserRepository();
         SessionRepository SessRep = new SessionRepository();
 
-        public ActionResult SearchUser()
+        public ActionResult SearchUser(string firstName = "", string lastName = "")
         {
-            return View();
-        }
+            if (!SessRep.IsLoggedIn() || !SessRep.GetUser().HasAccess(AccessOptions.SearchUsers))
+                return Redirect("/");
 
-        [HttpPost]
-        public ActionResult FindUser(string firstName, string lastName)
-        {
-            IQueryable<User> users = UserRep.GetUserByName(firstName, lastName);
-            List<UserViewModel> userViewModels = new List<UserViewModel>();
-            foreach (var user in users)
+            if (firstName != "" && lastName != "")
             {
-                userViewModels.Add(Mapper.Map<User, UserViewModel>(user));
+                IQueryable<User> users = UserRep.GetUserByName(firstName, lastName);
+                List<UserViewModel> userViewModels = new List<UserViewModel>();
+                foreach (var user in users)
+                {
+                    userViewModels.Add(Mapper.Map<User, UserViewModel>(user));
+                }
+
+                var vm = new SearchViewModel
+                {
+                    LoggedInUser = Mapper.Map<User, UserViewModel>(SessRep.GetUser()),
+                    SearchResults = userViewModels
+                };
+
+                return View(vm);
             }
 
-            var vm = new SearchViewModel
-            {
-                LoggedInUser = Mapper.Map<User, UserViewModel>(SessRep.GetUser()),
-                SearchResults = userViewModels
-            };
-            return View(vm);
+            return View((SearchViewModel)null);
         }
     }
 }
