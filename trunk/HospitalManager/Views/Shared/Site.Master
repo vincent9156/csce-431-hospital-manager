@@ -25,8 +25,9 @@
  <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 
 <div id="main_footer">
-<div id="footer"><!--footer navigation start -->
 <% Html.RenderPartial("PartialLink"); %>
+<div id="footer"><!--footer navigation start -->
+
 <ul class="ad">
 <li><a>Fake Fake Road Thonhill Canada</a></li>
 <li class="nobor1"><a><span>ph:</span>

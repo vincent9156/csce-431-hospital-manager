@@ -18,8 +18,13 @@
     <% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
        { %>
             <li> <%:Html.ActionLink("View Schedule", "Index", "Schedule")%></li> 
-       <% } %> 
-<% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
+       <% } %>
+    <% if (Session.GetUser().HasAccess(AccessOptions.EditOwnMedicalHistory))
+       { %>
+            <li> <%:Html.ActionLink("View Medical History", "", "PastMedicalHistory")%></li>
+            <li> <%:Html.ActionLink("Edit Medical History", "Edit", "PastMedicalHistory")%></li>
+        <% } %>
+    <% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
        { %>
             <li> <%:Html.ActionLink("View Profile", "ViewProfile", "Home")%></li> 
        <% } %> 
