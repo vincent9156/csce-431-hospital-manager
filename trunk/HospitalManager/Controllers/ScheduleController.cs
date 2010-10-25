@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HospitalManager.Models;
+using HospitalManager.ViewModels;
 using HospitalManager.Repositories;
 
 namespace HospitalManager.Controllers
@@ -39,7 +40,7 @@ namespace HospitalManager.Controllers
 
         public ActionResult Months(int id)
         {
-            return View(id);
+            return View();
         }
 
         public ActionResult Doctor()
@@ -53,7 +54,7 @@ namespace HospitalManager.Controllers
 
             var sched = SchdRep.ListDoctors();
 
-            return View(sched);
+            return View(new ScheduleViewModel(user,user.UserID,sched));
         }
 
         public ActionResult Jan(int id)
