@@ -1,6 +1,6 @@
 /* CSS Document */
 body{
-	padding:0; margin:0;
+	padding:0; margin:0; background-color:#0c1d2a;
 	}
 div, p, h1, h2, h3, h4, img{
 	padding:0; margin:0;
@@ -116,16 +116,6 @@ fieldset
 #body p span.bg{
 	color:#799fbb; background-color:#041929;
 	}
-	/* remove pointless, bad looking links
-#body p a{
-	width:56px; height:12px; display:block; background:url(images/more_bg.gif) no-repeat #0a2b43; margin:3px 0 42px 526px;
-	font:11px/12px Verdana, Arial, Helvetica, sans-serif; font-weight:bold; text-transform:uppercase; color:#ffffff;
-	padding:0 0 0 5px; text-decoration:none;
-	}
-#body p a:hover{
-	background:url(images/more_bg_h.gif) no-repeat #0a2b43; color:#ff0033; 
-	}
-*/
 #body a
 {
     color:#ffffff;
@@ -250,7 +240,7 @@ fieldset
 /*---------------------------------footer-----------------*/
 #main_footer{
 	width:100%;  float:left; background:url(images/footer_bg.gif) repeat-x #0c1d2a; color:#ffffff;
-	border-top:#ffffff 1px solid; margin:0px; padding:0px; 
+	border-top:#ffffff 1px solid; margin:0px; padding:0px; height:186px;
 	}
 #main_footer ul 
 {
@@ -273,7 +263,7 @@ fieldset
     text-decoration:underline;
 }
 #footer {
-	width:530px; height:187px;
+	width:530px; height:auto;
 	margin:0 auto 0 auto;
 	}
 #footer ul{
@@ -331,11 +321,11 @@ fieldset
 	padding:0px;
 	}
 #footer p{
-	padding:135px 0 0 165px; font:11px/16px Tahoma, Arial, Helvetica, sans-serif; color:#FAFAFA;
+	padding:20px 0 0 165px; font:11px/16px Tahoma, Arial, Helvetica, sans-serif; color:#FAFAFA;
 	font-weight:normal;	height:14px; margin:0;
 	}
 #footer p.de{
-	padding:0 0  0 165px; margin:0;  line-height:12px; width:160px; text-align:center; background-color:#0c1d2a;
+	padding:0 0 20px 165px; margin:0;  line-height:12px; width:160px; text-align:center; background-color:#0c1d2a;
 	color:#fff; background:none;
 	}
 #footer p.de a{
