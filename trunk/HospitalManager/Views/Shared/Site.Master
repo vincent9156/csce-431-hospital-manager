@@ -28,13 +28,15 @@
 <% Html.RenderPartial("PartialLink"); %>
 <div id="footer"><!--footer navigation start -->
 
-<ul class="ad">
+<!-- for some reason, the below section displays in ie but not firefox.
+     commented out for now b/c we will probably never use it -->
+<%--<ul class="ad">
 <li><a>Fake Fake Road Thonhill Canada</a></li>
 <li class="nobor1"><a><span>ph:</span>
 800-121-4545 759-121-5454</a></li>
 <li class="nobor"><a><span>fax:</span>
 759-121-5454 800-121-4545</a></li>
-</ul>
+</ul>--%>
 <p>&copy; appleweb. All rights reserved.</p>
 <p class="de">Designed by: <a href="http://www.templateworld.com/">Template World</a></p>
 </div><!--footer navigation end -->
