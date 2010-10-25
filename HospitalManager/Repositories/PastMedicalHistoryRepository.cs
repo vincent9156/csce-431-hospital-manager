@@ -64,6 +64,7 @@ namespace HospitalManager.Repositories
         public IQueryable<MedicalCondition> GetAllMedicalConditions()
         {
             return from cond in histDb.MedicalConditions
+                   orderby cond.ConditionName ascending
                    select cond;
         }
 
