@@ -18,46 +18,19 @@
     <% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
        { %>
             <li> <%:Html.ActionLink("View Schedule", "Index", "Schedule")%></li> 
-       <% } %>
+    <% } %>
+    <% if (Session.GetUser().HasAccess(AccessOptions.SearchUsers))
+       { %>
+            <li> <%:Html.ActionLink("Search Users", "SearchUser", "Search")%></li>
+    <% } %>
     <% if (Session.GetUser().HasAccess(AccessOptions.EditOwnMedicalHistory))
        { %>
             <li> <%:Html.ActionLink("View Medical History", "", "PastMedicalHistory")%></li>
             <li> <%:Html.ActionLink("Edit Medical History", "Edit", "PastMedicalHistory")%></li>
-        <% } %>
+    <% } %>
     <% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
        { %>
             <li> <%:Html.ActionLink("View Profile", "ViewProfile", "Home")%></li> 
-       <% } %> 
-
-    <!--
-
-    *********** Removed to free up permissions ************
-
-    <% /* if (Session.GetUser().HasAccess(AccessOptions.EditMedicalHistory))
-       { %>
-            <li> <%:Html.ActionLink("Medical History", " ")%> </li>  
-       <% } %> 
-
-    <% if (Session.GetUser().HasAccess(AccessOptions.EditAppointments))
-       { %>
-            <li> <%:Html.ActionLink("Appointments", " ")%> </li>  
-       <% } %> 
-
-    <% if (Session.GetUser().HasAccess(AccessOptions.ViewPrescriptions))
-       { %>
-            <li> <%:Html.ActionLink("Prescriptions", " ")%> </li>  
-       <% } %> 
-
-    <% if (Session.GetUser().HasAccess(AccessOptions.EditPrescriptions))
-       { %>
-            <li> <%:Html.ActionLink("Prescriptions", " ")%> </li>  
-       <% } %> 
-
-    <% if (Session.GetUser().HasAccess(AccessOptions.ViewCurrentBill))
-       { %>
-            <li> <%:Html.ActionLink("Current Bill", " ")%> </li>  
-   <% } */ %> 
-   -->
-
-</ul>
+    <% } %>
+    </ul>
 <% } %>
