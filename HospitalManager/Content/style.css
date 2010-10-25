@@ -252,6 +252,26 @@ fieldset
 	width:100%;  float:left; background:url(images/footer_bg.gif) repeat-x #0c1d2a; color:#ffffff;
 	border-top:#ffffff 1px solid; margin:0px; padding:0px; 
 	}
+#main_footer ul 
+{
+    list-style-type:none;
+    text-align:center;
+}
+#main_footer ul li
+{
+    display:inline;
+    margin-left:10px;
+    margin-right:10px;
+}
+#main_footer ul li a 
+{
+    color:#ffffff;
+    text-decoration:none;
+}
+#main_footer ul li a:hover 
+{
+    text-decoration:underline;
+}
 #footer {
 	width:530px; height:187px;
 	margin:0 auto 0 auto;
@@ -260,7 +280,7 @@ fieldset
 	width:500px; display:block;	list-style-type:none; margin:46px 0 0 40px; position:absolute;
 	}
 #footer ul li{
-	display:block; float:left; 
+	display:block; float:left; margin-left:auto; margin-right:auto;
 		}
 #footer ul li a{
 	font:14px/12px 'Trebuchet MS', Arial, Helvetica, sans-serif;
@@ -312,7 +332,7 @@ fieldset
 	}
 #footer p{
 	padding:135px 0 0 165px; font:11px/16px Tahoma, Arial, Helvetica, sans-serif; color:#FAFAFA;
-	background:url(images/footer_bg.gif) repeat-x #0c1d29;	font-weight:normal;	height:14px; margin:0;
+	font-weight:normal;	height:14px; margin:0;
 	}
 #footer p.de{
 	padding:0 0  0 165px; margin:0;  line-height:12px; width:160px; text-align:center; background-color:#0c1d2a;
