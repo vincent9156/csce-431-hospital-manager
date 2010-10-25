@@ -2,11 +2,8 @@
 body{
 	padding:0; margin:0;
 	}
-div, p, h1, h2, h3, ul, img{
+div, p, h1, h2, h3, h4, img{
 	padding:0; margin:0;
-	}
-ul{
-	list-style-type:none;
 	}
 .balnk{
 	font-size:0px; line-height:0px; clear:both;
@@ -24,6 +21,7 @@ fieldset
 	 position:relative;
 	}
 #main_header #header ul{
+	list-style-type:none;
 	background:url(images/search_bg.gif) no-repeat #09283f; color:#FFFFFF; display:block; position:absolute; height:22px;
 	 width:123px; margin:0; padding:6px 0 0 26px; top:10px; left:0px;
 	}
@@ -107,6 +105,10 @@ fieldset
 	font:28px/24px 'Trebuchet MS', Arial, Helvetica, sans-serif	; color:#fff6d9;  margin:0 0 15px 40px;
 	font-weight:normal; background-color:#0a2b43; display:block;
 	}
+#body p 
+{
+    margin: 0 0 5px 0;
+}
 
 #body p span{
 	color:#fff6d8; background-color:#0a2b43;
@@ -114,6 +116,7 @@ fieldset
 #body p span.bg{
 	color:#799fbb; background-color:#041929;
 	}
+	/* remove pointless, bad looking links
 #body p a{
 	width:56px; height:12px; display:block; background:url(images/more_bg.gif) no-repeat #0a2b43; margin:3px 0 42px 526px;
 	font:11px/12px Verdana, Arial, Helvetica, sans-serif; font-weight:bold; text-transform:uppercase; color:#ffffff;
@@ -122,6 +125,7 @@ fieldset
 #body p a:hover{
 	background:url(images/more_bg_h.gif) no-repeat #0a2b43; color:#ff0033; 
 	}
+*/
 #body a
 {
     color:#ffffff;

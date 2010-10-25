@@ -22,6 +22,10 @@
         <li> <%:Html.ActionLink ("Set Appointment","Index", "Schedule") %></li> 
    <% } %> 
 
+<% if (Model.HasAccess(AccessOptions.EditOwnMedicalHistory)) { %>
+    <li><%: Html.ActionLink("View Your Medical History", "Index", "PastMedicalHistory")%></li>
+    <li><%: Html.ActionLink("Edit Your Medical History", "Edit", "PastMedicalHistory")%></li>
+<% } %>
    <!--
    
     *********** Removed to free up permissions ************
