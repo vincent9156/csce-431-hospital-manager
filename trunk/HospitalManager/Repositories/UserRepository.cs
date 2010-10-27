@@ -35,6 +35,18 @@ namespace HospitalManager.Repositories
         }
 
         /**
+         *Get a user by their UserID
+         */
+        public User GetUserByUserID(int id)
+        {
+            var result = from user in usersDb.Users
+                         where user.UserID == id
+                         select user;
+
+            return result.First();   
+        }
+
+        /**
          * Get a queryable collection of users by their first and last names
          */
         public IQueryable<User> GetUserByName(string firstName, string lastName)

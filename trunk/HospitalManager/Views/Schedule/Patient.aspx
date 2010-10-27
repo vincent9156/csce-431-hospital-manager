@@ -11,7 +11,7 @@
     <% foreach (var item in Model.docs)
        { %>
      
-        <%: Html.ActionLink(item.FirstName + " " + item.LastName, "Months", "Schedule", (Int32)(item.UserID))%><br />
+  <!--      <%: Html.ActionLink(item.FirstName + " " + item.LastName, "Months", "Schedule", (Int32)(item.UserID))%><br />-->
         <a href="/Schedule/Months/<%= item.UserID %>"><%= item.FirstName + " " + item.LastName%></a>
      
      
