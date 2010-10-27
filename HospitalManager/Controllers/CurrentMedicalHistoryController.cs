@@ -10,6 +10,7 @@ using HospitalManager.Libraries;
 using HospitalManager.ViewModels;
 using System.Text.RegularExpressions;
 
+
 namespace HospitalManager.Controllers
 {
     public class CurrentMedicalHistoryController : Controller
@@ -17,7 +18,24 @@ namespace HospitalManager.Controllers
         CurrentMedicalHistoryRepository histRep = new CurrentMedicalHistoryRepository();
         SessionRepository sessRep = new SessionRepository();
 
-        
+        User user;
+
+        /**
+        * Make sure the user is authenticated (borrowed this from PastMedicalHistoryController)
+        */
+        protected override void Initialize(RequestContext context)
+        {
+            base.Initialize(context);
+
+            if (!sessRep.IsLoggedIn() ||
+                !sessRep.GetUser().HasAccess(AccessOptions.EditOwnMedicalHistory))
+            {
+                HttpContext.Response.Redirect("/");
+                HttpContext.Response.End();
+            }
+
+            user = sessRep.GetUser();
+        }
         
 
         //
@@ -25,9 +43,16 @@ namespace HospitalManager.Controllers
         
         public ActionResult Index()
         {
-            IQueryable<CurrentMedicalHistory> history = histRep.GetCurrentMedicalHistoryByUser(sessRep.GetUser()); 
+
+            if (!sessRep.IsLoggedIn())
+                return Redirect("/Authentication/Login");
+
+            var vm = new CurrentMedicalHistoriesViewModel
+            {
+                CurrentMedicalHistoryList = histRep.GetCurrentMedicalHistoryByUser(sessRep.GetUser())
+            };
             
-            return View();
+            return View(vm);
         }
 
     }

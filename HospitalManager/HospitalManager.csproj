@@ -120,7 +120,7 @@
     <Compile Include="Repositories\ScheduleRepository.cs" />
     <Compile Include="Repositories\SessionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="ViewModels\CurrentMedicalHistoryViewModel.cs" />
+    <Compile Include="ViewModels\CurrentMedicalHistoriesViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
     <Compile Include="ViewModels\NurseViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
