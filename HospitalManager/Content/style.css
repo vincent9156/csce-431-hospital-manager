@@ -27,7 +27,7 @@ fieldset
 	}
 #userinfo
 {
-    position:fixed; right:20px;
+    position:fixed; right:20px; background-color:#0a2b43;
 }
 #userinfo a
 {
