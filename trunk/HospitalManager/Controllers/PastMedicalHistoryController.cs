@@ -41,6 +41,9 @@ namespace HospitalManager.Controllers
          */
         public ActionResult Index()
         {
+            if (!sessRep.IsLoggedIn())
+                return Redirect("/Authentication/Login");
+
             PastMedicalHistory history = histRep.GetPastMedicalHistory(user);
             return View(history);
         }
