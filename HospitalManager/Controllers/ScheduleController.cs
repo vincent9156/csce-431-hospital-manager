@@ -40,7 +40,9 @@ namespace HospitalManager.Controllers
 
         public ActionResult Months(int id)
         {
-            return View();
+            User user = UserRep.GetUserByUserID(id);
+            return View(user);
+            //return View();
         }
 
         public ActionResult Doctor()
