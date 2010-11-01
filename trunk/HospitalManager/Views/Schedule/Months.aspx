@@ -5,21 +5,18 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Choose Month You Wish to Schedule Appointment</h2>
-
-    <%:Html.ActionLink("January", "Jan", "Schedule", new { id = Model.UserID})%> <br />
-    <%:Html.ActionLink("February", "Feb", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("March", "Mar", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("April", "Apr", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("May", "May", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("June", "Jun", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("July", "Jul", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("August", "Aug", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("September", "Sep", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("October", "Oct", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("November", "Nov", "Schedule", new { id = Model.UserID })%> <br />
-    <%:Html.ActionLink("December", "Dec", "Schedule", new { id = Model.UserID })%> <br />
+    
+    <div id="main_body">
+    <div id="body">
+        
+    <h2>Input Date You Wish to Schedule Appointment:</h2>
+    <form runat="server">
+    <asp:Calendar DayNameFormat="Full" SelectionMode="Day" runat="server">
+        <SelectorStyle BackColor="#f5f5f5"/>
+    </asp:Calendar>
+    </form>
+    </div>
+    </div>
     
 
 </asp:Content>
