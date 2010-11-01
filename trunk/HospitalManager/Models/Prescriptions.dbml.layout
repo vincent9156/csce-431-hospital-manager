@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Prescriptions">
+  <DataContextMoniker Name="/PrescriptionsDatabase" />
+  <nestedChildShapes>
+    <classShape Id="4d928c81-cc25-47e4-bdee-7f62bec67e11" absoluteBounds="3.25, 0.625, 2, 1.26050048828125">
+      <DataClassMoniker Name="/PrescriptionsDatabase/Medication" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a6b488e6-97bc-425f-b05c-591a53d3d4ef" absoluteBounds="3.2649999999999997, 1.085, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9b4a2b6b-3a6c-4525-b2c6-1ad42941223a" absoluteBounds="0.625, 0.625, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/PrescriptionsDatabase/Prescription" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d603f414-8970-4518-bb11-d58ed6429d10" absoluteBounds="0.64000000000000012, 1.085, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.25 : 1.25525024414063); (2.625 : 1.25525024414063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PrescriptionsDatabase/Medication/Medication_Prescription" />
+      <nodes>
+        <classShapeMoniker Id="4d928c81-cc25-47e4-bdee-7f62bec67e11" />
+        <classShapeMoniker Id="9b4a2b6b-3a6c-4525-b2c6-1ad42941223a" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
