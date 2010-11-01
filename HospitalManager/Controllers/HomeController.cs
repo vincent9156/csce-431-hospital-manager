@@ -50,6 +50,8 @@ namespace HospitalManager.Controllers
             user.Email = EMail;
             repository.EditUserByUsername(Username, user);
             user.Username = Username;
+            sessRep.Logout();
+            sessRep.Login(user);
             return Redirect("/Home/ViewProfile/");
         }
 
@@ -57,17 +59,14 @@ namespace HospitalManager.Controllers
         {
             if (sessRep.IsLoggedIn())
             {
+                var vm = new UserRegistrationViewModel();
                 User user = sessRep.GetUser();
-                String FName = user.FirstName;
-                String LName = user.LastName;
-                String UName = user.Username;
-                String EMail = user.Email;
-                ViewData["FName"] = FName;
-                ViewData["LName"] = LName;
-                ViewData["UName"] = UName;
-                ViewData["EMail"] = EMail;
+                vm.FirstName = user.FirstName;
+                vm.LastName = user.LastName;
+                vm.Username = user.Username;
+                vm.Email = user.Email;
                 ViewData["UType"] = user;
-                return View();
+                return View(vm);
             }
             else
             {
