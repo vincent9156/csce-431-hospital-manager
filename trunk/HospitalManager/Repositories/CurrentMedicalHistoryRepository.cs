@@ -16,7 +16,7 @@ namespace HospitalManager.Repositories
         public CurrentMedicalHistoryRepository()
         {
             currentMedDb = new CurrentMedicalHistoryDataContext();
-        }
+        }  
 
         /**
          * Get a user by their userID
@@ -31,7 +31,24 @@ namespace HospitalManager.Repositories
                          select CurrentMedicalHistory;
                          
             return result;
-            
+        }
+
+        public int AddCurrentMedicalHistory(CurrentMedicalHistory mh)
+        {
+            // make sure a visit has not been added this day 
+            var result = from CurrentMedicalHistory in currentMedDb.CurrentMedicalHistories
+                         where CurrentMedicalHistory.UserID == mh.UserID
+                         where CurrentMedicalHistory.Day == mh.Day
+                         where CurrentMedicalHistory.Month == mh.Month
+                         where CurrentMedicalHistory.Year == mh.Year
+                         select CurrentMedicalHistory;
+            if(result.Count() == 0)
+                return -1;
+
+            currentMedDb.CurrentMedicalHistories.InsertOnSubmit(mh);
+            currentMedDb.SubmitChanges();
+
+            return 0;
         }
     }
 }
