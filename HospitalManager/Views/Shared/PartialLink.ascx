@@ -32,5 +32,9 @@
        { %>
             <li> <%:Html.ActionLink("View Profile", "ViewProfile", "Home")%></li> 
     <% } %>
+    <% if (Session.GetUser().HasAccess(AccessOptions.ViewBills))
+       { %>
+            <li> <%:Html.ActionLink("View My Bills", "Index", "Billing")%></li> 
+    <% } %>
     </ul>
 <% } %>

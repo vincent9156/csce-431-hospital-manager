@@ -25,7 +25,10 @@ namespace HospitalManager.Libraries
         EditOwnMedicalHistory = 0x08,
 
         // Can this user view a schedule?
-        ViewSchedule = 0x00 // TODO: Should be editted to work in the future
+        ViewSchedule = 0x00, // TODO: Should be editted to work in the future
+
+        //can this user view thier own bills
+        ViewBills = 0x00
     }
 
     public class PermissionsManager
