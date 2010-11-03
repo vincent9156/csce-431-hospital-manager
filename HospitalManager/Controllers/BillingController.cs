@@ -33,19 +33,25 @@ namespace HospitalManager.Controllers
             User user = SessionRep.GetUser();
             if (SessionRep.IsLoggedIn())
             {
+                Mapper.CreateMap<Bill, BillingViewModel>();
                 //if user is doctor then search bills by docUserID
                 if (user.TypeID == UserType.DoctorTypeID)
                 {
                     IQueryable<Bill> bills = BillRep.GetAllBillsByDoctor(user.UserID);
                     List<BillingViewModel> BillingViewModels = new List<BillingViewModel>();
+                    Mapper.CreateMap<Bill, BillingViewModel>();
                     foreach (var bill in bills)
                     {
-                        BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));//mapping is not working yet
+                        BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));
                     }
                     var vm = new BillingViewModel
                     {
                         SearchResults = BillingViewModels
                     };
+                    
+                    if (vm.Paid == 0)
+                        ViewData["paid"] = "Not Paid";
+                    else ViewData["paid"] = "Paid";
 
                     return View(vm);
                 }
@@ -56,14 +62,16 @@ namespace HospitalManager.Controllers
                     List<BillingViewModel> BillingViewModels = new List<BillingViewModel>();
                     foreach (var bill in bills)
                     {
-                       BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));//mapping is not working yet
+                       BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));
                         
                     }
                     var vm = new BillingViewModel
                     {
                         SearchResults = BillingViewModels
                     };
-
+                    if (vm.Paid == 0)
+                        ViewData["paid"] = "Not Paid";
+                    else ViewData["paid"] = "Paid";
                     return View(vm);
                 }
 
@@ -74,22 +82,33 @@ namespace HospitalManager.Controllers
             else return Redirect("/Authentication/Login/");
         }
 
-        //view one bill based on the billview model or billID in the future
-        public ActionResult ViewBill(BillingViewModel bvm)
+        //view one bill based on billID
+        public ActionResult ViewBill(int id)
         {
+            Bill bill = BillRep.GetBillByID(id);
+            Mapper.CreateMap<Bill, BillingViewModel>();
+            BillingViewModel bvm = Mapper.Map<Bill, BillingViewModel>(bill);
+            User doc = UserRep.GetUserByUserID(bvm.DocUserID);
+            ViewData["docname"] = doc.FirstName + " " + doc.LastName;
+            User patient = UserRep.GetUserByUserID(bvm.PatientUserID);
+            ViewData["pname"] = patient.FirstName + " " + patient.LastName;
+            if (bvm.Paid == 0)
+                ViewData["paid"] = "Not Paid";
+            else ViewData["paid"] = "Paid";
+
             return View(bvm);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.SearchUsers))
+            if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.BillPatient))
                 return Redirect("/");
 
             BillingViewModel bvm = new BillingViewModel();
 
-            User Patient = UserRep.GetUserByUsername("fothick");
+            User Patient = UserRep.GetUserByUserID(id);//this needs to be from the search patient page
             ViewData["pname"] = Patient.FirstName + " " + Patient.LastName;
-
+            bvm.PatientUserID = id;
             return View(bvm);
         }
 
@@ -97,6 +116,7 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult CreateBill(BillingViewModel BVM)
         {
+            
             Bill NewBill = new Bill();
 
             //get doctr userID
@@ -104,11 +124,9 @@ namespace HospitalManager.Controllers
             NewBill.DocUserID = doc.UserID;
             BVM.DocUserID = doc.UserID;
 
-            //get patient based on username
-            //I would like this to use userID instead of username and be passing the value from the search patient results
-            User Patient = UserRep.GetUserByUsername("fothick");
-            NewBill.PatientUserID = Patient.UserID;
-            BVM.PatientUserID = Patient.UserID;
+            //get patient based on ID
+           // User Patient = UserRep.GetUserByUserID(BVM.PatientUserID);
+            NewBill.PatientUserID = BVM.PatientUserID;
             
 
             //initialize bill to not paid for

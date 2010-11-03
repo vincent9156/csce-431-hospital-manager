@@ -16,22 +16,14 @@
     <% /* TODO: Use css.... */ %>
     <table cellpadding="10">
     <% if (Model.SearchResults.Count != 0) { %>
-
+    <tr><td>BillID</td><td>Paid Status</td><td>Patient ID</td><td>Doctor ID</td></tr>
         <% foreach (var item in Model.SearchResults) { %>
-    
-            <tr>
-                <td>
-                    <%= item.BillID%>
-                </td>
+            <tr><td><%= item.BillID%></td><td><%= Html.ViewData["paid"]%></td><td><%= item.PatientUserID %></td><td><%= item.DocUserID %></td>
                 <% /* TODO: Check permissions of user before 
                     * displaying these links (and make the links correct) */ %>
-                <td>
-                    <a href="#">Medical Record</a>
-                </td>
+                <td><%: Html.ActionLink("View Bill", "ViewBill", "Billing", new { id = item.BillID }, null )%></td>
             </tr>
-
         <% } %>
-
     <% } else { %>
         
         <tr><td>No Bills found for this user.</td></tr>
