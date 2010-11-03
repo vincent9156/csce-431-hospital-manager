@@ -27,7 +27,7 @@ namespace HospitalManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult FillPrescription(PrescriptionViewModel vm)
+        public ActionResult WritePrescription(PrescriptionViewModel vm)
         {
             vm.docId = session.GetUser().UserID;
             Mapper.Map<PrescriptionViewModel, Prescription>(vm);
