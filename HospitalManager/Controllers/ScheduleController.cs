@@ -62,84 +62,85 @@ namespace HospitalManager.Controllers
         public ActionResult Jan(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "January", 2010);
+            SchdRep.CreateDateEntry(10, 2, "January", 2010);
+            var sched = SchdRep.ListDoctorSchedule(id, "January", 2010);
             return View(sched);
         }
 
         public ActionResult Feb(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "Feburary", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "Feburary", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult Mar(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "March", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "March", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult Apr(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "April", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "April", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult May(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "May", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "May", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult Jun(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "June", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "June", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult Jul(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "July", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "July", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult Aug(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "August", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "August", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult Sep(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "September", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "September", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult Oct(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "October", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "October", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult Nov(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "November", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "November", DateTime.Today.Year);
             return View(sched);
         }
 
         public ActionResult Dec(int id)
         {
             User user = SessionRep.GetUser();
-            var sched = SchdRep.ListDoctorSchedule(user.UserID, "December", DateTime.Today.Year);
+            var sched = SchdRep.ListDoctorSchedule(id, "December", DateTime.Today.Year);
             return View(sched);
         }
     }
