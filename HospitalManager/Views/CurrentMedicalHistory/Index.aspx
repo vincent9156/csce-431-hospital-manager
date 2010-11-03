@@ -11,13 +11,7 @@
         td {margin:5 5 5 5}
     </style>
     <h2>Current Medical History</h2>
-    <% if (Model.CurrentMedicalHistoryList.First() == null)
-       { %>
-     <p>No Current Medical History Found For User</p>
-    <% } %>
-       
-       <%else
-        {%>
+     
         <fieldset>
         <table cellpadding = "5">
             <tr>
@@ -29,6 +23,7 @@
                 <th>Blood Pressure</th>
                 <th>Diagnosis</th>
             </tr> 
+
            <%foreach(CurrentMedicalHistory c in Model.CurrentMedicalHistoryList)
             {%> 
             <tr>
@@ -42,12 +37,11 @@
             </tr>
 
         
-        
-
+ 
         <%  } %>
         </table>
         </fieldset>
-        <%}%>
+       
 
  </div>
  </div>

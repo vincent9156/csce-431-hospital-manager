@@ -25,10 +25,11 @@ namespace HospitalManager.Repositories
         {
             var result = from CurrentMedicalHistory in currentMedDb.CurrentMedicalHistories
                          where CurrentMedicalHistory.UserID == user.UserID
-                         orderby CurrentMedicalHistory.Day ascending
-                         orderby CurrentMedicalHistory.Month ascending
-                         orderby CurrentMedicalHistory.Year ascending
-                         select CurrentMedicalHistory;
+                         //orderby CurrentMedicalHistory.Day ascending
+                         //orderby CurrentMedicalHistory.Month ascending
+                         //orderby CurrentMedicalHistory.Year ascending
+                         select  CurrentMedicalHistory;
+            IList<CurrentMedicalHistory> l = result.ToList();
                          
             return result;
         }
@@ -36,7 +37,7 @@ namespace HospitalManager.Repositories
         public int AddCurrentMedicalHistory(CurrentMedicalHistory mh)
         {
             // make sure a visit has not been added this day 
-            var result = from CurrentMedicalHistory in currentMedDb.CurrentMedicalHistories
+            /*var result = from CurrentMedicalHistory in currentMedDb.CurrentMedicalHistories
                          where CurrentMedicalHistory.UserID == mh.UserID
                          where CurrentMedicalHistory.Day == mh.Day
                          where CurrentMedicalHistory.Month == mh.Month
@@ -44,6 +45,7 @@ namespace HospitalManager.Repositories
                          select CurrentMedicalHistory;
             if(result.Count() == 0)
                 return -1;
+            */
 
             currentMedDb.CurrentMedicalHistories.InsertOnSubmit(mh);
             currentMedDb.SubmitChanges();
