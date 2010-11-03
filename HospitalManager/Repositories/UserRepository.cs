@@ -43,7 +43,7 @@ namespace HospitalManager.Repositories
                          where user.UserID == id
                          select user;
 
-            return result.First();   
+            return result.First();
         }
 
         /**
