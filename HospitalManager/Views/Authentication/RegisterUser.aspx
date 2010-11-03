@@ -87,6 +87,8 @@
                 </td>
             </tr>
 
+
+            <% if(!Model.HasAccess(AccessOptions.RegisterWithoutStaffID)) { %>
             <tr>
                 <td>
                     <%= Html.Label("Speciality") %>
@@ -99,7 +101,6 @@
                 </td>
             </tr>
 
-            <% if(!Model.HasAccess(AccessOptions.RegisterWithoutStaffID)) { %>
             <tr>
                 <td>
                     <%= Html.Label("Staff ID") %>
