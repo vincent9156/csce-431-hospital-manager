@@ -50,6 +50,8 @@ namespace HospitalManager.ViewModels
                            ErrorMessage="Not a valid email address")]
         public string Email { get; set; }
 
+        public string Speciality { get; set; }
+
         public int StaffID { get; set; }
 
         public int Permissions { get; set; }

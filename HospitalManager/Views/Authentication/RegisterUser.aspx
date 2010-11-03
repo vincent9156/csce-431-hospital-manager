@@ -87,6 +87,18 @@
                 </td>
             </tr>
 
+            <tr>
+                <td>
+                    <%= Html.Label("Speciality") %>
+                </td>
+                <td>
+                    <%= Html.TextBoxFor(m => m.Speciality) %>
+                </td>
+                <td>
+                    <%= Html.ValidationMessageFor(m => m.Speciality) %>
+                </td>
+            </tr>
+
             <% if(!Model.HasAccess(AccessOptions.RegisterWithoutStaffID)) { %>
             <tr>
                 <td>
