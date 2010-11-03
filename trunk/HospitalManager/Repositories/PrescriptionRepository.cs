@@ -24,9 +24,46 @@ namespace HospitalManager.Repositories
                    select script;
         }
 
+        public IQueryable<string> GetAllMedicationNames()
+        {
+            var result = from script in prescriptionDb.Medications
+                         orderby script.MedicationName ascending
+                         select script.MedicationName;
+
+            if (result.Count() == 0)
+                return null;
+
+            return result;
+                
+        }
+
         public bool MedicationExists(int medID)
         {
             return prescriptionDb.Medications.Select(m => m.MedicationID == medID).Count() != 0;
+        }
+
+        public IQueryable<Prescription> GetAllPrescriptionsByDoctorID(int DocUserID)
+        {
+            var result = from script in prescriptionDb.Prescriptions
+                         where script.DoctorUserID == DocUserID
+                         select script;
+
+            if (result.Count() == 0)
+                return null;
+
+            return result;
+        }
+
+        public IQueryable<Prescription> GetAllPrescriptionsByUserID(int UserID)
+        {
+            var result = from script in prescriptionDb.Prescriptions
+                         where script.UserID == UserID
+                         select script;
+
+            if (result.Count() == 0)
+                return null;
+
+            return result;
         }
     }
 }
