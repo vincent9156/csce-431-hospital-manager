@@ -105,6 +105,8 @@ namespace HospitalManager.Models
 		
 		private string _Email;
 		
+		private string _Speciality;
+		
 		private EntitySet<Schedule> _Schedules;
 		
     #region Extensibility Method Definitions
@@ -125,6 +127,8 @@ namespace HospitalManager.Models
     partial void OnPasswordChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
+    partial void OnSpecialityChanging(string value);
+    partial void OnSpecialityChanged();
     #endregion
 		
 		public ScheduleUsers()
@@ -269,6 +273,26 @@ namespace HospitalManager.Models
 					this._Email = value;
 					this.SendPropertyChanged("Email");
 					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Speciality", CanBeNull=false)]
+		public string Speciality
+		{
+			get
+			{
+				return this._Speciality;
+			}
+			set
+			{
+				if ((this._Speciality != value))
+				{
+					this.OnSpecialityChanging(value);
+					this.SendPropertyChanging();
+					this._Speciality = value;
+					this.SendPropertyChanged("Speciality");
+					this.OnSpecialityChanged();
 				}
 			}
 		}

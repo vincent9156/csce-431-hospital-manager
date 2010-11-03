@@ -9,6 +9,7 @@
       <Column Name="UserName" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Member="Speciality" Type="System.String" CanBeNull="false" />
       <Association Name="ScheduleUsers_Schedule" Member="Schedules" ThisKey="UserID" OtherKey="UserID" Type="Schedule" />
     </Type>
   </Table>
