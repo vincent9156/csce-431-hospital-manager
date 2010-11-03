@@ -60,6 +60,9 @@
                 <td>
                     <a href="#">Medical Record</a>
                 </td>
+                <td>
+                    <%=Html.ActionLink("Bill Patient", "Create", "Billing", new { id = item.UserID }, null)%>
+                </td>
             </tr>
 
         <% } %>

@@ -18,6 +18,9 @@ namespace HospitalManager.Libraries
         // Can this user search other users?
         SearchUsers = 0x02,
 
+        //can user bill a patient
+        BillPatient = 0x02,
+
         // Can this user view other user's past medical histories?
         ViewPastMedicalHistories = 0x04,
 

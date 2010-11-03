@@ -35,8 +35,7 @@ namespace HospitalManager.Controllers
                     LoggedInUser = Mapper.Map<User, UserViewModel>(SessRep.GetUser()),
                     SearchResults = userViewModels
                 };
-
-                return View(vm);
+               return View(vm);
             }
 
             return View((SearchViewModel)null);
