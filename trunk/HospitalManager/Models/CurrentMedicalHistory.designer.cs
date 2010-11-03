@@ -80,6 +80,8 @@ namespace HospitalManager.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private int _HistoryID;
+		
 		private int _Day;
 		
 		private int _Month;
@@ -98,6 +100,8 @@ namespace HospitalManager.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnHistoryIDChanging(int value);
+    partial void OnHistoryIDChanged();
     partial void OnDayChanging(int value);
     partial void OnDayChanged();
     partial void OnMonthChanging(int value);
@@ -119,7 +123,27 @@ namespace HospitalManager.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Day", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HistoryID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int HistoryID
+		{
+			get
+			{
+				return this._HistoryID;
+			}
+			set
+			{
+				if ((this._HistoryID != value))
+				{
+					this.OnHistoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._HistoryID = value;
+					this.SendPropertyChanged("HistoryID");
+					this.OnHistoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Day", DbType="Int NOT NULL")]
 		public int Day
 		{
 			get
@@ -139,7 +163,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Month", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Month", DbType="Int NOT NULL")]
 		public int Month
 		{
 			get
@@ -159,7 +183,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int NOT NULL")]
 		public int Year
 		{
 			get
@@ -199,7 +223,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BloodPressure", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BloodPressure", DbType="NChar(50) NOT NULL", CanBeNull=false)]
 		public string BloodPressure
 		{
 			get
@@ -239,7 +263,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
 		public int UserID
 		{
 			get

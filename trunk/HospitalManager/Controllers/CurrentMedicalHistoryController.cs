@@ -51,7 +51,7 @@ namespace HospitalManager.Controllers
 
             var vm = new CurrentMedicalHistoriesViewModel
             {
-                CurrentMedicalHistoryList = histRep.GetCurrentMedicalHistoryByUser(sessRep.GetUser())
+                CurrentMedicalHistoryList = histRep.GetCurrentMedicalHistoryByUser(sessRep.GetUser()).ToList()
             };
             
             return View(vm);
