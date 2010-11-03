@@ -12,7 +12,9 @@ namespace HospitalManager.Repositories
 
         public int AddPrescription(Prescription prescription)
         {
-            return 0;
+            prescriptionDb.Prescriptions.InsertOnSubmit(prescription);
+            prescriptionDb.SubmitChanges();
+            return prescription.PrescriptionID;
         }
 
         public IQueryable<Medication> GetAllMedications()
@@ -24,7 +26,7 @@ namespace HospitalManager.Repositories
 
         public bool MedicationExists(int medID)
         {
-            return true;
+            return prescriptionDb.Medications.Select(m => m.MedicationID == medID).Count() != 0;
         }
     }
 }
