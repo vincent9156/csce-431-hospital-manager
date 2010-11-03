@@ -62,7 +62,6 @@ namespace HospitalManager.Controllers
         public ActionResult Jan(int id)
         {
             User user = SessionRep.GetUser();
-            SchdRep.CreateDateEntry(10, 2, "January", 2010);
             var sched = SchdRep.ListDoctorSchedule(id, "January", 2010);
             return View(sched);
         }

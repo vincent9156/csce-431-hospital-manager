@@ -73,6 +73,7 @@ namespace HospitalManager.Repositories
             sched._1630 = 0;
 
             _dbSched.Schedules.InsertOnSubmit(sched);
+            _dbSched.SubmitChanges();
         }
 
     }
