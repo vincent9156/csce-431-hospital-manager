@@ -79,6 +79,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PastMedicalHistoryController.cs" />
     <Compile Include="Controllers\PermissionsTestController.cs" />
+    <Compile Include="Controllers\PrescriptionController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
@@ -140,6 +141,7 @@
     <Compile Include="ViewModels\NurseViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\PharmacistViewModel.cs" />
+    <Compile Include="ViewModels\PrescriptionViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UpdateMedicalHistoryViewModel.cs" />
