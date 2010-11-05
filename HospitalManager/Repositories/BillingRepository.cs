@@ -71,5 +71,14 @@ namespace HospitalManager.Repositories
 
             return result;
         }
+
+        public int BillPrescription(PrescriptionBill bill)
+        {
+            _Billdb.PrescriptionBills.InsertOnSubmit(bill);
+            _Billdb.SubmitChanges();
+
+            return bill.BillID;
+        }
+
     }
 }

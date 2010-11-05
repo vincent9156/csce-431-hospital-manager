@@ -30,8 +30,16 @@
         <fieldset>
         <table>
             <tr>
+                 <td>
+                    <%= Html.Label("Medication")%>
+                </td>
                 <td>
-                    <%= Html.Label("Quantity") %>
+                    <%= Html.DropDownListFor(m => m.MedID, new SelectList(Model.Medications, "MedicationID", "MedicationName")) %> 
+                </td>
+             </tr>
+             <tr>
+                <td>
+                    <%= Html.Label("Quantity")%>
                 </td>
                 <td>
                     <%= Html.TextBoxFor(m => m.quantity) %>

@@ -63,6 +63,9 @@
                 <td>
                     <%=Html.ActionLink("Bill Patient", "Create", "Billing", new { id = item.UserID }, null)%>
                 </td>
+                <td>
+                    <%=Html.ActionLink("Write Prescription", "WritePrescription", "Prescription", new { id = item.UserID }, null)%>
+                </td>
             </tr>
 
         <% } %>
