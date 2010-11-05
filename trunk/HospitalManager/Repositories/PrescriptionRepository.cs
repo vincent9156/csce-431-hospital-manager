@@ -65,5 +65,21 @@ namespace HospitalManager.Repositories
 
             return result;
         }
+
+        public decimal GetPriceOfPresciption(int prescriptionID)
+        {
+            var prescription = (from p in prescriptionDb.Prescriptions
+                                where p.PrescriptionID == prescriptionID
+                                select p).First();
+
+            decimal pricepermg = (from m in prescriptionDb.Medications
+                       where m.MedicationID == prescription.MedicationID
+                       select m).First().PricePerMg;
+
+
+            decimal price = prescription.mgPerPill * prescription.Quantity * pricepermg;
+
+            return price;
+        }
     }
 }

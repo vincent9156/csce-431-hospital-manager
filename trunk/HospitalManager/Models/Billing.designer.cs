@@ -32,6 +32,9 @@ namespace HospitalManager.Models
     partial void InsertBill(Bill instance);
     partial void UpdateBill(Bill instance);
     partial void DeleteBill(Bill instance);
+    partial void InsertPrescriptionBill(PrescriptionBill instance);
+    partial void UpdatePrescriptionBill(PrescriptionBill instance);
+    partial void DeletePrescriptionBill(PrescriptionBill instance);
     #endregion
 		
 		public BillingDataContext() : 
@@ -69,6 +72,14 @@ namespace HospitalManager.Models
 			get
 			{
 				return this.GetTable<Bill>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PrescriptionBill> PrescriptionBills
+		{
+			get
+			{
+				return this.GetTable<PrescriptionBill>();
 			}
 		}
 	}
@@ -263,6 +274,140 @@ namespace HospitalManager.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Paid", DbType="Bit NOT NULL")]
+		public byte Paid
+		{
+			get
+			{
+				return this._Paid;
+			}
+			set
+			{
+				if ((this._Paid != value))
+				{
+					this.OnPaidChanging(value);
+					this.SendPropertyChanging();
+					this._Paid = value;
+					this.SendPropertyChanged("Paid");
+					this.OnPaidChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PrescriptionBill")]
+	public partial class PrescriptionBill : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _BillID;
+		
+		private float _Amount;
+		
+		private int _PrescriptionID;
+		
+		private byte _Paid;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBillIDChanging(int value);
+    partial void OnBillIDChanged();
+    partial void OnAmountChanging(float value);
+    partial void OnAmountChanged();
+    partial void OnPrescriptionIDChanging(int value);
+    partial void OnPrescriptionIDChanged();
+    partial void OnPaidChanging(byte value);
+    partial void OnPaidChanged();
+    #endregion
+		
+		public PrescriptionBill()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int BillID
+		{
+			get
+			{
+				return this._BillID;
+			}
+			set
+			{
+				if ((this._BillID != value))
+				{
+					this.OnBillIDChanging(value);
+					this.SendPropertyChanging();
+					this._BillID = value;
+					this.SendPropertyChanged("BillID");
+					this.OnBillIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Float NOT NULL")]
+		public float Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int PrescriptionID
+		{
+			get
+			{
+				return this._PrescriptionID;
+			}
+			set
+			{
+				if ((this._PrescriptionID != value))
+				{
+					this.OnPrescriptionIDChanging(value);
+					this.SendPropertyChanging();
+					this._PrescriptionID = value;
+					this.SendPropertyChanged("PrescriptionID");
+					this.OnPrescriptionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Paid", DbType="Byte NOT NULL")]
 		public byte Paid
 		{
 			get

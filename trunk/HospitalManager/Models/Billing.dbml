@@ -12,4 +12,12 @@
       <Column Name="Paid" Type="System.Byte" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.PrescriptionBill" Member="PrescriptionBills">
+    <Type Name="PrescriptionBill">
+      <Column Name="BillID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PrescriptionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Paid" Type="System.Byte" DbType="Byte NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

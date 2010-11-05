@@ -127,6 +127,7 @@ namespace HospitalManager.Repositories
 
             return result.First();
         }
+        //changes database info for user based on username
         public void EditUserByUsername(String NewUserName, User u)
         {
             var result = (from user in usersDb.Users
@@ -137,9 +138,18 @@ namespace HospitalManager.Repositories
             result.LastName = u.LastName;
             result.Email = u.Email;
             result.Username = NewUserName;
-            //result.Password = u.Password;
             usersDb.SubmitChanges();
         }
+        // returns all users based on the type searched for example: get all doctors
+        public IQueryable<User> GetAllUsersBasedOnType(int userType)
+        {
+            var result = from user in usersDb.Users
+                         where user.UserType.TypeID == userType
+                         select user;
 
+            return result;
+        }
+
+       
     }
 }

@@ -16,11 +16,13 @@ namespace HospitalManager.Controllers
     {
         SessionRepository session = new SessionRepository();
         UserRepository user = new UserRepository();
+        PrescriptionRepository presRep = new PrescriptionRepository();
 
         public ActionResult WritePrescription(int id)
         {
             var vm = new PrescriptionViewModel
             {
+                Medications = presRep.GetAllMedications(),
                 userId = id,
             };
             return View(vm);
