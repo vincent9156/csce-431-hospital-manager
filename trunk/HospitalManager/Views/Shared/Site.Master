@@ -13,7 +13,9 @@
 <div id="main_header">
 <div id="header">
 <div id="userinfo">
-    <% Html.RenderPartial("LoginCheck"); %>
+    <div id="uleft"></div>
+    <div id="ucenter"><% Html.RenderPartial("LoginCheck"); %></div>
+    <div id="uright"></div>
 </div>
 
   <ul class="free">

@@ -22,20 +22,49 @@ fieldset
 	}
 #main_header #header ul{
 	list-style-type:none;
-	background:url(images/search_bg.gif) no-repeat #09283f; color:#FFFFFF; display:block; position:absolute; height:22px;
+	color:#FFFFFF; display:block; position:absolute; height:22px;
 	 width:123px; margin:0; padding:6px 0 0 26px; top:10px; left:0px;
 	}
 #userinfo
 {
-    position:fixed; right:20px; background-color:#0a2b43;
+    position:fixed;
+    right:20px;
+    color:#847543;
 }
 #userinfo a
 {
-    color:#ffffff;
+    color:#847543;
+    text-decoration:none;
 }
 #userinfo a:hover
 {
-    background:#0a5083;
+    text-decoration:underline;
+}
+#userinfo #uleft
+{
+    background-image:url(images/login_bg_l.png);
+    background-repeat:no-repeat;
+    float:left;
+    height:30px;
+    width:6px;
+    display:inline-block;
+}
+#userinfo #uright
+{
+    background-image:url(images/login_bg_r.png);
+    background-repeat:no-repeat;
+    float:right;
+    height:30px;
+    width:6px;
+    display:inline-block;
+}
+#userinfo #ucenter 
+{
+    background-image:url(images/login_bg_c.gif);
+    background-repeat:repeat-x;
+    float:left;
+    height:30px;
+    display:inline-block;
 }
 #main_header #header ul li{
 	float:left; display:block; margin:0 23px 0 0;
