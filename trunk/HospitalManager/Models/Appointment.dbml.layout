@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Appointment">
+  <DataContextMoniker Name="/AppointmentDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3b56a386-8905-4409-8c32-3759e7333501" absoluteBounds="1.75, 1.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/AppointmentDataContext/VWAppointments" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7ed738e7-e7d8-449a-afa2-3138ae80f4f0" absoluteBounds="1.7650000000000001, 1.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ca367362-0795-4fa1-b61e-d46e8c2a9bec" absoluteBounds="5.375, 2.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/AppointmentDataContext/Appointment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="22462cd5-9795-4b9d-bb89-81cb7a99d8c8" absoluteBounds="5.39, 2.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
