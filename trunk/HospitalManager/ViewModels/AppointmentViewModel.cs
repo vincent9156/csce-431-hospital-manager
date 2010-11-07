@@ -22,5 +22,6 @@ namespace HospitalManager.ViewModels
         public string DoctorLastName { get; set; }
 
         public IList<AppointmentViewModel> appointments;
+        public List<User> Doctors { get; set; }
     }
 }
