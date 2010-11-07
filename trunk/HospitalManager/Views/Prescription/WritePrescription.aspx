@@ -34,7 +34,7 @@
                     <%= Html.Label("Medication")%>
                 </td>
                 <td>
-                    <%= Html.DropDownListFor(m => m.MedID, new SelectList(Model.Medications, "MedicationID", "MedicationName")) %> 
+                    <%= Html.DropDownListFor(m => m.MedicationID, new SelectList(Model.Medications, "MedicationID", "MedicationName")) %> 
                 </td>
              </tr>
              <tr>
@@ -42,10 +42,10 @@
                     <%= Html.Label("Quantity")%>
                 </td>
                 <td>
-                    <%= Html.TextBoxFor(m => m.quantity) %>
+                    <%= Html.TextBoxFor(m => m.Quantity) %>
                 </td>
                 <td>
-                    <%= Html.ValidationMessageFor(m => m.quantity) %> <!-- Will this work ?? !-->
+                    <%= Html.ValidationMessageFor(m => m.Quantity) %> <!-- Will this work ?? !-->
                 </td>
             </tr>
             <tr>
@@ -53,10 +53,10 @@
                     <%= Html.Label("Number of Refills") %>
                 </td>
                 <td>
-                    <%= Html.TextBoxFor(m => m.numRefills) %>
+                    <%= Html.TextBoxFor(m => m.NumRefills) %>
                 </td>
                 <td>
-                    <%= Html.ValidationMessageFor(m => m.numRefills)%>
+                    <%= Html.ValidationMessageFor(m => m.NumRefills)%>
                 </td>
             </tr>
             <tr>
@@ -75,17 +75,11 @@
                     <%= Html.Label("Instruction")%>
                 </td>
                 <td>
-                    <%= Html.TextBoxFor(m => m.instruction)%>
+                    <%= Html.TextBoxFor(m => m.Instructions)%>
                 </td>
             </tr>
-           
-            
             <tr>
-                <td colspan="3">
-                    <%= Html.ValidationSummary(true) %>
-                </td>
             </tr>
-
             <tr>
                 <td colspan="3">
                     <input type="submit" value="Submit" />

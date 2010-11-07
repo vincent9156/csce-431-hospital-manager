@@ -42,7 +42,8 @@ namespace HospitalManager.Repositories
             var result = from user in usersDb.Users
                          where user.UserID == id
                          select user;
-
+            if (result.Count() == 0)
+                return null;
             return result.First();
         }
 

@@ -39,7 +39,6 @@ namespace HospitalManager.Controllers
                 {
                     IQueryable<Bill> bills = BillRep.GetAllBillsByDoctor(user.UserID);
                     List<BillingViewModel> BillingViewModels = new List<BillingViewModel>();
-                    Mapper.CreateMap<Bill, BillingViewModel>();
                     foreach (var bill in bills)
                     {
                         BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));
@@ -85,13 +84,20 @@ namespace HospitalManager.Controllers
         //view one bill based on billID
         public ActionResult ViewBill(int id)
         {
+            if (!SessionRep.IsLoggedIn())
+                return Redirect("/Authentication/Login/");
+
             Bill bill = BillRep.GetBillByID(id);
             Mapper.CreateMap<Bill, BillingViewModel>();
             BillingViewModel bvm = Mapper.Map<Bill, BillingViewModel>(bill);
-            User doc = UserRep.GetUserByUserID(bvm.DocUserID);
+            
+            //display the doctor name
+            User doc = UserRep.GetUserByUserID(bill.DocUserID);
             ViewData["docname"] = doc.FirstName + " " + doc.LastName;
-            User patient = UserRep.GetUserByUserID(bvm.PatientUserID);
+            //display the patient name
+            User patient = UserRep.GetUserByUserID(bill.PatientUserID);
             ViewData["pname"] = patient.FirstName + " " + patient.LastName;
+
             if (bvm.Paid == 0)
                 ViewData["paid"] = "Not Paid";
             else ViewData["paid"] = "Paid";
@@ -125,7 +131,6 @@ namespace HospitalManager.Controllers
             BVM.DocUserID = doc.UserID;
 
             //get patient based on ID
-           // User Patient = UserRep.GetUserByUserID(BVM.PatientUserID);
             NewBill.PatientUserID = BVM.PatientUserID;
             
 
@@ -147,6 +152,9 @@ namespace HospitalManager.Controllers
             //assign amount
             NewBill.Amount = BVM.Amount;
 
+            //didn't know if this would work to replace code above
+            //NewBill = Mapper.Map<BillingViewModel, Bill>(BVM);
+            
             int ID = BillRep.BillPatient(NewBill);
             BVM.BillID = ID;
 
