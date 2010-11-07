@@ -73,6 +73,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\CurrentMedicalHistoryController.cs" />
@@ -88,6 +89,11 @@
     <Compile Include="Libraries\Bootstrapper.cs" />
     <Compile Include="Libraries\MD5Encrypter.cs" />
     <Compile Include="Libraries\PermissionsManager.cs" />
+    <Compile Include="Models\Appointment.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Appointment.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Billing.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -128,6 +134,7 @@
     </Compile>
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AppointmentRepository.cs" />
     <Compile Include="Repositories\BillingRepository.cs" />
     <Compile Include="Repositories\CurrentMedicalHistoryRepository.cs" />
     <Compile Include="Repositories\PastMedicalHistoryRepository.cs" />
@@ -135,6 +142,7 @@
     <Compile Include="Repositories\ScheduleRepository.cs" />
     <Compile Include="Repositories\SessionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Compile Include="ViewModels\BillingViewModel.cs" />
     <Compile Include="ViewModels\CurrentMedicalHistoriesViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
@@ -183,11 +191,14 @@
     <Content Include="Content\images\user.gif" />
     <Content Include="Content\images\user_h.gif" />
     <Content Include="Content\images\welcome_pic.gif" />
+    <Content Include="Content\jquery-ui-1.8.6.custom.css" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.6.custom.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -197,6 +208,8 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Views\Appointment\Index.aspx" />
+    <Content Include="Views\Appointment\Schedule.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\Authentication\RegisterUser.aspx" />
     <Content Include="Views\Authentication\RegisterUserType.aspx" />
@@ -239,6 +252,11 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Models\Appointment.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Appointment.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Models\Billing.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Billing.designer.cs</LastGenOutput>
@@ -295,7 +313,11 @@
       <DependentUpon>Prescriptions.dbml</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Models\Appointment.dbml.layout">
+      <DependentUpon>Appointment.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Models\Billing.dbml.layout">
       <DependentUpon>Billing.dbml</DependentUpon>

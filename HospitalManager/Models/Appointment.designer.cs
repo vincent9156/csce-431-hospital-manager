@@ -65,14 +65,6 @@ namespace HospitalManager.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<VWAppointments> VWAppointments
-		{
-			get
-			{
-				return this.GetTable<VWAppointments>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Appointment> Appointments
 		{
 			get
@@ -80,175 +72,12 @@ namespace HospitalManager.Models
 				return this.GetTable<Appointment>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PatientAppointments")]
-	public partial class VWAppointments
-	{
 		
-		private int _AppointmentID;
-		
-		private System.DateTime _Date;
-		
-		private int _UserID;
-		
-		private int _DoctorID;
-		
-		private System.TimeSpan _AppointmentTime;
-		
-		private string _PatientFirstName;
-		
-		private string _PatientLastName;
-		
-		private string _DoctorFirstName;
-		
-		private string _DoctorLastName;
-		
-		public VWAppointments()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", DbType="Int NOT NULL")]
-		public int AppointmentID
+		public System.Data.Linq.Table<VWAppointments> VWAppointments
 		{
 			get
 			{
-				return this._AppointmentID;
-			}
-			set
-			{
-				if ((this._AppointmentID != value))
-				{
-					this._AppointmentID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
-		public System.DateTime Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this._Date = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
-		public int UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					this._UserID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorID", DbType="Int NOT NULL")]
-		public int DoctorID
-		{
-			get
-			{
-				return this._DoctorID;
-			}
-			set
-			{
-				if ((this._DoctorID != value))
-				{
-					this._DoctorID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentTime", DbType="Time NOT NULL")]
-		public System.TimeSpan AppointmentTime
-		{
-			get
-			{
-				return this._AppointmentTime;
-			}
-			set
-			{
-				if ((this._AppointmentTime != value))
-				{
-					this._AppointmentTime = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientFirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string PatientFirstName
-		{
-			get
-			{
-				return this._PatientFirstName;
-			}
-			set
-			{
-				if ((this._PatientFirstName != value))
-				{
-					this._PatientFirstName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientLastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string PatientLastName
-		{
-			get
-			{
-				return this._PatientLastName;
-			}
-			set
-			{
-				if ((this._PatientLastName != value))
-				{
-					this._PatientLastName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorFirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string DoctorFirstName
-		{
-			get
-			{
-				return this._DoctorFirstName;
-			}
-			set
-			{
-				if ((this._DoctorFirstName != value))
-				{
-					this._DoctorFirstName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorLastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string DoctorLastName
-		{
-			get
-			{
-				return this._DoctorLastName;
-			}
-			set
-			{
-				if ((this._DoctorLastName != value))
-				{
-					this._DoctorLastName = value;
-				}
+				return this.GetTable<VWAppointments>();
 			}
 		}
 	}
@@ -267,7 +96,7 @@ namespace HospitalManager.Models
 		
 		private int _DoctorID;
 		
-		private System.TimeSpan _AppointmentTime;
+		private System.TimeSpan _Time;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -281,8 +110,8 @@ namespace HospitalManager.Models
     partial void OnUserIDChanged();
     partial void OnDoctorIDChanging(int value);
     partial void OnDoctorIDChanged();
-    partial void OnAppointmentTimeChanging(System.TimeSpan value);
-    partial void OnAppointmentTimeChanged();
+    partial void OnTimeChanging(System.TimeSpan value);
+    partial void OnTimeChanged();
     #endregion
 		
 		public Appointment()
@@ -370,22 +199,22 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentTime", DbType="Time NOT NULL")]
-		public System.TimeSpan AppointmentTime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Time NOT NULL")]
+		public System.TimeSpan Time
 		{
 			get
 			{
-				return this._AppointmentTime;
+				return this._Time;
 			}
 			set
 			{
-				if ((this._AppointmentTime != value))
+				if ((this._Time != value))
 				{
-					this.OnAppointmentTimeChanging(value);
+					this.OnTimeChanging(value);
 					this.SendPropertyChanging();
-					this._AppointmentTime = value;
-					this.SendPropertyChanged("AppointmentTime");
-					this.OnAppointmentTimeChanged();
+					this._Time = value;
+					this.SendPropertyChanged("Time");
+					this.OnTimeChanged();
 				}
 			}
 		}
@@ -407,6 +236,177 @@ namespace HospitalManager.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VWAppointments")]
+	public partial class VWAppointments
+	{
+		
+		private int _AppointmentID;
+		
+		private System.DateTime _Date;
+		
+		private int _UserID;
+		
+		private int _DoctorID;
+		
+		private System.TimeSpan _Time;
+		
+		private string _PatientFirstName;
+		
+		private string _PatientLastName;
+		
+		private string _DoctorFirstName;
+		
+		private string _DoctorLastName;
+		
+		public VWAppointments()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", DbType="Int NOT NULL")]
+		public int AppointmentID
+		{
+			get
+			{
+				return this._AppointmentID;
+			}
+			set
+			{
+				if ((this._AppointmentID != value))
+				{
+					this._AppointmentID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this._Date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+		public int UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorID", DbType="Int NOT NULL")]
+		public int DoctorID
+		{
+			get
+			{
+				return this._DoctorID;
+			}
+			set
+			{
+				if ((this._DoctorID != value))
+				{
+					this._DoctorID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Time NOT NULL")]
+		public System.TimeSpan Time
+		{
+			get
+			{
+				return this._Time;
+			}
+			set
+			{
+				if ((this._Time != value))
+				{
+					this._Time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientFirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string PatientFirstName
+		{
+			get
+			{
+				return this._PatientFirstName;
+			}
+			set
+			{
+				if ((this._PatientFirstName != value))
+				{
+					this._PatientFirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientLastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string PatientLastName
+		{
+			get
+			{
+				return this._PatientLastName;
+			}
+			set
+			{
+				if ((this._PatientLastName != value))
+				{
+					this._PatientLastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorFirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string DoctorFirstName
+		{
+			get
+			{
+				return this._DoctorFirstName;
+			}
+			set
+			{
+				if ((this._DoctorFirstName != value))
+				{
+					this._DoctorFirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorLastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string DoctorLastName
+		{
+			get
+			{
+				return this._DoctorLastName;
+			}
+			set
+			{
+				if ((this._DoctorLastName != value))
+				{
+					this._DoctorLastName = value;
+				}
 			}
 		}
 	}

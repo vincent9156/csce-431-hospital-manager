@@ -125,3 +125,10 @@ C:\Documents and Settings\gmskinde\My Documents\431\HospitalManager\bin\Hospital
 C:\Documents and Settings\gmskinde\My Documents\431\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\gmskinde\My Documents\431\HospitalManager\obj\Debug\HospitalManager.dll
 C:\Documents and Settings\gmskinde\My Documents\431\HospitalManager\obj\Debug\HospitalManager.pdb
+D:\Code\HospitalMang\HospitalManager\bin\App_Data\HospitalManagerDB.mdf
+D:\Code\HospitalMang\HospitalManager\bin\App_Data\HospitalManagerDB_log.ldf
+D:\Code\HospitalMang\HospitalManager\bin\HospitalManager.dll
+D:\Code\HospitalMang\HospitalManager\bin\HospitalManager.pdb
+D:\Code\HospitalMang\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
+D:\Code\HospitalMang\HospitalManager\obj\Debug\HospitalManager.dll
+D:\Code\HospitalMang\HospitalManager\obj\Debug\HospitalManager.pdb
