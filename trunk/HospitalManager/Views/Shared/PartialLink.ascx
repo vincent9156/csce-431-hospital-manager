@@ -17,7 +17,7 @@
 
     <% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
        { %>
-            <li> <%:Html.ActionLink("View Schedule", "Index", "Schedule")%></li> 
+            <li> <%:Html.ActionLink("View Schedule", "Index", "Appointment")%></li> 
     <% } %>
     <% if (Session.GetUser().HasAccess(AccessOptions.SearchUsers))
        { %>
