@@ -8,7 +8,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#Date").datepicker();
+            $("#Date").datepicker({minDate: '+0', maxDate: '+2m'});
         });
 
     </script>
@@ -20,6 +20,10 @@
         <asp:TextBox id="Date" ClientIDMode="Static" runat="server"></asp:TextBox>
         
     </form>
+   
+    <br /><br /><br /><br /><br />
+    <br /><br />
     </div>
     </div>
+   
 </asp:Content>

@@ -19,7 +19,7 @@
 <ul> 
 <% if (Model.HasAccess(AccessOptions.ViewSchedule))
    { %>
-        <li> <%:Html.ActionLink ("Set Appointment","Index", "Schedule") %></li> 
+        <li> <%:Html.ActionLink ("Set Appointment","Index", "Appointment") %></li> 
    <% } %> 
 
 <% if (Model.HasAccess(AccessOptions.EditOwnMedicalHistory)) { %>
