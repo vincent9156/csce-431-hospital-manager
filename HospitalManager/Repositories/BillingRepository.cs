@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using HospitalManager.Models;
+using HospitalManager.Repositories;
 
 namespace HospitalManager.Repositories
 {
@@ -10,6 +11,7 @@ namespace HospitalManager.Repositories
     {
         
         private BillingDataContext _Billdb;
+        private PrescriptionRepository PresRep;
 
         public BillingRepository()
         {
@@ -78,6 +80,53 @@ namespace HospitalManager.Repositories
             _Billdb.SubmitChanges();
 
             return bill.BillID;
+        }
+
+        public PrescriptionBill GetPrescriptionBillByID(int BillID)
+        {
+            var result = from b in _Billdb.PrescriptionBills
+                         where b.BillID == BillID
+                         select b;
+            // Just return null if we get no results
+            if (result.Count() == 0)
+                return null;
+
+            return (result.First());
+
+        }
+
+        public IQueryable<PrescriptionBill> GetAllPrescriptionBillsByDoctor(int DocUserID)
+        {
+            IQueryable<PrescriptionBill> result = null;
+            IQueryable<Prescription> PrescriptionsByDoc = PresRep.GetAllPrescriptionsByDoctorID(DocUserID);
+            foreach (var pres in PrescriptionsByDoc)
+            {
+                 result = from b in _Billdb.PrescriptionBills
+                             where b.PrescriptionID == pres.PrescriptionID
+                             select b;
+            }
+
+            if (result.Count() == 0)
+                return null;
+
+            return result;
+        }
+
+        public IQueryable<PrescriptionBill> GetAllPrescriptionBillsByUser(int UserID)
+        {
+            IQueryable<PrescriptionBill> result = null;
+            IQueryable<Prescription> PrescriptionsByUser = PresRep.GetAllPrescriptionsByUserID(UserID);
+            foreach (var pres in PrescriptionsByUser)
+            {
+                result = from b in _Billdb.PrescriptionBills
+                         where b.PrescriptionID == pres.PrescriptionID
+                         select b;
+            }
+
+            if (result.Count() == 0)
+                return null;
+
+            return result;
         }
 
     }

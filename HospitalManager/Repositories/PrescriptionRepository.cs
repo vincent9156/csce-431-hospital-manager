@@ -37,6 +37,18 @@ namespace HospitalManager.Repositories
                 
         }
 
+        public string GetMedicationNameByID(int MedID)
+        {
+            var result = from m in prescriptionDb.Medications
+                         where m.MedicationID == MedID
+                         select m.MedicationName;
+
+            if (result.Count() == 0)
+                return null;
+
+            return result.First();
+        }
+
         public bool MedicationExists(int medID)
         {
             return prescriptionDb.Medications.Select(m => m.MedicationID == medID).Count() != 0;
@@ -80,6 +92,19 @@ namespace HospitalManager.Repositories
             decimal price = prescription.mgPerPill * prescription.Quantity * pricepermg;
 
             return price;
+        }
+
+        public Prescription GetPrescriptionByID(int PresID)
+        {
+            var result = from p in prescriptionDb.Prescriptions
+                         where p.PrescriptionID == PresID
+                         select p;
+
+            if (result.Count() == 0)
+                return null;
+
+            return result.First();
+
         }
     }
 }

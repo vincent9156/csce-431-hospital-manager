@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using HospitalManager.Models;
-using HospitalManager.Libraries;
 
 namespace HospitalManager.ViewModels
 {
@@ -19,5 +18,14 @@ namespace HospitalManager.ViewModels
         public byte Paid { get; set; }
 
         public IList<BillingViewModel> SearchResults;
+    }
+    public class PrescriptionBillingViewModel
+    {
+        public int BillID { get; set; }
+        public float AMount { get; set; }
+        public int PrescriptionID { get; set; }
+        public byte Paid { get; set; }
+
+        public IList<PrescriptionBillingViewModel> SearchResults;
     }
 }
