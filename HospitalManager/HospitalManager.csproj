@@ -164,9 +164,12 @@
     <Content Include="Content\images\contact_h.gif" />
     <Content Include="Content\images\event_bg.gif" />
     <Content Include="Content\images\footer_bg.gif" />
-    <Content Include="Content\images\header_pic.gif" />
+    <Content Include="Content\images\header_pic.jpg" />
     <Content Include="Content\images\home.gif" />
     <Content Include="Content\images\home_h.gif" />
+    <Content Include="Content\images\login_bg_c.gif" />
+    <Content Include="Content\images\login_bg_l.png" />
+    <Content Include="Content\images\login_bg_r.png" />
     <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\more_bg.gif" />
     <Content Include="Content\images\more_bg_h.gif" />
@@ -236,7 +239,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\images\header_pic.psd" />
     <None Include="Models\Billing.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Billing.designer.cs</LastGenOutput>
