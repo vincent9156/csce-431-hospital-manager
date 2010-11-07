@@ -74,8 +74,14 @@ namespace HospitalManager.Controllers
 
         public ActionResult Schedule()
         {
+            if (!sessrep.IsLoggedIn())
+            {
+                return Redirect("/Authentication/Login");
+            }
 
-            return View();
+            var docs = urep.GetAllUsersBasedOnType(UserType.DoctorTypeID);
+            AppointmentViewModel vm = new AppointmentViewModel { Doctors = docs.ToList() };
+            return View(vm);
         }
     }
 }
