@@ -33,7 +33,6 @@ namespace HospitalManager.Controllers
             User user = SessionRep.GetUser();
             if (SessionRep.IsLoggedIn())
             {
-                Mapper.CreateMap<Bill, BillingViewModel>();
                 //if user is doctor then search bills by docUserID
                 if (user.TypeID == UserType.DoctorTypeID)
                 {
@@ -62,7 +61,6 @@ namespace HospitalManager.Controllers
                     foreach (var bill in bills)
                     {
                        BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));
-                        
                     }
                     var vm = new BillingViewModel
                     {
@@ -88,15 +86,18 @@ namespace HospitalManager.Controllers
                 return Redirect("/Authentication/Login/");
 
             Bill bill = BillRep.GetBillByID(id);
-            Mapper.CreateMap<Bill, BillingViewModel>();
+            if (bill == null)
+                return View();
+
             BillingViewModel bvm = Mapper.Map<Bill, BillingViewModel>(bill);
             
             //display the doctor name
             User doc = UserRep.GetUserByUserID(bill.DocUserID);
-            ViewData["docname"] = doc.FirstName + " " + doc.LastName;
+            bvm.DoctorName = doc.FirstName + " " + doc.LastName;
+
             //display the patient name
             User patient = UserRep.GetUserByUserID(bill.PatientUserID);
-            ViewData["pname"] = patient.FirstName + " " + patient.LastName;
+            bvm.PatientName = patient.FirstName + " " + patient.LastName;
 
             if (bvm.Paid == 0)
                 ViewData["paid"] = "Not Paid";
@@ -113,52 +114,52 @@ namespace HospitalManager.Controllers
             BillingViewModel bvm = new BillingViewModel();
 
             User Patient = UserRep.GetUserByUserID(id);//this needs to be from the search patient page
-            ViewData["pname"] = Patient.FirstName + " " + Patient.LastName;
+            bvm.PatientName = Patient.FirstName + " " + Patient.LastName;
             bvm.PatientUserID = id;
+
             return View(bvm);
         }
-
 
         [HttpPost]
         public ActionResult CreateBill(BillingViewModel BVM)
         {
-            
             Bill NewBill = new Bill();
 
             //get doctr userID
             User doc = SessionRep.GetUser();
-            NewBill.DocUserID = doc.UserID;
             BVM.DocUserID = doc.UserID;
-
-            //get patient based on ID
-            NewBill.PatientUserID = BVM.PatientUserID;
+            BVM.DoctorName = doc.FirstName + " " + doc.LastName;
             
-
             //initialize bill to not paid for
-            NewBill.Paid = 0;
             BVM.Paid = 0;
 
             //get date of bill
             DateTime Billdate = DateTime.Now;
-            NewBill.BillDate = Billdate;
             BVM.BillDate = Billdate;
 
-            //assign Diagnosis
-            NewBill.Diagnosis = BVM.Diagnosis;
+            //map all BVM to a new bill
+            NewBill = Mapper.Map<BillingViewModel, Bill>(BVM);
+
+            //bill the patient and return the BillID
+            BVM.BillID = BillRep.BillPatient(NewBill);
+
+            //get patient based on ID
+            User p = UserRep.GetUserByUserID(BillRep.GetBillByID(BVM.BillID).PatientUserID);
+            BVM.PatientName = p.FirstName + " " + p.LastName;
+
+            if (BVM.Paid == 0)
+                ViewData["paid"] = "Not Paid";
+            else ViewData["paid"] = "Paid";
+
             
-            //assign reason
-            NewBill.ReasonForVisit = BVM.ReasonForVisit;
-
-            //assign amount
-            NewBill.Amount = BVM.Amount;
-
-            //didn't know if this would work to replace code above
-            //NewBill = Mapper.Map<BillingViewModel, Bill>(BVM);
-            
-            int ID = BillRep.BillPatient(NewBill);
-            BVM.BillID = ID;
-
             return View("ViewBill",BVM);
+        }
+
+        public ActionResult DeleteBill(int id)
+        {
+            BillRep.RemoveBillByID(id);
+
+            return Redirect("/Billing/Index/");
         }
 
     }

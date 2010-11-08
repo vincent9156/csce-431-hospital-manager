@@ -129,5 +129,15 @@ namespace HospitalManager.Repositories
             return result;
         }
 
+        public bool RemoveBillByID(int BillID)
+        {
+            Bill bill = GetBillByID(BillID);
+            if (bill == null)
+                return false;
+            _Billdb.Bills.DeleteOnSubmit(bill);
+            _Billdb.SubmitChanges();
+
+            return true;
+        }
     }
 }

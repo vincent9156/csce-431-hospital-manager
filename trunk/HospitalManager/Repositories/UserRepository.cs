@@ -128,6 +128,7 @@ namespace HospitalManager.Repositories
 
             return result.First();
         }
+
         //changes database info for user based on username
         public void EditUserByUsername(String NewUserName, User u)
         {
@@ -141,6 +142,7 @@ namespace HospitalManager.Repositories
             result.Username = NewUserName;
             usersDb.SubmitChanges();
         }
+        
         // returns all users based on the type searched for example: get all doctors
         public IQueryable<User> GetAllUsersBasedOnType(int userType)
         {
