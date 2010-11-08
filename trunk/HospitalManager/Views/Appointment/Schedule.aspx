@@ -15,19 +15,46 @@
     <div id="main_body">
     <div id="body">
     <h2>Schedule Appointment</h2>
-    <form action="Schedule.aspx" method="post">
+    <form action="/Appointment/AddAppointment" method="post">
     <table width="100%">
     <tr>
     <td>
-        Please Input a Date: <input type="text" id="Date" maxlength="10" name="date" />
+        Please Input a Date: <input type="text" id="Date" maxlength="10" name="Date" />
     </td>
     <td>
-        Please Select a Doctor:
-        <select name="dropList">
+        Please Select a Doctor:<br />
+        <select name="DoctorID" id="DoctorID">
         <% foreach(var item in Model.Doctors){ %>
         <option value="<%:item.UserID %>"><%: item.FirstName + " " + item.LastName + " " + item.Speciality %></option>
         <%} %>
         </select>
+
+        <br />
+        Please Select a Time:<br />
+        <select name="Time" id="Time">
+            <option value="9:00">9:00</option>
+            <option value="9:30">9:30</option>
+            <option value="10:00">10:00</option>
+            <option value="10:30">10:30</option>
+            <option value="11:00">11:00</option>
+            <option value="11:30">11:30</option>
+            <option value="12:00">12:00</option>
+            <option value="12:30">12:30</option>
+            <option value="1:00">1:00</option>
+            <option value="1:30">1:30</option>
+            <option value="2:00">2:00</option>
+            <option value="2:30">2:30</option>
+            <option value="3:00">3:00</option>
+            <option value="3:30">3:30</option>
+            <option value="4:00">4:00</option>
+            <option value="4:30">4:30</option>
+            <option value="5:00">5:00</option>
+        </select>
+    </td>
+    </tr>
+    <tr>
+    <td>
+        <input type="submit" name="Submit" />
     </td>
     </tr>
     </table>
