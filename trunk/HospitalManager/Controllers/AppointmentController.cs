@@ -92,7 +92,7 @@ namespace HospitalManager.Controllers
             }
 
             var times = apprep.GetDoctorAvaliablity(DoctorID, Date) ;
-            AppointmentViewModel vm = new AppointmentViewModel { Times = times  };
+            AppointmentViewModel vm = new AppointmentViewModel { Times = times, Date = Date, DoctorID = DoctorID  };
             return View(vm);
         }
 

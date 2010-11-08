@@ -15,7 +15,7 @@
     <div id="main_body">
     <div id="body">
     <h2>Schedule Appointment</h2>
-    <form action="/Appointment/AddAppointment" method="post">
+    <form action="/Appointment/SelectTime" method="post">
     <table width="100%">
     <tr valign="top">
     <td>
@@ -28,8 +28,7 @@
         <%} %>
         </select>
 
-        <br /><br />
-        Please Select a Time:<br />
+        <%--Please Select a Time:<br />
         <select name="Time" id="Time">
             <option value="9:00">9:00</option>
             <option value="9:30">9:30</option>
@@ -48,7 +47,7 @@
             <option value="4:00">4:00</option>
             <option value="4:30">4:30</option>
             <option value="5:00">5:00</option>
-        </select>
+        </select>--%>
     </td>
     </tr>
     <tr>
