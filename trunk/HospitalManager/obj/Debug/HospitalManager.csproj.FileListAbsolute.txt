@@ -132,3 +132,10 @@ D:\Code\HospitalMang\HospitalManager\bin\HospitalManager.pdb
 D:\Code\HospitalMang\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
 D:\Code\HospitalMang\HospitalManager\obj\Debug\HospitalManager.dll
 D:\Code\HospitalMang\HospitalManager\obj\Debug\HospitalManager.pdb
+C:\Users\pfrith\Local\HospitalManager\bin\App_Data\HospitalManagerDB.mdf
+C:\Users\pfrith\Local\HospitalManager\bin\App_Data\HospitalManagerDB_log.ldf
+C:\Users\pfrith\Local\HospitalManager\bin\HospitalManager.dll
+C:\Users\pfrith\Local\HospitalManager\bin\HospitalManager.pdb
+C:\Users\pfrith\Local\HospitalManager\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\pfrith\Local\HospitalManager\obj\Debug\HospitalManager.dll
+C:\Users\pfrith\Local\HospitalManager\obj\Debug\HospitalManager.pdb

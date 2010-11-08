@@ -40,7 +40,7 @@
     
     <ul style="margin:0;">
         <li>To Schedule an appointment click <%:Html.ActionLink("here", "Schedule", "Appointment")%></li>
-        <li>To cancel an appointment <%: Html.ActionLink("here","Schedule","Cancel") %></li> 
+        <li>To cancel an appointment <%: Html.ActionLink("here","Cancel","Appointment") %></li> 
     </ul>   
 
     <br />
