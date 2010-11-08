@@ -106,9 +106,12 @@ namespace HospitalManager.Controllers
             return Redirect("/Appointment/Index");
         }
 
-        //public ActionResult Cancel()
-        //{ 
-            
-        //}
+        public ActionResult Cancel(int AppID)
+        {
+            User user = sessrep.GetUser();
+            apprep.CancelAppointment(AppID);
+
+            return Redirect("/Appointment/Index");
+        }
     }
 }
