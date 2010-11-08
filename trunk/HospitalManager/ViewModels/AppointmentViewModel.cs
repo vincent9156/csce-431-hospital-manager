@@ -12,7 +12,7 @@ namespace HospitalManager.ViewModels
     public class AppointmentViewModel
     {
 
-        public int AppointmenID { get; set; }
+        public int AppointmentID { get; set; }
         public DateTime Date { get; set; }
         public int UserID { get; set; }
         public int DoctorID { get; set; }

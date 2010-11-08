@@ -136,8 +136,10 @@ namespace HospitalManager.Controllers
             return View();
         }
 
-        public ActionResult CancelApp(Appointment app)
+        public ActionResult CancelApp(int AppointmentID)
         {
+            Appointment app = apprep.GetAppointmentByAppointmentID(AppointmentID);
+
             apprep.CancelAppointment(app);
 
             return Redirect("/Appointment/Index");
