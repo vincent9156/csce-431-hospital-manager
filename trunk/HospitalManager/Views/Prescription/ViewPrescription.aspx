@@ -11,9 +11,9 @@
 
   <table>
     <tr><td><%:Html.LabelFor(Model => Model.PrescriptionID) %></td><td><%: Html.DisplayTextFor(Model => Model.PrescriptionID) %></td></tr>
-    <tr><td>Doctor Name                                       </td><td><%= Html.ViewData["docName"] %></td></tr>
-    <tr><td>Patient Name                                      </td><td><%= Html.ViewData["pname"] %></td></tr>
-    <tr><td><%:Html.LabelFor(Model => Model.medName) %>       </td><td><%: Html.DisplayTextFor(Model => Model.medName) %></td></tr>
+    <!-- <tr><td>Doctor Name                                       </td><td><% /* Html.ViewData["docName"] %></td></tr>
+    <tr><td>Patient Name                                      </td><td><% Html.ViewData["pname"]  %></td></tr> 
+    <tr><td><% Html.LabelFor(Model => Model.MedicationName) %>       </td><td><% Html.DisplayTextFor(Model => Model.MedicationName) */%></td></tr>-->
     <tr><td><%:Html.LabelFor(Model => Model.Instructions) %>   </td><td><%: Html.DisplayTextFor(Model => Model.Instructions) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.mgPerPill) %>     </td><td><%: Html.DisplayTextFor(Model => Model.mgPerPill) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.Quantity) %>      </td><td><%: Html.DisplayTextFor(Model => Model.Quantity) %></td></tr>

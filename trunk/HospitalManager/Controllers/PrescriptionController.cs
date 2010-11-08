@@ -80,7 +80,7 @@ namespace HospitalManager.Controllers
             //display the patient name
             User patient = user.GetUserByUserID(vm.UserID);
             ViewData["pname"] = patient.FirstName + " " + patient.LastName;
-            vm.medName = presRep.GetMedicationNameByID(vm.MedicationID);         
+            vm.MedicationName = presRep.GetMedicationNameByID(vm.MedicationID);         
 
             return View(vm);
         }
