@@ -44,6 +44,17 @@ namespace HospitalManager.Repositories
                 return result;
         }
 
+        public Appointment GetAppointmentByAppointmentID(int id)
+        {
+            var result = from d in _Appdb.Appointments
+                         where d.AppointmentID == id
+                         select d;
+            if (result.Count() == 0)
+                return null;
+
+            return result.First();
+        }
+
         public void InsertAppointment(Appointment app)
         {
             _Appdb.Appointments.InsertOnSubmit(app);

@@ -12,9 +12,9 @@
 
     <form action="CancelApp" method="post">
 
-    <select name="AppointmenID" id="AppointmenID">
+    <select name="AppointmentID" id="AppointmentID">
     <% foreach(var item in Model.appointments){ %>
-    <option value="<%:item %>"><%: item.DoctorFirstName + " " + item.DoctorLastName + " " + item.Date.Date.ToString("d") + item.Time.ToString("t") %></option>
+    <option value="<%:item.AppointmentID %>"><%: item.DoctorFirstName + " " + item.DoctorLastName + " " + item.Date.Date.ToString("d") + item.Time.ToString("t") %></option>
     <%} %>
     </select>
 
