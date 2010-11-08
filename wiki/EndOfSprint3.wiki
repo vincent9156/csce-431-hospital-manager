@@ -11,6 +11,6 @@ What was Good? (+)
 -review session
 
 
-Things to improve on:
+What needs to be changed?(Delta) 
 
 -demos
