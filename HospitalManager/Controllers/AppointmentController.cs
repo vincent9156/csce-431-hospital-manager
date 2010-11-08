@@ -100,6 +100,19 @@ namespace HospitalManager.Controllers
         {
          
             User user = sessrep.GetUser();
+            IQueryable<VWAppointments> appointments = apprep.GetUserAppointments(user.UserID);
+            foreach (var checkapp in appointments)
+            { 
+                if(checkapp.Date == Date)
+                {
+                    if (checkapp.Time == Time)
+                    {
+                        return Redirect("/Appointment/Schedule");
+                    }
+                }
+            }
+
+
             Appointment app = new Appointment { UserID = user.UserID, DoctorID = DoctorID, Date = Date.Date, Time = Time };
             apprep.InsertAppointment(app);
 
@@ -132,6 +145,22 @@ namespace HospitalManager.Controllers
                 return View(am);
             }
 
+                        //If user is a doctor then list their appointments
+            else if (user.TypeID == UserType.DoctorTypeID)
+            {
+                IQueryable<VWAppointments> appointments = apprep.GetDoctorAppointments(user.UserID);
+                List<AppointmentViewModel> AppointmentViewModels = new List<AppointmentViewModel>();
+                Mapper.CreateMap<VWAppointments, AppointmentViewModel>();
+
+                foreach (var app in appointments)
+                {
+                    AppointmentViewModels.Add(Mapper.Map<VWAppointments, AppointmentViewModel>(app));
+                }
+
+                var am = new AppointmentViewModel { appointments = AppointmentViewModels };
+
+                return View(am);
+            }
 
             return View();
         }
