@@ -1,4 +1,4 @@
-Good
+Good:
 
 -got stuff done
 
@@ -10,6 +10,7 @@ Good
 
 -review session
 
-Things to improve on
+
+Things to improve on:
 
 -demos
