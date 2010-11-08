@@ -209,9 +209,12 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Views\Appointment\AddAppointment.aspx" />
+    <Content Include="Views\Appointment\Cancel.aspx" />
+    <Content Include="Views\Appointment\CancelApp.aspx" />
     <Content Include="Views\Appointment\Index.aspx" />
     <Content Include="Views\Appointment\Schedule.aspx" />
     <Content Include="Views\Appointment\SelectTime.aspx" />
+    <Content Include="Views\Appointment\ViewPage1.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\Authentication\RegisterUser.aspx" />
     <Content Include="Views\Authentication\RegisterUserType.aspx" />

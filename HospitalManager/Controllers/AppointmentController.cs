@@ -106,10 +106,39 @@ namespace HospitalManager.Controllers
             return Redirect("/Appointment/Index");
         }
 
-        public ActionResult Cancel(int AppID)
+        public ActionResult Cancel()
         {
+
+            if (!sessrep.IsLoggedIn())
+            {
+                return Redirect("/Authentication/Login");
+            }
+
             User user = sessrep.GetUser();
-            apprep.CancelAppointment(AppID);
+            //If user is a patient then list their appointments
+            if (user.TypeID == UserType.PatientTypeID)
+            {
+                IQueryable<VWAppointments> appointments = apprep.GetUserAppointments(user.UserID);
+                List<AppointmentViewModel> AppointmentViewModels = new List<AppointmentViewModel>();
+                Mapper.CreateMap<VWAppointments, AppointmentViewModel>();
+
+                foreach (var app in appointments)
+                {
+                    AppointmentViewModels.Add(Mapper.Map<VWAppointments, AppointmentViewModel>(app));
+                }
+
+                var am = new AppointmentViewModel { appointments = AppointmentViewModels };
+
+                return View(am);
+            }
+
+
+            return View();
+        }
+
+        public ActionResult CancelApp(Appointment app)
+        {
+            apprep.CancelAppointment(app);
 
             return Redirect("/Appointment/Index");
         }

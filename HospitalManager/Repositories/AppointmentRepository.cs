@@ -50,13 +50,10 @@ namespace HospitalManager.Repositories
             _Appdb.SubmitChanges();
         }
 
-        public void CancelAppointment(int AppID)
+        public void CancelAppointment(Appointment app)
         {
-            var result = from d in _Appdb.Appointments
-                         where d.AppointmentID == AppID
-                         select d;
 
-            _Appdb.Appointments.DeleteOnSubmit(result.First());
+            _Appdb.Appointments.DeleteOnSubmit(app);
             _Appdb.SubmitChanges();
         }
 
