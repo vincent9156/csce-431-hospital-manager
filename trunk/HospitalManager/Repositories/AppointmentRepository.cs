@@ -44,6 +44,8 @@ namespace HospitalManager.Repositories
                 return result;
         }
 
+      
+
         public Appointment GetAppointmentByAppointmentID(int id)
         {
             var result = from d in _Appdb.Appointments
