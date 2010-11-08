@@ -26,8 +26,9 @@ namespace HospitalManager.Libraries
             Mapper.CreateMap<UserRegistrationViewModel, Pharmacist>();
             Mapper.CreateMap<PrescriptionViewModel, Prescription>();
             Mapper.CreateMap<Prescription, PrescriptionViewModel>();
-
+            Mapper.CreateMap<Bill, BillingViewModel>();
             Mapper.CreateMap<Prescription, PrescriptionViewModel>();
+            Mapper.CreateMap<BillingViewModel, Bill>();
         }
 
         /**

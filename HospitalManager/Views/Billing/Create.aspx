@@ -11,10 +11,11 @@
     <% using (Html.BeginForm("CreateBill", "Billing")) { %>
       <fieldset>
       <table>
-        <tr><td>Patient Name</td><td><%= Html.ViewData["pname"] %></td></tr>
+        <tr><td>Patient Name</td><td><%: Html.DisplayTextFor(Model => Model.PatientName) %></td></tr>
         <tr><td>Diagnosis</td><td><%: Html.TextBoxFor(Model => Model.Diagnosis) %></td></tr>
         <tr><td>Reason For Visit</td><td><%: Html.TextBoxFor(Model => Model.ReasonForVisit) %></td></tr>
         <tr><td>Bill Amount</td><td><%:Html.TextBoxFor(Model => Model.Amount) %></td></tr>
+        <tr><td><%= Html.HiddenFor(Model => Model.PatientUserID) %></td></tr>
         <tr><td colspan="3"><input type="submit" value="Create Bill" /></td></tr>
         </table>
       </fieldset>

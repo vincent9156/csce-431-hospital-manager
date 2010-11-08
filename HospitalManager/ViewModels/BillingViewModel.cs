@@ -17,6 +17,9 @@ namespace HospitalManager.ViewModels
         public DateTime BillDate { get; set; }
         public byte Paid { get; set; }
 
+        public string PatientName { get; set; }
+        public string DoctorName { get; set; }
+
         public IList<BillingViewModel> SearchResults;
     }
     public class PrescriptionBillingViewModel
