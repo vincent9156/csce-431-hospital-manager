@@ -14,3 +14,5 @@ What was Good? (+)
 What needs to be changed?(Delta) 
 
 -demos
+
+-identifying critical path on Epics
