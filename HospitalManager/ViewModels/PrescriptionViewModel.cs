@@ -15,7 +15,7 @@ namespace HospitalManager.ViewModels
         public int NumRefills { get; set; }
         public int mgPerPill { get; set; }
         public string Instructions { get; set; }
-        public string medName { get; set; }
+        public string MedicationName { get; set; }
         public int MedicationID { get; set; }
 
         public IEnumerable<Medication> Medications { get; set; }
