@@ -17,19 +17,18 @@
     <h2>Schedule Appointment</h2>
     <form action="/Appointment/AddAppointment" method="post">
     <table width="100%">
-    <tr>
+    <tr valign="top">
     <td>
-        Please Input a Date: <input type="text" id="Date" maxlength="10" name="Date" />
-    </td>
-    <td>
+        Please Input a Date [mm/dd/yyyy]:<br /> <input type="text" id="Date" maxlength="10" name="Date" readonly />
+        <br /><br />
         Please Select a Doctor:<br />
         <select name="DoctorID" id="DoctorID">
         <% foreach(var item in Model.Doctors){ %>
-        <option value="<%:item.UserID %>"><%: item.FirstName + " " + item.LastName + " " + item.Speciality %></option>
+        <option value="<%:item.UserID %>"><%: item.FirstName + " " + item.LastName + " " + "( " + item.Speciality + " )" %></option>
         <%} %>
         </select>
 
-        <br />
+        <br /><br />
         Please Select a Time:<br />
         <select name="Time" id="Time">
             <option value="9:00">9:00</option>
@@ -54,13 +53,13 @@
     </tr>
     <tr>
     <td>
+        <br /><br />
         <input type="submit" name="Submit" />
     </td>
     </tr>
     </table>
     </form>
-    <br /><br /><br /><br /><br />
-    <br /><br />
+    <br /><br /><br />
     </div>
     </div>
 </asp:Content>

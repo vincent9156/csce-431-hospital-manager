@@ -62,7 +62,7 @@ namespace HospitalManager.Controllers
                     AppointmentViewModels.Add(Mapper.Map<VWAppointments, AppointmentViewModel>(app));
                 }
 
-                var am = new AppointmentViewModel { appointments = AppointmentViewModels };
+                var am = new AppointmentViewModel { appointments = AppointmentViewModels};
                 
                 return View(am);
             }
@@ -80,19 +80,35 @@ namespace HospitalManager.Controllers
             }
 
             var docs = urep.GetAllUsersBasedOnType(UserType.DoctorTypeID);
-            AppointmentViewModel vm = new AppointmentViewModel { Doctors = docs.ToList() };
+            AppointmentViewModel vm = new AppointmentViewModel { Doctors = docs.ToList()};
             return View(vm);
         }
 
-       
+        public ActionResult SelectTime(int DoctorID, DateTime Date)
+        {
+            if (!sessrep.IsLoggedIn())
+            {
+                return Redirect("/Authentication/Login");
+            }
+
+            var times = apprep.GetDoctorAvaliablity(DoctorID, Date) ;
+            AppointmentViewModel vm = new AppointmentViewModel { Times = times  };
+            return View(vm);
+        }
+
         public ActionResult AddAppointment(int DoctorID, DateTime Date, TimeSpan Time)
         {
-           
+         
             User user = sessrep.GetUser();
             Appointment app = new Appointment { UserID = user.UserID, DoctorID = DoctorID, Date = Date.Date, Time = Time };
             apprep.InsertAppointment(app);
 
             return Redirect("/Appointment/Index");
         }
+
+        //public ActionResult Cancel()
+        //{ 
+            
+        //}
     }
 }

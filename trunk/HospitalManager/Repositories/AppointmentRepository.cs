@@ -49,5 +49,14 @@ namespace HospitalManager.Repositories
             _Appdb.Appointments.InsertOnSubmit(app);
             _Appdb.SubmitChanges();
         }
+
+        public List<TimeSpan> GetDoctorAvaliablity(int DoctorID, DateTime Date)
+        {
+            var result = from d in _Appdb.Appointments
+                         where d.DoctorID == DoctorID && d.Date == Date
+                         select d.Time;
+
+            return result.ToList();
+        }
     }
 }
