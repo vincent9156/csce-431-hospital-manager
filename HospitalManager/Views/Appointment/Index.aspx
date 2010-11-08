@@ -24,7 +24,7 @@
             <td><%: item.PatientFirstName + " " + item.PatientLastName%></td>
             <td><%: item.DoctorFirstName + " " + item.DoctorLastName%></td>
             <td><%: item.Date.Date.ToString("d")%></td>
-            <td><%: item.AppointmentTime.ToString()%></td>
+            <td><%: item.Time.ToString("t")%></td>
         </tr>
         <% } %>
 
@@ -39,7 +39,7 @@
     <br />
     
     <ul style="margin:0;">
-        <li>To Schedule an appointment click <%:Html.ActionLink("here","Schedule","Appointment") %></li>
+        <li>To Schedule an appointment click <%:Html.ActionLink("here", "Schedule", "Appointment")%></li>
         <li>To cancel an appointment <%: Html.ActionLink("here","Schedule","Cancel") %></li> 
     </ul>   
 
