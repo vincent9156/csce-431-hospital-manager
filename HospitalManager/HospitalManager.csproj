@@ -208,6 +208,7 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Views\Appointment\AddAppointment.aspx" />
     <Content Include="Views\Appointment\Index.aspx" />
     <Content Include="Views\Appointment\Schedule.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />

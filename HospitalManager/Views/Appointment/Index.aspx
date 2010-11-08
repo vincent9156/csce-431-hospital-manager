@@ -24,7 +24,7 @@
             <td><%: item.PatientFirstName + " " + item.PatientLastName%></td>
             <td><%: item.DoctorFirstName + " " + item.DoctorLastName%></td>
             <td><%: item.Date.Date.ToString("d")%></td>
-            <td><%: item.AppointmentTime%></td>
+            <td><%: item.AppointmentTime.ToString()%></td>
         </tr>
         <% } %>
 

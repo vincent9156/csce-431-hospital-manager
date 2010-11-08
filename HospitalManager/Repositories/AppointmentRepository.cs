@@ -43,5 +43,11 @@ namespace HospitalManager.Repositories
             else
                 return result;
         }
+
+        public void InsertAppointment(Appointment app)
+        {
+            _Appdb.Appointments.InsertOnSubmit(app);
+            _Appdb.SubmitChanges();
+        }
     }
 }

@@ -83,5 +83,16 @@ namespace HospitalManager.Controllers
             AppointmentViewModel vm = new AppointmentViewModel { Doctors = docs.ToList() };
             return View(vm);
         }
+
+       
+        public ActionResult AddAppointment(int DoctorID, DateTime Date, TimeSpan Time)
+        {
+           
+            User user = sessrep.GetUser();
+            Appointment app = new Appointment { UserID = user.UserID, DoctorID = DoctorID, Date = Date.Date, Time = Time };
+            apprep.InsertAppointment(app);
+
+            return Redirect("/Appointment/Index");
+        }
     }
 }
