@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div id="main_body">
 <div id="body">
-    <h2>Write Presceiption</h2>
+    <h2>Write Prescription</h2>
 
     <%= Html.ActionLink("Back", "/Search/SearchUser") %>
 
