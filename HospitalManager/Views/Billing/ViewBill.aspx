@@ -9,6 +9,8 @@
 <div id="body">
     <h2>View Bill</h2>
 
+        <%= Html.ActionLink("Back", "/Index") %>
+
     <table>
     <tr><td><%:Html.LabelFor(Model => Model.BillID) %>        </td><td><%: Html.DisplayTextFor(Model => Model.BillID) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.DoctorName) %>    </td><td><%: Html.DisplayTextFor(Model => Model.DoctorName) %></td></tr>

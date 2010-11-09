@@ -41,7 +41,7 @@ namespace HospitalManager.Controllers
 
                     return View(vm);
                 }
-                //if logged in user is Patient then search bill by PatientUserID
+                //if logged in user is Patient then search prescriptions by PatientUserID
                 if (user.TypeID == UserType.PatientTypeID)
                 {
                     IQueryable<Prescription> pres = presRep.GetAllPrescriptionsByUserID(user.UserID);
@@ -72,15 +72,20 @@ namespace HospitalManager.Controllers
                 return Redirect("/Authentication/Login/");
 
             Prescription pres = presRep.GetPrescriptionByID(id);
+            if (pres == null)
+                return View();
+
             PrescriptionViewModel vm = Mapper.Map<Prescription, PrescriptionViewModel>(pres);
             
             //display the doctor name
-            User doc = user.GetUserByUserID(vm.DoctorUserID);
-            ViewData["docName"] = doc.FirstName + " " + doc.LastName;
+            User doc = user.GetUserByUserID(pres.DoctorUserID);
+            vm.PatientName = doc.FirstName + " " + doc.LastName;
+
             //display the patient name
-            User patient = user.GetUserByUserID(vm.UserID);
-            ViewData["pname"] = patient.FirstName + " " + patient.LastName;
-            vm.MedicationName = presRep.GetMedicationNameByID(vm.MedicationID);         
+            User patient = user.GetUserByUserID(pres.UserID);
+            vm.DoctorName = patient.FirstName + " " + patient.LastName;
+
+            vm.MedicationName = presRep.GetMedicationNameByID(pres.MedicationID);         
 
             return View(vm);
         }
@@ -93,7 +98,7 @@ namespace HospitalManager.Controllers
             PrescriptionViewModel vm = new PrescriptionViewModel();
 
             User Patient = user.GetUserByUserID(id);//this needs to be from the search patient page
-            ViewData["pname"] = Patient.FirstName + " " + Patient.LastName;
+            vm.PatientName = Patient.FirstName + " " + Patient.LastName;
 
             vm.Medications = presRep.GetAllMedications();
             vm.UserID = id;
@@ -104,10 +109,18 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult WritePrescription(PrescriptionViewModel vm)
         {
+            //get doctor information
+            User doc = SessionRep.GetUser();
+            vm.DoctorUserID = doc.UserID;
+            vm.DoctorName = doc.FirstName + " " + doc.LastName;
 
             Prescription pres = Mapper.Map<PrescriptionViewModel, Prescription>(vm);
             vm.PrescriptionID = presRep.AddPrescription(pres);
-            vm.DoctorUserID = SessionRep.GetUser().UserID;
+            
+            User p = user.GetUserByUserID(presRep.GetPrescriptionByID(vm.PrescriptionID).UserID);
+            vm.PatientName = p.FirstName + " " + p.LastName;
+
+            vm.MedicationName = presRep.GetMedicationNameByID(vm.MedicationID);
 
             return View("ViewPrescription", vm);
         }
