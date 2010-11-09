@@ -8,6 +8,9 @@
 <div id="main_body">
 <div id="body">
     <h2>Create Bill</h2>
+
+    <%= Html.ActionLink("Back", "../Search/SearchUser/") %>
+
     <% using (Html.BeginForm("CreateBill", "Billing")) { %>
       <fieldset>
       <table>

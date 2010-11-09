@@ -18,17 +18,16 @@
 
     <% using (Html.BeginForm("WritePrescription", "Prescription")) { %>
         
-        <!--
-        
-        public int quantity; //int
-        public int numRefills; //int
-        public int mgPerPill; // int
-        public string instruction; //bigga text field
-        public string medName; //drop down bx
-        !-->
-
         <fieldset>
         <table>
+         <tr>
+                <td>
+                    <%= Html.Label("Patient Name")%>
+                </td>
+                <td>
+                    <%= Html.DisplayTextFor(m => m.PatientName)%>
+                </td>
+            </tr>
             <tr>
                  <td>
                     <%= Html.Label("Medication")%>
@@ -79,10 +78,11 @@
                 </td>
             </tr>
             <tr>
+            <td><%= Html.HiddenFor(m => m.UserID) %></td>
             </tr>
             <tr>
                 <td colspan="3">
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Write Prescription" />
                 </td>
             </tr>
         </table>

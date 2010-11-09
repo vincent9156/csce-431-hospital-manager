@@ -20,7 +20,7 @@
             <tr><td><%= item.PrescriptionID%></td><td><%= item.UserID %></td><td><%= item.DoctorUserID %></td>
                 <% /* TODO: Check permissions of user before 
                     * displaying these links (and make the links correct) */ %>
-                <td><%: Html.ActionLink("View Bill", "ViewBill", "Billing", new { id = item.PrescriptionID }, null )%></td>
+                <td><%: Html.ActionLink("View Prescription", "ViewPrescription", "Prescription", new { id = item.PrescriptionID }, null )%></td>
             </tr>
         <% } %>
     <% } else { %>
