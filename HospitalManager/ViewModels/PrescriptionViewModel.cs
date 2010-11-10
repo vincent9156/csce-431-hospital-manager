@@ -17,6 +17,10 @@ namespace HospitalManager.ViewModels
         public int mgPerPill { get; set; }
         public string Instructions { get; set; }
 
+        public int PharmacistID { get; set; }
+        public byte FillStatus { get; set; }
+
+        public string PharmacistName { get; set; }
         public string PatientName { get; set; }
         public string DoctorName { get; set; }
         public string MedicationName { get; set; }

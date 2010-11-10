@@ -249,6 +249,10 @@ namespace HospitalManager.Models
 		
 		private System.DateTime _RefillDate;
 		
+		private int _PharmacistID;
+		
+		private byte _FillStatus;
+		
 		private EntityRef<Medication> _Medication;
 		
     #region Extensibility Method Definitions
@@ -275,6 +279,10 @@ namespace HospitalManager.Models
     partial void OnStartDateChanged();
     partial void OnRefillDateChanging(System.DateTime value);
     partial void OnRefillDateChanged();
+    partial void OnPharmacistIDChanging(int value);
+    partial void OnPharmacistIDChanged();
+    partial void OnFillStatusChanging(byte value);
+    partial void OnFillStatusChanged();
     #endregion
 		
 		public Prescription()
@@ -483,6 +491,46 @@ namespace HospitalManager.Models
 					this._RefillDate = value;
 					this.SendPropertyChanged("RefillDate");
 					this.OnRefillDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PharmacistID", DbType="Int NOT NULL")]
+		public int PharmacistID
+		{
+			get
+			{
+				return this._PharmacistID;
+			}
+			set
+			{
+				if ((this._PharmacistID != value))
+				{
+					this.OnPharmacistIDChanging(value);
+					this.SendPropertyChanging();
+					this._PharmacistID = value;
+					this.SendPropertyChanged("PharmacistID");
+					this.OnPharmacistIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FillStatus", DbType="Byte NOT NULL")]
+		public byte FillStatus
+		{
+			get
+			{
+				return this._FillStatus;
+			}
+			set
+			{
+				if ((this._FillStatus != value))
+				{
+					this.OnFillStatusChanging(value);
+					this.SendPropertyChanging();
+					this._FillStatus = value;
+					this.SendPropertyChanged("FillStatus");
+					this.OnFillStatusChanged();
 				}
 			}
 		}

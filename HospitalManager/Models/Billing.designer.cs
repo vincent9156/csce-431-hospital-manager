@@ -322,7 +322,7 @@ namespace HospitalManager.Models
 		
 		private int _BillID;
 		
-		private float _Amount;
+		private decimal _Amount;
 		
 		private int _PrescriptionID;
 		
@@ -334,7 +334,7 @@ namespace HospitalManager.Models
     partial void OnCreated();
     partial void OnBillIDChanging(int value);
     partial void OnBillIDChanged();
-    partial void OnAmountChanging(float value);
+    partial void OnAmountChanging(decimal value);
     partial void OnAmountChanged();
     partial void OnPrescriptionIDChanging(int value);
     partial void OnPrescriptionIDChanged();
@@ -367,8 +367,8 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Float NOT NULL")]
-		public float Amount
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Decimal NOT NULL")]
+		public decimal Amount
 		{
 			get
 			{
