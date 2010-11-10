@@ -139,5 +139,13 @@ namespace HospitalManager.Repositories
 
             return true;
         }
+
+        public void PayPrescriptionBill()
+        {
+        }
+
+        public void PayBill()
+        {
+        }
     }
 }
