@@ -38,6 +38,8 @@ namespace HospitalManager.Controllers
                 {
                     IQueryable<Bill> bills = BillRep.GetAllBillsByDoctor(user.UserID);
                     List<BillingViewModel> BillingViewModels = new List<BillingViewModel>();
+                    if (bills == null)
+                        return View((BillingViewModel)null);
                     foreach (var bill in bills)
                     {
                         BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));
@@ -58,6 +60,8 @@ namespace HospitalManager.Controllers
                 {
                     IQueryable<Bill> bills = BillRep.GetAllBillsByUser(user.UserID);
                     List<BillingViewModel> BillingViewModels = new List<BillingViewModel>();
+                    if (bills == null)
+                        return View((BillingViewModel)null);
                     foreach (var bill in bills)
                     {
                        BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));
