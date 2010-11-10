@@ -28,13 +28,10 @@
             <li> <%:Html.ActionLink("View Medical History", "", "PastMedicalHistory")%></li>
             <li> <%:Html.ActionLink("Edit Medical History", "Edit", "PastMedicalHistory")%></li>
     <% } %>
-    <% if (Session.GetUser().HasAccess(AccessOptions.ViewSchedule))
-       { %>
-            <li> <%:Html.ActionLink("View Profile", "ViewProfile", "Home")%></li> 
-    <% } %>
     <% if (Session.GetUser().HasAccess(AccessOptions.ViewBills))
        { %>
             <li> <%:Html.ActionLink("View My Bills", "Index", "Billing")%></li> 
     <% } %>
+        <li> <%:Html.ActionLink("View Profile", "ViewProfile", "Home")%></li>
     </ul>
 <% } %>
