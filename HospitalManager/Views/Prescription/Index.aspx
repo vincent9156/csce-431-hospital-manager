@@ -15,9 +15,9 @@
     <% /* TODO: Use css.... */ %>
     <table cellpadding="10">
     <% if (Model.SearchResults.Count != 0) { %>
-    <tr><td>Prescription ID</td><td>Patient ID</td><td>Doctor ID</td></tr>
+    <tr><td>Prescription ID</td><td>Patient ID</td><td>Doctor ID</td><td>Fill Status</td></tr>
         <% foreach (var item in Model.SearchResults) { %>
-            <tr><td><%= item.PrescriptionID%></td><td><%= item.UserID %></td><td><%= item.DoctorUserID %></td>
+            <tr><td><%= item.PrescriptionID%></td><td><%= item.UserID %></td><td><%= item.DoctorUserID %></td><td><%= item.FillStatus %></td>
                 <% /* TODO: Check permissions of user before 
                     * displaying these links (and make the links correct) */ %>
                 <td><%: Html.ActionLink("View Prescription", "ViewPrescription", "Prescription", new { id = item.PrescriptionID }, null )%></td>
@@ -25,7 +25,7 @@
         <% } %>
     <% } else { %>
         
-        <tr><td>No Bills found for this user.</td></tr>
+        <tr><td>No Prescriptions found for this user.</td></tr>
 
     <% } %>
 

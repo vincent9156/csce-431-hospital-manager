@@ -316,11 +316,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\Prescriptions.dbml.layout">
-      <DependentUpon>Prescriptions.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Models\Appointment.dbml.layout">
       <DependentUpon>Appointment.dbml</DependentUpon>
     </None>
@@ -328,6 +323,11 @@
   <ItemGroup>
     <None Include="Models\Billing.dbml.layout">
       <DependentUpon>Billing.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\Prescriptions.dbml.layout">
+      <DependentUpon>Prescriptions.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

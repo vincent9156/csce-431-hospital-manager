@@ -30,6 +30,8 @@ namespace HospitalManager.Controllers
                 {
                     IQueryable<Prescription> pres = presRep.GetAllPrescriptionsByDoctorID(user.UserID);
                     List<PrescriptionViewModel> PrescriptionViewModels = new List<PrescriptionViewModel>();
+                    if (pres == null)
+                        return View();
                     foreach (var pre in pres)
                     {
                         PrescriptionViewModels.Add(Mapper.Map<Prescription, PrescriptionViewModel>(pre));
@@ -46,6 +48,8 @@ namespace HospitalManager.Controllers
                 {
                     IQueryable<Prescription> pres = presRep.GetAllPrescriptionsByUserID(user.UserID);
                     List<PrescriptionViewModel> PrescriptionViewModels = new List<PrescriptionViewModel>();
+                    if (pres == null)
+                        return View();
                     foreach (var pre in pres)
                     {
                        PrescriptionViewModels.Add(Mapper.Map<Prescription, PrescriptionViewModel>(pre));
@@ -64,7 +68,6 @@ namespace HospitalManager.Controllers
             }//if user is not logged in then redirect to login page
             else return Redirect("/Authentication/Login/");
         }
-
      
         public ActionResult ViewPrescription(int id)
         {
