@@ -2,23 +2,23 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Prescriptions">
   <DataContextMoniker Name="/PrescriptionsDatabase" />
   <nestedChildShapes>
-    <classShape Id="4d928c81-cc25-47e4-bdee-7f62bec67e11" absoluteBounds="3.25, 0.625, 2, 1.26050048828125">
-      <DataClassMoniker Name="/PrescriptionsDatabase/Medication" />
-      <nestedChildShapes>
-        <elementListCompartment Id="a6b488e6-97bc-425f-b05c-591a53d3d4ef" absoluteBounds="3.2649999999999997, 1.085, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="9b4a2b6b-3a6c-4525-b2c6-1ad42941223a" absoluteBounds="0.625, 0.625, 2, 2.73962646484375">
+    <classShape Id="ca1cdaa7-b35d-45a6-9ac2-a3cc778c28a7" absoluteBounds="3.5, 1, 2, 2.7396264648437505">
       <DataClassMoniker Name="/PrescriptionsDatabase/Prescription" />
       <nestedChildShapes>
-        <elementListCompartment Id="d603f414-8970-4518-bb11-d58ed6429d10" absoluteBounds="0.64000000000000012, 1.085, 1.9700000000000002, 2.17962646484375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e639a895-16d9-4435-a3c4-f1854f8cc949" absoluteBounds="3.515, 1.46, 1.9700000000000002, 2.17962646484375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.25 : 1.25525024414063); (2.625 : 1.25525024414063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="f269f9b8-f35e-4780-bd0c-941ed857c79a" absoluteBounds="0.75, 1.75, 2, 1.2605004882812498">
+      <DataClassMoniker Name="/PrescriptionsDatabase/Medication" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a26c4a86-0b32-4768-99f6-3adcfec0af3a" absoluteBounds="0.765, 2.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.38025024414062); (3.5 : 2.38025024414062)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PrescriptionsDatabase/Medication/Medication_Prescription" />
       <nodes>
-        <classShapeMoniker Id="4d928c81-cc25-47e4-bdee-7f62bec67e11" />
-        <classShapeMoniker Id="9b4a2b6b-3a6c-4525-b2c6-1ad42941223a" />
+        <classShapeMoniker Id="f269f9b8-f35e-4780-bd0c-941ed857c79a" />
+        <classShapeMoniker Id="ca1cdaa7-b35d-45a6-9ac2-a3cc778c28a7" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

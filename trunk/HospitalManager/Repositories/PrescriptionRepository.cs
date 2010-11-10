@@ -10,7 +10,6 @@ namespace HospitalManager.Repositories
     public class PrescriptionRepository
     {
         private PrescriptionsDatabase prescriptionDb = new PrescriptionsDatabase();
-        private PrescriptionRepository presRep = new PrescriptionRepository();
         private BillingRepository BillRep = new BillingRepository();
 
         public int AddPrescription(Prescription prescription)
@@ -142,7 +141,7 @@ namespace HospitalManager.Repositories
 
             //bill patient for prescription since pharmacist is filling it
             PrescriptionBill PresBill = new PrescriptionBill();
-            PresBill.Amount = presRep.GetPriceOfPresciption(PrescriptionID);
+            PresBill.Amount = result.First().GetCost();
             PresBill.PrescriptionID = PrescriptionID;
             PresBill.Paid = 0;
             int BillID = BillRep.BillPrescription(PresBill);
@@ -153,5 +152,5 @@ namespace HospitalManager.Repositories
 
             return BillID;
         }
-    }
+  }
 }
