@@ -70,10 +70,17 @@ namespace HospitalManager.Repositories
             _Appdb.SubmitChanges();
         }
 
-        public List<TimeSpan> GetDoctorAvaliablity(int DoctorID, DateTime Date)
+        public List<TimeSpan> GetDoctorAvaliablity(int DoctorID, int UserID, DateTime Date)
         {
+            var res1 = from f in _Appdb.Appointments
+                       where f.UserID == UserID && f.Date == Date
+                       select f.Time;
+
+            List<TimeSpan> userTimes = res1.ToList();
+
+
             var result = from d in _Appdb.Appointments
-                         where d.DoctorID == DoctorID && d.Date == Date
+                         where d.DoctorID == DoctorID && d.Date == Date || res1.Contains(d.Time)
                          select d.Time;
 
             return result.ToList();

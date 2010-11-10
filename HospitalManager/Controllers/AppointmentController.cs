@@ -79,6 +79,7 @@ namespace HospitalManager.Controllers
                 return Redirect("/Authentication/Login");
             }
 
+
             var docs = urep.GetAllUsersBasedOnType(UserType.DoctorTypeID);
             AppointmentViewModel vm = new AppointmentViewModel { Doctors = docs.ToList()};
             return View(vm);
@@ -91,7 +92,9 @@ namespace HospitalManager.Controllers
                 return Redirect("/Authentication/Login");
             }
 
-            var times = apprep.GetDoctorAvaliablity(DoctorID, Date) ;
+            User user = sessrep.GetUser();
+
+            var times = apprep.GetDoctorAvaliablity(DoctorID, user.UserID, Date) ;
             AppointmentViewModel vm = new AppointmentViewModel { Times = times, Date = Date, DoctorID = DoctorID  };
             return View(vm);
         }
