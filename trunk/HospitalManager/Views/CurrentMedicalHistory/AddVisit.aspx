@@ -9,9 +9,6 @@
 <div id="main_body">
 <div id="body">
     <h2>Add Visit</h2>
-
-    <%= Html.ActionLink("Back", "/") %>
-   
     <table>
     <tr>
     <td style="vertical-align: top; padding-right: 30px">
