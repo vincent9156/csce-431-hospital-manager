@@ -220,6 +220,7 @@
     <Content Include="Views\Billing\Create.aspx" />
     <Content Include="Views\Billing\Index.aspx" />
     <Content Include="Views\Billing\ViewBill.aspx" />
+    <Content Include="Views\CurrentMedicalHistory\AddVisit.aspx" />
     <Content Include="Views\CurrentMedicalHistory\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\UserLog.aspx" />

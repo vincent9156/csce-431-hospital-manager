@@ -29,8 +29,8 @@ namespace HospitalManager.Controllers
         {
             base.Initialize(context);
 
-            if (!sessRep.IsLoggedIn() ||
-                !sessRep.GetUser().HasAccess(AccessOptions.EditOwnMedicalHistory))
+            // (assumes that anyone who can view medical histories can also edit)
+            if (!sessRep.IsLoggedIn())
             {
                 HttpContext.Response.Redirect("/");
                 HttpContext.Response.End();
@@ -43,15 +43,20 @@ namespace HospitalManager.Controllers
         //
         // GET: /CurrentMedicalHistory/
         
-        public ActionResult Index()
+        public ActionResult Index(int UserId = -1)
         {
-
-            if (!sessRep.IsLoggedIn())
-                return Redirect("/Authentication/Login");
+            // make sure they asked for a user or send to the homepage
+            if (UserId == -1)
+                return Redirect("/Home");
+            
+            // Checks if they are a doctor or if they are viewing their own history 
+            // (assumes that anyone who can view medical histories can also edit)
+            if (!sessRep.GetUser().HasAccess(AccessOptions.ViewPastMedicalHistories) || !(sessRep.GetUser().HasAccess(AccessOptions.EditOwnMedicalHistory) && (sessRep.GetUser().UserID == UserId)))
+                return Redirect("/Home");
 
             var vm = new CurrentMedicalHistoriesViewModel
             {
-                CurrentMedicalHistoryList = histRep.GetCurrentMedicalHistoryByUser(sessRep.GetUser()).ToList()
+                CurrentMedicalHistoryList = histRep.GetCurrentMedicalHistoryByUser(userRep.GetUserByUserID(UserId)).ToList()
             };
             
             return View(vm);
@@ -66,9 +71,9 @@ namespace HospitalManager.Controllers
             if (UserId == -1)
                 return Redirect("/Home");
             
-            // make sure someone is logged in
-            if (!sessRep.IsLoggedIn())
-                return Redirect("/Authentication/Login");
+            // make sure they have permission to add a visit (assumes that anyone who can view medical histories can also edit)
+            if (!sessRep.GetUser().HasAccess(AccessOptions.ViewPastMedicalHistories))
+                return Redirect("/Home");
             
             // check if doctor or nurse
             // do work here
@@ -114,7 +119,7 @@ namespace HospitalManager.Controllers
                 return Redirect("/CurrentMedicalHistory/AddVisitError");
  
             // Return them to home
-            return Redirect("/Home");
+            return Redirect("/CurrentMedicalHistory/Index?UserId="+m.UserID);
         }
 
 

@@ -61,6 +61,12 @@
                     <a href="#">Medical Record</a>
                 </td>
                 <td>
+                    <%=Html.ActionLink("Hospital Visits", "Index", "CurrentMedicalHistory", new { UserId = item.UserID }, null)%>
+                </td>
+                <td>
+                    <%=Html.ActionLink("Add Hospital Visit", "AddVisit", "CurrentMedicalHistory", new { UserId = item.UserID }, null)%>
+                </td>
+                <td>
                     <%=Html.ActionLink("Bill Patient", "Create", "Billing", new { id = item.UserID }, null)%>
                 </td>
                 <td>
