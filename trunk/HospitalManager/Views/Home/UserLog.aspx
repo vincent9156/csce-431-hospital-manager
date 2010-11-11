@@ -30,6 +30,10 @@
 <% if (Model.HasAccess(AccessOptions.SearchUsers)) { %>
     <li><%: Html.ActionLink("Search Patients", "SearchUser", "Search")%></li>
 <% } %>
+   <% if (Model.HasAccess(AccessOptions.ViewPrescriptions))
+       { %>
+            <li> <%:Html.ActionLink("View My Prescriptions", "Index", "Prescription")%> </li>  
+       <% } %> 
    <!--
    
     *********** Removed to free up permissions ************
@@ -44,10 +48,7 @@
             <li> <%:Html.ActionLink("Appointments", " ")%> </li>  
        <% } %> 
 
-    <% if (Session.GetUser().HasAccess(AccessOptions.ViewPrescriptions))
-       { %>
-            <li> <%:Html.ActionLink("Prescriptions", " ")%> </li>  
-       <% } %> 
+ 
 
     <% if (Session.GetUser().HasAccess(AccessOptions.EditPrescriptions))
        { %>

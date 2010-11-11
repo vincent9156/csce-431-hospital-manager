@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using HospitalManager.Models;
+using HospitalManager.Libraries;
 
 namespace HospitalManager.ViewModels
 {
@@ -25,7 +26,18 @@ namespace HospitalManager.ViewModels
         public string DoctorName { get; set; }
         public string MedicationName { get; set; }
 
+        public IEnumerable<User> Pharmacists { get; set; }
         public IEnumerable<Medication> Medications { get; set; }
         public IList<PrescriptionViewModel> SearchResults;
+
+        public int Permissions { get; set; }
+
+        /**
+       * Check whether the user has access to the given option(s)
+       */
+        public bool HasAccess(AccessOptions options)
+        {
+            return PermissionsManager.HasAccess(Permissions, options);
+        }
     }
 }

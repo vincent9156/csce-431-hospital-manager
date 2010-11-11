@@ -10,7 +10,6 @@
     <h2>View Prescription</h2>
 
         <%= Html.ActionLink("Back", "/Index") %>
-
   <table>
     <tr><td><%:Html.LabelFor(Model => Model.PrescriptionID) %></td><td><%: Html.DisplayTextFor(Model => Model.PrescriptionID) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.DoctorName) %>    </td><td><%: Html.DisplayTextFor(Model => Model.DoctorName) %></td></tr>
@@ -21,7 +20,6 @@
     <tr><td><%:Html.LabelFor(Model => Model.Quantity) %>      </td><td><%: Html.DisplayTextFor(Model => Model.Quantity) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.NumRefills) %>    </td><td><%= Html.DisplayTextFor(Model => Model.NumRefills)%></td></tr>
  </table>
-
     </div>
     </div>
 </asp:Content>

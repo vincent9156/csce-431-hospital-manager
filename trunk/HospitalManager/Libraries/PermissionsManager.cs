@@ -31,6 +31,9 @@ namespace HospitalManager.Libraries
         // Can this user view a schedule?
         ViewSchedule = 0x00, // TODO: Should be editted to work in the future
 
+        //can view prescriptions?
+        ViewPrescriptions = 0x00,
+
         // Can this user view thier own bills
         ViewBills = 0x00, // TODO: Should be editted to work in the future
 
