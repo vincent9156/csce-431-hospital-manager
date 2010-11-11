@@ -80,6 +80,18 @@ namespace HospitalManager.Repositories
             return result;
         }
 
+        public IQueryable<Prescription> GetAllPrescriptionsByPharmacistID(int PharmacistID)
+        {
+            var result = from script in prescriptionDb.Prescriptions
+                         where script.PharmacistID == PharmacistID
+                         select script;
+
+            if (result.Count() == 0)
+                return null;
+
+            return result;
+        }
+
         public decimal GetPriceOfPresciption(int prescriptionID)
         {
             var prescription = (from p in prescriptionDb.Prescriptions
@@ -114,6 +126,7 @@ namespace HospitalManager.Repositories
             var result = from p in prescriptionDb.Prescriptions
                           where p.PrescriptionID == presc.PrescriptionID
                           select p;
+
             if (result.Count() == 0)
                 return false;
 
@@ -151,6 +164,17 @@ namespace HospitalManager.Repositories
             prescriptionDb.SubmitChanges();
 
             return BillID;
+        }
+
+        public bool RemovePrescriptionByID(int PrescID)
+        {
+            Prescription pres = GetPrescriptionByID(PrescID);
+            if (pres == null)
+                return false;
+            prescriptionDb.Prescriptions.DeleteOnSubmit(pres);
+            prescriptionDb.SubmitChanges();
+
+            return true;
         }
   }
 }

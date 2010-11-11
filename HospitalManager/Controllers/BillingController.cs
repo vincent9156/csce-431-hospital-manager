@@ -92,7 +92,9 @@ namespace HospitalManager.Controllers
             Bill bill = BillRep.GetBillByID(id);
             if (bill == null)
                 return View();
-
+            if((bill.PatientUserID != SessionRep.GetUser().UserID) && (bill.DocUserID != SessionRep.GetUser().UserID))
+            return View();
+            
             BillingViewModel bvm = Mapper.Map<Bill, BillingViewModel>(bill);
             
             //display the doctor name

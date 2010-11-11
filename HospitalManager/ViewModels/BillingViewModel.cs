@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using HospitalManager.Models;
+using HospitalManager.Libraries;
 
 namespace HospitalManager.ViewModels
 {
@@ -21,6 +22,17 @@ namespace HospitalManager.ViewModels
         public string DoctorName { get; set; }
 
         public IList<BillingViewModel> SearchResults;
+
+        public int Permissions { get; set; }
+
+        /**
+       * Check whether the user has access to the given option(s)
+       */
+        public bool HasAccess(AccessOptions options)
+        {
+            return PermissionsManager.HasAccess(Permissions, options);
+        }
+
     }
     public class PrescriptionBillingViewModel
     {
@@ -30,5 +42,15 @@ namespace HospitalManager.ViewModels
         public byte Paid { get; set; }
 
         public IList<PrescriptionBillingViewModel> SearchResults;
+
+        public int Permissions { get; set; }
+
+        /**
+       * Check whether the user has access to the given option(s)
+       */
+        public bool HasAccess(AccessOptions options)
+        {
+            return PermissionsManager.HasAccess(Permissions, options);
+        }
     }
 }
