@@ -143,6 +143,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Compile Include="ViewModels\BillingViewModel.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\CurrentMedicalHistoriesViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
     <Compile Include="ViewModels\NurseViewModel.cs" />
@@ -214,6 +215,7 @@
     <Content Include="Views\Appointment\Schedule.aspx" />
     <Content Include="Views\Appointment\SelectTime.aspx" />
     <Content Include="Views\Appointment\ViewPage1.aspx" />
+    <Content Include="Views\Authentication\ChangePassword.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\Authentication\RegisterUser.aspx" />
     <Content Include="Views\Authentication\RegisterUserType.aspx" />
@@ -246,7 +248,9 @@
     <Content Include="Views\Search\SearchUser.aspx" />
     <Content Include="Views\Shared\LoginCheck.ascx" />
     <Content Include="Views\Shared\PartialLink.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
