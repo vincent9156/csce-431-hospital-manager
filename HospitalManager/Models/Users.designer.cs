@@ -172,7 +172,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeID", DbType="Int NOT NULL", IsDiscriminator=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeID", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.WhenChanged, IsDiscriminator=true)]
 		public int TypeID
 		{
 			get
@@ -196,7 +196,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.WhenChanged)]
 		public string FirstName
 		{
 			get
@@ -216,7 +216,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="VarChar(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.WhenChanged)]
 		public string LastName
 		{
 			get
@@ -236,7 +236,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="UserName", Storage="_Username", DbType="VarChar(16) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="UserName", Storage="_Username", DbType="VarChar(16) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.WhenChanged)]
 		public string Username
 		{
 			get
@@ -256,7 +256,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(32) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(32) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.WhenChanged)]
 		public string Password
 		{
 			get
@@ -276,7 +276,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.WhenChanged)]
 		public string Email
 		{
 			get
@@ -296,7 +296,7 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Speciality", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Speciality", CanBeNull=false, UpdateCheck=UpdateCheck.WhenChanged)]
 		public string Speciality
 		{
 			get

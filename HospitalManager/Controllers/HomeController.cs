@@ -43,6 +43,13 @@ namespace HospitalManager.Controllers
         {
             User user = sessRep.GetUser();
 
+            var u = repository.GetUserByUsername(Username);
+            if ((u != null) && (u.UserID != user.UserID))
+            {
+                ModelState.AddModelError("Username", "Requested username already in use");
+                return View("ViewProfile");
+            }
+
             if(Password == PasswordRepeat);
             user.Password = Password;
             user.FirstName = Firstname;

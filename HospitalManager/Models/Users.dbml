@@ -3,13 +3,13 @@
   <Table Name="dbo.Users" Member="Users">
     <Type Name="User">
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" IsDiscriminator="true" />
-      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="UserName" Member="Username" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Member="Speciality" Type="System.String" CanBeNull="false" />
+      <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" UpdateCheck="WhenChanged" IsDiscriminator="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" UpdateCheck="WhenChanged" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" UpdateCheck="WhenChanged" />
+      <Column Name="UserName" Member="Username" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" UpdateCheck="WhenChanged" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" UpdateCheck="WhenChanged" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" UpdateCheck="WhenChanged" />
+      <Column Name="Speciality" Type="System.String" CanBeNull="false" UpdateCheck="WhenChanged" />
       <Association Name="UserType_User" Member="UserType" ThisKey="TypeID" OtherKey="TypeID" Type="UserType" IsForeignKey="true" />
       <Type Name="Doctor" InheritanceCode="2" />
       <Type Name="Patient" InheritanceCode="1" IsInheritanceDefault="true" />

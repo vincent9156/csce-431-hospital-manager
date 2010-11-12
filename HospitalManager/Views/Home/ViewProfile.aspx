@@ -1,15 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<HospitalManager.ViewModels.UserRegistrationViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	ViewProfile
+	Edit Profile
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div id="main_body">
 <div id="body">
-    <h2>Your Profile</h2>
+    <h2>Edit Profile</h2>
     <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
     <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
+
+    <%= Html.ActionLink("Change Password", "ChangePassword", "Authentication") %>
 
     <% Html.EnableClientValidation(); %>
 
@@ -17,7 +19,6 @@
         
         <fieldset>
         <table>
-            <tr><td>UserType</td><td><%= Html.ViewData["UType"] %></td></tr>
             <tr><td>Username</td><td><%= Html.TextBoxFor(m => m.Username) %></td><td><%= Html.ValidationMessageFor(m => m.Username) %></td></tr>
             <tr><td>Email</td><td><%= Html.TextBoxFor(m => m.Email) %></td><td><%= Html.ValidationMessageFor(m => m.Email) %></td></tr>
             <tr><td>First Name</td><td><%= Html.TextBoxFor(m => m.FirstName) %></td><td><%= Html.ValidationMessageFor(m => m.FirstName) %></td></tr>

@@ -59,9 +59,6 @@ namespace HospitalManager.Controllers
                 // success
                 SessionRep.Login(user);
 
-                // TODO: redirect to user's home page (right now it just returns to the login form)
-                ModelState.AddModelError("username", "Login success!");
-
                 return Redirect("/Home/UserLog/");
             }
             else
@@ -152,6 +149,34 @@ namespace HospitalManager.Controllers
                 // redirect to homepage
                 return Redirect("/Home/UserLog/");
             
+        }
+
+        public ActionResult ChangePassword()
+        {
+            if (!SessionRep.IsLoggedIn())
+                return Redirect("/Authentication/Login");
+            var pass = new ChangePasswordViewModel();
+            return View("ChangePassword", pass);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordViewModel pass)
+        {
+            if (!SessionRep.IsLoggedIn())
+                return Redirect("/Authentication/Login");
+            if (!SessionRep.GetUser().EncryptedPasswordEquals(pass.OldPassword))
+            {
+                ModelState.AddModelError("OldPassword", "Incorrect password");
+                return View();
+            }
+            if (!ModelState.IsValid)
+                return View(pass);
+
+            var user = SessionRep.GetUser();
+            user = UserRep.ChangeUserPassword(user, pass.Password);
+            SessionRep.Logout();
+            SessionRep.Login(user);
+            return Redirect("/Home/ViewProfile");
         }
     }
 }

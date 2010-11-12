@@ -142,6 +142,16 @@ namespace HospitalManager.Repositories
             result.Username = NewUserName;
             usersDb.SubmitChanges();
         }
+
+        public User ChangeUserPassword(User u, String pass)
+        {
+            var result = (from user in usersDb.Users
+                          where user.UserID == u.UserID
+                          select user).First();
+            result.EncryptAndSetPassword(pass);
+            usersDb.SubmitChanges();
+            return result;
+        }
         
         // returns all users based on the type searched for example: get all doctors
         public IQueryable<User> GetAllUsersBasedOnType(int userType)
