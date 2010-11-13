@@ -8,6 +8,11 @@
 
 <div id="main_body">
 <div id="body">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Username").focus();
+        });
+    </script>
     <h2>Login</h2>
     <% using (Html.BeginForm())
        { %>

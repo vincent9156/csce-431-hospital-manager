@@ -7,6 +7,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div id="main_body">
 <div id="body">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Username").focus();
+        });
+    </script>
     <h2>Register</h2>
 
     <%= Html.ActionLink("Back", "/Register/") %>
