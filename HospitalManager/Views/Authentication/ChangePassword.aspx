@@ -7,6 +7,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div id="main_body">
 <div id="body">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#OldPassword").focus();
+        });
+    </script>
     <h2>Change Password</h2>
 
     <%= Html.ActionLink("Back", "ViewProfile", "Home") %>

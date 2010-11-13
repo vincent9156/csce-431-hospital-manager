@@ -23,6 +23,20 @@
             <tr><td>Email</td><td><%= Html.TextBoxFor(m => m.Email) %></td><td><%= Html.ValidationMessageFor(m => m.Email) %></td></tr>
             <tr><td>First Name</td><td><%= Html.TextBoxFor(m => m.FirstName) %></td><td><%= Html.ValidationMessageFor(m => m.FirstName) %></td></tr>
             <tr><td>Last Name</td><td><%= Html.TextBoxFor(m => m.LastName) %></td><td><%= Html.ValidationMessageFor(m => m.LastName) %></td></tr>
+            <% if (!Model.HasAccess(AccessOptions.RegisterWithoutStaffID))
+               { %>
+                <tr>
+                    <td>
+                        Speciality
+                    </td>
+                    <td>
+                        <%= Html.TextBoxFor(m => m.Speciality) %>
+                    </td>
+                    <td>
+                        <%= Html.ValidationMessageFor(m => m.Speciality) %>
+                    </td>
+                </tr>
+            <% } %>
             <tr><td colspan="3"><%= Html.ValidationSummary(true) %></td></tr>
             <tr><td colspan="3"><%= Html.HiddenFor(m => m.TypeID) %><input type="submit" value="Save" /></td></tr>
         </table>

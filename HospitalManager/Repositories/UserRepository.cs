@@ -140,9 +140,14 @@ namespace HospitalManager.Repositories
             result.LastName = u.LastName;
             result.Email = u.Email;
             result.Username = NewUserName;
+            if (!result.HasAccess(Libraries.AccessOptions.RegisterWithoutStaffID))
+            {
+                result.Speciality = u.Speciality;
+            }
             usersDb.SubmitChanges();
         }
 
+        // change the password of user u to pass
         public User ChangeUserPassword(User u, String pass)
         {
             var result = (from user in usersDb.Users

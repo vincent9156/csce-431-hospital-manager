@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using HospitalManager.Repositories;
 using HospitalManager.Models;
 using HospitalManager.ViewModels;
+using HospitalManager.Libraries;
 using AutoMapper;
 
 
@@ -39,27 +40,30 @@ namespace HospitalManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProfile(String Username, String Password, String PasswordRepeat, String Firstname, String Lastname, String EMail)
+        public ActionResult EditProfile(UserRegistrationViewModel usermodel)
         {
             User user = sessRep.GetUser();
+            usermodel.Permissions = repository.GetUserTypeByID(user.TypeID).Permissions;
 
-            var u = repository.GetUserByUsername(Username);
+            var u = repository.GetUserByUsername(usermodel.Username);
             if ((u != null) && (u.UserID != user.UserID))
             {
                 ModelState.AddModelError("Username", "Requested username already in use");
-                return View("ViewProfile");
+                return View("ViewProfile", usermodel);
             }
 
-            if(Password == PasswordRepeat);
-            user.Password = Password;
-            user.FirstName = Firstname;
-            user.LastName = Lastname;
-            user.Email = EMail;
-            repository.EditUserByUsername(Username, user);
-            user.Username = Username;
+            user.FirstName = usermodel.FirstName;
+            user.LastName = usermodel.LastName;
+            user.Email = usermodel.Email;
+            if (!user.HasAccess(AccessOptions.RegisterWithoutStaffID))
+            {
+                user.Speciality = usermodel.Speciality;
+            }
+            repository.EditUserByUsername(usermodel.Username, user);
+            user.Username = usermodel.Username;
             sessRep.Logout();
             sessRep.Login(user);
-            return Redirect("/Home/ViewProfile/");
+            return Redirect("/Home/ViewProfile");
         }
 
         public ActionResult ViewProfile()
@@ -72,6 +76,11 @@ namespace HospitalManager.Controllers
                 vm.LastName = user.LastName;
                 vm.Username = user.Username;
                 vm.Email = user.Email;
+                vm.Permissions = repository.GetUserTypeByID(user.TypeID).Permissions;
+                if (!user.HasAccess(AccessOptions.RegisterWithoutStaffID))
+                {
+                    vm.Speciality = user.Speciality;
+                }
                 ViewData["UType"] = user;
                 return View(vm);
             }
