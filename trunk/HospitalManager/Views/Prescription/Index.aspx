@@ -22,7 +22,7 @@
                     * displaying these links (and make the links correct) */ %>
                 <td><%: Html.ActionLink("View", "ViewPrescription", "Prescription", new { id = item.PrescriptionID }, null )%></td>
                 <td><%: Html.ActionLink("Delete", "DeletePrescription", "Prescription", new { id = item.PrescriptionID },null) %></td>
-                <td><%: Html.ActionLink("Assign", "Assign", "Prescription", new { id = item.PrescriptionID },null) %></td>
+                <td><%: Html.ActionLink("Fill", "Fill", "Prescription", new { id = item.PrescriptionID },null) %></td>
             </tr>
         <% } %>
     <% } else { %>

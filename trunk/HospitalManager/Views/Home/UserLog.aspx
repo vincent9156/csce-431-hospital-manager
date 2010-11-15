@@ -30,7 +30,7 @@
 <% if (Model.HasAccess(AccessOptions.SearchUsers)) { %>
     <li><%: Html.ActionLink("Search Patients", "SearchUser", "Search")%></li>
 <% } %>
-   <% if (Model.HasAccess(AccessOptions.ViewPrescriptions))
+   <% if (Model.HasAccess(AccessOptions.FillPrescriptions))
        { %>
             <li> <%:Html.ActionLink("View My Prescriptions", "Index", "Prescription")%> </li>  
        <% } %> 
