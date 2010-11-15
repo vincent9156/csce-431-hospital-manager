@@ -93,5 +93,17 @@ namespace HospitalManager.Repositories
 
             return result;
         }
+
+        public bool isDoctorsPatient(int DoctorID, int PatientID)
+        {
+            IQueryable<VWAppointments> appointments = GetDoctorPatients(DoctorID);
+            
+            // check each appointment and see if it is our user
+            foreach (var temp in appointments)
+            {
+                // if you found the user, return, otherwise, keep searching
+                if (temp.UserID == PatientID)
+                    return true;
+            }
     }
 }
