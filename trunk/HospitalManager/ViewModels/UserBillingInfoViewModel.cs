@@ -6,7 +6,7 @@ using System.Web;
 namespace HospitalManager.ViewModels
 {
     // TODO: validation!!
-    public class UserBillingInfo
+    public class UserBillingInfoViewModel
     {
         public string CardNumber { get; set; }
 
