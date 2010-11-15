@@ -1,25 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<HospitalManager.ViewModels.UserBillingInfoViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	AddBillingInfo
+	BillingInfo
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>AddBillingInfo</h2>
+<div id="main_body">
+<div id="body">
+    <h2>BillingInfo</h2>
 
     <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
     <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
 
     <% Html.EnableClientValidation(); %>
 
-    <% using (Html.BeginForm("AddBillingInfo", "Authentication"))
+    <% using (Html.BeginForm("BillingInfo", "Authentication"))
        { %>
             <fieldset>
             <table>
                 <tr>
                     <td>Card Provider</td>
-                    <td><%= Html.DropDownListFor(m => m.CardProviderID, new SelectList(Model.CardProvider, "CardProviderID", "ProviderName")) %></td>
+                    <td><%= Html.DropDownListFor(m => m.CardProviderID, new SelectList(Model.CardProvider, "ProviderID", "ProviderName")) %></td>
                 </tr>
                 <tr>
                     <td>Card Number</td>
@@ -57,8 +58,9 @@
                     <td><%= Html.ValidationMessageFor(m => m.ProviderName) %></td>
                 </tr>
             </table>
+            <input type="submit" value="Submit" />
             </fieldset>
 
     <% } %>
-
+    </div></div>
 </asp:Content>

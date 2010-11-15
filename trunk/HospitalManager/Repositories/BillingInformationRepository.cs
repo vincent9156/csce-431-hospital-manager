@@ -48,5 +48,15 @@ namespace HospitalManager.Repositories
             infoDb.SubmitChanges();
         }
 
+        /**
+         * Return all credit card providers
+         */
+        public IQueryable<CardProvider> GetCardProviders()
+        {
+            var result = from cardProv in infoDb.CardProviders
+                         select cardProv;
+            return result;
+        }
+
     }
 }
