@@ -96,8 +96,8 @@ namespace HospitalManager.Repositories
 
         public bool isDoctorsPatient(int DoctorID, int PatientID)
         {
-            IQueryable<VWAppointments> appointments = GetDoctorPatients(DoctorID);
-            
+            IQueryable<VWPatientsByDoctor> appointments = GetDoctorPatients(DoctorID);
+
             // check each appointment and see if it is our user
             foreach (var temp in appointments)
             {
@@ -105,5 +105,7 @@ namespace HospitalManager.Repositories
                 if (temp.UserID == PatientID)
                     return true;
             }
+            return false;
+        }
     }
 }
