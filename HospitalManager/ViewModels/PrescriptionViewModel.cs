@@ -19,7 +19,7 @@ namespace HospitalManager.ViewModels
         public string Instructions { get; set; }
 
         public int PharmacistID { get; set; }
-        public int FillStatus { get; set; }
+        public string FillStatus { get; set; }
 
         public string PharmacistName { get; set; }
         public string PatientName { get; set; }
@@ -29,15 +29,7 @@ namespace HospitalManager.ViewModels
         public IEnumerable<User> Pharmacists { get; set; }
         public IEnumerable<Medication> Medications { get; set; }
         public IList<PrescriptionViewModel> SearchResults;
-
-        public int Permissions { get; set; }
-
-        /**
-       * Check whether the user has access to the given option(s)
-       */
-        public bool HasAccess(AccessOptions options)
-        {
-            return PermissionsManager.HasAccess(Permissions, options);
-        }
+        
+        public UserViewModel LoggedInUser { get; set; }
     }
 }

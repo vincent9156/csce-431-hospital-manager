@@ -32,7 +32,7 @@
        { %>
             <li> <%:Html.ActionLink("View My Bills", "Index", "Billing")%></li> 
     <% } %>
-    <% if (Session.GetUser().HasAccess(AccessOptions.ViewPrescriptions))
+    <% if (Session.GetUser().HasAccess(AccessOptions.FillPrescriptions))
        {%>
             <li> <%:Html.ActionLink("View Prescriptions", "Index", "Prescription")%></li>
     <% } %>

@@ -62,10 +62,10 @@ namespace HospitalManager.Controllers
 
                     return View(vm);
                 }
-                //if user is doctor then search prescriptions by docUserID
+                //if user is pharmacist then view all prescriptions
                 if (user.TypeID == UserType.PharmacistTypeID)
                 {
-                    IQueryable<Prescription> pres = presRep.GetAllPrescriptionsByPharmacistID(user.UserID);
+                    IQueryable<Prescription> pres = presRep.GetAllPrescriptions();
                     List<PrescriptionViewModel> PrescriptionViewModels = new List<PrescriptionViewModel>();
                     if (pres == null)
                         return View();
@@ -96,8 +96,6 @@ namespace HospitalManager.Controllers
             Prescription pres = presRep.GetPrescriptionByID(id);
             if (pres == null)
                 return View();
-            if ((pres.PharmacistID != SessionRep.GetUser().UserID) && (pres.UserID != SessionRep.GetUser().UserID) && (pres.DoctorUserID != SessionRep.GetUser().UserID))
-                return View();
 
             PrescriptionViewModel vm = Mapper.Map<Prescription, PrescriptionViewModel>(pres);
             
@@ -108,6 +106,9 @@ namespace HospitalManager.Controllers
             //display the patient name
             User patient = user.GetUserByUserID(pres.DoctorUserID);
             vm.DoctorName = patient.FirstName + " " + patient.LastName;
+            if (pres.FillStatus == 1)
+                vm.FillStatus = "Filled";
+            else vm.FillStatus = "Not Filled";
 
             vm.MedicationName = presRep.GetMedicationNameByID(pres.MedicationID);         
 
@@ -153,23 +154,24 @@ namespace HospitalManager.Controllers
         //remove a prescription
         public ActionResult DeletePrescription(int id)
         {
-            if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.CanWritePrescriptions))
+            if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.FillPrescriptions))
                 return Redirect("/");
             presRep.RemovePrescriptionByID(id);
 
             return Redirect("/Prescription/Index/");
         }
 
-
-        //assign the prescription to a pharmacist
-        public ActionResult Assign(int id)
+        public ActionResult Fill(int id)
         {
-            
-            PrescriptionViewModel vm = new PrescriptionViewModel();
-            vm.Pharmacists = user.GetAllUsersBasedOnType(4);
-            vm.PrescriptionID = id;
+            if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.FillPrescriptions))
+                return Redirect("/");
 
-            return View(vm);
+            presRep.FillPrescription(id);
+                //assign the prescription to pharmacist
+            presRep.AssignPrescriptionToPharmacist(SessionRep.GetUser().UserID, presRep.GetPrescriptionByID(id));
+                    
+            return Redirect("/Prescription/Index/");
+            
         }
 
         [HttpPost]

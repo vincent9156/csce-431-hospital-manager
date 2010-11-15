@@ -80,6 +80,18 @@ namespace HospitalManager.Repositories
             return result;
         }
 
+        public IQueryable<Prescription> GetAllPrescriptions()
+        {
+            var result = from p in prescriptionDb.Prescriptions
+                         select p;
+
+            if (result.Count() == 0)
+                return null;
+
+            return result;
+
+        }
+
         public IQueryable<Prescription> GetAllPrescriptionsByPharmacistID(int PharmacistID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -153,17 +165,18 @@ namespace HospitalManager.Repositories
                 return 0;
 
             //bill patient for prescription since pharmacist is filling it
-            PrescriptionBill PresBill = new PrescriptionBill();
-            PresBill.Amount = result.First().GetCost();
-            PresBill.PrescriptionID = PrescriptionID;
-            PresBill.Paid = 0;
-            int BillID = BillRep.BillPrescription(PresBill);
+            //PrescriptionBill PresBill = new PrescriptionBill();
+            //PresBill.Amount = result.First().GetCost();
+            //PresBill.PrescriptionID = PrescriptionID;
+            //PresBill.Paid = 0;
+            //int BillID = BillRep.BillPrescription(PresBill);
 
             //change status of prescription to filled
             result.First().FillStatus = 1;
             prescriptionDb.SubmitChanges();
 
-            return BillID;
+            //return BillID;
+            return 1;
         }
 
         public bool RemovePrescriptionByID(int PrescID)
