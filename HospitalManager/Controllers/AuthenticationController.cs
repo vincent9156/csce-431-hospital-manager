@@ -148,31 +148,33 @@ namespace HospitalManager.Controllers
                 // Log the user into their new account
                 SessionRep.Login(newUser);
 
-                // redirect to homepage
-                //return Redirect("/Home/UserLog/");
-
-                // redirect to billing info
-                return Redirect("/Authentication/AddBillingInfo");
+                // redirect to billing info if a Patient, else go to the homepage
+                if (newUser.TypeID == UserType.PatientTypeID)
+                    return Redirect("/Authentication/BillingInfo");
+                else
+                    return Redirect("/Home/UserLog");
             
         }
 
-        public ActionResult AddBillingInfo()
+        public ActionResult BillingInfo()
         {
-            if (!SessionRep.IsLoggedIn())
-                return Redirect("/Authentication/Login");
+            //if (!SessionRep.IsLoggedIn())
+            //    return Redirect("/Authentication/Login");
 
-            var billinfo = new UserBillingInfoViewModel();
-            // TODO: add the list of card providers to billinfo
+            var billinfo = new UserBillingInfoViewModel
+            {
+                CardProvider = BillInfoRep.GetCardProviders()
+            };
 
             return View(billinfo);
         }
 
         [HttpPost]
-        public ActionResult AddBillingInfo(UserBillingInfoViewModel billinfo)
+        public ActionResult BillingInfo(UserBillingInfoViewModel billinfo)
         {
-            if (!SessionRep.IsLoggedIn())
-                return Redirect("/Authentication/Login");
-
+            //if (!SessionRep.IsLoggedIn())
+            //    return Redirect("/Authentication/Login");
+            billinfo.CardProvider = BillInfoRep.GetCardProviders();
             if (!ModelState.IsValid)
             {
                 return View(billinfo);
@@ -189,9 +191,10 @@ namespace HospitalManager.Controllers
             info.SecurityCode = billinfo.SecurityCode;
             info.UserID = SessionRep.GetUser().UserID;
 
-            BillInfoRep.CreateBillingInfo(info);
+            return View(billinfo);
+            //BillInfoRep.CreateBillingInfo(info);
 
-            return Redirect("/");
+            //return Redirect("/");
         }
 
         public ActionResult ChangePassword()

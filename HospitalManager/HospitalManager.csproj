@@ -222,6 +222,7 @@
     <Content Include="Views\Appointment\Schedule.aspx" />
     <Content Include="Views\Appointment\SelectTime.aspx" />
     <Content Include="Views\Appointment\ViewPage1.aspx" />
+    <Content Include="Views\Authentication\BillingInfo.aspx" />
     <Content Include="Views\Authentication\ChangePassword.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\Authentication\RegisterUser.aspx" />
