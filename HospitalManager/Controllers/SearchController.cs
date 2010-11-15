@@ -23,16 +23,31 @@ namespace HospitalManager.Controllers
 
             if (firstName != "" && lastName != "")
             {
-                IQueryable<User> users = UserRep.GetUserByName(firstName, lastName);
+                User loggedInUser = SessRep.GetUser();
+
+                IQueryable<User> users;
+
+                // Get the list of users based on the permission of the person searching
+                if(loggedInUser.HasAccess(AccessOptions.SearchAllPatients))
+                {
+                    users = UserRep.GetUserByName(firstName, lastName, UserType.PatientTypeID);
+                }
+                else {
+                    // Currently gets all patients. TODO: Get only patients under the logged in user.
+                    users = UserRep.GetUserByName(firstName, lastName, UserType.PatientTypeID);
+                }
+
+                // Create a result list of (of UserViewModels) containing the found users
                 List<UserViewModel> userViewModels = new List<UserViewModel>();
                 foreach (var user in users)
                 {
                     userViewModels.Add(Mapper.Map<User, UserViewModel>(user));
                 }
 
+                // Load it all into a search view model
                 var vm = new SearchViewModel
                 {
-                    LoggedInUser = Mapper.Map<User, UserViewModel>(SessRep.GetUser()),
+                    LoggedInUser = Mapper.Map<User, UserViewModel>(loggedInUser),
                     SearchResults = userViewModels
                 };
                return View(vm);

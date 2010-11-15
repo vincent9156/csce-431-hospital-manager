@@ -62,6 +62,21 @@ namespace HospitalManager.Repositories
         }
 
         /**
+         * Get a queryable collection of users by their first, last name and user type
+         */
+        public IQueryable<User> GetUserByName(string firstName, string lastName, int userTypeID)
+        {
+            var result = from user in usersDb.Users
+                         where user.FirstName == firstName
+                            && user.LastName == lastName
+                            && user.UserType.TypeID == userTypeID
+                         select user;
+
+            // Return a queryable collection of users with the given names
+            return result;
+        }
+
+        /**
          * Add a user to the database, returning their user id
          */
         public int AddUser(User user)
