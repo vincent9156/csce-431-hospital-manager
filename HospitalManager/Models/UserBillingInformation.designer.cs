@@ -30,12 +30,12 @@ namespace HospitalManager.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertCreditCardInformation(CreditCardInformation instance);
-    partial void UpdateCreditCardInformation(CreditCardInformation instance);
-    partial void DeleteCreditCardInformation(CreditCardInformation instance);
     partial void InsertCardProvider(CardProvider instance);
     partial void UpdateCardProvider(CardProvider instance);
     partial void DeleteCardProvider(CardProvider instance);
+    partial void InsertCreditCardInformation(CreditCardInformation instance);
+    partial void UpdateCreditCardInformation(CreditCardInformation instance);
+    partial void DeleteCreditCardInformation(CreditCardInformation instance);
     #endregion
 		
 		public UserBillingInformationDatabase() : 
@@ -68,6 +68,14 @@ namespace HospitalManager.Models
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<CardProvider> CardProviders
+		{
+			get
+			{
+				return this.GetTable<CardProvider>();
+			}
+		}
+		
 		public System.Data.Linq.Table<CreditCardInformation> CreditCardInformations
 		{
 			get
@@ -75,13 +83,119 @@ namespace HospitalManager.Models
 				return this.GetTable<CreditCardInformation>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CardProvider")]
+	public partial class CardProvider : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		public System.Data.Linq.Table<CardProvider> CardProviders
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProviderID;
+		
+		private string _ProviderName;
+		
+		private EntitySet<CreditCardInformation> _CreditCardInformations;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProviderIDChanging(int value);
+    partial void OnProviderIDChanged();
+    partial void OnProviderNameChanging(string value);
+    partial void OnProviderNameChanged();
+    #endregion
+		
+		public CardProvider()
+		{
+			this._CreditCardInformations = new EntitySet<CreditCardInformation>(new Action<CreditCardInformation>(this.attach_CreditCardInformations), new Action<CreditCardInformation>(this.detach_CreditCardInformations));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ProviderID
 		{
 			get
 			{
-				return this.GetTable<CardProvider>();
+				return this._ProviderID;
 			}
+			set
+			{
+				if ((this._ProviderID != value))
+				{
+					this.OnProviderIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProviderID = value;
+					this.SendPropertyChanged("ProviderID");
+					this.OnProviderIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderName", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string ProviderName
+		{
+			get
+			{
+				return this._ProviderName;
+			}
+			set
+			{
+				if ((this._ProviderName != value))
+				{
+					this.OnProviderNameChanging(value);
+					this.SendPropertyChanging();
+					this._ProviderName = value;
+					this.SendPropertyChanged("ProviderName");
+					this.OnProviderNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CardProvider_CreditCardInformation", Storage="_CreditCardInformations", ThisKey="ProviderID", OtherKey="CardProviderID")]
+		public EntitySet<CreditCardInformation> CreditCardInformations
+		{
+			get
+			{
+				return this._CreditCardInformations;
+			}
+			set
+			{
+				this._CreditCardInformations.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CreditCardInformations(CreditCardInformation entity)
+		{
+			this.SendPropertyChanging();
+			entity.CardProvider = this;
+		}
+		
+		private void detach_CreditCardInformations(CreditCardInformation entity)
+		{
+			this.SendPropertyChanging();
+			entity.CardProvider = null;
 		}
 	}
 	
@@ -105,7 +219,7 @@ namespace HospitalManager.Models
 		
 		private string _BillingAddress;
 		
-		private System.Data.Linq.Binary _InsurancePolicyNumber;
+		private string _InsurancePolicyNumber;
 		
 		private string _InsuranceProviderName;
 		
@@ -129,7 +243,7 @@ namespace HospitalManager.Models
     partial void OnUserIDChanged();
     partial void OnBillingAddressChanging(string value);
     partial void OnBillingAddressChanged();
-    partial void OnInsurancePolicyNumberChanging(System.Data.Linq.Binary value);
+    partial void OnInsurancePolicyNumberChanging(string value);
     partial void OnInsurancePolicyNumberChanged();
     partial void OnInsuranceProviderNameChanging(string value);
     partial void OnInsuranceProviderNameChanged();
@@ -285,8 +399,8 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsurancePolicyNumber", DbType="VarBinary(50) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary InsurancePolicyNumber
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InsurancePolicyNumber", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string InsurancePolicyNumber
 		{
 			get
 			{
@@ -377,120 +491,6 @@ namespace HospitalManager.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CardProvider")]
-	public partial class CardProvider : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ProviderID;
-		
-		private string _ProviderName;
-		
-		private EntitySet<CreditCardInformation> _CreditCardInformations;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnProviderIDChanging(int value);
-    partial void OnProviderIDChanged();
-    partial void OnProviderNameChanging(string value);
-    partial void OnProviderNameChanged();
-    #endregion
-		
-		public CardProvider()
-		{
-			this._CreditCardInformations = new EntitySet<CreditCardInformation>(new Action<CreditCardInformation>(this.attach_CreditCardInformations), new Action<CreditCardInformation>(this.detach_CreditCardInformations));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ProviderID
-		{
-			get
-			{
-				return this._ProviderID;
-			}
-			set
-			{
-				if ((this._ProviderID != value))
-				{
-					this.OnProviderIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProviderID = value;
-					this.SendPropertyChanged("ProviderID");
-					this.OnProviderIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderName", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string ProviderName
-		{
-			get
-			{
-				return this._ProviderName;
-			}
-			set
-			{
-				if ((this._ProviderName != value))
-				{
-					this.OnProviderNameChanging(value);
-					this.SendPropertyChanging();
-					this._ProviderName = value;
-					this.SendPropertyChanged("ProviderName");
-					this.OnProviderNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CardProvider_CreditCardInformation", Storage="_CreditCardInformations", ThisKey="ProviderID", OtherKey="CardProviderID")]
-		public EntitySet<CreditCardInformation> CreditCardInformations
-		{
-			get
-			{
-				return this._CreditCardInformations;
-			}
-			set
-			{
-				this._CreditCardInformations.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_CreditCardInformations(CreditCardInformation entity)
-		{
-			this.SendPropertyChanging();
-			entity.CardProvider = this;
-		}
-		
-		private void detach_CreditCardInformations(CreditCardInformation entity)
-		{
-			this.SendPropertyChanging();
-			entity.CardProvider = null;
 		}
 	}
 }
