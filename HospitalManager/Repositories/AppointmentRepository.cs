@@ -85,7 +85,7 @@ namespace HospitalManager.Repositories
         }
 
         //Return a queryable list of doctor appointments
-        public IQueryable<VWPatientsByDoctor> GetDoctorAppointments(int DoctorID)
+        public IQueryable<VWPatientsByDoctor> GetDoctorPatients(int DoctorID)
         {
             var result = from d in _Appdb.VWPatientsByDoctors
                          where d.DoctorID == DoctorID
