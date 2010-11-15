@@ -149,12 +149,18 @@ namespace HospitalManager.Controllers
                 SessionRep.Login(newUser);
 
                 // redirect to homepage
-                return Redirect("/Home/UserLog/");
+                //return Redirect("/Home/UserLog/");
+
+                // redirect to billing info
+                return Redirect("/Authentication/AddBillingInfo");
             
         }
 
         public ActionResult AddBillingInfo()
         {
+            if (!SessionRep.IsLoggedIn())
+                return Redirect("/Authentication/Login");
+
             var billinfo = new UserBillingInfoViewModel();
 
             return View(billinfo);
@@ -163,6 +169,9 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult AddBillingInfo(UserBillingInfoViewModel billinfo)
         {
+            if (!SessionRep.IsLoggedIn())
+                return Redirect("/Authentication/Login");
+
             if (!ModelState.IsValid)
             {
                 return View(billinfo);
