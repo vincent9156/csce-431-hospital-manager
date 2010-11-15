@@ -19,7 +19,7 @@ namespace HospitalManager.Controllers
         CurrentMedicalHistoryRepository histRep = new CurrentMedicalHistoryRepository();
         SessionRepository sessRep = new SessionRepository();
         UserRepository userRep = new UserRepository();
-
+        AppointmentRepository apptRep = new AppointmentRepository();
         User user;
 
         /**
@@ -50,9 +50,14 @@ namespace HospitalManager.Controllers
                 return Redirect("/Home");
             
             // Checks if they are a doctor or if they are viewing their own history 
-            // (assumes that anyone who can view medical histories can also edit)
             if (!sessRep.GetUser().HasAccess(AccessOptions.ViewPastMedicalHistories) || !(sessRep.GetUser().HasAccess(AccessOptions.EditOwnMedicalHistory) && (sessRep.GetUser().UserID == UserId)))
                 return Redirect("/Home");
+
+            // if the user is a doctor, check to make sure the doctor is looking at the doctor's patient
+            if (sessRep.GetUser().TypeID == 2 && !apptRep.isDoctorsPatient(sessRep.GetUser().UserID, UserId))
+            {
+                return Redirect("/Home");
+            }
 
             var vm = new CurrentMedicalHistoriesViewModel
             {
@@ -70,19 +75,16 @@ namespace HospitalManager.Controllers
             // if they have not selected a user, send back to the home page
             if (UserId == -1)
                 return Redirect("/Home");
-            
-            // make sure they have permission to add a visit (assumes that anyone who can view medical histories can also edit)
-            if (!sessRep.GetUser().HasAccess(AccessOptions.ViewPastMedicalHistories))
+
+            // make sure they have permission to add a visit then check to make sure doctor is looking at the doctor's patient
+            if (!sessRep.GetUser().HasAccess(AccessOptions.ViewPastMedicalHistories) || !apptRep.isDoctorsPatient(sessRep.GetUser().UserID, UserId))
                 return Redirect("/Home");
-            
-            // check if doctor or nurse
-            // do work here
             
             // get date
             DateTime dt = DateTime.Now; 
             
 
-            // Fill in basic information about the Date and UserID (this is key for database)
+            // Fill in basic information about the Date and UserID
             var vm = new CurrentMedicalHistory
             {
                 UserID = UserId,
@@ -120,6 +122,12 @@ namespace HospitalManager.Controllers
  
             // Return them to home
             return Redirect("/CurrentMedicalHistory/Index?UserId="+m.UserID);
+        }
+
+        private bool checkPatient(int UserId)
+        {
+            
+            return true;
         }
 
 
