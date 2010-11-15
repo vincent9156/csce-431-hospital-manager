@@ -159,6 +159,7 @@
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UpdateMedicalHistoryViewModel.cs" />
+    <Compile Include="ViewModels\UserBillingInfoViewModel.cs" />
     <Compile Include="ViewModels\UserRegistrationViewModel.cs" />
     <Compile Include="ViewModels\UserTypesViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />

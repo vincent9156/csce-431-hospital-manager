@@ -42,7 +42,7 @@ namespace HospitalManager.Repositories
         /**
          * Create a user's billing information
          */
-        void CreateBillingInfo(CreditCardInformation info)
+        public void CreateBillingInfo(CreditCardInformation info)
         {
             infoDb.CreditCardInformations.InsertOnSubmit(info);
             infoDb.SubmitChanges();
