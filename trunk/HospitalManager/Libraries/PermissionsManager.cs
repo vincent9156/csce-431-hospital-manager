@@ -28,6 +28,9 @@ namespace HospitalManager.Libraries
         // Can this user write prescriptions?
         CanWritePrescriptions = 0x10,
 
+        // Can this user fill prescriptions?
+        FillPrescriptsions = 0x20;
+
         // Can this user search all patients?
         SearchAllPatients = 0x40,
 
