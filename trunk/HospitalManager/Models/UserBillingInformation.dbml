@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HospitalManagerDB" Class="UserBillingInformationDatabase" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\HospitalManagerDB.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HospitalManagerDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CardProvider" Member="CardProviders">
+    <Type Name="CardProvider">
+      <Column Name="ProviderID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProviderName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="CardProvider_CreditCardInformation" Member="CreditCardInformations" ThisKey="ProviderID" OtherKey="CardProviderID" Type="CreditCardInformation" />
+    </Type>
+  </Table>
   <Table Name="dbo.CreditCardInformation" Member="CreditCardInformations">
     <Type Name="CreditCardInformation">
       <Column Name="CardProviderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -9,16 +16,9 @@
       <Column Name="ExpirationYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="BillingAddress" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="InsurancePolicyNumber" Type="System.Data.Linq.Binary" DbType="VarBinary(50) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="InsurancePolicyNumber" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="InsuranceProviderName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="CardProvider_CreditCardInformation" Member="CardProvider" ThisKey="CardProviderID" OtherKey="ProviderID" Type="CardProvider" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CardProvider" Member="CardProviders">
-    <Type Name="CardProvider">
-      <Column Name="ProviderID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ProviderName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="CardProvider_CreditCardInformation" Member="CreditCardInformations" ThisKey="ProviderID" OtherKey="CardProviderID" Type="CreditCardInformation" />
     </Type>
   </Table>
 </Database>
