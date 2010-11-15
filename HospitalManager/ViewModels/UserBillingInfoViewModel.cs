@@ -26,9 +26,11 @@ namespace HospitalManager.ViewModels
         public int CardProviderID { get; set; }
 
         [Required]
+        [Range(1, 12, ErrorMessage="Invalid Month")]
         public int ExpMonth { get; set; }
 
         [Required]
+        [Range(2010, Int32.MaxValue, ErrorMessage="Invalid Year")]
         public int ExpYear { get; set; }
 
         [Required]
