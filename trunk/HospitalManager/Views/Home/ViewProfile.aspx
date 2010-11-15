@@ -11,6 +11,11 @@
     <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
     <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
 
+    <%-- this should probably have it's own permissions, but this works for now --%>
+    <% if (Model.HasAccess(AccessOptions.RegisterWithoutStaffID))
+       { %>
+        <%= Html.ActionLink("Change Billing Information", "BillingInfo", "Authentication")%>
+    <% } %>
     <%= Html.ActionLink("Change Password", "ChangePassword", "Authentication") %>
 
     <% Html.EnableClientValidation(); %>

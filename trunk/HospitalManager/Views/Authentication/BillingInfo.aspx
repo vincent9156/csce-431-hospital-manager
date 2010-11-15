@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<HospitalManager.ViewModels.UserBillingInfoViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	BillingInfo
+	Billing Information
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div id="main_body">
 <div id="body">
-    <h2>BillingInfo</h2>
+    <h2>Billing Information</h2>
 
     <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
     <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
@@ -58,7 +58,7 @@
                     <td><%= Html.ValidationMessageFor(m => m.ProviderName) %></td>
                 </tr>
             </table>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Save" />
             </fieldset>
 
     <% } %>
