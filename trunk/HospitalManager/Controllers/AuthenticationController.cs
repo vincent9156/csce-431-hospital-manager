@@ -162,6 +162,7 @@ namespace HospitalManager.Controllers
                 return Redirect("/Authentication/Login");
 
             var billinfo = new UserBillingInfoViewModel();
+            // TODO: add the list of card providers to billinfo
 
             return View(billinfo);
         }
@@ -180,8 +181,7 @@ namespace HospitalManager.Controllers
             var info = new CreditCardInformation();
             info.BillingAddress = billinfo.Address;
             info.CardNumber = billinfo.CardNumber;
-            //info.CardProvider = billinfo.CardProv;
-            info.CardProviderID = billinfo.CardProvID;
+            info.CardProviderID = billinfo.CardProviderID;
             info.ExpirationMonth = billinfo.ExpMonth;
             info.ExpirationYear = billinfo.ExpYear;
             info.InsurancePolicyNumber = billinfo.PolicyNum;
