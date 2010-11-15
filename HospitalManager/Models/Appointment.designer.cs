@@ -80,6 +80,14 @@ namespace HospitalManager.Models
 				return this.GetTable<VWAppointments>();
 			}
 		}
+		
+		public System.Data.Linq.Table<VWPatientsByDoctor> VWPatientsByDoctors
+		{
+			get
+			{
+				return this.GetTable<VWPatientsByDoctor>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Appointments")]
@@ -342,6 +350,123 @@ namespace HospitalManager.Models
 				if ((this._Time != value))
 				{
 					this._Time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientFirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string PatientFirstName
+		{
+			get
+			{
+				return this._PatientFirstName;
+			}
+			set
+			{
+				if ((this._PatientFirstName != value))
+				{
+					this._PatientFirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientLastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string PatientLastName
+		{
+			get
+			{
+				return this._PatientLastName;
+			}
+			set
+			{
+				if ((this._PatientLastName != value))
+				{
+					this._PatientLastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorFirstName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string DoctorFirstName
+		{
+			get
+			{
+				return this._DoctorFirstName;
+			}
+			set
+			{
+				if ((this._DoctorFirstName != value))
+				{
+					this._DoctorFirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorLastName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string DoctorLastName
+		{
+			get
+			{
+				return this._DoctorLastName;
+			}
+			set
+			{
+				if ((this._DoctorLastName != value))
+				{
+					this._DoctorLastName = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VWPatientsByDoctors")]
+	public partial class VWPatientsByDoctor
+	{
+		
+		private int _UserID;
+		
+		private int _DoctorID;
+		
+		private string _PatientFirstName;
+		
+		private string _PatientLastName;
+		
+		private string _DoctorFirstName;
+		
+		private string _DoctorLastName;
+		
+		public VWPatientsByDoctor()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+		public int UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorID", DbType="Int NOT NULL")]
+		public int DoctorID
+		{
+			get
+			{
+				return this._DoctorID;
+			}
+			set
+			{
+				if ((this._DoctorID != value))
+				{
+					this._DoctorID = value;
 				}
 			}
 		}

@@ -2,16 +2,22 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Appointment">
   <DataContextMoniker Name="/AppointmentDataContext" />
   <nestedChildShapes>
-    <classShape Id="a03f7f18-787a-47ee-b59c-cc4a52f05a15" absoluteBounds="4.75, 2, 2, 1.7708968098958331">
+    <classShape Id="a03f7f18-787a-47ee-b59c-cc4a52f05a15" absoluteBounds="4.75, 2, 2, 1.5891951497395831">
       <DataClassMoniker Name="/AppointmentDataContext/Appointment" />
       <nestedChildShapes>
-        <elementListCompartment Id="154e2f09-6ad2-426a-a46b-0700b9b51863" absoluteBounds="4.765, 2.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="154e2f09-6ad2-426a-a46b-0700b9b51863" absoluteBounds="4.765, 2.46, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="769bdc6e-8f6b-4d1d-810c-96e610ffc779" absoluteBounds="1.25, 1.5, 2, 2.5401025390625">
+    <classShape Id="769bdc6e-8f6b-4d1d-810c-96e610ffc779" absoluteBounds="1.25, 1.5, 2, 2.24658447265625">
       <DataClassMoniker Name="/AppointmentDataContext/VWAppointments" />
       <nestedChildShapes>
-        <elementListCompartment Id="591802bf-1ce1-471b-a2fa-2e72403d77ab" absoluteBounds="1.2650000000000001, 1.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="591802bf-1ce1-471b-a2fa-2e72403d77ab" absoluteBounds="1.2650000000000001, 1.96, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a88055e0-66a6-45bd-a8b9-9e935ce74886" absoluteBounds="2.25, 5.125, 2, 1.75354248046875">
+      <DataClassMoniker Name="/AppointmentDataContext/VWPatientsByDoctor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a2fd8f8d-b036-46d2-a11c-a1ea428b7765" absoluteBounds="2.265, 5.585, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

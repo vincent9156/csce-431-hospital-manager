@@ -44,8 +44,6 @@ namespace HospitalManager.Repositories
                 return result;
         }
 
-      
-
         public Appointment GetAppointmentByAppointmentID(int id)
         {
             var result = from d in _Appdb.Appointments
@@ -84,6 +82,16 @@ namespace HospitalManager.Repositories
                          select d.Time;
 
             return result.ToList();
+        }
+
+        //Return a queryable list of doctor appointments
+        public IQueryable<VWPatientsByDoctor> GetDoctorAppointments(int DoctorID)
+        {
+            var result = from d in _Appdb.VWPatientsByDoctors
+                         where d.DoctorID == DoctorID
+                         select d;
+
+            return result;
         }
     }
 }
