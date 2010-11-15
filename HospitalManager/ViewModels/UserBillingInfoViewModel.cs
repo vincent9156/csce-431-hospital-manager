@@ -12,6 +12,10 @@ namespace HospitalManager.ViewModels
 
         public int SecurityCode { get; set; }
 
+        public string CardProv { get; set; }
+
+        public int CardProvID { get; set; }
+
         public int ExpMonth { get; set; }
 
         public int ExpYear { get; set; }

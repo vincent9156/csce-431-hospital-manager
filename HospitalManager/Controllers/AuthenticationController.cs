@@ -15,11 +15,13 @@ namespace HospitalManager.Controllers
     {
         UserRepository UserRep;
         SessionRepository SessionRep;
+        BillingInformationRepository BillInfoRep;
 
         public AuthenticationController()
         {
             UserRep = new UserRepository();
             SessionRep = new SessionRepository();
+            BillInfoRep = new BillingInformationRepository();
         }
 
         // GET: /Authentication/
@@ -149,6 +151,38 @@ namespace HospitalManager.Controllers
                 // redirect to homepage
                 return Redirect("/Home/UserLog/");
             
+        }
+
+        public ActionResult AddBillingInfo()
+        {
+            var billinfo = new UserBillingInfoViewModel();
+
+            return View(billinfo);
+        }
+
+        [HttpPost]
+        public ActionResult AddBillingInfo(UserBillingInfoViewModel billinfo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(billinfo);
+            }
+
+            var info = new CreditCardInformation();
+            info.BillingAddress = billinfo.Address;
+            info.CardNumber = billinfo.CardNumber;
+            //info.CardProvider = billinfo.CardProv;
+            info.CardProviderID = billinfo.CardProvID;
+            info.ExpirationMonth = billinfo.ExpMonth;
+            info.ExpirationYear = billinfo.ExpYear;
+            info.InsurancePolicyNumber = billinfo.PolicyNum;
+            info.InsuranceProviderName = billinfo.ProviderName;
+            info.SecurityCode = billinfo.SecurityCode;
+            info.UserID = SessionRep.GetUser().UserID;
+
+            BillInfoRep.CreateBillingInfo(info);
+
+            return Redirect("/");
         }
 
         public ActionResult ChangePassword()
