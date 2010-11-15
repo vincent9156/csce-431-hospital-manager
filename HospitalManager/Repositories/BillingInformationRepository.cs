@@ -11,17 +11,24 @@ namespace HospitalManager.Repositories
         UserBillingInformationDatabase infoDb = new UserBillingInformationDatabase();
 
         /**
-         * Get the credit card information for a user
+         * Get the credit card information for a user (return null if no info exists)
          */
-        CreditCardInformation GetCreditCardInfo(int UserID)
+        public CreditCardInformation GetCreditCardInfo(int UserID)
         {
-            return infoDb.CreditCardInformations.Single(u => u.UserID == UserID);
+            try
+            {
+                return infoDb.CreditCardInformations.Single(u => u.UserID == UserID);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /**
          * Edit a user's billing information
          */
-        void EditBillingInfo(CreditCardInformation info)
+        public void EditBillingInfo(CreditCardInformation info)
         {
             var result = (from dbInfo in infoDb.CreditCardInformations
                           where dbInfo.UserID == info.UserID

@@ -156,24 +156,47 @@ namespace HospitalManager.Controllers
             
         }
 
+        /**
+         * Start collecting the billing information for a user.
+         * Only Patients should be able to access this.
+         * Handles adding and editing.
+         */
         public ActionResult BillingInfo()
         {
-            //if (!SessionRep.IsLoggedIn())
-            //    return Redirect("/Authentication/Login");
+            if (!SessionRep.IsLoggedIn() || (SessionRep.GetUser().TypeID != UserType.PatientTypeID))
+                return Redirect("/Authentication/Login");
 
             var billinfo = new UserBillingInfoViewModel
             {
                 CardProvider = BillInfoRep.GetCardProviders()
             };
+            var creditinfo = BillInfoRep.GetCreditCardInfo(SessionRep.GetUser().UserID);
+
+            // billing info already exists, the user is trying to edit it
+            // this means we need to load their data to pass to the view
+            if (creditinfo != null)
+            {
+                billinfo.Address = creditinfo.BillingAddress;
+                billinfo.CardNumber = creditinfo.CardNumber;
+                billinfo.CardProviderID = creditinfo.CardProviderID;
+                billinfo.ExpMonth = creditinfo.ExpirationMonth;
+                billinfo.ExpYear = creditinfo.ExpirationYear;
+                billinfo.PolicyNum = creditinfo.InsurancePolicyNumber;
+                billinfo.ProviderName = creditinfo.InsuranceProviderName;
+                billinfo.SecurityCode = creditinfo.SecurityCode;
+            }
 
             return View(billinfo);
         }
 
+        /**
+         * Finish adding/editing billing info for a user
+         */
         [HttpPost]
         public ActionResult BillingInfo(UserBillingInfoViewModel billinfo)
         {
-            //if (!SessionRep.IsLoggedIn())
-            //    return Redirect("/Authentication/Login");
+            if (!SessionRep.IsLoggedIn() || (SessionRep.GetUser().TypeID != UserType.PatientTypeID))
+                return Redirect("/Authentication/Login");
             billinfo.CardProvider = BillInfoRep.GetCardProviders();
             if (!ModelState.IsValid)
             {
@@ -191,12 +214,23 @@ namespace HospitalManager.Controllers
             info.SecurityCode = billinfo.SecurityCode;
             info.UserID = SessionRep.GetUser().UserID;
 
-            return View(billinfo);
-            //BillInfoRep.CreateBillingInfo(info);
-
-            //return Redirect("/");
+            // if the billing info already exists, edit it and show the results on the same page
+            // otherwise, create it and go to the user's homepage
+            if (BillInfoRep.GetCreditCardInfo(SessionRep.GetUser().UserID) != null)
+            {
+                BillInfoRep.EditBillingInfo(info);
+                return View(billinfo);
+            }
+            else
+            {
+                BillInfoRep.CreateBillingInfo(info);
+                return Redirect("/Home/Userlog");
+            }
         }
 
+        /**
+         * Start changing a user's password
+         */
         public ActionResult ChangePassword()
         {
             if (!SessionRep.IsLoggedIn())
@@ -205,6 +239,9 @@ namespace HospitalManager.Controllers
             return View("ChangePassword", pass);
         }
 
+        /**
+         * Validate and change the user's password
+         */
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordViewModel pass)
         {
