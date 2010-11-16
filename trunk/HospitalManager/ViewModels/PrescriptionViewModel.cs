@@ -19,7 +19,8 @@ namespace HospitalManager.ViewModels
         public string Instructions { get; set; }
 
         public int PharmacistID { get; set; }
-        public string FillStatus { get; set; }
+        public int FillStatus { get; set; }
+        public string FillStatusLabel { get; set; }
 
         public string PharmacistName { get; set; }
         public string PatientName { get; set; }

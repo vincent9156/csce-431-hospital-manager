@@ -160,10 +160,6 @@ namespace HospitalManager.Repositories
             if (result.Count() == 0)
                 return 0;
 
-            //the prescription is not assigned to a pharmacist
-            if(result.First().PharmacistID == 0)
-                return 0;
-
             //bill patient for prescription since pharmacist is filling it
             //PrescriptionBill PresBill = new PrescriptionBill();
             //PresBill.Amount = result.First().GetCost();

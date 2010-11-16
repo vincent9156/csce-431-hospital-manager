@@ -72,6 +72,9 @@
                 <td>
                     <%=Html.ActionLink("Write Prescription", "WritePrescription", "Prescription", new { id = item.UserID }, null)%>
                 </td>
+                <td>
+                    <%=Html.ActionLink("View Prescriptions", "UserPrescriptions", "Prescription", new { id = item.UserID }, null)%>
+                </td>
             </tr>
 
         <% } %>

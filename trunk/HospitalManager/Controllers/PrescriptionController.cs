@@ -107,8 +107,8 @@ namespace HospitalManager.Controllers
             User patient = user.GetUserByUserID(pres.DoctorUserID);
             vm.DoctorName = patient.FirstName + " " + patient.LastName;
             if (pres.FillStatus == 1)
-                vm.FillStatus = "Filled";
-            else vm.FillStatus = "Not Filled";
+                vm.FillStatusLabel = "Filled";
+            else vm.FillStatusLabel = "Not Filled";
 
             vm.MedicationName = presRep.GetMedicationNameByID(pres.MedicationID);         
 
@@ -183,6 +183,24 @@ namespace HospitalManager.Controllers
             bool result = presRep.AssignPrescriptionToPharmacist(vm.PharmacistID, presc);
 
             return Redirect("/Prescription/Index/");
+        }
+
+        public ActionResult UserPrescriptions(int id)
+        {
+            IQueryable<Prescription> pres = presRep.GetAllPrescriptionsByUserID(id);
+            List<PrescriptionViewModel> PrescriptionViewModels = new List<PrescriptionViewModel>();
+            if (pres == null)
+                return View();
+            foreach (var pre in pres)
+            {
+                PrescriptionViewModels.Add(Mapper.Map<Prescription, PrescriptionViewModel>(pre));
+            }
+            var vm = new PrescriptionViewModel
+            {
+                SearchResults = PrescriptionViewModels
+            };
+            return View(vm);
+
         }
 
     }
