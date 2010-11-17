@@ -49,6 +49,21 @@ namespace HospitalManager.Controllers
         }
 
         /**
+         * Show the user their own medical history
+         */
+        public ActionResult ViewUserHistory(int id)
+        {
+            if (!sessRep.IsLoggedIn())
+                return Redirect("/Authentication/Login");
+
+            if (!user.HasAccess(AccessOptions.ViewPastMedicalHistories))
+                return Redirect("/");
+
+            PastMedicalHistory history = histRep.GetPastMedicalHistory(new User { UserID = id });
+            return View(history);
+        }
+
+        /**
          * Allow the user to edit their medical history
          */
         public ActionResult Edit()
