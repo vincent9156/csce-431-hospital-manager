@@ -191,9 +191,10 @@ namespace HospitalManager.Repositories
         {
 
             // Make sure the family member does not already have the condition
-            var assigned = from cond in histDb.PatientConditions
+            var assigned = from cond in histDb.FamilyConditions
                          where cond.ConditionID == conditionID &&
-                               cond.UserID == user.UserID
+                               cond.UserID == user.UserID &&
+                               cond.FamilyMemberID == memberID
                          select cond;
 
             // Do the data checks
@@ -264,16 +265,56 @@ namespace HospitalManager.Repositories
             return true;
         }
 
+        /**
+         * Get a patient's conditions
+         */
+        public List<PatientCondition> GetPatientConditions(int userID)
+        {
+            return (from condition in histDb.PatientConditions
+                    where condition.UserID == userID
+                    select condition).ToList();
+        }
+
+        /**
+         * Get a patient's other conditions
+         */
+        public List<OtherPatientCondition> GetOtherPatientConditions(int userID)
+        {
+            return (from condition in histDb.OtherPatientConditions
+                    where condition.UserID == userID
+                    select condition).ToList();
+        }
+
+        /**
+         * Get a user's family's conditions
+         */
+        public List<FamilyCondition> GetFamilyConditions(int userID)
+        {
+            return (from condition in histDb.FamilyConditions
+                    where condition.UserID == userID
+                    select condition).ToList();
+        }
+
+        /**
+         * Get a user's family's other conditions
+         */
+        public List<OtherFamilyCondition> GetOtherFamilyConditions(int userID)
+        {
+            return (from condition in histDb.OtherFamilyConditions
+                    where condition.UserID == userID
+                    select condition).ToList();
+        }
+
 
         /** Private utility methods for validation purposes **/
-
 
         private bool MedicalConditionExists(int conditionID)
         {
             var conds = from cond in histDb.MedicalConditions
                         where cond.ConditionID == conditionID
                         select cond;
-            return conds.Count() != 0;
+            bool result = conds.Count() != 0;
+            return result;
         }
 
         private bool FamilyMemberExists(int memberID)
@@ -281,7 +322,8 @@ namespace HospitalManager.Repositories
             var members = from member in histDb.FamilyMembers
                           where member.FamilyMemberID == memberID
                           select member;
-            return members.Count() != 0;
+            bool result = members.Count() != 0;
+            return result;
         }
     }
 }
