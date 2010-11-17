@@ -22,8 +22,8 @@
             DateTime m = new DateTime(2010, i, 1);
             SelectListItem li = new SelectListItem
             {
-                Text = m.ToString("MMM"),
-                Value = m.ToString("MM")
+                Text = m.ToString("%M"),
+                Value = m.ToString("%M")
             };
             if (Model.ExpMonth == i)
                 li.Selected = true;
@@ -70,7 +70,8 @@
                 </tr>
                 <tr>
                     <td>Billing Address</td>
-                    <td><%= Html.TextBoxFor(m => m.Address) %></td>
+                    
+                    <td><%= Html.TextAreaFor(m => m.Address, 2, 20, null) %></td>
                     <td><%= Html.ValidationMessageFor(m => m.Address) %></td>
                 </tr>
                 <tr>
