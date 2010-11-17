@@ -214,12 +214,12 @@ namespace HospitalManager.Controllers
             info.SecurityCode = billinfo.SecurityCode;
             info.UserID = SessionRep.GetUser().UserID;
 
-            // if the billing info already exists, edit it and show the results on the same page
+            // if the billing info already exists, edit it and return to their profile edit page
             // otherwise, create it and go to the user's homepage
             if (BillInfoRep.GetCreditCardInfo(SessionRep.GetUser().UserID) != null)
             {
                 BillInfoRep.EditBillingInfo(info);
-                return View(billinfo);
+                return Redirect("/Home/ViewProfile");
             }
             else
             {
