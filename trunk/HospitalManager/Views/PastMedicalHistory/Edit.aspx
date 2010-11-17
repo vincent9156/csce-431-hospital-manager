@@ -130,7 +130,9 @@
             <% } %>
 
         <% } %>
+        <br />
 
+        <h3>Other Family Conditions</h3>
         <% foreach(OtherFamilyCondition cond in Model.UserHistory.OtherFamilyConditions) { %>
             <b><%= cond.FamilyMembers.MemberName %></b> - <%= cond.Condition %>
             [<a href="/PastMedicalHistory/RemoveOtherFamilyCondition/<%= cond.OtherConditionID %>">Remove</a>]
@@ -138,6 +140,8 @@
         <% } %>
 
         <br />
+
+
         <h4>Add Family Condition</h4>
         <% using (Html.BeginForm("AddFamilyCondition", "PastMedicalHistory")) { %>
 
