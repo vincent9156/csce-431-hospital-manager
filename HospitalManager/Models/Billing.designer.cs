@@ -22,6 +22,7 @@ namespace HospitalManager.Models
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="HospitalManagerDB")]
 	public partial class BillingDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -35,6 +36,9 @@ namespace HospitalManager.Models
     partial void InsertPrescriptionBill(PrescriptionBill instance);
     partial void UpdatePrescriptionBill(PrescriptionBill instance);
     partial void DeletePrescriptionBill(PrescriptionBill instance);
+    partial void InsertCancellationBill(CancellationBill instance);
+    partial void UpdateCancellationBill(CancellationBill instance);
+    partial void DeleteCancellationBill(CancellationBill instance);
     #endregion
 		
 		public BillingDataContext() : 
@@ -80,6 +84,14 @@ namespace HospitalManager.Models
 			get
 			{
 				return this.GetTable<PrescriptionBill>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CancellationBill> CancellationBills
+		{
+			get
+			{
+				return this.GetTable<CancellationBill>();
 			}
 		}
 	}
@@ -409,6 +421,236 @@ namespace HospitalManager.Models
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Paid", DbType="Byte NOT NULL")]
 		public byte Paid
+		{
+			get
+			{
+				return this._Paid;
+			}
+			set
+			{
+				if ((this._Paid != value))
+				{
+					this.OnPaidChanging(value);
+					this.SendPropertyChanging();
+					this._Paid = value;
+					this.SendPropertyChanged("Paid");
+					this.OnPaidChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CancellationBill")]
+	public partial class CancellationBill : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _BillID;
+		
+		private double _Amount;
+		
+		private int _UserID;
+		
+		private int _DoctorID;
+		
+		private System.DateTime _BillDate;
+		
+		private System.DateTime _AppDate;
+		
+		private string _FeeType;
+		
+		private bool _Paid;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBillIDChanging(int value);
+    partial void OnBillIDChanged();
+    partial void OnAmountChanging(double value);
+    partial void OnAmountChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnDoctorIDChanging(int value);
+    partial void OnDoctorIDChanged();
+    partial void OnBillDateChanging(System.DateTime value);
+    partial void OnBillDateChanged();
+    partial void OnAppDateChanging(System.DateTime value);
+    partial void OnAppDateChanged();
+    partial void OnFeeTypeChanging(string value);
+    partial void OnFeeTypeChanged();
+    partial void OnPaidChanging(bool value);
+    partial void OnPaidChanged();
+    #endregion
+		
+		public CancellationBill()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int BillID
+		{
+			get
+			{
+				return this._BillID;
+			}
+			set
+			{
+				if ((this._BillID != value))
+				{
+					this.OnBillIDChanging(value);
+					this.SendPropertyChanging();
+					this._BillID = value;
+					this.SendPropertyChanged("BillID");
+					this.OnBillIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Float NOT NULL")]
+		public double Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+		public int UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorID", DbType="Int NOT NULL")]
+		public int DoctorID
+		{
+			get
+			{
+				return this._DoctorID;
+			}
+			set
+			{
+				if ((this._DoctorID != value))
+				{
+					this.OnDoctorIDChanging(value);
+					this.SendPropertyChanging();
+					this._DoctorID = value;
+					this.SendPropertyChanged("DoctorID");
+					this.OnDoctorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillDate", DbType="Date NOT NULL")]
+		public System.DateTime BillDate
+		{
+			get
+			{
+				return this._BillDate;
+			}
+			set
+			{
+				if ((this._BillDate != value))
+				{
+					this.OnBillDateChanging(value);
+					this.SendPropertyChanging();
+					this._BillDate = value;
+					this.SendPropertyChanged("BillDate");
+					this.OnBillDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppDate", DbType="Date NOT NULL")]
+		public System.DateTime AppDate
+		{
+			get
+			{
+				return this._AppDate;
+			}
+			set
+			{
+				if ((this._AppDate != value))
+				{
+					this.OnAppDateChanging(value);
+					this.SendPropertyChanging();
+					this._AppDate = value;
+					this.SendPropertyChanged("AppDate");
+					this.OnAppDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeType", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string FeeType
+		{
+			get
+			{
+				return this._FeeType;
+			}
+			set
+			{
+				if ((this._FeeType != value))
+				{
+					this.OnFeeTypeChanging(value);
+					this.SendPropertyChanging();
+					this._FeeType = value;
+					this.SendPropertyChanged("FeeType");
+					this.OnFeeTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Paid", DbType="Bit NOT NULL")]
+		public bool Paid
 		{
 			get
 			{

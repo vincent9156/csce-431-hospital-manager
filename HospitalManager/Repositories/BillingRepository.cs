@@ -129,6 +129,53 @@ namespace HospitalManager.Repositories
             return result;
         }
 
+        public void BillCancellation(CancellationBill bill)
+        {
+            _Billdb.CancellationBills.InsertOnSubmit(bill);
+            _Billdb.SubmitChanges();
+        }
+
+        public CancellationBill GetCancellationBillByID(int BillID)
+        {
+            var result = from b in _Billdb.CancellationBills
+                         where b.BillID == BillID
+                         select b;
+            // Just return null if we get no results
+            if (result.Count() == 0)
+                return null;
+
+            return (result.First());
+
+        }
+
+        public IQueryable<CancellationBill> GetAllCancellationBillsByDoctor(int DoctorID)
+        {
+
+
+            var result = from b in _Billdb.CancellationBills
+                     where b.DoctorID == DoctorID
+                     select b;
+            
+
+            if (result.Count() == 0)
+                return null;
+
+            return result;
+        }
+
+        public IQueryable<CancellationBill> GetAllCancellationBillsByUser(int UserID)
+        {
+
+            var result = from b in _Billdb.CancellationBills
+                         where b.DoctorID == UserID
+                         select b;
+
+            if (result.Count() == 0)
+                return null;
+
+            return result;
+        }
+
         public bool RemoveBillByID(int BillID)
         {
             Bill bill = GetBillByID(BillID);
