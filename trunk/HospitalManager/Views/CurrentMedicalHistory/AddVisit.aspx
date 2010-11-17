@@ -31,6 +31,19 @@
             <%: Html.TextBoxFor(model => model.Diagnosis) %>
         </p>
 
+
+        <p>
+            Tests Run<br />
+            <%: Html.TextBoxFor(model => model.TestsRUN) %>
+        </p>
+
+        <p>
+            Total Fee Amount ($$) <br />
+            <%: Html.TextBoxFor(model => model.TotalFeeAmount) %>
+        </p>
+
+
+
         <p>
             <input type="submit" value="Add Visit" />
         </p>

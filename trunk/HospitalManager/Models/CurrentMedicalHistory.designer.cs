@@ -96,6 +96,10 @@ namespace HospitalManager.Models
 		
 		private int _UserID;
 		
+		private string _TestsRUN;
+		
+		private System.Nullable<decimal> _TotalFeeAmount;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -116,6 +120,10 @@ namespace HospitalManager.Models
     partial void OnDiagnosisChanged();
     partial void OnUserIDChanging(int value);
     partial void OnUserIDChanged();
+    partial void OnTestsRUNChanging(string value);
+    partial void OnTestsRUNChanged();
+    partial void OnTotalFeeAmountChanging(System.Nullable<decimal> value);
+    partial void OnTotalFeeAmountChanged();
     #endregion
 		
 		public CurrentMedicalHistory()
@@ -279,6 +287,46 @@ namespace HospitalManager.Models
 					this._UserID = value;
 					this.SendPropertyChanged("UserID");
 					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestsRUN", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string TestsRUN
+		{
+			get
+			{
+				return this._TestsRUN;
+			}
+			set
+			{
+				if ((this._TestsRUN != value))
+				{
+					this.OnTestsRUNChanging(value);
+					this.SendPropertyChanging();
+					this._TestsRUN = value;
+					this.SendPropertyChanged("TestsRUN");
+					this.OnTestsRUNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalFeeAmount", DbType="Money")]
+		public System.Nullable<decimal> TotalFeeAmount
+		{
+			get
+			{
+				return this._TotalFeeAmount;
+			}
+			set
+			{
+				if ((this._TotalFeeAmount != value))
+				{
+					this.OnTotalFeeAmountChanging(value);
+					this.SendPropertyChanging();
+					this._TotalFeeAmount = value;
+					this.SendPropertyChanged("TotalFeeAmount");
+					this.OnTotalFeeAmountChanged();
 				}
 			}
 		}
