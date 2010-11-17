@@ -38,7 +38,8 @@ namespace HospitalManager.Controllers
                     }
                     var vm = new PrescriptionViewModel
                     {
-                        SearchResults = PrescriptionViewModels
+                        SearchResults = PrescriptionViewModels,
+                        LoggedInUser = Mapper.Map<User, UserViewModel>(SessionRep.GetUser())
                     };
 
                     return View(vm);
@@ -57,7 +58,8 @@ namespace HospitalManager.Controllers
                     }
                     var vm = new PrescriptionViewModel
                     {
-                        SearchResults = PrescriptionViewModels
+                        SearchResults = PrescriptionViewModels,
+                        LoggedInUser = Mapper.Map<User, UserViewModel>(SessionRep.GetUser())
                     };
 
                     return View(vm);
@@ -75,7 +77,8 @@ namespace HospitalManager.Controllers
                     }
                     var vm = new PrescriptionViewModel
                     {
-                        SearchResults = PrescriptionViewModels
+                        SearchResults = PrescriptionViewModels,
+                        LoggedInUser = Mapper.Map<User, UserViewModel>(SessionRep.GetUser())
                     };
                     return View(vm);
                 }
@@ -197,7 +200,8 @@ namespace HospitalManager.Controllers
             }
             var vm = new PrescriptionViewModel
             {
-                SearchResults = PrescriptionViewModels
+                SearchResults = PrescriptionViewModels,
+                LoggedInUser = Mapper.Map<User, UserViewModel>(SessionRep.GetUser())
             };
             return View(vm);
 

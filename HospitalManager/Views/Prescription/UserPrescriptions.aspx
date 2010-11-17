@@ -21,9 +21,19 @@
             <tr><td><%= item.PrescriptionID%></td><td><%= item.UserID %></td><td><%= item.DoctorUserID %></td><td><%= item.FillStatus %></td><td><%= item.PharmacistID %></td>
                 <% /* TODO: Check permissions of user before 
                     * displaying these links (and make the links correct) */ %>
+
                 <td><%: Html.ActionLink("View", "ViewPrescription", "Prescription", new { id = item.PrescriptionID }, null )%></td>
+
+                 <%if (Model.LoggedInUser.HasAccess(AccessOptions.CanWritePrescriptions))
+                  { %>
                 <td><%: Html.ActionLink("Delete", "DeletePrescription", "Prescription", new { id = item.PrescriptionID },null) %></td>
-                <td><%: Html.ActionLink("Fill", "Fill", "Prescription", new { id = item.PrescriptionID },null) %></td>
+                <% } %>
+
+                <%if (Model.LoggedInUser.HasAccess(AccessOptions.FillPrescriptions))
+                  { %>
+                <td><%: Html.ActionLink("Fill", "Fill", "Prescription", new { id = item.PrescriptionID }, null)%></td>
+                <% } %>
+
             </tr>
         <% } %>
     <% } else { %>
