@@ -22,7 +22,7 @@
             DateTime m = new DateTime(2010, i, 1);
             SelectListItem li = new SelectListItem
             {
-                Text = m.ToString("%M"),
+                Text = m.ToString("MMM"),
                 Value = m.ToString("%M")
             };
             if (Model.ExpMonth == i)
@@ -75,14 +75,14 @@
                     <td><%= Html.ValidationMessageFor(m => m.Address) %></td>
                 </tr>
                 <tr>
-                    <td>Policy Number</td>
-                    <td><%= Html.TextBoxFor(m => m.PolicyNum) %></td>
-                    <td><%= Html.ValidationMessageFor(m => m.PolicyNum) %></td>
-                </tr>
-                <tr>
                     <td>Provider</td>
                     <td><%= Html.TextBoxFor(m => m.ProviderName) %></td>
                     <td><%= Html.ValidationMessageFor(m => m.ProviderName) %></td>
+                </tr>
+                <tr>
+                    <td>Policy Number</td>
+                    <td><%= Html.TextBoxFor(m => m.PolicyNum) %></td>
+                    <td><%= Html.ValidationMessageFor(m => m.PolicyNum) %></td>
                 </tr>
             </table>
             <input type="submit" value="Save" />
