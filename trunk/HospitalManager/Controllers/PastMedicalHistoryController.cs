@@ -26,8 +26,7 @@ namespace HospitalManager.Controllers
         {
             base.Initialize(context);
 
-            if (!sessRep.IsLoggedIn() || 
-                !sessRep.GetUser().HasAccess(AccessOptions.EditOwnMedicalHistory))
+            if (!sessRep.IsLoggedIn())
             {
                 HttpContext.Response.Redirect("/");
                 HttpContext.Response.End();
@@ -41,8 +40,8 @@ namespace HospitalManager.Controllers
          */
         public ActionResult Index()
         {
-            if (!sessRep.IsLoggedIn())
-                return Redirect("/Authentication/Login");
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
 
             PastMedicalHistory history = histRep.GetPastMedicalHistory(user);
             return View(history);
@@ -53,14 +52,11 @@ namespace HospitalManager.Controllers
          */
         public ActionResult ViewUserHistory(int id)
         {
-            if (!sessRep.IsLoggedIn())
-                return Redirect("/Authentication/Login");
-
             if (!user.HasAccess(AccessOptions.ViewPastMedicalHistories))
                 return Redirect("/");
 
             PastMedicalHistory history = histRep.GetPastMedicalHistory(new User { UserID = id });
-            return View(history);
+            return View("Index", history);
         }
 
         /**
@@ -68,6 +64,9 @@ namespace HospitalManager.Controllers
          */
         public ActionResult Edit()
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             var vm = new UpdateMedicalHistoryViewModel();
 
             vm.UserHistory = histRep.GetPastMedicalHistory(user);
@@ -90,6 +89,9 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult Edit(UpdateMedicalHistoryViewModel vm)
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             // Make sure they submitted a history
             if (vm == null)
                 return Redirect("/PastMedicalHistory/Edit");
@@ -106,6 +108,9 @@ namespace HospitalManager.Controllers
          */
         public ActionResult RemoveCondition(int id = -1)
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             if (id == -1)
                 Redirect("/PastMedicalHistory/Edit");
 
@@ -127,6 +132,9 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult AddCondition(int medicalCondition = -1)
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             if (medicalCondition == -1)
                 Redirect("/PastMedicalHistory/Edit");
 
@@ -140,6 +148,9 @@ namespace HospitalManager.Controllers
          */
         public ActionResult RemoveOtherCondition(int id = -1)
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             if (id == -1)
                 Redirect("/PastMedicalHistory/Edit");
 
@@ -161,6 +172,9 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult AddOtherCondition(string condition = "")
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             if (condition == "")
                 Redirect("/PastMedicalHistory/Edit");
 
@@ -175,6 +189,9 @@ namespace HospitalManager.Controllers
          */
         public ActionResult RemoveFamilyCondition(int member = -1, int condition = -1)
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             if (member == -1 || condition == -1)
                 Redirect("/PastMedicalHistory/Edit");
 
@@ -197,6 +214,9 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult AddFamilyCondition(int member = -1, int condition = -1)
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             if (member == -1 || condition == -1)
                 Redirect("/PastMedicalHistory/Edit");
 
@@ -210,6 +230,9 @@ namespace HospitalManager.Controllers
          */
         public ActionResult RemoveOtherFamilyCondition(int id = -1)
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             if (id == -1)
                 Redirect("/PastMedicalHistory/Edit");
 
@@ -231,6 +254,9 @@ namespace HospitalManager.Controllers
         [HttpPost]
         public ActionResult AddOtherFamilyCondition(int member = -1, string condition = "")
         {
+            if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
+                return Redirect("/");
+
             if (member == -1 || condition == "")
                 Redirect("/PastMedicalHistory/Edit");
 
