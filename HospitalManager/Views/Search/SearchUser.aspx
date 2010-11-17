@@ -59,7 +59,7 @@
                     * displaying these links (and make the links correct) */ %>
                 <td>
                     <a href="#">Medical Record</a>
-                </td>
+                 </td>
                 <td>
                     <%=Html.ActionLink("Hospital Visits", "Index", "CurrentMedicalHistory", new { UserId = item.UserID }, null)%>
                 </td>
