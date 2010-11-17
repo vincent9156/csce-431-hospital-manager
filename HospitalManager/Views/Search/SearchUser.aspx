@@ -58,7 +58,7 @@
                 <% /* TODO: Check permissions of user before 
                     * displaying these links (and make the links correct) */ %>
                 <td>
-                    <a href="#">Medical Record</a>
+                    <%=Html.ActionLink("View Medical History", "ViewUserHistory", "PastMedicalHistory", new { id = item.UserID }, null)%>
                  </td>
                 <td>
                     <%=Html.ActionLink("Hospital Visits", "Index", "CurrentMedicalHistory", new { UserId = item.UserID }, null)%>
