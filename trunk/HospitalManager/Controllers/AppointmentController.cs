@@ -15,6 +15,7 @@ namespace HospitalManager.Controllers
         private UserRepository        urep;
         private AppointmentRepository apprep;
         private SessionRepository     sessrep;
+        private BillingRepository     billrep;
 
 
         public AppointmentController()
@@ -23,6 +24,7 @@ namespace HospitalManager.Controllers
             urep = new UserRepository();
             apprep = new AppointmentRepository();
             sessrep = new SessionRepository();
+            billrep = new BillingRepository();
         }
         public ActionResult Index()
         {
@@ -151,26 +153,73 @@ namespace HospitalManager.Controllers
                         //If user is a doctor then list their appointments
             else if (user.TypeID == UserType.DoctorTypeID)
             {
-                IQueryable<VWAppointments> appointments = apprep.GetDoctorAppointments(user.UserID);
-                List<AppointmentViewModel> AppointmentViewModels = new List<AppointmentViewModel>();
-                Mapper.CreateMap<VWAppointments, AppointmentViewModel>();
-
-                foreach (var app in appointments)
-                {
-                    AppointmentViewModels.Add(Mapper.Map<VWAppointments, AppointmentViewModel>(app));
-                }
-
-                var am = new AppointmentViewModel { appointments = AppointmentViewModels };
-
-                return View(am);
+                return Redirect("/Appointment/DocCancel");
             }
 
             return View();
         }
 
+        public ActionResult DocCancel()
+        {
+
+            if (!sessrep.IsLoggedIn())
+            {
+                return Redirect("/Authentication/Login");
+            }
+
+            User user = sessrep.GetUser();
+
+            IQueryable<VWAppointments> appointments = apprep.GetDoctorAppointments(user.UserID);
+            List<AppointmentViewModel> AppointmentViewModels = new List<AppointmentViewModel>();
+            Mapper.CreateMap<VWAppointments, AppointmentViewModel>();
+
+            foreach (var app in appointments)
+            {
+                AppointmentViewModels.Add(Mapper.Map<VWAppointments, AppointmentViewModel>(app));
+            }
+
+            var am = new AppointmentViewModel { appointments = AppointmentViewModels };
+
+            return View(am);
+
+        }
+
         public ActionResult CancelApp(int AppointmentID)
         {
             Appointment app = apprep.GetAppointmentByAppointmentID(AppointmentID);
+            DateTime now = DateTime.Now;
+
+            int UID = app.UserID;
+            int DID = app.DoctorID;
+            float cost = (float)25.00;
+            string reason = "Late Cancellation Fee";
+            
+
+            if (app.Date.Year == now.Year)
+            {
+                int date1 = app.Date.DayOfYear;
+                int date2 = now.DayOfYear;
+                int diff = date1 - date2;
+
+                if ((diff <= 2) && date1 > date2)
+                {
+                    CancellationBill bill = new CancellationBill {
+                    DoctorID = DID,
+                    UserID = UID,
+                    Amount = cost,
+                    AppDate = app.Date,
+                    BillDate = now,
+                    FeeType = reason,
+                    Paid = false,
+                    };
+
+                    billrep.BillCancellation(bill);
+
+             
+                    
+                }
+            
+            }
 
             apprep.CancelAppointment(app);
 

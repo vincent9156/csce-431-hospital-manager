@@ -53,4 +53,17 @@ namespace HospitalManager.ViewModels
             return PermissionsManager.HasAccess(Permissions, options);
         }
     }
+
+    public class CancellationViewModel
+    {
+        public int BillID { get; set; }
+        public float Amount { get; set; }
+        public int UserID { get; set; }
+        public int DoctorID { get; set; }
+        public DateTime BillDate { get; set; }
+        public DateTime AppDate { get; set; }
+        public string FeeType { get; set; }
+        public byte Paid { get; set; }
+
+    }
 }
