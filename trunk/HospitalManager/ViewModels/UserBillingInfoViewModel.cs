@@ -14,32 +14,32 @@ namespace HospitalManager.ViewModels
     // TODO: validation!!
     public class UserBillingInfoViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Required")]
         public string CardNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Required")]
         public int SecurityCode { get; set; }
 
         public IEnumerable<CardProvider> CardProvider { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Required")]
         public int CardProviderID { get; set; }
 
-        [Required]
-        [Range(1, 12, ErrorMessage="Invalid Month")]
+        [Required(ErrorMessage = "Required")]
+        //[Range(1, 12, ErrorMessage="Invalid Month")]
         public int ExpMonth { get; set; }
 
-        [Required]
-        [Range(2010, Int32.MaxValue, ErrorMessage="Invalid Year")]
+        [Required(ErrorMessage = "Required")]
+        //[Range(2010, Int32.MaxValue, ErrorMessage="Invalid Year")]
         public int ExpYear { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Required")]
         public string Address { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Required")]
         public string PolicyNum { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Required")]
         public string ProviderName { get; set; }
     }
 }

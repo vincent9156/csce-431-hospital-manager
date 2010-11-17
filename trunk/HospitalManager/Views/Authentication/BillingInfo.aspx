@@ -12,6 +12,37 @@
     <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
     <script src="../../Scripts/MicrosoftMvcValidation.js" type="text/javascript"></script>
 
+    <%
+        // based on code from:
+        // http://weblogs.asp.net/jeffwids/archive/2009/09/08/credit-card-expiration-date-dropdownlist-sample-code.aspx
+        List<SelectListItem> months = new List<SelectListItem>();
+        List<SelectListItem> years = new List<SelectListItem>();
+        for (int i = 1; i <= 12; i++)
+        {
+            DateTime m = new DateTime(2010, i, 1);
+            SelectListItem li = new SelectListItem
+            {
+                Text = m.ToString("MMM"),
+                Value = m.ToString("MM")
+            };
+            if (Model.ExpMonth == i)
+                li.Selected = true;
+            months.Add(li);
+        }
+        for (int i = 0; i < 12; i++)
+        {
+            String year = (DateTime.Today.Year + i).ToString();
+            SelectListItem li = new SelectListItem
+            {
+                Text = year,
+                Value = year
+            };
+            if (DateTime.Today.Year + i == Model.ExpYear)
+                li.Selected = true;
+            years.Add(li);
+        }
+         %>
+
     <% Html.EnableClientValidation(); %>
 
     <% using (Html.BeginForm("BillingInfo", "Authentication"))
@@ -33,14 +64,9 @@
                     <td><%= Html.ValidationMessageFor(m => m.SecurityCode) %></td>
                 </tr>
                 <tr>
-                    <td>Expiration Month</td>
-                    <td><%= Html.TextBoxFor(m => m.ExpMonth) %></td>
-                    <td><%= Html.ValidationMessageFor(m => m.ExpMonth) %></td>
-                </tr>
-                <tr>
-                    <td>Expiration Year</td>
-                    <td><%= Html.TextBoxFor(m => m.ExpYear) %></td>
-                    <td><%= Html.ValidationMessageFor(m => m.ExpYear) %></td>
+                    <td>Expiration Date</td>
+                    <td><%= Html.DropDownList("ExpMonth", months) %> <%= Html.DropDownList("ExpYear", years) %></td>
+                    <td><%= Html.ValidationMessageFor(m => m.ExpMonth) %> <%= Html.ValidationMessageFor(m => m.ExpYear) %></td>
                 </tr>
                 <tr>
                     <td>Billing Address</td>
