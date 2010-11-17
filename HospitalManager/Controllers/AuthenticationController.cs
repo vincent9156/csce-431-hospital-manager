@@ -124,6 +124,13 @@ namespace HospitalManager.Controllers
                     return View(user);
                 }
 
+                // Check if the username is already in use
+                if (UserRep.GetUserByUsername(user.Username) != null)
+                {
+                    ModelState.AddModelError("Username", "Username already in use");
+                    return View(user);
+                }
+
                 // Register the user
                 User newUser;
                 switch (user.TypeID)
