@@ -188,13 +188,14 @@ namespace HospitalManager.Controllers
         {
             Appointment app = apprep.GetAppointmentByAppointmentID(AppointmentID);
             DateTime now = DateTime.Now;
+            User user = sessrep.GetUser();
 
             int UID = app.UserID;
             int DID = app.DoctorID;
             float cost = (float)25.00;
             string reason = "Late Cancellation Fee";
             
-
+            if(user.TypeID == UserType.PatientTypeID)
             if (app.Date.Year == now.Year)
             {
                 int date1 = app.Date.DayOfYear;
@@ -213,11 +214,55 @@ namespace HospitalManager.Controllers
                     Paid = false,
                     };
 
-                    billrep.BillCancellation(bill);
-
-             
-                    
+                    billrep.BillCancellation(bill);                    
                 }
+            }
+
+            //handle cases for appointments in early January being canceled at the end of December
+            if ((app.Date.Year > now.Year) && (app.Date.Year - now.Year == 1))
+            {
+                int date1 = app.Date.DayOfYear;
+                int date2 = now.DayOfYear;
+               
+                //check for leap year
+                if(!DateTime.IsLeapYear(now.Year))
+                {
+                    if(((date1 == 1) || (date1 == 2)) && ((date2 == 364) || (date2 == 365)))
+                    {
+                        CancellationBill bill = new CancellationBill {
+                        DoctorID = DID,
+                        UserID = UID,
+                        Amount = cost,
+                        AppDate = app.Date,
+                        BillDate = now,
+                        FeeType = reason,
+                        Paid = false,
+                        };
+
+                        billrep.BillCancellation(bill);                
+                    }                
+                }
+                else
+                if(((date1 == 1) || (date1 == 2)) && ((date2 == 365) || (date2 == 366)))
+                {
+                    CancellationBill bill = new CancellationBill {
+                    DoctorID = DID,
+                    UserID = UID,
+                    Amount = cost,
+                    AppDate = app.Date,
+                    BillDate = now,
+                    FeeType = reason,
+                    Paid = false,
+                    };
+
+                    billrep.BillCancellation(bill); 
+                }            
+            }
+
+
+            if (user.TypeID == UserType.DoctorTypeID)
+            { 
+            
             
             }
 
