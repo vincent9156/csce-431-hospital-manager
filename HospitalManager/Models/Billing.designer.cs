@@ -509,7 +509,7 @@ namespace HospitalManager.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int BillID
 		{
 			get

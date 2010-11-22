@@ -184,11 +184,20 @@ namespace HospitalManager.Controllers
 
         }
 
+        public ActionResult Reschedule()
+        {
+
+
+
+            return View();
+        }
+
         public ActionResult CancelApp(int AppointmentID)
         {
             Appointment app = apprep.GetAppointmentByAppointmentID(AppointmentID);
             DateTime now = DateTime.Now;
             User user = sessrep.GetUser();
+            bool reschedule = false;
 
             int UID = app.UserID;
             int DID = app.DoctorID;
@@ -261,12 +270,25 @@ namespace HospitalManager.Controllers
 
 
             if (user.TypeID == UserType.DoctorTypeID)
-            { 
-            
-            
+            {
+                if (app.Date.Year == now.Year)
+                {
+                    int date1 = app.Date.DayOfYear;
+                    int date2 = now.DayOfYear;
+                    int diff = date1 - date2;
+
+                    if ((diff <= 2) && date1 > date2)
+                    {
+                        reschedule = true;
+                    }
+                }
+
             }
 
             apprep.CancelAppointment(app);
+
+            if (reschedule)
+                return Redirect("/Appointment/Reschedule");
 
             return Redirect("/Appointment/Index");
         }
