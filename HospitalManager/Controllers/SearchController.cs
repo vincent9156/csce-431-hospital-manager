@@ -25,23 +25,30 @@ namespace HospitalManager.Controllers
             {
                 User loggedInUser = SessRep.GetUser();
 
-                IQueryable<User> users;
+                List<UserViewModel> userViewModels = new List<UserViewModel>();
 
                 // Get the list of users based on the permission of the person searching
                 if(loggedInUser.HasAccess(AccessOptions.SearchAllPatients))
                 {
-                    users = UserRep.GetUserByName(firstName, lastName, UserType.PatientTypeID);
+                    IQueryable<User> users = UserRep.GetUserByName(firstName, lastName, UserType.PatientTypeID);
+                    foreach (var user in users)
+                    {
+                        userViewModels.Add(Mapper.Map<User, UserViewModel>(user));
+                    }
                 }
                 else {
-                    // Currently gets all patients. TODO: Get only patients under the logged in user.
-                    users = UserRep.GetUserByName(firstName, lastName, UserType.PatientTypeID);
-                }
-
-                // Create a result list of (of UserViewModels) containing the found users
-                List<UserViewModel> userViewModels = new List<UserViewModel>();
-                foreach (var user in users)
-                {
-                    userViewModels.Add(Mapper.Map<User, UserViewModel>(user));
+                    var users = UserRep.GetPatientByDoctor(loggedInUser.UserID, firstName, lastName);
+                    foreach (var user in users)
+                    {
+                        userViewModels.Add(
+                            new UserViewModel
+                            {
+                                UserID = user.UserID,
+                                FirstName = user.PatientFirstName,
+                                LastName = user.PatientLastName
+                            }
+                        );
+                    }
                 }
 
                 // Load it all into a search view model
