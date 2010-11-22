@@ -183,6 +183,13 @@ namespace HospitalManager.Repositories
             return result;
         }
 
-       
+        public IQueryable<VWPatientsByDoctor> GetPatientByDoctor(int doctorID, string firstName, string lastName)
+        {
+            var apptRep = new AppointmentRepository();
+            return from patient in apptRep.GetDoctorPatients(doctorID)
+                       where patient.PatientFirstName == firstName
+                            && patient.PatientLastName == lastName
+                       select patient;
+        }
     }
 }
