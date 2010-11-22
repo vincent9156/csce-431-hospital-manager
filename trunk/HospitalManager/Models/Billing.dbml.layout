@@ -14,10 +14,10 @@
         <elementListCompartment Id="87516fa6-3b89-4d20-a4c4-e5092abac9b3" absoluteBounds="0.515, 2.335, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e4887de5-1a60-47ee-96bd-88718cc487f0" absoluteBounds="5, 1.875, 2, 2.0822371419270831">
+    <classShape Id="f8e2cbad-601c-4b24-be56-341668240ed1" absoluteBounds="4.875, 1.875, 2, 2.0822371419270831">
       <DataClassMoniker Name="/BillingDataContext/CancellationBill" />
       <nestedChildShapes>
-        <elementListCompartment Id="1a3e8bf7-d631-4a4c-9441-63a011c2d596" absoluteBounds="5.015, 2.335, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7c90846c-2e48-4862-bee4-8fb031a7d9fc" absoluteBounds="4.89, 2.335, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
