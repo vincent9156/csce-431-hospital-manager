@@ -22,6 +22,8 @@
                 <th>Reason For Visit</th>
                 <th>Blood Pressure</th>
                 <th>Diagnosis</th>
+                <th>Tests Run</th>
+                <th>Fee Amount</th>
             </tr> 
 
            <%foreach(CurrentMedicalHistory c in Model.CurrentMedicalHistoryList)
@@ -34,6 +36,8 @@
                 <td><%: c.ReasonForVisit %></td>
                 <td><%: c.BloodPressure %></td>
                 <td><%: c.Diagnosis %></td>
+                <td><%: c.TestsRUN %></td>
+                <td><%: c.TotalFeeAmount %></td>
             </tr>
 
         
