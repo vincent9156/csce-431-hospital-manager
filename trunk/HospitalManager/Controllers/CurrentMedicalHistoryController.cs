@@ -50,7 +50,8 @@ namespace HospitalManager.Controllers
                 return Redirect("/Home");
             
             // Checks if they are a doctor or if they are viewing their own history 
-            if (!sessRep.GetUser().HasAccess(AccessOptions.ViewPastMedicalHistories) || !(sessRep.GetUser().HasAccess(AccessOptions.EditOwnMedicalHistory) && (sessRep.GetUser().UserID == UserId)))
+            if (!sessRep.GetUser().HasAccess(AccessOptions.ViewPastMedicalHistories) 
+                || (sessRep.GetUser().TypeID == 1) && !(sessRep.GetUser().HasAccess(AccessOptions.EditOwnMedicalHistory) && (sessRep.GetUser().UserID == UserId)))
                 return Redirect("/Home");
 
             // if the user is a doctor, check to make sure the doctor is looking at the doctor's patient
@@ -61,7 +62,7 @@ namespace HospitalManager.Controllers
 
             var vm = new CurrentMedicalHistoriesViewModel
             {
-                CurrentMedicalHistoryList = histRep.GetCurrentMedicalHistoryByUser(userRep.GetUserByUserID(UserId)).ToList()
+                CurrentMedicalHistoryList = histRep.GetCurrentMedicalHistoryByUser(userRep.GetUserByUserID(UserId))
             };
             
             return View(vm);
@@ -93,7 +94,9 @@ namespace HospitalManager.Controllers
                 Year = dt.Year,
                 ReasonForVisit = "Reason For Visit",
                 BloodPressure = "Blood Pressure",
-                Diagnosis = "Diagnosis"
+                Diagnosis = "Diagnosis",
+                TestsRUN = "Tests Run",
+                TotalFeeAmount = 0
                 
             };
 
