@@ -98,7 +98,7 @@ namespace HospitalManager.Models
 		
 		private string _TestsRUN;
 		
-		private System.Nullable<decimal> _TotalFeeAmount;
+		private System.Nullable<int> _TotalFeeAmount;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -122,7 +122,7 @@ namespace HospitalManager.Models
     partial void OnUserIDChanged();
     partial void OnTestsRUNChanging(string value);
     partial void OnTestsRUNChanged();
-    partial void OnTotalFeeAmountChanging(System.Nullable<decimal> value);
+    partial void OnTotalFeeAmountChanging(System.Nullable<int> value);
     partial void OnTotalFeeAmountChanged();
     #endregion
 		
@@ -311,8 +311,8 @@ namespace HospitalManager.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalFeeAmount", DbType="Money")]
-		public System.Nullable<decimal> TotalFeeAmount
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalFeeAmount", DbType="Int")]
+		public System.Nullable<int> TotalFeeAmount
 		{
 			get
 			{

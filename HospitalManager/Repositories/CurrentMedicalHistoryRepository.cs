@@ -25,12 +25,11 @@ namespace HospitalManager.Repositories
         {
             var result = from CurrentMedicalHistory in currentMedDb.CurrentMedicalHistories
                          where CurrentMedicalHistory.UserID == user.UserID
-                         //orderby CurrentMedicalHistory.Day ascending
-                         //orderby CurrentMedicalHistory.Month ascending
-                         //orderby CurrentMedicalHistory.Year ascending
+                         orderby CurrentMedicalHistory.Day ascending
+                         orderby CurrentMedicalHistory.Month ascending
+                         orderby CurrentMedicalHistory.Year ascending
                          select  CurrentMedicalHistory;
-            IList<CurrentMedicalHistory> l = result.ToList();
-                         
+                             
             return result;
         }
 
