@@ -43,6 +43,10 @@ namespace HospitalManager.Controllers
                     foreach (var bill in bills)
                     {
                         BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));
+                        User tmpuser = UserRep.GetUserByUserID(bill.DocUserID);
+                        BillingViewModels[BillingViewModels.Count - 1].DoctorName = tmpuser.FirstName + " " + tmpuser.LastName;
+                        tmpuser = UserRep.GetUserByUserID(bill.PatientUserID);
+                        BillingViewModels[BillingViewModels.Count - 1].PatientName = tmpuser.FirstName + " " + tmpuser.LastName;
                     }
                     var vm = new BillingViewModel
                     {
@@ -52,6 +56,7 @@ namespace HospitalManager.Controllers
                     if (vm.Paid == 0)
                         ViewData["paid"] = "Not Paid";
                     else ViewData["paid"] = "Paid";
+                    ViewData["utype"] = "Doctor";
 
                     return View(vm);
                 }
@@ -65,6 +70,10 @@ namespace HospitalManager.Controllers
                     foreach (var bill in bills)
                     {
                        BillingViewModels.Add(Mapper.Map<Bill, BillingViewModel>(bill));
+                       User tmpuser = UserRep.GetUserByUserID(bill.DocUserID);
+                       BillingViewModels[BillingViewModels.Count - 1].DoctorName = tmpuser.FirstName + " " + tmpuser.LastName;
+                       tmpuser = UserRep.GetUserByUserID(bill.PatientUserID);
+                       BillingViewModels[BillingViewModels.Count - 1].PatientName = tmpuser.FirstName + " " + tmpuser.LastName;
                     }
                     var vm = new BillingViewModel
                     {
@@ -73,6 +82,7 @@ namespace HospitalManager.Controllers
                     if (vm.Paid == 0)
                         ViewData["paid"] = "Not Paid";
                     else ViewData["paid"] = "Paid";
+                    ViewData["utype"] = "Patient";
                     return View(vm);
                 }
 
