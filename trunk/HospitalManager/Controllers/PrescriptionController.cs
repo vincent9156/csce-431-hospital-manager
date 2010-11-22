@@ -171,9 +171,10 @@ namespace HospitalManager.Controllers
 
             presRep.FillPrescription(id);
                 //assign the prescription to pharmacist
-            presRep.AssignPrescriptionToPharmacist(SessionRep.GetUser().UserID, presRep.GetPrescriptionByID(id));
+            Prescription script = presRep.GetPrescriptionByID(id);
+            presRep.AssignPrescriptionToPharmacist(SessionRep.GetUser().UserID, script);
                     
-            return Redirect("/Prescription/Index/");
+            return Redirect("/Prescription/UserPrescriptions/" + script.UserID);
             
         }
 
