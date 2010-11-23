@@ -64,7 +64,7 @@
     <% }
        else
        { %>
-            <p>No Bills found for this user.</p>
+            <tr><td>No Bills found for this user.</td></tr>
     <% } %>
 
     </table>

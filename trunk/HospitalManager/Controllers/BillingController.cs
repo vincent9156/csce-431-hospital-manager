@@ -94,16 +94,21 @@ namespace HospitalManager.Controllers
         }
 
         //view one bill based on billID
-        public ActionResult ViewBill(int id)
+        public ActionResult ViewBill(int? id)
         {
             if (!SessionRep.IsLoggedIn())
                 return Redirect("/Authentication/Login/");
 
-            Bill bill = BillRep.GetBillByID(id);
+            // make sure this function has received an id
+            if (!id.HasValue)
+                return Redirect("/Billing");
+
+            Bill bill = BillRep.GetBillByID(id.Value);
             if (bill == null)
-                return View();
+                return Redirect("/Billing");
+            // do not allow users to view bills that are not theirs
             if((bill.PatientUserID != SessionRep.GetUser().UserID) && (bill.DocUserID != SessionRep.GetUser().UserID))
-            return View();
+                return Redirect("/Billing");
             
             BillingViewModel bvm = Mapper.Map<Bill, BillingViewModel>(bill);
             

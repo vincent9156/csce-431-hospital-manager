@@ -12,13 +12,12 @@
         <%= Html.ActionLink("Back", "/Index") %>
 
     <table>
-    <tr><td><%:Html.LabelFor(Model => Model.BillID) %>        </td><td><%: Html.DisplayTextFor(Model => Model.BillID) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.DoctorName) %>    </td><td><%: Html.DisplayTextFor(Model => Model.DoctorName) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.PatientName) %>   </td><td><%: Html.DisplayTextFor(Model => Model.PatientName) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.ReasonForVisit) %></td><td><%: Html.DisplayTextFor(Model => Model.ReasonForVisit) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.Diagnosis) %>     </td><td><%: Html.DisplayTextFor(Model => Model.Diagnosis) %></td></tr>
-    <tr><td><%:Html.LabelFor(Model => Model.BillDate) %>      </td><td><%: Html.DisplayTextFor(Model => Model.BillDate) %></td></tr>
-    <tr><td><%:Html.LabelFor(Model => Model.Amount) %>        </td><td><%: Html.DisplayTextFor(Model => Model.Amount) %></td></tr>
+    <tr><td><%:Html.LabelFor(Model => Model.BillDate) %>      </td><td><%: Html.DisplayFor(Model => Model.BillDate) %></td></tr>
+    <tr><td><%:Html.LabelFor(Model => Model.Amount) %>        </td><td><%: Html.DisplayFor(Model => Model.Amount) %></td></tr>
     <tr><td><%:Html.LabelFor(Model => Model.Paid) %>          </td><td><%= Html.ViewData["paid"]                      %></td></tr>
     <tr><td></td><td></td></tr>
     <tr><td></td><td></td></tr>

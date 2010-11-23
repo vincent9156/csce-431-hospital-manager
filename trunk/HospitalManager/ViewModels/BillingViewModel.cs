@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using HospitalManager.Models;
 using HospitalManager.Libraries;
 
@@ -10,15 +12,31 @@ namespace HospitalManager.ViewModels
     public class BillingViewModel
     {
         public int BillID { get; set; }
+
+        [DisplayName("Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")] // format amt as $x,xxx.xx
         public float Amount { get; set; }
+
+        [DisplayName("Diagnosis")]
         public string Diagnosis { get; set; }
+
+        [DisplayName("Reason for Visit")]
         public string ReasonForVisit { get; set; }
+
         public int PatientUserID { get; set; }
         public int DocUserID { get; set; }
+
+        [DisplayName("Bill Date")]
+        [DisplayFormat(DataFormatString = "{0:d}")] // format date as MM/DD/YYYY
         public DateTime BillDate { get; set; }
+
+        [DisplayName("Status")]
         public byte Paid { get; set; }
 
+        [DisplayName("Patient")]
         public string PatientName { get; set; }
+
+        [DisplayName("Doctor")]
         public string DoctorName { get; set; }
 
         public IList<BillingViewModel> SearchResults;
