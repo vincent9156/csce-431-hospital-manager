@@ -11,10 +11,25 @@ using HospitalManager.Models;
 
 namespace HospitalManager.Controllers
 {
+    /// <summary>
+    /// This controller handles all of the logic associated with registering,
+    /// logging in and setting up a user.
+    /// </summary>
     public class AuthenticationController : Controller
     {
+        /// <summary>
+        /// Used for registration, login, and changing passwords
+        /// </summary>
         UserRepository UserRep = new UserRepository();
+
+        /// <summary>
+        /// Used for login, logout and authentication
+        /// </summary>
         SessionRepository SessionRep = new SessionRepository();
+
+        /// <summary>
+        /// Used for setting up patient billing information at registration
+        /// </summary>
         BillingInformationRepository BillInfoRep = new BillingInformationRepository();
 
 
