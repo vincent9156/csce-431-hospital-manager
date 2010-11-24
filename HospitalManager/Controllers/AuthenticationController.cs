@@ -13,18 +13,16 @@ namespace HospitalManager.Controllers
 {
     public class AuthenticationController : Controller
     {
-        UserRepository UserRep;
-        SessionRepository SessionRep;
-        BillingInformationRepository BillInfoRep;
+        UserRepository UserRep = new UserRepository();
+        SessionRepository SessionRep = new SessionRepository();
+        BillingInformationRepository BillInfoRep = new BillingInformationRepository();
 
-        public AuthenticationController()
-        {
-            UserRep = new UserRepository();
-            SessionRep = new SessionRepository();
-            BillInfoRep = new BillingInformationRepository();
-        }
 
-        // GET: /Authentication/
+        /// <summary>
+        /// Redirects a user to their dashboard or the login screen depending
+        /// upon if they are logged in
+        /// </summary>
+        /// <returns>A redirection view varying with their login state</returns>
         public ActionResult Index()
         {
             if (SessionRep.IsLoggedIn())
@@ -32,15 +30,26 @@ namespace HospitalManager.Controllers
             return Redirect("/Authentication/Login/");
         }
 
+        /// <summary>
+        /// Creates the form for a user to login
+        /// </summary>
+        /// <returns>A login view</returns>
         public ActionResult Login()
         {
-            // do not allow logging in if the user is already logged in
+            // Do not allow logging in if the user is already logged in
             if (SessionRep.IsLoggedIn())
                 return Redirect("/Home/UserLog/");
             User user = new User();
             return View(user);
         }
 
+        /// <summary>
+        /// Attempts to log a user into the system. If successful, redirect them to the
+        /// dashboard, otherwise, return an error
+        /// </summary>
+        /// <param name="username">The user's inputted usename</param>
+        /// <param name="password">The user's inputted password</param>
+        /// <returns>A view varying with the login's success</returns>
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
@@ -71,30 +80,37 @@ namespace HospitalManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Logs a user out of the system
+        /// </summary>
+        /// <returns>A redirection to the login screen</returns>
         public ActionResult Logoff()
         {
             SessionRep.Logout();
             return Redirect("/Authentication/Login/");
         }
 
-        /**
-         * Begin registering a user.
-         */
+        /// <summary>
+        /// Begin registering a user by giving them a list of user types
+        /// </summary>
+        /// <returns>The registration view with a list of user types</returns>
         public ActionResult Register()
         {
             if (SessionRep.IsLoggedIn())
                 return Redirect("/Home/UserLog/");
 
-                var types = new UserTypesViewModel
-                {
-                    UserTypes = UserRep.GetUserTypes()
-                };
-                return View("RegisterUserType", types);
+            var types = new UserTypesViewModel
+            {
+                UserTypes = UserRep.GetUserTypes()
+            };
+            return View("RegisterUserType", types);
         }
 
-        /**
-         * After we have their user type in registration, get their user information.
-         */
+        /// <summary>
+        /// Continue registering a user with their submitted user type
+        /// </summary>
+        /// <param name="userTypes">The type of the user to be registered</param>
+        /// <returns>The registration view with the input form</returns>
         [HttpPost]
         public ActionResult Register(UserTypesViewModel userTypes)
         {
@@ -107,67 +123,75 @@ namespace HospitalManager.Controllers
         }
 
         
-        /**
-         * Complete user registration and validate all of their information.
-         */
+        /// <summary>
+        /// Attempt to complete user registration by validating their input and either
+        /// creating the user or returning an error
+        /// </summary>
+        /// <param name="user">The user to be registered</param>
+        /// <returns>
+        /// The view with errors or a redirection to the next step in the 
+        /// registration process
+        /// </returns>
         [HttpPost]
-        public ActionResult RegisterUser(UserRegistrationViewModel user, int staffID = -1)
+        public ActionResult RegisterUser(UserRegistrationViewModel user)
         {
             if (SessionRep.IsLoggedIn())
                 return Redirect("/Home/UserLog/");
-                // Load the user's permissions
-                user.Permissions = UserRep.GetUserTypeByID(user.TypeID).Permissions;
 
-                // Validate their input
-                if (!ModelState.IsValid)
-                {
-                    return View(user);
-                }
+            // Load the user's permissions
+            user.Permissions = UserRep.GetUserTypeByID(user.TypeID).Permissions;
 
-                // Check if the username is already in use
-                if (UserRep.GetUserByUsername(user.Username) != null)
-                {
-                    ModelState.AddModelError("Username", "Username already in use");
-                    return View(user);
-                }
+            // Validate their input
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
 
-                // Register the user
-                User newUser;
-                switch (user.TypeID)
-                {
-                    case UserType.DoctorTypeID:
-                        newUser = Mapper.Map<UserRegistrationViewModel, Doctor>(user);
-                        break;
-                    case UserType.NurseTypeID:
-                        newUser = Mapper.Map<UserRegistrationViewModel, Nurse>(user);
-                        break;
-                    case UserType.PharmacistTypeID:
-                        newUser = Mapper.Map<UserRegistrationViewModel, Pharmacist>(user);
-                        break;
-                    default:
-                        newUser = Mapper.Map<UserRegistrationViewModel, Patient>(user);
-                        break;
-                }
+            // Check if the username is already in use
+            if (UserRep.GetUserByUsername(user.Username) != null)
+            {
+                ModelState.AddModelError("Username", "Username already in use");
+                return View(user);
+            }
 
-                newUser.EncryptAndSetPassword(newUser.Password);
-                UserRep.AddUser(newUser);
+            // Register the user
+            User newUser;
+            switch (user.TypeID)
+            {
+                case UserType.DoctorTypeID:
+                    newUser = Mapper.Map<UserRegistrationViewModel, Doctor>(user);
+                    break;
+                case UserType.NurseTypeID:
+                    newUser = Mapper.Map<UserRegistrationViewModel, Nurse>(user);
+                    break;
+                case UserType.PharmacistTypeID:
+                    newUser = Mapper.Map<UserRegistrationViewModel, Pharmacist>(user);
+                    break;
+                default:
+                    newUser = Mapper.Map<UserRegistrationViewModel, Patient>(user);
+                    break;
+            }
 
-                // Log the user into their new account
-                SessionRep.Login(newUser);
+            newUser.EncryptAndSetPassword(newUser.Password);
+            UserRep.AddUser(newUser);
 
-                // redirect to billing info if a Patient, else go to the homepage
-                if (newUser.TypeID == UserType.PatientTypeID)
-                    return Redirect("/Authentication/BillingInfo");
-                else
-                    return Redirect("/Home/UserLog");
+            // Log the user into their new account
+            SessionRep.Login(newUser);
+
+            // redirect to billing info if a Patient, else go to the homepage
+            if (newUser.TypeID == UserType.PatientTypeID)
+                return Redirect("/Authentication/BillingInfo");
+            else
+                return Redirect("/Home/UserLog");
             
         }
 
-        /**
-         * Start collecting the billing information for a user.
-         * Only Patients should be able to access this.
-         * Handles adding and editing.
-         */
+        /// <summary>
+        /// Start collecting the billing information for a user.
+        /// Only Patients should be able to access this.
+        /// Handles adding and editing.
+        /// </summary>
+        /// <returns>The view for setting up the user's billing information</returns>
         public ActionResult BillingInfo()
         {
             if (!SessionRep.IsLoggedIn() || (SessionRep.GetUser().TypeID != UserType.PatientTypeID))
@@ -196,9 +220,11 @@ namespace HospitalManager.Controllers
             return View(billinfo);
         }
 
-        /**
-         * Finish adding/editing billing info for a user
-         */
+        /// <summary>
+        /// Finish adding or editting billing information for the user
+        /// </summary>
+        /// <param name="billinfo">The information to be added or editted</param>
+        /// <returns>A redirection to their home or the view if an error occurs</returns>
         [HttpPost]
         public ActionResult BillingInfo(UserBillingInfoViewModel billinfo)
         {
@@ -235,9 +261,10 @@ namespace HospitalManager.Controllers
             }
         }
 
-        /**
-         * Start changing a user's password
-         */
+        /// <summary>
+        /// Begin changing a user's password
+        /// </summary>
+        /// <returns>The view to change the password</returns>
         public ActionResult ChangePassword()
         {
             if (!SessionRep.IsLoggedIn())
@@ -246,9 +273,11 @@ namespace HospitalManager.Controllers
             return View("ChangePassword", pass);
         }
 
-        /**
-         * Validate and change the user's password
-         */
+        /// <summary>
+        /// Attempt to validate and change the user's password
+        /// </summary>
+        /// <param name="pass">The password information to change</param>
+        /// <returns>The resulting view</returns>
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordViewModel pass)
         {
