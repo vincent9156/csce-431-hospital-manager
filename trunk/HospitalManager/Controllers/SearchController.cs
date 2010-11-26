@@ -11,16 +11,33 @@ using HospitalManager.Libraries;
 
 namespace HospitalManager.Controllers
 {
+    /// <summary>
+    /// This controller handles the logic for searching for patients by users with permissions to find patients
+    /// </summary>
     public class SearchController : Controller
     {
+        /// <summary>
+        /// Used for querying
+        /// </summary>
         UserRepository UserRep = new UserRepository();
+
+        /// <summary>
+        /// Used to get logged in user for permissions
+        /// </summary>
         SessionRepository SessRep = new SessionRepository();
 
+        /// <summary>
+        /// Gets users from database based on first and last name query
+        /// </summary>
+        /// <param name="firstName">The patient's firstname</param>
+        /// <param name="lastName">The patient's lastname</param>
+        /// <returns>SearchViewModel that contains patients matching search and logged in user</returns>
         public ActionResult SearchUser(string firstName = "", string lastName = "")
         {
             if (!SessRep.IsLoggedIn() || !SessRep.GetUser().HasAccess(AccessOptions.SearchUsers))
                 return Redirect("/");
 
+            //else return NULL SearchViewModel
             if (firstName != "" && lastName != "")
             {
                 User loggedInUser = SessRep.GetUser();
@@ -36,6 +53,8 @@ namespace HospitalManager.Controllers
                         userViewModels.Add(Mapper.Map<User, UserViewModel>(user));
                     }
                 }
+
+                //without permissions, Logged in user (Doctor) can only search for users (Patients) that have appointments with that Doctor
                 else {
                     var users = UserRep.GetPatientByDoctor(loggedInUser.UserID, firstName, lastName);
                     foreach (var user in users)
@@ -60,6 +79,7 @@ namespace HospitalManager.Controllers
                return View(vm);
             }
 
+            //Blank search page awaiting query
             return View((SearchViewModel)null);
         }
     }
