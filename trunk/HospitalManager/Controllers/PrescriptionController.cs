@@ -64,10 +64,10 @@ namespace HospitalManager.Controllers
 
                     return View(vm);
                 }
-                //if user is pharmacist then view all prescriptions
+                //if user is pharmacist then view all prescriptions by pharmacist
                 if (user.TypeID == UserType.PharmacistTypeID)
                 {
-                    IQueryable<Prescription> pres = presRep.GetAllPrescriptions();
+                    IQueryable<Prescription> pres = presRep.GetAllPrescriptionsByPharmacistID(user.UserID);
                     List<PrescriptionViewModel> PrescriptionViewModels = new List<PrescriptionViewModel>();
                     if (pres == null)
                         return View();
@@ -118,6 +118,7 @@ namespace HospitalManager.Controllers
             return View(vm);
         }
 
+        //by doctor only to fill in information for a prescription
         public ActionResult WritePrescription(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.CanWritePrescriptions))
@@ -154,7 +155,7 @@ namespace HospitalManager.Controllers
             return View("ViewPrescription", vm);
         }
 
-        //remove a prescription
+        //remove a prescription by doctor or pharmacist only if made in error
         public ActionResult DeletePrescription(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.FillPrescriptions))
@@ -164,6 +165,7 @@ namespace HospitalManager.Controllers
             return Redirect("/Prescription/Index/");
         }
 
+        //changes fill status to 1 and the pharmacist is assigned to the prescription
         public ActionResult Fill(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.FillPrescriptions))
@@ -178,17 +180,7 @@ namespace HospitalManager.Controllers
             
         }
 
-        [HttpPost]
-        public ActionResult AssignPrescription(PrescriptionViewModel vm)
-        {
-            Prescription presc = presRep.GetPrescriptionByID(vm.PrescriptionID);
-            if (presc == null)
-                return Redirect("/Home/UserLog/");
-            bool result = presRep.AssignPrescriptionToPharmacist(vm.PharmacistID, presc);
-
-            return Redirect("/Prescription/Index/");
-        }
-
+        //gets the prescriptions based on the user clicked on in the search page
         public ActionResult UserPrescriptions(int id)
         {
             IQueryable<Prescription> pres = presRep.GetAllPrescriptionsByUserID(id);
