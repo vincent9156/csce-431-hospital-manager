@@ -11,7 +11,6 @@ namespace HospitalManager.Repositories
     {
         
         private BillingDataContext _Billdb;
-        private PrescriptionRepository PresRep;
 
         public BillingRepository()
         {

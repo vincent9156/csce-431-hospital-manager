@@ -127,6 +127,7 @@ namespace HospitalManager.Controllers
             return View(bvm);
         }
 
+        //create bill for appointment
         public ActionResult Create(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.BillPatient))
@@ -176,6 +177,7 @@ namespace HospitalManager.Controllers
             return View("ViewBill",BVM);
         }
 
+        //removes bill from DB
         public ActionResult DeleteBill(int id)
         {
             BillRep.RemoveBillByID(id);

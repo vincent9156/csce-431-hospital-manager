@@ -12,6 +12,7 @@ namespace HospitalManager.Repositories
         private PrescriptionsDatabase prescriptionDb = new PrescriptionsDatabase();
         private BillingRepository BillRep = new BillingRepository();
 
+        //add prescription to DB
         public int AddPrescription(Prescription prescription)
         {
             prescriptionDb.Prescriptions.InsertOnSubmit(prescription);
@@ -19,13 +20,15 @@ namespace HospitalManager.Repositories
             return prescription.PrescriptionID;
         }
 
+        //returns all medications from DB
         public IQueryable<Medication> GetAllMedications()
         {
             return from script in prescriptionDb.Medications
                    orderby script.MedicationName ascending
                    select script;
         }
-
+        
+        //returns all mediactions names in database
         public IQueryable<string> GetAllMedicationNames()
         {
             var result = from script in prescriptionDb.Medications
@@ -39,6 +42,7 @@ namespace HospitalManager.Repositories
                 
         }
 
+        //return med name based on id given
         public string GetMedicationNameByID(int MedID)
         {
             var result = from m in prescriptionDb.Medications
@@ -51,11 +55,13 @@ namespace HospitalManager.Repositories
             return result.First();
         }
 
+        //tests to see if a certian med exists based on medID
         public bool MedicationExists(int medID)
         {
             return prescriptionDb.Medications.Select(m => m.MedicationID == medID).Count() != 0;
         }
 
+        //gets all prescriptions doctor has written
         public IQueryable<Prescription> GetAllPrescriptionsByDoctorID(int DocUserID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -68,6 +74,7 @@ namespace HospitalManager.Repositories
             return result;
         }
 
+        //gets all patients prescriptions based on patient ID
         public IQueryable<Prescription> GetAllPrescriptionsByUserID(int UserID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -79,19 +86,8 @@ namespace HospitalManager.Repositories
 
             return result;
         }
-
-        public IQueryable<Prescription> GetAllPrescriptions()
-        {
-            var result = from p in prescriptionDb.Prescriptions
-                         select p;
-
-            if (result.Count() == 0)
-                return null;
-
-            return result;
-
-        }
-
+        
+        //gets all prescriptions that pharmacist has filled
         public IQueryable<Prescription> GetAllPrescriptionsByPharmacistID(int PharmacistID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -104,6 +100,7 @@ namespace HospitalManager.Repositories
             return result;
         }
 
+        //calculates price based on the prescription amounts
         public decimal GetPriceOfPresciption(int prescriptionID)
         {
             var prescription = (from p in prescriptionDb.Prescriptions
@@ -120,6 +117,7 @@ namespace HospitalManager.Repositories
             return price;
         }
 
+        //gets a prescription by its ID number
         public Prescription GetPrescriptionByID(int PresID)
         {
             var result = from p in prescriptionDb.Prescriptions
@@ -133,23 +131,8 @@ namespace HospitalManager.Repositories
 
         }
 
-        public bool AssignPrescriptionToPharmacist(int PharmacistID,Prescription presc)
-        {
-            var result = from p in prescriptionDb.Prescriptions
-                          where p.PrescriptionID == presc.PrescriptionID
-                          select p;
-
-            if (result.Count() == 0)
-                return false;
-
-            result.First().PharmacistID = PharmacistID;
-            prescriptionDb.SubmitChanges();
-
-            return true;
-        }
-
         //changes status of fill status to filled and bills the patient, returns presBillID
-        public int FillPrescription(int PrescriptionID)
+        public int FillPrescription(int PharmacistID,int PrescriptionID)
         {
             //get prescription to fill and bill
             var result = from p in prescriptionDb.Prescriptions
@@ -169,12 +152,14 @@ namespace HospitalManager.Repositories
 
             //change status of prescription to filled
             result.First().FillStatus = 1;
+            result.First().PharmacistID = PharmacistID;
             prescriptionDb.SubmitChanges();
 
             //return BillID;
             return 1;
         }
 
+        //delete a prescription from the database
         public bool RemovePrescriptionByID(int PrescID)
         {
             Prescription pres = GetPrescriptionByID(PrescID);
