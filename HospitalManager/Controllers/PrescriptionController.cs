@@ -171,13 +171,10 @@ namespace HospitalManager.Controllers
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.FillPrescriptions))
                 return Redirect("/");
 
-            presRep.FillPrescription(id);
-                //assign the prescription to pharmacist
-            Prescription script = presRep.GetPrescriptionByID(id);
-            presRep.AssignPrescriptionToPharmacist(SessionRep.GetUser().UserID, script);
-                    
-            return Redirect("/Prescription/UserPrescriptions/" + script.UserID);
-            
+            //change status to filled and assign to isueing pharmacist
+            presRep.FillPrescription((SessionRep.GetUser().UserID),id);
+
+            return Redirect("/Prescription");
         }
 
         //gets the prescriptions based on the user clicked on in the search page
