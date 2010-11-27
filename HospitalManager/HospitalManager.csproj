@@ -240,7 +240,6 @@
     <Content Include="Views\PermissionsTest\AddDoctor.aspx" />
     <Content Include="Views\PermissionsTest\ShowUser.aspx" />
     <Content Include="Views\PermissionsTest\UserDisplay.ascx" />
-    <Content Include="Views\Prescription\Assign.aspx" />
     <Content Include="Views\Prescription\Index.aspx" />
     <Content Include="Views\Prescription\UserPrescriptions.aspx" />
     <Content Include="Views\Prescription\ViewPrescription.aspx" />
