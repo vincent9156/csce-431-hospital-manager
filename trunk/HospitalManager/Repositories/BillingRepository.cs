@@ -11,10 +11,12 @@ namespace HospitalManager.Repositories
     {
         
         private BillingDataContext _Billdb;
+        private PrescriptionRepository PresRep;
 
         public BillingRepository()
         {
             _Billdb = new BillingDataContext();
+            PresRep = new PrescriptionRepository();
         }
 
         public int BillPatient(Bill Bill)

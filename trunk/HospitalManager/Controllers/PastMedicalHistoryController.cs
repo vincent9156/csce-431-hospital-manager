@@ -12,16 +12,30 @@ using System.Text.RegularExpressions;
 
 namespace HospitalManager.Controllers
 {
+    /// <summary>
+    /// This controller handles viewing and editing a patient's past medical history.
+    /// </summary>
     public class PastMedicalHistoryController : Controller
     {
+        /// <summary>
+        /// Used to access and edit the current user's past medical history
+        /// </summary>
         PastMedicalHistoryRepository histRep = new PastMedicalHistoryRepository();
+
+        /// <summary>
+        /// Used to get the current user
+        /// </summary>
         SessionRepository sessRep = new SessionRepository();
 
+        /// <summary>
+        /// The current user
+        /// </summary>
         User user;
 
-        /**
-         * Make sure the user is authenticated
-         */
+        /// <summary>
+        /// Make sure the user is authenticated.
+        /// </summary>
+        /// <param name="context">Context to initialize</param>
         protected override void Initialize(RequestContext context)
         {
             base.Initialize(context);
@@ -35,9 +49,10 @@ namespace HospitalManager.Controllers
             user = sessRep.GetUser();
         }
 
-        /**
-         * Show the user their own medical history
-         */
+        /// <summary>
+        /// Show the user their own medical history
+        /// </summary>
+        /// <returns>A view containing the user's medical history</returns>
         public ActionResult Index()
         {
             if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
@@ -47,9 +62,11 @@ namespace HospitalManager.Controllers
             return View(history);
         }
 
-        /**
-         * Show the user their own medical history
-         */
+        /// <summary>
+        /// Show the user their own medical history
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A view containing the user's medical history</returns>
         public ActionResult ViewUserHistory(int id)
         {
             if (!user.HasAccess(AccessOptions.ViewPastMedicalHistories))
@@ -59,9 +76,10 @@ namespace HospitalManager.Controllers
             return View("Index", history);
         }
 
-        /**
-         * Allow the user to edit their medical history
-         */
+        /// <summary>
+        /// Allow the user to edit their medical history
+        /// </summary>
+        /// <returns>View which contains a form to edit the user's medical history</returns>
         public ActionResult Edit()
         {
             if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
@@ -83,9 +101,11 @@ namespace HospitalManager.Controllers
         }
 
 
-        /**
-         * Allow the user to edit their general medical history information
-         */
+        /// <summary>
+        /// Allow the user to edit their general medical history information
+        /// </summary>
+        /// <param name="vm">Viewmodel containing data from the edit history form</param>
+        /// <returns>Redirect to the past medical history edit page (which contains their updated info)</returns>
         [HttpPost]
         public ActionResult Edit(UpdateMedicalHistoryViewModel vm)
         {
@@ -103,9 +123,11 @@ namespace HospitalManager.Controllers
             return Redirect("/PastMedicalHistory/Edit");
         }
 
-        /**
-         * Allow the user to remove medical conditions
-         */
+        /// <summary>
+        /// Allow the user to remove medical conditions
+        /// </summary>
+        /// <param name="id">ID of the condition to remove</param>
+        /// <returns>Redirect to the past medical history edit page</returns>
         public ActionResult RemoveCondition(int id = -1)
         {
             if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
@@ -126,9 +148,11 @@ namespace HospitalManager.Controllers
             return Redirect("/PastMedicalHistory/Edit");
         }
 
-        /**
-         * Allow the user to add medical conditions
-         */
+        /// <summary>
+        /// Allow the user to add medical conditions
+        /// </summary>
+        /// <param name="medicalCondition">ID of the medical condition to add</param>
+        /// <returns>Redirect to the past medical history edit page</returns>
         [HttpPost]
         public ActionResult AddCondition(int medicalCondition = -1)
         {
@@ -143,9 +167,11 @@ namespace HospitalManager.Controllers
             return Redirect("/PastMedicalHistory/Edit");
         }
 
-        /**
-         * Allow the user to remove medical conditions
-         */
+        /// <summary>
+        /// Allow the user to remove medical conditions
+        /// </summary>
+        /// <param name="id">ID of the medical condition to remove</param>
+        /// <returns>Redirect to the past medical history edit page</returns>
         public ActionResult RemoveOtherCondition(int id = -1)
         {
             if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
@@ -166,9 +192,11 @@ namespace HospitalManager.Controllers
             return Redirect("/PastMedicalHistory/Edit");
         }
 
-        /**
-         * Allow the user to add medical conditions
-         */
+        /// <summary>
+        /// Allow the user to add medical conditions
+        /// </summary>
+        /// <param name="condition">The condition to add</param>
+        /// <returns>Redirect to the past medical history edit page</returns>
         [HttpPost]
         public ActionResult AddOtherCondition(string condition = "")
         {
@@ -184,9 +212,12 @@ namespace HospitalManager.Controllers
             return Redirect("/PastMedicalHistory/Edit");
         }
 
-        /**
-         * Allow the user to remove family medical conditions
-         */
+        /// <summary>
+        /// Allow the user to remove family medical conditions
+        /// </summary>
+        /// <param name="member">ID of family member</param>
+        /// <param name="condition">ID of condition</param>
+        /// <returns>Redirect to past medical history edit page</returns>
         public ActionResult RemoveFamilyCondition(int member = -1, int condition = -1)
         {
             if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
@@ -208,9 +239,12 @@ namespace HospitalManager.Controllers
         }
 
 
-        /**
-         * Allow the user to add family medical conditions
-         */
+        /// <summary>
+        /// Allow the user to add family medical conditions
+        /// </summary>
+        /// <param name="member">ID of family member</param>
+        /// <param name="condition">ID of condition</param>
+        /// <returns>Redirect to past medical history edit page</returns>
         [HttpPost]
         public ActionResult AddFamilyCondition(int member = -1, int condition = -1)
         {
@@ -225,9 +259,11 @@ namespace HospitalManager.Controllers
             return Redirect("/PastMedicalHistory/Edit");
         }
 
-        /**
-         * Allow the user to remove other family medical conditions
-         */
+        /// <summary>
+        /// Allow the user to remove other family medical conditions
+        /// </summary>
+        /// <param name="id">ID of condition</param>
+        /// <returns>Redirect to past medical history edit page</returns>
         public ActionResult RemoveOtherFamilyCondition(int id = -1)
         {
             if (!user.HasAccess(AccessOptions.EditOwnMedicalHistory))
@@ -248,9 +284,12 @@ namespace HospitalManager.Controllers
             return Redirect("/PastMedicalHistory/Edit");
         }
 
-        /**
-         * Allow the user to add other family medical conditions
-         */
+        /// <summary>
+        /// Allow the user to add other family medical conditions
+        /// </summary>
+        /// <param name="member">ID of family member</param>
+        /// <param name="condition">Condition to add</param>
+        /// <returns>Redirect to past medical history edit page</returns>
         [HttpPost]
         public ActionResult AddOtherFamilyCondition(int member = -1, string condition = "")
         {

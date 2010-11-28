@@ -6,52 +6,77 @@ using HospitalManager.Models;
 
 namespace HospitalManager.Libraries
 {
-    /**
-     * Represents the options for the access control list bitmasks
-     */
+    /// <summary>
+    /// Represents the options for the access control list bitmasks
+    /// </summary>
     [FlagsAttribute]
     public enum AccessOptions
     {
 
-        // Does this role need a staff ID to register?
+        /// <summary>
+        /// Does this role need a staff ID to register?
+        /// </summary>
         RegisterWithoutStaffID = 0x01,
 
-        // Can this user search other users?
+        /// <summary>
+        /// Can this user search other users?
+        /// </summary>
         SearchUsers = 0x02,
 
-        // Can this user view other user's past medical histories?
+        /// <summary>
+        /// Can this user view other user's past medical histories?
+        /// </summary>
         ViewPastMedicalHistories = 0x04,
 
-        // Can this user edit his own past medical history?
+        /// <summary>
+        /// Can this user edit his own past medical history?
+        /// </summary>
         EditOwnMedicalHistory = 0x08,
 
-        // Can this user write prescriptions?
+        /// <summary>
+        /// Can this user write prescriptions?
+        /// </summary>
         CanWritePrescriptions = 0x10,
 
-        // Can this user fill prescriptions?
+        /// <summary>
+        /// Can this user fill prescriptions?
+        /// </summary>
         FillPrescriptions = 0x20,
 
-        // Can this user search all patients?
+        /// <summary>
+        /// Can this user search all patients?
+        /// </summary>
         SearchAllPatients = 0x40,
 
-        // Can this user view a schedule?
+        /// <summary>
+        /// Can this user view a schedule?
+        /// </summary>
         ViewSchedule = 0x00, // TODO: Should be editted to work in the future
 
-        //can view prescriptions?
+        /// <summary>
+        /// can view prescriptions?
+        /// </summary>
         ViewPrescriptions = 0x00,
 
-        // Can this user view thier own bills
+        /// <summary>
+        /// Can this user view thier own bills
+        /// </summary>
         ViewBills = 0x00, // TODO: Should be editted to work in the future
 
-        // Can user bill a patient
+        /// <summary>
+        /// Can user bill a patient
+        /// </summary>
         BillPatient = 0x02 // TODO: Should be editted to have its own permission in the future
     }
 
     public class PermissionsManager
     {
-        /**
-         * Checks the access control list to see if a user has a given option set.
-         */
+        /// <summary>
+        /// Checks the access control list to see if a user has a given option set.
+        /// </summary>
+        /// <param name="permissions">The user's permissions</param>
+        /// <param name="flags">Flags to check</param>
+        /// <returns></returns>
         public static bool HasAccess(int permissions, AccessOptions flags)
         {
             return flags.Equals((AccessOptions)((int)flags & permissions));
