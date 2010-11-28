@@ -9,6 +9,9 @@ using HospitalManager.Libraries;
 
 namespace HospitalManager.ViewModels
 {
+    /// <summary>
+    /// View Model for the Appointment Bills
+    /// </summary>
     public class BillingViewModel
     {
         public int BillID { get; set; }
@@ -52,6 +55,9 @@ namespace HospitalManager.ViewModels
         }
 
     }
+    /// <summary>
+    /// View Model for the Prescrition Bills
+    /// </summary>
     public class PrescriptionBillingViewModel
     {
         public int BillID { get; set; }
@@ -72,6 +78,9 @@ namespace HospitalManager.ViewModels
         }
     }
 
+    /// <summary>
+    /// view Model for the Cancellation Bills
+    /// </summary>
     public class CancellationViewModel
     {
         public int BillID { get; set; }

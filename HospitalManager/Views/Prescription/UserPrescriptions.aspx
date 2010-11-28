@@ -16,7 +16,7 @@
     <% /* TODO: Use css.... */ %>
     <table cellpadding="10">
     <% if (Model.SearchResults.Count != 0) { %>
-    <tr><td>Prescription ID</td><td>Patient ID</td><td>Doctor ID</td><td>Fill Status</td><td>PharmacistID</td></tr>
+    <tr><td>Prescription ID</td><td>Patient</td><td>Doctor</td><td>Fill Status</td><td>Pharmacist</td></tr>
         <% foreach (var item in Model.SearchResults) { %>
             <tr><td><%= item.PrescriptionID%></td><td><%= item.UserID %></td><td><%= item.DoctorUserID %></td><td><%= item.FillStatus %></td><td><%= item.PharmacistID %></td>
                 <% /* TODO: Check permissions of user before 

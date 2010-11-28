@@ -19,7 +19,11 @@ namespace HospitalManager.Controllers
         UserRepository user = new UserRepository();
         PrescriptionRepository presRep = new PrescriptionRepository();
 
-        //by default the index of prescriptions displays all prescriptions for the user logged in
+        /// <summary>
+        /// by default the index of prescriptions displays 
+        /// all prescriptions for the user logged in
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             User user = SessionRep.GetUser();
@@ -71,6 +75,7 @@ namespace HospitalManager.Controllers
                     List<PrescriptionViewModel> PrescriptionViewModels = new List<PrescriptionViewModel>();
                     if (pres == null)
                         return View();
+                    
                     foreach (var pre in pres)
                     {
                         PrescriptionViewModels.Add(Mapper.Map<Prescription, PrescriptionViewModel>(pre));
@@ -89,7 +94,11 @@ namespace HospitalManager.Controllers
             else return Redirect("/Authentication/Login/");
         }
      
-        //view prescription based on prescriptionID
+        /// <summary>
+        /// view prescription based on prescriptionID
+        /// </summary>
+        /// <param name="id">prescriptionID</param>
+        /// <returns></returns>
         public ActionResult ViewPrescription(int id)
         {
             if (!SessionRep.IsLoggedIn())
@@ -118,7 +127,11 @@ namespace HospitalManager.Controllers
             return View(vm);
         }
 
-        //by doctor only to fill in information for a prescription
+        /// <summary>
+        /// by doctor only to fill in information for a prescription
+        /// </summary>
+        /// <param name="id">UserID</param>
+        /// <returns></returns>
         public ActionResult WritePrescription(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.CanWritePrescriptions))
@@ -135,7 +148,12 @@ namespace HospitalManager.Controllers
             
             return View(vm);
         }
-
+        
+        /// <summary>
+        /// httppost for writing prescriptions
+        /// </summary>
+        /// <param name="vm">prescription view Model</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult WritePrescription(PrescriptionViewModel vm)
         {
@@ -155,7 +173,11 @@ namespace HospitalManager.Controllers
             return View("ViewPrescription", vm);
         }
 
-        //remove a prescription by doctor or pharmacist only if made in error
+        /// <summary>
+        /// remove a prescription by doctor or pharmacist only if made in error
+        /// </summary>
+        /// <param name="id">PrescriptionID</param>
+        /// <returns></returns>
         public ActionResult DeletePrescription(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.FillPrescriptions))
@@ -165,7 +187,12 @@ namespace HospitalManager.Controllers
             return Redirect("/Prescription/Index/");
         }
 
-        //changes fill status to 1 and the pharmacist is assigned to the prescription
+        /// <summary>
+        /// changes fill status to 1 and the 
+        /// pharmacist is assigned to the prescription
+        /// </summary>
+        /// <param name="id">presriptionID</param>
+        /// <returns></returns>
         public ActionResult Fill(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.FillPrescriptions))
@@ -177,7 +204,12 @@ namespace HospitalManager.Controllers
             return Redirect("/Prescription");
         }
 
-        //gets the prescriptions based on the user clicked on in the search page
+        /// <summary>
+        /// gets the prescriptions based on the 
+        /// user clicked on in the search page
+        /// </summary>
+        /// <param name="id">userID</param>
+        /// <returns></returns>
         public ActionResult UserPrescriptions(int id)
         {
             IQueryable<Prescription> pres = presRep.GetAllPrescriptionsByUserID(id);
@@ -196,6 +228,5 @@ namespace HospitalManager.Controllers
             return View(vm);
 
         }
-
     }
 }

@@ -12,7 +12,11 @@ namespace HospitalManager.Repositories
         private PrescriptionsDatabase prescriptionDb = new PrescriptionsDatabase();
         private BillingRepository BillRep = new BillingRepository();
 
-        //add prescription to DB
+        /// <summary>
+        /// add prescription to DB
+        /// </summary>
+        /// <param name="prescription">prescription to add</param>
+        /// <returns></returns>
         public int AddPrescription(Prescription prescription)
         {
             prescriptionDb.Prescriptions.InsertOnSubmit(prescription);
@@ -20,29 +24,22 @@ namespace HospitalManager.Repositories
             return prescription.PrescriptionID;
         }
 
-        //returns all medications from DB
+        /// <summary>
+        /// returns all medications from DB
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<Medication> GetAllMedications()
         {
             return from script in prescriptionDb.Medications
                    orderby script.MedicationName ascending
                    select script;
         }
-        
-        //returns all mediactions names in database
-        public IQueryable<string> GetAllMedicationNames()
-        {
-            var result = from script in prescriptionDb.Medications
-                         orderby script.MedicationName ascending
-                         select script.MedicationName;
 
-            if (result.Count() == 0)
-                return null;
-
-            return result;
-                
-        }
-
-        //return med name based on id given
+        /// <summary>
+        /// return med name based on id given
+        /// </summary>
+        /// <param name="MedID"> Medicine ID</param>
+        /// <returns></returns>
         public string GetMedicationNameByID(int MedID)
         {
             var result = from m in prescriptionDb.Medications
@@ -55,13 +52,11 @@ namespace HospitalManager.Repositories
             return result.First();
         }
 
-        //tests to see if a certian med exists based on medID
-        public bool MedicationExists(int medID)
-        {
-            return prescriptionDb.Medications.Select(m => m.MedicationID == medID).Count() != 0;
-        }
-
-        //gets all prescriptions doctor has written
+        /// <summary>
+        /// gets all prescriptions doctor has written
+        /// </summary>
+        /// <param name="DocUserID">Doctor user ID</param>
+        /// <returns></returns>
         public IQueryable<Prescription> GetAllPrescriptionsByDoctorID(int DocUserID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -74,7 +69,11 @@ namespace HospitalManager.Repositories
             return result;
         }
 
-        //gets all patients prescriptions based on patient ID
+        /// <summary>
+        /// gets all patients prescriptions based on patient ID
+        /// </summary>
+        /// <param name="UserID">Id of the user</param>
+        /// <returns></returns>
         public IQueryable<Prescription> GetAllPrescriptionsByUserID(int UserID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -87,7 +86,11 @@ namespace HospitalManager.Repositories
             return result;
         }
         
-        //gets all prescriptions that pharmacist has filled
+        /// <summary>
+        /// gets all prescriptions that pharmacist has filled
+        /// </summary>
+        /// <param name="PharmacistID">Id of the Pharmacist</param>
+        /// <returns></returns>
         public IQueryable<Prescription> GetAllPrescriptionsByPharmacistID(int PharmacistID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -100,7 +103,11 @@ namespace HospitalManager.Repositories
             return result;
         }
 
-        //calculates price based on the prescription amounts
+        /// <summary>
+        /// calculates price based on the prescription amounts
+        /// </summary>
+        /// <param name="prescriptionID">presction ID to get price of</param>
+        /// <returns></returns>
         public decimal GetPriceOfPresciption(int prescriptionID)
         {
             var prescription = (from p in prescriptionDb.Prescriptions
@@ -117,7 +124,11 @@ namespace HospitalManager.Repositories
             return price;
         }
 
-        //gets a prescription by its ID number
+        /// <summary>
+        /// gets a prescription by its ID number
+        /// </summary>
+        /// <param name="PresID">prescription ID</param>
+        /// <returns></returns>
         public Prescription GetPrescriptionByID(int PresID)
         {
             var result = from p in prescriptionDb.Prescriptions
@@ -131,7 +142,12 @@ namespace HospitalManager.Repositories
 
         }
 
-        //changes status of fill status to filled and bills the patient, returns presBillID
+        /// <summary>
+        /// changes status of fill status to filled and bills the patient, returns presBillID
+        /// </summary>
+        /// <param name="PharmacistID">ID of Pharmacist</param>
+        /// <param name="PrescriptionID">ID of Prescription</param>
+        /// <returns></returns>
         public int FillPrescription(int PharmacistID,int PrescriptionID)
         {
             //get prescription to fill and bill
@@ -159,7 +175,11 @@ namespace HospitalManager.Repositories
             return 1;
         }
 
-        //delete a prescription from the database
+        /// <summary>
+        /// delete a prescription from the database
+        /// </summary>
+        /// <param name="PrescID">prescription ID</param>
+        /// <returns></returns>
         public bool RemovePrescriptionByID(int PrescID)
         {
             Prescription pres = GetPrescriptionByID(PrescID);
