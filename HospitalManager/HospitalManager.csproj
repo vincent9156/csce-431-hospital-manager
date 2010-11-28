@@ -78,7 +78,6 @@
     <Compile Include="Controllers\CurrentMedicalHistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PastMedicalHistoryController.cs" />
-    <Compile Include="Controllers\PermissionsTestController.cs" />
     <Compile Include="Controllers\PrescriptionController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -151,10 +150,6 @@
     <Compile Include="ViewModels\BillingViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\CurrentMedicalHistoriesViewModel.cs" />
-    <Compile Include="ViewModels\DoctorViewModel.cs" />
-    <Compile Include="ViewModels\NurseViewModel.cs" />
-    <Compile Include="ViewModels\PatientViewModel.cs" />
-    <Compile Include="ViewModels\PharmacistViewModel.cs" />
     <Compile Include="ViewModels\PrescriptionViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
@@ -221,7 +216,6 @@
     <Content Include="Views\Appointment\Index.aspx" />
     <Content Include="Views\Appointment\Schedule.aspx" />
     <Content Include="Views\Appointment\SelectTime.aspx" />
-    <Content Include="Views\Appointment\ViewPage1.aspx" />
     <Content Include="Views\Authentication\BillingInfo.aspx" />
     <Content Include="Views\Authentication\ChangePassword.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />
@@ -237,9 +231,6 @@
     <Content Include="Views\Home\ViewProfile.aspx" />
     <Content Include="Views\PastMedicalHistory\Edit.aspx" />
     <Content Include="Views\PastMedicalHistory\Index.aspx" />
-    <Content Include="Views\PermissionsTest\AddDoctor.aspx" />
-    <Content Include="Views\PermissionsTest\ShowUser.aspx" />
-    <Content Include="Views\PermissionsTest\UserDisplay.ascx" />
     <Content Include="Views\Prescription\Index.aspx" />
     <Content Include="Views\Prescription\UserPrescriptions.aspx" />
     <Content Include="Views\Prescription\ViewPrescription.aspx" />

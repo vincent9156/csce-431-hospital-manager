@@ -14,17 +14,39 @@ using AutoMapper;
 
 namespace HospitalManager.Controllers
 {
+    /// <summary>
+    /// This controller handles creating, editing, and viewing the patient's current medical history.
+    /// </summary>
     public class CurrentMedicalHistoryController : Controller
     {
+        /// <summary>
+        /// Used to view and edit a user's current medical history
+        /// </summary>
         CurrentMedicalHistoryRepository histRep = new CurrentMedicalHistoryRepository();
+
+        /// <summary>
+        /// Used to get the current user
+        /// </summary>
         SessionRepository sessRep = new SessionRepository();
+
+        /// <summary>
+        /// Used to look up requested users
+        /// </summary>
         UserRepository userRep = new UserRepository();
+
+        /// <summary>
+        /// Used to add appointments
+        /// </summary>
         AppointmentRepository apptRep = new AppointmentRepository();
+
+        /// <summary>
+        /// The current user
+        /// </summary>
         User user;
 
-        /**
-        * Make sure the user is authenticated (borrowed this from PastMedicalHistoryController)
-        */
+        /// <summary>
+        /// Make sure the user is authenticated (borrowed this from PastMedicalHistoryController)
+        /// </summary>
         protected override void Initialize(RequestContext context)
         {
             base.Initialize(context);
@@ -39,10 +61,11 @@ namespace HospitalManager.Controllers
             user = sessRep.GetUser();
         }
         
-
-        //
-        // GET: /CurrentMedicalHistory/
-        
+        /// <summary>
+        /// Checks if the user has access to the patient's history and redirects appropriately.
+        /// </summary>
+        /// <param name="UserId">User id of the patient's history to access</param>
+        /// <returns>Redirection depending on user permissions</returns>
         public ActionResult Index(int UserId = -1)
         {
             // make sure they asked for a user or send to the homepage
@@ -67,10 +90,12 @@ namespace HospitalManager.Controllers
             
             return View(vm);
         }
-        /**
-         * allow a doctor or nurse to add a visit record to a user who's UserID = UserId
-         **/
 
+        /// <summary>
+        /// Allow a doctor or nurse to add a visit record to a user.
+        /// </summary>
+        /// <param name="UserId">Add the visit record to this user</param>
+        /// <returns>The AddVisit view</returns>
         public ActionResult AddVisit(int UserId = -1)
         {
             // if they have not selected a user, send back to the home page
@@ -103,9 +128,11 @@ namespace HospitalManager.Controllers
             return View(vm);
         }
 
-        /**
-         * Allow the user to edit their general medical history information
-         */
+        /// <summary>
+        /// Allow Doctor to edit a User's general medical history information
+        /// </summary>
+        /// <param name="m">Viewmodel containing info from the form</param>
+        /// <returns>Appropriate redirect depending on validity of information</returns>
         [HttpPost]
         public ActionResult AddVisit(CurrentMedicalHistory m)
         {
@@ -126,13 +153,5 @@ namespace HospitalManager.Controllers
             // Return them to home
             return Redirect("/CurrentMedicalHistory/Index?UserId="+m.UserID);
         }
-
-        private bool checkPatient(int UserId)
-        {
-            
-            return true;
-        }
-
-
     }
 }
