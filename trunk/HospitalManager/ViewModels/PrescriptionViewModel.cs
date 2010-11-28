@@ -9,6 +9,7 @@ namespace HospitalManager.ViewModels
 {
     public class PrescriptionViewModel
     {
+        //data for a prescription
         public int PrescriptionID { get; set; }
         public int UserID { get; set; }
         public int DoctorUserID { get; set; }
@@ -17,11 +18,11 @@ namespace HospitalManager.ViewModels
         public int NumRefills { get; set; }
         public int mgPerPill { get; set; }
         public string Instructions { get; set; }
-
         public int PharmacistID { get; set; }
         public int FillStatus { get; set; }
-        public string FillStatusLabel { get; set; }
 
+        //displayed data for view model
+        public string FillStatusLabel { get; set; }
         public string PharmacistName { get; set; }
         public string PatientName { get; set; }
         public string DoctorName { get; set; }
@@ -30,7 +31,6 @@ namespace HospitalManager.ViewModels
         public IEnumerable<User> Pharmacists { get; set; }
         public IEnumerable<Medication> Medications { get; set; }
         public IList<PrescriptionViewModel> SearchResults;
-        
         public UserViewModel LoggedInUser { get; set; }
     }
 }
