@@ -23,6 +23,16 @@ namespace HospitalManager.Repositories
         }
 
         /// <summary>
+        ///initialize repository using a specific prescription repository
+        /// </summary>
+        public BillingRepository(PrescriptionRepository presRep)
+        {
+            _Billdb = new BillingDataContext();
+            PresRep = presRep;
+        }
+
+
+        /// <summary>
         /// create bill from appointment
         /// </summary>
         /// <param name="Bill">Bill to add to DB</param>
