@@ -205,7 +205,11 @@
     <Content Include="Views\Appointment\AddAppointment.aspx" />
     <Content Include="Views\Appointment\Cancel.aspx" />
     <Content Include="Views\Appointment\CancelApp.aspx" />
+    <Content Include="Views\Appointment\DocCancel.aspx" />
     <Content Include="Views\Appointment\Index.aspx" />
+    <Content Include="Views\Appointment\Reschedule.aspx" />
+    <Content Include="Views\Appointment\RescheduleApp.aspx" />
+    <Content Include="Views\Appointment\RescheduleTime.aspx" />
     <Content Include="Views\Appointment\Schedule.aspx" />
     <Content Include="Views\Appointment\SelectTime.aspx" />
     <Content Include="Views\Authentication\BillingInfo.aspx" />

@@ -15,7 +15,7 @@
     <div id="main_body">
     <div id="body">
     <h2>Reschedule Appointment</h2>
-    <form action="/Appointment/SelectTime" method="post">
+    <form action="/Appointment/RescheduleTime" method="post">
 
 
     <table width="100%">
@@ -24,6 +24,7 @@
         Please Input a Date [mm/dd/yyyy]:<br /> <input type="text" id="Date" maxlength="10" name="Date" readonly />
         <br /><br />
         <input type="hidden" name="DoctorID" id="DoctorID" value="<%: Model.DoctorID %>" /> 
+        <input type="hidden" name="UserID" id="UserID" value="<%: Model.UserID %>" /> 
     </td>
     </tr>
     <tr>
