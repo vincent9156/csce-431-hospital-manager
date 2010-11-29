@@ -7,6 +7,9 @@ using HospitalManager.Libraries;
 
 namespace HospitalManager.ViewModels
 {
+    /// <summary>
+    /// ViewModel used for prescriptions
+    /// </summary>
     public class PrescriptionViewModel
     {
         //data for a prescription
