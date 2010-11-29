@@ -6,7 +6,9 @@ using HospitalManager.Models;
 
 namespace HospitalManager.Repositories
 {
-
+    /// <summary>
+    /// Handles adding and editing appointment information
+    /// </summary>
     public class AppointmentRepository
     {
         private AppointmentDataContext _Appdb;

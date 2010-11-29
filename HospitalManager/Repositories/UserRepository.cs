@@ -6,21 +6,26 @@ using HospitalManager.Models;
 
 namespace HospitalManager.Repositories
 {
+    /// <summary>
+    /// Handles adding users and viewing users
+    /// </summary>
     public class UserRepository
     {
         private UsersDatabase usersDb;
 
-        /**
-         * Initialize the database context
-         */
+        /// <summary>
+        /// Initialize the database context
+        /// </summary>
         public UserRepository()
         {
             usersDb = new UsersDatabase();
         }
 
-        /**
-         * Get a user by their username
-         */
+        /// <summary>
+        /// Get a user by their username
+        /// </summary>
+        /// <param name="username">Username to query</param>
+        /// <returns>User or null if username is not in database</returns>
         public User GetUserByUsername(string username)
         {
             var result = from user in usersDb.Users
@@ -34,9 +39,11 @@ namespace HospitalManager.Repositories
             return result.First();
         }
 
-        /**
-         *Get a user by their UserID
-         */
+        /// <summary>
+        /// Get a user by their UserID
+        /// </summary>
+        /// <param name="id">User id</param>
+        /// <returns>User or null if user id is not in database</returns>
         public User GetUserByUserID(int id)
         {
             var result = from user in usersDb.Users
@@ -47,9 +54,12 @@ namespace HospitalManager.Repositories
             return result.First();
         }
 
-        /**
-         * Get a queryable collection of users by their first and last names
-         */
+        /// <summary>
+        /// Get a queryable collection of users by their first and last names
+        /// </summary>
+        /// <param name="firstName">User's first name</param>
+        /// <param name="lastName">User's last name</param>
+        /// <returns></returns>
         public IQueryable<User> GetUserByName(string firstName, string lastName)
         {
             var result = from user in usersDb.Users
@@ -61,9 +71,13 @@ namespace HospitalManager.Repositories
             return result;
         }
 
-        /**
-         * Get a queryable collection of users by their first, last name and user type
-         */
+        /// <summary>
+        /// Get a queryable collection of users by their first, last name and user type
+        /// </summary>
+        /// <param name="firstName">User's first name</param>
+        /// <param name="lastName">User's last name</param>
+        /// <param name="userTypeID">User's type id</param>
+        /// <returns>IQueryable of users that fit the parameters or null if none exist</returns>
         public IQueryable<User> GetUserByName(string firstName, string lastName, int userTypeID)
         {
             var result = from user in usersDb.Users
@@ -76,9 +90,11 @@ namespace HospitalManager.Repositories
             return result;
         }
 
-        /**
-         * Add a user to the database, returning their user id
-         */
+        /// <summary>
+        /// Add a user to the database, returning their user id
+        /// </summary>
+        /// <param name="user">User to add</param>
+        /// <returns>The new user's user id</returns>
         public int AddUser(User user)
         {
             // Submit the user based on their type ID
@@ -101,9 +117,10 @@ namespace HospitalManager.Repositories
             return user.UserID;
         }
 
-        /**
-         * Get a queryable collection of all the user types
-         */
+        /// <summary>
+        /// Get a queryable collection of all the user types
+        /// </summary>
+        /// <returns>IQueryable of user types</returns>
         public IQueryable<UserType> GetUserTypes()
         {
             var result = from userType in usersDb.UserTypes
@@ -112,9 +129,11 @@ namespace HospitalManager.Repositories
             return result;
         }
 
-        /**
-         * Get a user type by its type id
-         */
+        /// <summary>
+        /// Get a user type by its type id
+        /// </summary>
+        /// <param name="typeID">Type id to look up</param>
+        /// <returns>The UserType or null if none exists</returns>
         public UserType GetUserTypeByID(int typeID)
         {
             var result = from userType in usersDb.UserTypes
@@ -128,9 +147,11 @@ namespace HospitalManager.Repositories
             return result.First();
         }
 
-        /**
-         * Get a staff member record based upon the 
-         */
+        /// <summary>
+        /// Get a staff member record based upon the staff id
+        /// </summary>
+        /// <param name="staffID">Staff id to check</param>
+        /// <returns>StaffMember or null if none exists</returns>
         public StaffMember GetStaffMemberByID(int staffID)
         {
             var result = from staffMember in usersDb.StaffMembers
@@ -144,7 +165,11 @@ namespace HospitalManager.Repositories
             return result.First();
         }
 
-        //changes database info for user based on username
+        /// <summary>
+        /// changes database info for user based on username
+        /// </summary>
+        /// <param name="NewUserName">The user's new username</param>
+        /// <param name="u">Other new user info</param>
         public void EditUserByUsername(String NewUserName, User u)
         {
             var result = (from user in usersDb.Users
@@ -162,7 +187,12 @@ namespace HospitalManager.Repositories
             usersDb.SubmitChanges();
         }
 
-        // change the password of user u to pass
+        /// <summary>
+        /// change the password of user u to pass
+        /// </summary>
+        /// <param name="u">User to edit</param>
+        /// <param name="pass">New user password</param>
+        /// <returns>Edited user</returns>
         public User ChangeUserPassword(User u, String pass)
         {
             var result = (from user in usersDb.Users
@@ -173,7 +203,11 @@ namespace HospitalManager.Repositories
             return result;
         }
         
-        // returns all users based on the type searched for example: get all doctors
+        /// <summary>
+        /// returns all users based on the type searched for example: get all doctors
+        /// </summary>
+        /// <param name="userType">User type to query</param>
+        /// <returns>IQueryable of all users of a certain type</returns>
         public IQueryable<User> GetAllUsersBasedOnType(int userType)
         {
             var result = from user in usersDb.Users
@@ -183,6 +217,13 @@ namespace HospitalManager.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Returns patients under a given doctor
+        /// </summary>
+        /// <param name="doctorID">ID of the doctor</param>
+        /// <param name="firstName">First name of the patient</param>
+        /// <param name="lastName">Last name of the patient</param>
+        /// <returns>All patients that match the given parameters</returns>
         public IQueryable<VWPatientsByDoctor> GetPatientByDoctor(int doctorID, string firstName, string lastName)
         {
             var apptRep = new AppointmentRepository();
