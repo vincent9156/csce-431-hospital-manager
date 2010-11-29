@@ -8,6 +8,9 @@ namespace HospitalManager.ViewModels
 {
     public class CurrentMedicalHistoriesViewModel
     {
+        /// <summary>
+        /// Get current medical history data from database
+        /// </summary>
         public IQueryable<CurrentMedicalHistory> CurrentMedicalHistoryList { get; set; }
     }
 }
