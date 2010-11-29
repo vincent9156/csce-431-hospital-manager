@@ -18,6 +18,11 @@ namespace HospitalManager.Controllers
         private BillingRepository     billrep;
 
 
+        /// <summary>
+        /// Default constructor for the appoitnment controller class
+        /// Creates several repositories for use later inside of the controller
+        /// Logic
+        /// </summary>
         public AppointmentController()
         {
 
@@ -26,6 +31,18 @@ namespace HospitalManager.Controllers
             sessrep = new SessionRepository();
             billrep = new BillingRepository();
         }
+
+        /// <summary>
+        /// Default view for appointments.
+        /// First makes sure that user is logged in, then determines if the user
+        /// is a doctor or patient. Based on if the user is a doctor or patient
+        /// determines what repository logic we use to grab the appointments for that
+        /// user. These appointments are then mapped to an appointment view model which
+        /// is returned to the view
+        /// </summary>
+        /// <returns>
+        /// A appointment view model that contains all appointments for the user
+        /// </returns>
         public ActionResult Index()
         {
             if (!sessrep.IsLoggedIn())
@@ -35,7 +52,6 @@ namespace HospitalManager.Controllers
 
             User user = sessrep.GetUser();
 
-            //If user is a patient then list their appointments
             if (user.TypeID == UserType.PatientTypeID)
             {
                 IQueryable<VWAppointments> appointments = apprep.GetUserAppointments(user.UserID);
@@ -52,7 +68,6 @@ namespace HospitalManager.Controllers
                 return View(am);
             }
 
-            //If user is a doctor then list their appointments
             else if (user.TypeID == UserType.DoctorTypeID)
             {
                 IQueryable<VWAppointments> appointments = apprep.GetDoctorAppointments(user.UserID);
@@ -69,11 +84,19 @@ namespace HospitalManager.Controllers
                 return View(am);
             }
 
-            //Else just return a null viewmodel
             else
                 return View((AppointmentViewModel)null);
         }
 
+        /// <summary>
+        /// Creates a simple form where user can select from
+        /// doctors that currently work at the hospital. 
+        /// </summary>
+        /// <returns>
+        /// Returns a view model containing all doctors at the hospital.
+        /// Allows us to list all doctors the user can schdule an appointment
+        /// with.
+        /// </returns>
         public ActionResult Schedule()
         {
             if (!sessrep.IsLoggedIn())
@@ -81,12 +104,22 @@ namespace HospitalManager.Controllers
                 return Redirect("/Authentication/Login");
             }
 
-
             var docs = urep.GetAllUsersBasedOnType(UserType.DoctorTypeID);
             AppointmentViewModel vm = new AppointmentViewModel { Doctors = docs.ToList()};
             return View(vm);
         }
 
+        /// <summary>
+        /// Allows user to select a time for an appointment with a specific
+        /// doctor on a given date. Where the user has already selected the
+        /// doctor and date from the schedule view above.
+        /// </summary>
+        /// <param name="DoctorID">Doctor ID selected by the user</param>
+        /// <param name="Date">Date selected by the user</param>
+        /// <returns>
+        /// Returns a view model contianing the avaliable times for a selected
+        /// doctor and a selected date to the view
+        /// </returns>
         public ActionResult SelectTime(int DoctorID, DateTime Date)
         {
             if (!sessrep.IsLoggedIn())
@@ -101,11 +134,24 @@ namespace HospitalManager.Controllers
             return View(vm);
         }
 
+        /// <summary>
+        /// Adds appointment for user based on selected doctor, date, and time
+        /// </summary>
+        /// <param name="DoctorID">Doctor selected by user</param>
+        /// <param name="Date">Date selected by user</param>
+        /// <param name="Time">Time selected by user</param>
+        /// <returns>
+        /// Redirects user to the appoinment index view. So that they can see thier
+        /// newly scheduled appointment
+        /// </returns>
         public ActionResult AddAppointment(int DoctorID, DateTime Date, TimeSpan Time)
         {
          
             User user = sessrep.GetUser();
             IQueryable<VWAppointments> appointments = apprep.GetUserAppointments(user.UserID);
+            
+            //Make sure that the appointment the user is trying to schedule
+            //is not already in the system.
             foreach (var checkapp in appointments)
             { 
                 if(checkapp.Date == Date)
@@ -117,13 +163,20 @@ namespace HospitalManager.Controllers
                 }
             }
 
-
             Appointment app = new Appointment { UserID = user.UserID, DoctorID = DoctorID, Date = Date.Date, Time = Time };
             apprep.InsertAppointment(app);
 
             return Redirect("/Appointment/Index");
         }
 
+        /// <summary>
+        /// Allows user be it doctor or patient to cancel any of thier current appointments.
+        /// </summary>
+        /// <returns>
+        /// For patients this logic returns a list of their appointmets to the view
+        /// so that they may cancel one of their appointments. For doctors trying to
+        /// cancel an appoitntmet they are redirected to the DocCancel logic located below
+        /// </returns>
         public ActionResult Cancel()
         {
 
@@ -133,7 +186,7 @@ namespace HospitalManager.Controllers
             }
 
             User user = sessrep.GetUser();
-            //If user is a patient then list their appointments
+           
             if (user.TypeID == UserType.PatientTypeID)
             {
                 IQueryable<VWAppointments> appointments = apprep.GetUserAppointments(user.UserID);
@@ -150,7 +203,7 @@ namespace HospitalManager.Controllers
                 return View(am);
             }
 
-                        //If user is a doctor then list their appointments
+            
             else if (user.TypeID == UserType.DoctorTypeID)
             {
                 return Redirect("/Appointment/DocCancel");
@@ -159,6 +212,14 @@ namespace HospitalManager.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// Allows doctors to cancel thier appointments
+        /// </summary>
+        /// <returns>
+        /// Returns a list of the doctor's appointments so that they can
+        /// choose one to cancel
+        /// </returns>
         public ActionResult DocCancel()
         {
 
@@ -184,14 +245,25 @@ namespace HospitalManager.Controllers
 
         }
 
+        /// <summary>
+        /// Provides a way for doctors to reschedule appointments with patients
+        /// </summary>
+        /// <returns>
+        /// Currently returns nothing to the view
+        /// </returns>
         public ActionResult Reschedule()
         {
-
-
-
             return View();
         }
 
+        /// <summary>
+        /// Cancels a specfic appoitment selected by the user. 
+        /// </summary>
+        /// <param name="AppointmentID">Appointment selected by the user</param>
+        /// <returns>
+        /// Redirects user to either the appointment idex if a patient or the reschedule logic
+        /// if a doctor
+        /// </returns>
         public ActionResult CancelApp(int AppointmentID)
         {
             Appointment app = apprep.GetAppointmentByAppointmentID(AppointmentID);
@@ -204,6 +276,8 @@ namespace HospitalManager.Controllers
             float cost = (float)25.00;
             string reason = "Late Cancellation Fee";
             
+            //Charge user a cancellation fee if they have cancelled within 2 days of the
+            //scheduled appointment
             if(user.TypeID == UserType.PatientTypeID)
             if (app.Date.Year == now.Year)
             {
@@ -268,7 +342,7 @@ namespace HospitalManager.Controllers
                 }            
             }
 
-
+            // Force doctor to reschedule appointment they have cancelled
             if (user.TypeID == UserType.DoctorTypeID)
             {
                 if (app.Date.Year == now.Year)
