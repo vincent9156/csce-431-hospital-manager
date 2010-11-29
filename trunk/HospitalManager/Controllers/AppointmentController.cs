@@ -16,8 +16,6 @@ namespace HospitalManager.Controllers
         private AppointmentRepository apprep;
         private SessionRepository     sessrep;
         private BillingRepository     billrep;
-        private int ReschedulePatient;
-        private bool rescheduled;
 
 
         /// <summary>
@@ -165,15 +163,7 @@ namespace HospitalManager.Controllers
                 }
             }
 
-            Appointment app;
-
-            if (rescheduled)
-            {
-                app = new Appointment { UserID = ReschedulePatient, DoctorID = DoctorID, Date = Date.Date, Time = Time };
-                rescheduled = false;
-            }
-            else
-                app = new Appointment { UserID = user.UserID, DoctorID = DoctorID, Date = Date.Date, Time = Time };
+            Appointment app = new Appointment { UserID = user.UserID, DoctorID = DoctorID, Date = Date.Date, Time = Time };
 
 
             apprep.InsertAppointment(app);
@@ -263,17 +253,57 @@ namespace HospitalManager.Controllers
         /// <returns>
         /// Currently returns nothing to the view
         /// </returns>
-        public ActionResult Reschedule()
+        public ActionResult Reschedule(int ID)
         {
             User doctor = sessrep.GetUser();
+            int DocID = doctor.UserID;
             string fname = doctor.FirstName;
             string lname = doctor.LastName;
+            int PatientID = ID;
 
-            var am = new AppointmentViewModel { UserID = doctor.UserID, DoctorFirstName = fname, DoctorLastName = lname };
+            var am = new AppointmentViewModel { UserID = PatientID, DoctorID = DocID, DoctorFirstName = fname, DoctorLastName = lname };
 
             return View(am);
         }
 
+        public ActionResult RescheduleTime(int UserID, int DoctorID, DateTime Date)
+        {
+            if (!sessrep.IsLoggedIn())
+            {
+                return Redirect("/Authentication/Login");
+            }
+          
+            var times = apprep.GetDoctorAvaliablity(DoctorID, UserID, Date);
+            AppointmentViewModel vm = new AppointmentViewModel { Times = times, Date = Date, DoctorID = DoctorID, UserID = UserID};
+            return View(vm);
+        }
+
+
+        public ActionResult RescheduleApp(int UserID, int DoctorID, DateTime Date, TimeSpan Time)
+        {
+            User user = sessrep.GetUser();
+            IQueryable<VWAppointments> appointments = apprep.GetUserAppointments(user.UserID);
+
+            //Make sure that the appointment the user is trying to schedule
+            //is not already in the system.
+            foreach (var checkapp in appointments)
+            {
+                if (checkapp.Date == Date)
+                {
+                    if (checkapp.Time == Time)
+                    {
+                        return Redirect("/Appointment/Schedule");
+                    }
+                }
+            }
+
+            Appointment app = new Appointment { UserID = UserID, DoctorID = DoctorID, Date = Date.Date, Time = Time };
+
+
+            apprep.InsertAppointment(app);
+
+            return Redirect("/Appointment/Index");        
+        }
         /// <summary>
         /// Cancels a specfic appoitment selected by the user. 
         /// </summary>
@@ -288,7 +318,7 @@ namespace HospitalManager.Controllers
             DateTime now = DateTime.Now;
             User user = sessrep.GetUser();
             bool reschedule = false;
-            rescheduled = false;
+            int reschedulePatient = 0;
 
             int UID = app.UserID;
             int DID = app.DoctorID;
@@ -364,7 +394,9 @@ namespace HospitalManager.Controllers
             // Force doctor to reschedule appointment they have cancelled
             if (user.TypeID == UserType.DoctorTypeID)
             {
-                ReschedulePatient = app.UserID;
+                reschedulePatient = app.UserID;
+
+                TempData["ID"] = reschedulePatient;
 
                 if (app.Date.Year == now.Year)
                 {
@@ -375,16 +407,19 @@ namespace HospitalManager.Controllers
                     if ((diff <= 2) && date1 > date2)
                     {
                         reschedule = true;
-                        rescheduled = true;
                     }
                 }
 
             }
 
+            reschedulePatient = app.UserID;
             apprep.CancelAppointment(app);
 
             if (reschedule)
-                return Redirect("/Appointment/Reschedule");
+            {
+//                TempData["ID"] = reschedulePatient;
+                return Redirect("/Appointment/Reschedule?ID="+reschedulePatient);
+            }
 
             return Redirect("/Appointment/Index");
         }
