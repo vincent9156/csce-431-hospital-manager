@@ -12,6 +12,9 @@ using AutoMapper;
 
 namespace HospitalManager.Controllers
 {
+    /// <summary>
+    /// Handles the user homepage and editing the user profile information
+    /// </summary>
     public class HomeController : Controller
     {
         UserRepository repository;
@@ -23,8 +26,10 @@ namespace HospitalManager.Controllers
             sessRep = new SessionRepository();
         }
 
-        //
-        // GET: /Home/
+        /// <summary>
+        /// Redirect to the user's homepage or the login page
+        /// </summary>
+        /// <returns>Redirect to the correct page</returns>
         public ActionResult Index()
         {
             if (sessRep.IsLoggedIn())
@@ -32,13 +37,19 @@ namespace HospitalManager.Controllers
             return Redirect("/Authentication/Login");
         }
 
-        public ActionResult EditMedicalHistory()
+        // does the following need to exist? probably not...
+        /*public ActionResult EditMedicalHistory()
         {
             if (sessRep.IsLoggedIn())
             return View();
             return Redirect("/Authentication/Login/");
-        }
+        }*/
 
+        /// <summary>
+        /// Allow the user to edit their profile information
+        /// </summary>
+        /// <param name="usermodel">ViewModel containing data from the form</param>
+        /// <returns>The same page, but containing the updated information or error messages</returns>
         [HttpPost]
         public ActionResult EditProfile(UserRegistrationViewModel usermodel)
         {
@@ -66,6 +77,10 @@ namespace HospitalManager.Controllers
             return Redirect("/Home/ViewProfile");
         }
 
+        /// <summary>
+        /// Show the user their profile information and allow them to edit it.
+        /// </summary>
+        /// <returns>View allowing a user to edit their profile</returns>
         public ActionResult ViewProfile()
         {
             if (sessRep.IsLoggedIn())
@@ -90,6 +105,10 @@ namespace HospitalManager.Controllers
             }
         }
 
+        /// <summary>
+        /// Display the user's home page
+        /// </summary>
+        /// <returns>View which has all the options available to a user</returns>
         public ActionResult UserLog()
         {
             if (sessRep.IsLoggedIn())

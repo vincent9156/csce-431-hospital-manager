@@ -10,9 +10,9 @@ namespace HospitalManager.Libraries
 {
     public class Bootstrapper
     {
-        /**
-         * Create the maps for AutoMapper
-         */
+        /// <summary>
+        /// Create the maps for AutoMapper
+        /// </summary>
         public static void ConfigureAutoMapper()
         {
             // Map the user models
@@ -31,9 +31,9 @@ namespace HospitalManager.Libraries
             Mapper.CreateMap<BillingViewModel, Bill>();
         }
 
-        /**
-         * Debug the maps for AutoMapper
-         */
+        /// <summary>
+        /// Debug the maps for AutoMapper
+        /// </summary>
         public static void TestAutoMapper()
         {
             Mapper.AssertConfigurationIsValid();

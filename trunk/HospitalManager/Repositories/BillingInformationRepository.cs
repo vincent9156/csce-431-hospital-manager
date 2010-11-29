@@ -6,13 +6,21 @@ using HospitalManager.Models;
 
 namespace HospitalManager.Repositories
 {
+    /// <summary>
+    /// Handles adding and editing billing information
+    /// </summary>
     public class BillingInformationRepository
     {
+        /// <summary>
+        /// Connection to billing info database
+        /// </summary>
         UserBillingInformationDatabase infoDb = new UserBillingInformationDatabase();
 
-        /**
-         * Get the credit card information for a user (return null if no info exists)
-         */
+        /// <summary>
+        /// Get the credit card information for a user (return null if no info exists)
+        /// </summary>
+        /// <param name="UserID">ID of user to look up</param>
+        /// <returns>Credit card information for user UserID</returns>
         public CreditCardInformation GetCreditCardInfo(int UserID)
         {
             try
@@ -25,9 +33,10 @@ namespace HospitalManager.Repositories
             }
         }
 
-        /**
-         * Edit a user's billing information
-         */
+        /// <summary>
+        /// Edit a user's billing information
+        /// </summary>
+        /// <param name="info">Contains the new credit card information</param>
         public void EditBillingInfo(CreditCardInformation info)
         {
             var result = (from dbInfo in infoDb.CreditCardInformations
@@ -46,18 +55,20 @@ namespace HospitalManager.Repositories
             infoDb.SubmitChanges();
         }
 
-        /**
-         * Create a user's billing information
-         */
+        /// <summary>
+        /// Create a user's billing information
+        /// </summary>
+        /// <param name="info">Contains the credit card information to insert</param>
         public void CreateBillingInfo(CreditCardInformation info)
         {
             infoDb.CreditCardInformations.InsertOnSubmit(info);
             infoDb.SubmitChanges();
         }
 
-        /**
-         * Return all credit card providers
-         */
+        /// <summary>
+        /// Return all credit card providers
+        /// </summary>
+        /// <returns>List of credit card providers (VISA, AMEX, ...)</returns>
         public IQueryable<CardProvider> GetCardProviders()
         {
             var result = from cardProv in infoDb.CardProviders

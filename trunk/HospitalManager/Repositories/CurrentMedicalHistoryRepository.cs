@@ -6,21 +6,26 @@ using HospitalManager.Models;
 
 namespace HospitalManager.Repositories
 {
+    /// <summary>
+    /// Handles adding to and modifying a user's current medical history
+    /// </summary>
     public class CurrentMedicalHistoryRepository
     {
         private CurrentMedicalHistoryDataContext currentMedDb;
 
-        /**
-         * Initialize the database context
-         */
+        /// <summary>
+        /// Initialize the database context
+        /// </summary>
         public CurrentMedicalHistoryRepository()
         {
             currentMedDb = new CurrentMedicalHistoryDataContext();
         }  
 
-        /**
-         * Get a user by their userID
-         */
+        /// <summary>
+        /// Get a user's medical history
+        /// </summary>
+        /// <param name="user">The user to get medical history for</param>
+        /// <returns>The user's current medical history</returns>
         public IQueryable<CurrentMedicalHistory> GetCurrentMedicalHistoryByUser(User user)
         {
             var result = from CurrentMedicalHistory in currentMedDb.CurrentMedicalHistories
@@ -32,7 +37,12 @@ namespace HospitalManager.Repositories
                              
             return result;
         }
-
+        
+        /// <summary>
+        /// Add current medical history to the database
+        /// </summary>
+        /// <param name="mh">Current medical history to add</param>
+        /// <returns></returns>
         public int AddCurrentMedicalHistory(CurrentMedicalHistory mh)
         {
             // make sure a visit has not been added this day 
