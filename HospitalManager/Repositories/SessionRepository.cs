@@ -9,21 +9,27 @@ using HospitalManager.Libraries;
 
 namespace HospitalManager.Repositories
 {
+    /// <summary>
+    /// Handles logging in, logging out, and checking the state of users
+    /// </summary>
     public class SessionRepository
     {
         private HttpSessionState Session;
         private HttpRequest Request;
 
+        /// <summary>
+        /// Initialize the context needed for session management
+        /// </summary>
         public SessionRepository()
         {
-            // Initialize the context needed for session management
             Session = HttpContext.Current.Session;
             Request = HttpContext.Current.Request;
         }
 
-        /**
-         * Set a user as logged in
-         */
+        /// <summary>
+        /// Set a user as logged in
+        /// </summary>
+        /// <param name="user">The user to log in</param>
         public void Login(User user)
         {
             Session["User"] = user;
@@ -31,9 +37,9 @@ namespace HospitalManager.Repositories
             Session["AuthString"] = GetAuthString();
         }
 
-        /**
-         * Set a user as logged out
-         */
+        /// <summary>
+        /// Set the current user as logged out
+        /// </summary>
         public void Logout()
         {
             Session.Remove("User");
@@ -41,25 +47,28 @@ namespace HospitalManager.Repositories
             Session.Remove("AuthString");
         }
 
-        /**
-         * Returns if a user is logged in
-         */
+        /// <summary>
+        /// Check if a user is logged in
+        /// </summary>
+        /// <returns>True if logged in, false otherwise</returns>
         public bool IsLoggedIn()
         {
             return Session["User"] != null && Session["AuthString"].Equals(GetAuthString());
         }
 
-        /**
-         * Get the currently logged in User, or null if the user is not logged in
-         */
+        /// <summary>
+        /// Get the currently logged in User
+        /// </summary>
+        /// <returns>The logged in User or null if no user is logged in</returns>
         public User GetUser()
         {
             return (Session["User"] != null) ? (User)Session["User"] : null;
         }
 
-        /**
-         * Generates an authentication string to provide some defense against session hijacking
-         */
+        /// <summary>
+        /// Generates an authentication string to provide some defense against session hijacking
+        /// </summary>
+        /// <returns>The generated authentication string</returns>
         private string GetAuthString()
         {
             return MD5Encrypter.GetMD5Hash(Request.UserAgent + Request.UserHostAddress);

@@ -6,13 +6,18 @@ using HospitalManager.Models;
 
 namespace HospitalManager.Repositories
 {
+    /// <summary>
+    /// Handles adding to and modifying a user's past medical history
+    /// </summary>
     public class PastMedicalHistoryRepository
     {
         private PastMedicalHistoryDatabase histDb = new PastMedicalHistoryDatabase();
 
-        /**
-         * Get a user's past medical history
-         */
+        /// <summary>
+        /// Get a user's past medical history
+        /// </summary>
+        /// <param name="user">User for which to get medical history</param>
+        /// <returns>Medical history for user user</returns>
         public PastMedicalHistory GetPastMedicalHistory(User user)
         {
             var medicalHistory = from hist in histDb.PastMedicalHistories
@@ -28,9 +33,10 @@ namespace HospitalManager.Repositories
             return result;
         }
 
-        /**
-         * Update a user's past medical history
-         */
+        /// <summary>
+        /// Update a user's past medical history
+        /// </summary>
+        /// <param name="history">History to update or insert</param>
         public void SetPastMedicalHistory(PastMedicalHistory history)
         {
             var medicalHistory = from hist in histDb.PastMedicalHistories
@@ -58,9 +64,10 @@ namespace HospitalManager.Repositories
             }
         }
 
-        /**
-         * Get all defined medical conditions
-         */
+        /// <summary>
+        /// Get all defined medical conditions
+        /// </summary>
+        /// <returns>List of defined medical conditions</returns>
         public IQueryable<MedicalCondition> GetAllMedicalConditions()
         {
             return from cond in histDb.MedicalConditions
@@ -68,18 +75,21 @@ namespace HospitalManager.Repositories
                    select cond;
         }
 
-        /**
-         * Get all defined family members
-         */
+        /// <summary>
+        /// Get all defined family members
+        /// </summary>
+        /// <returns>List of family members</returns>
         public IQueryable<FamilyMember> GetAllFamilyMembers()
         {
             return from member in histDb.FamilyMembers
                    select member;
         }
 
-        /**
-         * Remove a patient's medical condition
-         */
+        /// <summary>
+        /// Remove a patient's medical condition
+        /// </summary>
+        /// <param name="user">User from which to remove the condition</param>
+        /// <param name="conditionID">Condition to remove</param>
         public void DeletePatientMedicalCondition(User user, int conditionID)
         {
             var result = from cond in histDb.PatientConditions
@@ -94,9 +104,12 @@ namespace HospitalManager.Repositories
             histDb.SubmitChanges();
         }
 
-        /**
-         * Add a medical condition for a user
-         */
+        /// <summary>
+        /// Add a medical condition for a user
+        /// </summary>
+        /// <param name="user">User for which to add a condition</param>
+        /// <param name="medicalCondition">Condition to add</param>
+        /// <returns>False on failure, true on success</returns>
         public bool AddPatientMedicalCondition(User user, int medicalCondition)
         {
             // Make sure the user does not already have the condition assigned to them
@@ -121,9 +134,11 @@ namespace HospitalManager.Repositories
             return true;
         }
 
-        /**
-         * Remove a family member's other medical condition
-         */
+        /// <summary>
+        /// Remove a family member's other medical condition
+        /// </summary>
+        /// <param name="user">The user associated with the family member</param>
+        /// <param name="otherConditionID">Condition id to remove</param>
         public void DeleteOtherPatientMedicalCondition(User user, int otherConditionID)
         {
             var result = from cond in histDb.OtherPatientConditions
@@ -138,9 +153,12 @@ namespace HospitalManager.Repositories
             histDb.SubmitChanges();
         }
 
-        /**
-         * Add a family member's other medical condition
-         */
+        /// <summary>
+        /// Add a family member's other medical condition
+        /// </summary>
+        /// <param name="user">User for which to add the condition</param>
+        /// <param name="condition">Condition to add</param>
+        /// <returns>False on failure, true on success</returns>
         public bool AddOtherPatientMedicalCondition(User user, string condition)
         {
             // Make sure this condition has not been inserted already
@@ -165,9 +183,12 @@ namespace HospitalManager.Repositories
             return true;
         }
 
-        /**
-         * Remove a family member's medical condition
-         */
+        /// <summary>
+        /// Remove a family member's medical condition
+        /// </summary>
+        /// <param name="user">User associated with the family member</param>
+        /// <param name="memberID">ID of the family member</param>
+        /// <param name="conditionID">ID of the condition</param>
         public void DeleteFamilyMedicalCondition(User user, int memberID, int conditionID)
         {
             var result = from cond in histDb.FamilyConditions
@@ -184,9 +205,13 @@ namespace HospitalManager.Repositories
         }
 
 
-        /**
-         * Add a family member's medical condition
-         */
+        /// <summary>
+        /// Add a family member's medical condition
+        /// </summary>
+        /// <param name="user">User associated with the family member</param>
+        /// <param name="memberID">ID of family member</param>
+        /// <param name="conditionID">ID of condition</param>
+        /// <returns>False on failure, true on success</returns>
         public bool AddFamilyMedicalCondition(User user, int memberID, int conditionID)
         {
 
@@ -219,9 +244,11 @@ namespace HospitalManager.Repositories
             return true;
         }
 
-        /**
-         * Remove a family member's other medical condition
-         */
+        /// <summary>
+        /// Remove a family member's other medical condition
+        /// </summary>
+        /// <param name="user">User associated with the family member</param>
+        /// <param name="otherConditionID">ID of the condition</param>
         public void DeleteOtherFamilyMedicalCondition(User user, int otherConditionID)
         {
             var result = from cond in histDb.OtherFamilyConditions
@@ -236,9 +263,13 @@ namespace HospitalManager.Repositories
             histDb.SubmitChanges();
         }
 
-        /**
-         * Add a family member's other medical condition
-         */
+        /// <summary>
+        /// Add a family member's other medical condition
+        /// </summary>
+        /// <param name="user">User associated with the family member</param>
+        /// <param name="memberID">Family member ID</param>
+        /// <param name="condition">Condition ID</param>
+        /// <returns>False on failure, true on success</returns>
         public bool AddOtherFamilyMedicalCondition(User user, int memberID, string condition)
         {
             // Make sure this condition has not been inserted already
@@ -265,9 +296,11 @@ namespace HospitalManager.Repositories
             return true;
         }
 
-        /**
-         * Get a patient's conditions
-         */
+        /// <summary>
+        /// Get a patient's conditions
+        /// </summary>
+        /// <param name="userID">ID of patient</param>
+        /// <returns>List of conditions</returns>
         public List<PatientCondition> GetPatientConditions(int userID)
         {
             return (from condition in histDb.PatientConditions
@@ -275,9 +308,11 @@ namespace HospitalManager.Repositories
                     select condition).ToList();
         }
 
-        /**
-         * Get a patient's other conditions
-         */
+        /// <summary>
+        /// Get a patient's other conditions
+        /// </summary>
+        /// <param name="userID">ID of patient</param>
+        /// <returns>List of patient's other conditions</returns>
         public List<OtherPatientCondition> GetOtherPatientConditions(int userID)
         {
             return (from condition in histDb.OtherPatientConditions
@@ -285,9 +320,11 @@ namespace HospitalManager.Repositories
                     select condition).ToList();
         }
 
-        /**
-         * Get a user's family's conditions
-         */
+        /// <summary>
+        /// Get a user's family's conditions
+        /// </summary>
+        /// <param name="userID">ID of user</param>
+        /// <returns>The user's family's conditions</returns>
         public List<FamilyCondition> GetFamilyConditions(int userID)
         {
             return (from condition in histDb.FamilyConditions
@@ -295,9 +332,11 @@ namespace HospitalManager.Repositories
                     select condition).ToList();
         }
 
-        /**
-         * Get a user's family's other conditions
-         */
+        /// <summary>
+        /// Get a user's family's other conditions
+        /// </summary>
+        /// <param name="userID">ID of user</param>
+        /// <returns>The user's family's other conditions</returns>
         public List<OtherFamilyCondition> GetOtherFamilyConditions(int userID)
         {
             return (from condition in histDb.OtherFamilyConditions
@@ -306,8 +345,13 @@ namespace HospitalManager.Repositories
         }
 
 
-        /** Private utility methods for validation purposes **/
+        /* Private utility methods for validation purposes */
 
+        /// <summary>
+        /// Checks if a medical condition exists
+        /// </summary>
+        /// <param name="conditionID">ID of condition</param>
+        /// <returns>True if it exists, false otherwise</returns>
         private bool MedicalConditionExists(int conditionID)
         {
             var conds = from cond in histDb.MedicalConditions
@@ -317,6 +361,11 @@ namespace HospitalManager.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Checks if a family member exists
+        /// </summary>
+        /// <param name="memberID">ID of family member</param>
+        /// <returns>True if it exists, false otherwise</returns>
         private bool FamilyMemberExists(int memberID)
         {
             var members = from member in histDb.FamilyMembers
