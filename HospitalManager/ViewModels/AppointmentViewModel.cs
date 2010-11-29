@@ -8,7 +8,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HospitalManager.ViewModels
 {
-
+    /// <summary>
+    /// View model used by Appointment Controller to view and edit appointments
+    /// </summary>
     public class AppointmentViewModel
     {
 
@@ -16,6 +18,7 @@ namespace HospitalManager.ViewModels
         public DateTime Date { get; set; }
         public int UserID { get; set; }
         public int DoctorID { get; set; }
+        //Displayed data
         public TimeSpan Time { get; set; }
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
