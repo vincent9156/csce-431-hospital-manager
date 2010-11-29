@@ -11,12 +11,21 @@ namespace HospitalManager.Repositories
     {
         private AppointmentDataContext _Appdb;
 
+        /// <summary>
+        /// Creates a new appointment data context for use with later functions
+        /// </summary>
         public AppointmentRepository()
         {
             _Appdb = new AppointmentDataContext();
         }
 
-        //Return a queryable list of appointments for a user
+        /// <summary>
+        /// Finds all appointments for a gievn user
+        /// </summary>
+        /// <param name="UserID">User we need to find appointments for</param>
+        /// <returns>
+        /// An queryable list of appointments for a given user
+        /// </returns>
         public IQueryable<VWAppointments> GetUserAppointments(int UserID)
         {
             var result = from a in _Appdb.VWAppointments
@@ -30,7 +39,13 @@ namespace HospitalManager.Repositories
                 return result;
         }
 
-        //Return a queryable list of doctor appointments
+        /// <summary>
+        /// Find doctor appointments for a given doctor
+        /// </summary>
+        /// <param name="DoctorID">Doctor we need to find appointments for</param>
+        /// <returns>
+        /// A queryable list of appointments for a given doctor
+        /// </returns>
         public IQueryable<VWAppointments> GetDoctorAppointments(int DoctorID)
         {
             var result = from d in _Appdb.VWAppointments
@@ -44,6 +59,13 @@ namespace HospitalManager.Repositories
                 return result;
         }
 
+        /// <summary>
+        /// Grabs a specific appointment by appointment id
+        /// </summary>
+        /// <param name="id">Id of appointment we are looking for</param>
+        /// <returns>
+        /// A single appointment associted with the id
+        /// </returns>
         public Appointment GetAppointmentByAppointmentID(int id)
         {
             var result = from d in _Appdb.Appointments
@@ -55,12 +77,20 @@ namespace HospitalManager.Repositories
             return result.First();
         }
 
+        /// <summary>
+        /// Inserts an appointment variable into the appointments table
+        /// </summary>
+        /// <param name="app">Appointment we will insert into the appointment table</param>
         public void InsertAppointment(Appointment app)
         {
             _Appdb.Appointments.InsertOnSubmit(app);
             _Appdb.SubmitChanges();
         }
 
+        /// <summary>
+        /// Delete a given appointment from the appointment table
+        /// </summary>
+        /// <param name="app">Appointment you wish to delete from the appointment table</param>
         public void CancelAppointment(Appointment app)
         {
 
@@ -68,6 +98,13 @@ namespace HospitalManager.Repositories
             _Appdb.SubmitChanges();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="DoctorID"></param>
+        /// <param name="UserID"></param>
+        /// <param name="Date"></param>
+        /// <returns></returns>
         public List<TimeSpan> GetDoctorAvaliablity(int DoctorID, int UserID, DateTime Date)
         {
             var res1 = from f in _Appdb.Appointments
