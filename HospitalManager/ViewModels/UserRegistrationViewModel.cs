@@ -11,64 +11,92 @@ using HospitalManager.Repositories;
 
 namespace HospitalManager.ViewModels
 {
-    /**
-     * Contains the validation properties for registration
-     */
-
+    /// <summary>
+    /// Contains the validation properties for registration
+    /// </summary>
     [PropertiesMustMatch("Password", "PasswordRepeat", 
                          ErrorMessage = "The password and repeated passwords did not match")]
     [StaffIDValid("TypeID", "StaffID",
                   ErrorMessage = "Invalid staff ID")]
     public class UserRegistrationViewModel
     {
+        /// <summary>
+        /// User type id
+        /// </summary>
         [Required]
         [Range(UserType.MinUserTypeID, UserType.MaxUserTypeID)]
         public int TypeID { get; set; }
 
+        /// <summary>
+        /// Username
+        /// </summary>
         [Required(ErrorMessage = "Required")]
         [StringLength(16, ErrorMessage = "Must be under 16 characters")]
         public string Username { get; set; }
 
+        /// <summary>
+        /// Password (in plaintext)
+        /// </summary>
         [Required(ErrorMessage = "Required")]
         [StringLength(Int32.MaxValue, MinimumLength = 6, ErrorMessage = "Must be at least 6 characters")]
         public string Password { get; set; }
 
+        /// <summary>
+        /// The user's repeated password
+        /// </summary>
         [Required(ErrorMessage = "Required")]
         public string PasswordRepeat { get; set; }
 
+        /// <summary>
+        /// First name
+        /// </summary>
         [Required(ErrorMessage = "Required")]
         [StringLength(50, ErrorMessage = "Must be under 50 characters")]
         public string FirstName { get; set; }
 
+        /// <summary>
+        /// Last name
+        /// </summary>
         [Required(ErrorMessage = "Required")]
         [StringLength(50, ErrorMessage = "Must be under 16 characters")]
         public string LastName { get; set; }
 
+        /// <summary>
+        /// Email
+        /// </summary>
         [Required(ErrorMessage = "Required")]
         [StringLength(100, ErrorMessage = "Must be under 100 characters")]
         [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$",
                            ErrorMessage="Not a valid email address")]
         public string Email { get; set; }
 
+        /// <summary>
+        /// Speciality (doctors only)
+        /// </summary>
         public string Speciality { get; set; }
 
+        /// <summary>
+        /// Staff ID (staff only, not for patients)
+        /// </summary>
         public int StaffID { get; set; }
 
         public int Permissions { get; set; }
 
 
-        /**
-            * Check whether the user has access to the given option(s)
-            */
+        /// <summary>
+        /// Check whether the user has access to the given option(s)
+        /// </summary>
+        /// <param name="options">Options to test</param>
+        /// <returns>True if they have access, false otherwise</returns>
         public bool HasAccess(AccessOptions options)
         {
             return PermissionsManager.HasAccess(Permissions, options);
         }
     }
 
-    /**
-     * A StaffID validator to check to see if a staff ID is valid
-     */
+    /// <summary>
+    /// A StaffID validator to check to see if a staff ID is valid
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public sealed class StaffIDValid : ValidationAttribute
     {
@@ -113,10 +141,9 @@ namespace HospitalManager.ViewModels
         }
     }
 
-    /**
-     * A PropertiesMustMatchAttribute (Code sample from Microsoft) to ensure
-     * two data attributes match
-     */
+    /// <summary>
+    /// A PropertiesMustMatchAttribute (Code sample from Microsoft) to ensure two data attributes match
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public sealed class PropertiesMustMatchAttribute : ValidationAttribute
     {
