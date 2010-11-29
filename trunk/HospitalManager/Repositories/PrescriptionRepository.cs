@@ -10,7 +10,16 @@ namespace HospitalManager.Repositories
     public class PrescriptionRepository
     {
         private PrescriptionsDatabase prescriptionDb = new PrescriptionsDatabase();
-        private BillingRepository BillRep = new BillingRepository();
+        private BillingRepository BillRep;
+
+        /// <summary>
+        /// Initialize the repository
+        /// </summary>
+        public PrescriptionRepository()
+        {
+            // Use dependency injection to avoid the circular creation
+            BillRep = new BillingRepository(this);
+        }
 
         /// <summary>
         /// add prescription to DB
