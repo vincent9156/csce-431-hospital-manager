@@ -16,12 +16,14 @@
     <div id="body">
     <h2>Reschedule Appointment</h2>
     <form action="/Appointment/SelectTime" method="post">
+
+
     <table width="100%">
     <tr valign="top">
     <td>
         Please Input a Date [mm/dd/yyyy]:<br /> <input type="text" id="Date" maxlength="10" name="Date" readonly />
         <br /><br />
-
+        <input type="hidden" name="DoctorID" id="DoctorID" value="<%: Model.DoctorID %>" /> 
     </td>
     </tr>
     <tr>
