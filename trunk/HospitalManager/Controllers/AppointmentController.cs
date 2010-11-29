@@ -16,6 +16,8 @@ namespace HospitalManager.Controllers
         private AppointmentRepository apprep;
         private SessionRepository     sessrep;
         private BillingRepository     billrep;
+        private int ReschedulePatient;
+        private bool rescheduled;
 
 
         /// <summary>
@@ -163,7 +165,17 @@ namespace HospitalManager.Controllers
                 }
             }
 
-            Appointment app = new Appointment { UserID = user.UserID, DoctorID = DoctorID, Date = Date.Date, Time = Time };
+            Appointment app;
+
+            if (rescheduled)
+            {
+                app = new Appointment { UserID = ReschedulePatient, DoctorID = DoctorID, Date = Date.Date, Time = Time };
+                rescheduled = false;
+            }
+            else
+                app = new Appointment { UserID = user.UserID, DoctorID = DoctorID, Date = Date.Date, Time = Time };
+
+
             apprep.InsertAppointment(app);
 
             return Redirect("/Appointment/Index");
@@ -253,7 +265,13 @@ namespace HospitalManager.Controllers
         /// </returns>
         public ActionResult Reschedule()
         {
-            return View();
+            User doctor = sessrep.GetUser();
+            string fname = doctor.FirstName;
+            string lname = doctor.LastName;
+
+            var am = new AppointmentViewModel { UserID = doctor.UserID, DoctorFirstName = fname, DoctorLastName = lname };
+
+            return View(am);
         }
 
         /// <summary>
@@ -270,6 +288,7 @@ namespace HospitalManager.Controllers
             DateTime now = DateTime.Now;
             User user = sessrep.GetUser();
             bool reschedule = false;
+            rescheduled = false;
 
             int UID = app.UserID;
             int DID = app.DoctorID;
@@ -345,6 +364,8 @@ namespace HospitalManager.Controllers
             // Force doctor to reschedule appointment they have cancelled
             if (user.TypeID == UserType.DoctorTypeID)
             {
+                ReschedulePatient = app.UserID;
+
                 if (app.Date.Year == now.Year)
                 {
                     int date1 = app.Date.DayOfYear;
@@ -354,6 +375,7 @@ namespace HospitalManager.Controllers
                     if ((diff <= 2) && date1 > date2)
                     {
                         reschedule = true;
+                        rescheduled = true;
                     }
                 }
 
