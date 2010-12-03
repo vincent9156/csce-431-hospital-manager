@@ -8,6 +8,9 @@ Select which part of the document you will be helping out with.
 Here is the work-in-progress document:
 http://csce-431-hospital-manager.googlecode.com/files/Document%20Work-in-Progress.pdf
 
+Here is the Visio file for the use case example:
+http://csce-431-hospital-manager.googlecode.com/files/RegistrationSystemUseCase.vsd
+
 = General =
 
 || Matthew Miller || System Overview ||
