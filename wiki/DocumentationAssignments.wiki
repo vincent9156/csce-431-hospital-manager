@@ -77,8 +77,8 @@ I added every file that was in the project at the time I created the document, b
 || *None* || Class Analysis ||
 
 == Billing ==
-|| *None* || Overview ||
-|| *None* || Stories and Acceptance Criteria ||
+|| Scott Lee || Overview ||
+|| Scott Lee || Stories and Acceptance Criteria ||
 || *None* || Use Cases ||
-|| *None* || Database ||
+|| Scott Lee || Database ||
 || *None* || Class Analysis ||
