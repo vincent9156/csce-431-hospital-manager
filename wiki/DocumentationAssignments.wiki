@@ -4,6 +4,10 @@
 
 Select which part of the document you will be helping out with.
 
+= Work in Progress =
+Here is the work-in-progress document:
+http://code.google.com/p/csce-431-hospital-manager/downloads/detail?name=Document%20Work-in-Progress.pdf&can=2&q=#makechanges
+
 = General =
 
 || Matthew Miller || System Overview ||
