@@ -13,7 +13,7 @@ http://csce-431-hospital-manager.googlecode.com/files/RegistrationSystemUseCase.
 
 = Instructions =
 
-Mark whichever sections you are willing to work on. Remember that we still need people to comment the code so that our auto-generated documentation (found [http://dl.dropbox.com/u/417348/Docs/html/index.html here] for now) is complete by the time we turn everything in.
+Mark whichever sections you are willing to work on. Remember that *we still need people to comment the code* so that our auto-generated documentation (found [http://dl.dropbox.com/u/417348/Docs/html/index.html here] for now) is complete by the time we turn everything in.
 
 Once you have claimed a section, look it up in the [http://csce-431-hospital-manager.googlecode.com/files/Document%20Work-in-Progress.pdf work-in-progress document] to see which other subsections are involved. 
 
