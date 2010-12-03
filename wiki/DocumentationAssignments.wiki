@@ -79,6 +79,6 @@ I added every file that was in the project at the time I created the document, b
 == Billing ==
 || Scott Lee || Overview ||
 || Scott Lee || Stories and Acceptance Criteria ||
-|| *None* || Use Cases ||
+|| Scott Lee|| Use Cases ||
 || Scott Lee || Database ||
-|| *None* || Class Analysis ||
+|| Scott Lee || Class Analysis ||
