@@ -56,11 +56,11 @@ I added every file that was in the project at the time I created the document, b
 || *None* || Class Analysis ||
 
 == Past Medical History ==
-|| *None* || Overview ||
-|| *None* || Stories and Acceptance Criteria ||
-|| *None* || Use Cases ||
-|| *None* || Database ||
-|| *None* || Class Analysis ||
+|| Matt Bartel || Overview ||
+|| Matt Bartel || Stories and Acceptance Criteria ||
+|| Matt Bartel || Use Cases ||
+|| Matt Bartel || Database ||
+|| Matt Bartel || Class Analysis ||
 
 == Current Medical History ==
 || *None* || Overview ||
