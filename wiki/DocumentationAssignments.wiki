@@ -54,7 +54,7 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 == Search ==
 || <font color="green">David Skindell</font> || Overview ||
 || <font color="green">David Skindell</font> || Stories and Acceptance Criteria ||
-|| <font color="brown">David Skindell</font> || Use Cases ||
+|| <font color="green">David Skindell</font> || Use Cases ||
 || <font color="green">David Skindell</font> || Class Analysis ||
 
 == Appointments ==
