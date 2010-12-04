@@ -19,66 +19,73 @@ Once you have claimed a section, look it up in the [http://csce-431-hospital-man
 
 I added every file that was in the project at the time I created the document, but some have been removed since then, mostly from the appointments system. Feel free to remove subsections (such as classes, views, etc) if they are old and no longer included in the project. 
 
+= Key =
+<font color="red">Red</font> text indicates work that has not been started.
+
+<font color="brown">Brown</font> text indicates work that is in progress.
+
+<font color="green">Green</font> text indicates work completed (and sent to Matt).
+
 = General =
 
-|| Matthew Miller || System Overview ||
-|| Matthew Miller || Architecture ||
-|| Matthew Miller || Libraries ||
+|| <font color="brown">Matthew Miller</font> || System Overview ||
+|| <font color="brown">Matthew Miller</font> || Architecture ||
+|| <font color="brown">Matthew Miller</font> || Libraries ||
 
 <br />
 = Subsystems =
 
 == Registration and Login ==
-|| Matthew Miller || Overview ||
-|| Matthew Miller || Stories and Acceptance Criteria ||
-|| Matthew Miller || Use Cases ||
-|| Matthew Miller || Database ||
-|| Matthew Miller || Class Analysis ||
+|| <font color="green">Matthew Miller</font> || Overview ||
+|| <font color="green">Matthew Miller</font> || Stories and Acceptance Criteria ||
+|| <font color="green">Matthew Miller</font> || Use Cases ||
+|| <font color="green">Matthew Miller</font> || Database ||
+|| <font color="green">Matthew Miller</font> || Class Analysis ||
 
 == Home Page and Profile Management ==
-|| *None* || Overview ||
-|| *None* || Stories and Acceptance Criteria ||
-|| *None* || Use Cases ||
-|| *None* || Database ||
-|| *None* || Class Analysis ||
+|| <font color="red">*None*</font> || Overview ||
+|| <font color="red">*None*</font> || Stories and Acceptance Criteria ||
+|| <font color="red">*None*</font> || Use Cases ||
+|| <font color="red">*None*</font> || Database ||
+|| <font color="red">*None*</font> || Class Analysis ||
 
 == Search ==
-|| David Skindell || Overview ||
-|| David Skindell || Stories and Acceptance Criteria ||
-|| David Skindell || Use Cases ||
-|| David Skindell || Class Analysis ||
+|| <font color="green">David Skindell</font> || Overview ||
+|| <font color="green">David Skindell</font> || Stories and Acceptance Criteria ||
+|| <font color="brown">David Skindell</font> || Use Cases ||
+|| <font color="green">David Skindell</font> || Class Analysis ||
 
 == Appointments ==
-|| *None* || Overview ||
-|| *None* || Stories and Acceptance Criteria ||
-|| *None* || Use Cases ||
-|| *None* || Database ||
-|| *None* || Class Analysis ||
+|| <font color="red">*None*</font> || Overview ||
+|| <font color="red">*None*</font> || Stories and Acceptance Criteria ||
+|| <font color="red">*None*</font> || Use Cases ||
+|| <font color="red">*None*</font> || Database ||
+|| <font color="red">*None*</font> || Class Analysis ||
 
 == Past Medical History ==
-|| Matt Bartel || Overview ||
-|| Matt Bartel || Stories and Acceptance Criteria ||
-|| Matt Bartel || Use Cases ||
-|| Matt Bartel || Database ||
-|| Matt Bartel || Class Analysis ||
+|| <font color="brown">Matt Bartel</font> || Overview ||
+|| <font color="brown">Matt Bartel</font> || Stories and Acceptance Criteria ||
+|| <font color="brown">Matt Bartel</font> || Use Cases ||
+|| <font color="brown">Matt Bartel</font> || Database ||
+|| <font color="brown">Matt Bartel</font> || Class Analysis ||
 
 == Current Medical History ==
-|| *None* || Overview ||
-|| *None* || Stories and Acceptance Criteria ||
-|| *None* || Use Cases ||
-|| *None* || Database ||
-|| *None* || Class Analysis ||
+|| <font color="red">*None*</font> || Overview ||
+|| <font color="red">*None*</font> || Stories and Acceptance Criteria ||
+|| <font color="red">*None*</font> || Use Cases ||
+|| <font color="red">*None*</font> || Database ||
+|| <font color="red">*None*</font> || Class Analysis ||
 
 == Medications ==
-|| *None* || Overview ||
-|| *None* || Stories and Acceptance Criteria ||
-|| *None* || Use Cases ||
-|| *None* || Database ||
-|| *None* || Class Analysis ||
+|| <font color="red">*None*</font> || Overview ||
+|| <font color="red">*None*</font> || Stories and Acceptance Criteria ||
+|| <font color="red">*None*</font> || Use Cases ||
+|| <font color="red">*None*</font> || Database ||
+|| <font color="red">*None*</font> || Class Analysis ||
 
 == Billing ==
-|| Scott Lee || Overview ||
-|| Scott Lee || Stories and Acceptance Criteria ||
-|| Scott Lee|| Use Cases ||
-|| Scott Lee || Database ||
-|| Scott Lee || Class Analysis ||
+|| <font color="brown">Scott Lee</font> || Overview ||
+|| <font color="brown">Scott Lee</font> || Stories and Acceptance Criteria ||
+|| <font color="brown">Scott Lee</font> || Use Cases ||
+|| <font color="brown">Scott Lee</font> || Database ||
+|| <font color="brown">Scott Lee</font> || Class Analysis ||
