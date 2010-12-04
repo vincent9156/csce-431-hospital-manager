@@ -17,7 +17,9 @@ Mark whichever sections you are willing to work on. Remember that *we still need
 
 Once you have claimed a section, look it up in the [http://csce-431-hospital-manager.googlecode.com/files/Document%20Work-in-Progress.pdf work-in-progress document] to see which other subsections are involved and try to emulate a format similar to the one I used in the registration and login section.
 
-I added every file that was in the project at the time I created the document, but some have been removed since then, mostly from the appointments system. Feel free to remove subsections (such as classes, views, etc) if they are old and no longer included in the project. 
+All files that were in the project at the time the document was created were added to the document, but some have been removed since then, mostly from the appointments system. Feel free to remove subsections (such as classes, views, etc) if they are old and no longer included in the project. 
+
+When the sections are completed, send them to Matt Miller to be added to the document.
 
 = Key =
 <font color="red">Red</font> text indicates work that has not been started.
