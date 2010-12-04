@@ -45,7 +45,7 @@ I added every file that was in the project at the time I created the document, b
 == Search ==
 || David Skindell || Overview ||
 || David Skindell || Stories and Acceptance Criteria ||
-|| *None* || Use Cases ||
+|| David Skindell || Use Cases ||
 || David Skindell || Class Analysis ||
 
 == Appointments ==
