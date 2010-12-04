@@ -16,7 +16,7 @@ namespace HospitalManager.Libraries
         /// Returns the string representation of the hash of input.
         /// </summary>
         /// <param name="input">The string to hash</param>
-        /// <returns></returns>
+        /// <returns>The hashed string</returns>
         public static string GetMD5Hash(string input)
         {
             MD5 hasher = MD5.Create();

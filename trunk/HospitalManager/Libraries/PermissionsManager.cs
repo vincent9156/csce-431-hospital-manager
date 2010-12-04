@@ -76,7 +76,7 @@ namespace HospitalManager.Libraries
         /// </summary>
         /// <param name="permissions">The user's permissions</param>
         /// <param name="flags">Flags to check</param>
-        /// <returns></returns>
+        /// <returns>If the user has access</returns>
         public static bool HasAccess(int permissions, AccessOptions flags)
         {
             return flags.Equals((AccessOptions)((int)flags & permissions));

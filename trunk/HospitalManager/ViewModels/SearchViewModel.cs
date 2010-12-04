@@ -11,7 +11,14 @@ namespace HospitalManager.ViewModels
     /// </summary>
     public class SearchViewModel
     {
-        public UserViewModel LoggedInUser; //used for checking permissions on seacrching
+        /// <summary>
+        /// Used for determining which options to show to the searching user.
+        /// </summary>
+        public UserViewModel LoggedInUser;
+
+        /// <summary>
+        /// The results of the search
+        /// </summary>
         public IList<UserViewModel> SearchResults; 
     }
 }

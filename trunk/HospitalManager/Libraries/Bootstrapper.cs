@@ -8,6 +8,10 @@ using HospitalManager.ViewModels;
 
 namespace HospitalManager.Libraries
 {
+    /// <summary>
+    /// Provides functionality related to our framework and libraries we are using
+    /// rather than functionality related to the application itself.
+    /// </summary>
     public class Bootstrapper
     {
         /// <summary>
