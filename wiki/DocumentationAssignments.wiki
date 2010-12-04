@@ -43,10 +43,10 @@ I added every file that was in the project at the time I created the document, b
 || *None* || Class Analysis ||
 
 == Search ==
-|| *None* || Overview ||
-|| *None* || Stories and Acceptance Criteria ||
-|| *None* || Use Cases ||
-|| *None* || Class Analysis ||
+|| David Skindell || Overview ||
+|| David Skindell || Stories and Acceptance Criteria ||
+|| David Skindell || Use Cases ||
+|| David Skindell || Class Analysis ||
 
 == Appointments ==
 || *None* || Overview ||
