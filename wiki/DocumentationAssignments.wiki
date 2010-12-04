@@ -13,9 +13,9 @@ http://csce-431-hospital-manager.googlecode.com/files/RegistrationSystemUseCase.
 
 = Instructions =
 
-Mark whichever sections you are willing to work on. Remember that *we still need people to comment the code* according to the format I sent out in a previous email so that our auto-generated documentation (found [http://dl.dropbox.com/u/417348/Docs/html/index.html here] for now) is complete by the time we turn everything in.
+Mark whichever sections you are willing to work on. Remember that *we still need people to comment the code* according to the format Matthew sent out in a previous email so that our auto-generated documentation (found [http://dl.dropbox.com/u/417348/Docs/html/index.html here] for now) is complete by the time everything is turned in.
 
-Once you have claimed a section, look it up in the [http://csce-431-hospital-manager.googlecode.com/files/Document%20Work-in-Progress.pdf work-in-progress document] to see which other subsections are involved and try to emulate a format similar to the one I used in the registration and login section.
+Once you have claimed a section, look it up in the [http://csce-431-hospital-manager.googlecode.com/files/Document%20Work-in-Progress.pdf work-in-progress document] to see which other subsections are involved and try to emulate a format similar to the one used in the registration and login section.
 
 All files that were in the project at the time the document was created were added to the document, but some have been removed since then, mostly from the appointments system. Feel free to remove subsections (such as classes, views, etc) if they are old and no longer included in the project. 
 
