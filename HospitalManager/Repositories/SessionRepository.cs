@@ -14,7 +14,16 @@ namespace HospitalManager.Repositories
     /// </summary>
     public class SessionRepository
     {
+        /// <summary>
+        /// A reference to the current session. Used for storing the user's
+        /// information.
+        /// </summary>
         private HttpSessionState Session;
+
+        /// <summary>
+        /// A reference to the current request. Used for getting informatin
+        /// about the user for increased security.
+        /// </summary>
         private HttpRequest Request;
 
         /// <summary>
