@@ -65,11 +65,11 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 || <font color="red">*None*</font> || Class Analysis ||
 
 == Past Medical History ==
-|| <font color="brown">Matt Bartel</font> || Overview ||
-|| <font color="brown">Matt Bartel</font> || Stories and Acceptance Criteria ||
-|| <font color="brown">Matt Bartel</font> || Use Cases ||
-|| <font color="brown">Matt Bartel</font> || Database ||
-|| <font color="brown">Matt Bartel</font> || Class Analysis ||
+|| <font color="green">Matt Bartel</font> || Overview ||
+|| <font color="green">Matt Bartel</font> || Stories and Acceptance Criteria ||
+|| <font color="green">Matt Bartel</font> || Use Cases ||
+|| <font color="green">Matt Bartel</font> || Database ||
+|| <font color="green">Matt Bartel</font> || Class Analysis ||
 
 == Current Medical History ==
 || <font color="red">*None*</font> || Overview ||
