@@ -45,11 +45,11 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 || <font color="green">Matthew Miller</font> || Class Analysis ||
 
 == Home Page and Profile Management ==
-|| <font color="brown">Matthew Miller</font> || Overview ||
-|| <font color="brown">Matthew Miller</font> || Stories and Acceptance Criteria ||
-|| <font color="brown">Matthew Miller</font> || Use Cases ||
-|| <font color="brown">Matthew Miller</font> || Database ||
-|| <font color="brown">Matthew Miller</font> || Class Analysis ||
+|| <font color="green">Matthew Miller</font> || Overview ||
+|| <font color="green">Matthew Miller</font> || Stories and Acceptance Criteria ||
+|| <font color="green">Matthew Miller</font> || Use Cases ||
+|| <font color="green">Matthew Miller</font> || Database ||
+|| <font color="green">Matthew Miller</font> || Class Analysis ||
 
 == Search ==
 || <font color="green">David Skindell</font> || Overview ||
