@@ -32,7 +32,7 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 
 || <font color="green">Matthew Miller</font> || System Overview ||
 || <font color="green">Matthew Miller</font> || Architecture ||
-|| <font color="brown">Matthew Miller</font> || Libraries ||
+|| <font color="green">Matthew Miller</font> || Libraries ||
 
 <br />
 = Subsystems =
