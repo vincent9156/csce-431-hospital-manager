@@ -58,11 +58,11 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 || <font color="green">David Skindell</font> || Class Analysis ||
 
 == Appointments ==
-|| <font color="red">Charles Smith</font> || Overview ||
-|| <font color="red">Charles Smith</font> || Stories and Acceptance Criteria ||
-|| <font color="red">Charles Smith</font> || Use Cases ||
-|| <font color="red">Charles Smith</font> || Database ||
-|| <font color="red">Charles Smith</font> || Class Analysis ||
+|| <font color="brown">Charles Smith</font> || Overview ||
+|| <font color="brown">Charles Smith</font> || Stories and Acceptance Criteria ||
+|| <font color="brown">Charles Smith</font> || Use Cases ||
+|| <font color="brown">Charles Smith</font> || Database ||
+|| <font color="brown">Charles Smith</font> || Class Analysis ||
 
 == Past Medical History ==
 || <font color="green">Matt Bartel</font> || Overview ||
@@ -79,11 +79,11 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 || <font color="brown">William Moore</font> || Class Analysis ||
 
 == Medications ==
-|| <font color="brown">Matthew Miller</font> || Overview ||
-|| <font color="brown">Matthew Miller</font> || Stories and Acceptance Criteria ||
-|| <font color="brown">Matthew Miller</font> || Use Cases ||
-|| <font color="brown">Matthew Miller</font> || Database ||
-|| <font color="brown">Matthew Miller</font> || Class Analysis ||
+|| <font color="green">Matthew Miller</font> || Overview ||
+|| <font color="green">Matthew Miller</font> || Stories and Acceptance Criteria ||
+|| <font color="green">Matthew Miller</font> || Use Cases ||
+|| <font color="green">Matthew Miller</font> || Database ||
+|| <font color="green">Matthew Miller</font> || Class Analysis ||
 
 == Billing ==
 || <font color="brown">Scott Lee</font> || Overview ||
