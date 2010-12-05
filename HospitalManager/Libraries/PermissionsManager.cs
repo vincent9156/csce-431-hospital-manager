@@ -69,6 +69,9 @@ namespace HospitalManager.Libraries
         BillPatient = 0x02 // TODO: Should be editted to have its own permission in the future
     }
 
+    /// <summary>
+    /// Allows others to check a user's permissions
+    /// </summary>
     public class PermissionsManager
     {
         /// <summary>
