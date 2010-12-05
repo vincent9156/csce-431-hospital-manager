@@ -6,7 +6,7 @@ Select which part of the document you will be helping out with.
 
 = Work in Progress =
 Here is the work-in-progress document:
-http://csce-431-hospital-manager.googlecode.com/files/Document%20Work-in-Progress.pdf
+http://csce-431-hospital-manager.googlecode.com/files/Examples.pdf
 
 Here is the use case example's Visio file:
 http://csce-431-hospital-manager.googlecode.com/files/RegistrationSystemUseCase.vsd
