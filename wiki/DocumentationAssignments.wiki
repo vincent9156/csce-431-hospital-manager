@@ -58,11 +58,11 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 || <font color="green">David Skindell</font> || Class Analysis ||
 
 == Appointments ==
-|| <font color="red">*None*</font> || Overview ||
-|| <font color="red">*None*</font> || Stories and Acceptance Criteria ||
-|| <font color="red">*None*</font> || Use Cases ||
-|| <font color="red">*None*</font> || Database ||
-|| <font color="red">*None*</font> || Class Analysis ||
+|| <font color="red">Charles Smith</font> || Overview ||
+|| <font color="red">Charles Smith</font> || Stories and Acceptance Criteria ||
+|| <font color="red">Charles Smith</font> || Use Cases ||
+|| <font color="red">Charles Smith</font> || Database ||
+|| <font color="red">Charles Smith</font> || Class Analysis ||
 
 == Past Medical History ==
 || <font color="green">Matt Bartel</font> || Overview ||
