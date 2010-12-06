@@ -25,7 +25,9 @@ namespace HospitalManager.Repositories
         /// add prescription to DB
         /// </summary>
         /// <param name="prescription">prescription to add</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns the ID for the new prescription
+        /// </returns>
         public int AddPrescription(Prescription prescription)
         {
             prescriptionDb.Prescriptions.InsertOnSubmit(prescription);
@@ -36,7 +38,9 @@ namespace HospitalManager.Repositories
         /// <summary>
         /// returns all medications from DB
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// returns a list containing all possible medication
+        /// </returns>
         public IQueryable<Medication> GetAllMedications()
         {
             return from script in prescriptionDb.Medications
@@ -48,7 +52,9 @@ namespace HospitalManager.Repositories
         /// return med name based on id given
         /// </summary>
         /// <param name="MedID"> Medicine ID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// returns the first result for the name of a medication based on the given medication ID
+        /// </returns>
         public string GetMedicationNameByID(int MedID)
         {
             var result = from m in prescriptionDb.Medications
@@ -65,7 +71,9 @@ namespace HospitalManager.Repositories
         /// gets all prescriptions doctor has written
         /// </summary>
         /// <param name="DocUserID">Doctor user ID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a list containing all prescriptions that the given doctor has issued.
+        /// </returns>
         public IQueryable<Prescription> GetAllPrescriptionsByDoctorID(int DocUserID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -82,7 +90,9 @@ namespace HospitalManager.Repositories
         /// gets all patients prescriptions based on patient ID
         /// </summary>
         /// <param name="UserID">Id of the user</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a list of all prescription that have been issued to the given user.
+        /// </returns>
         public IQueryable<Prescription> GetAllPrescriptionsByUserID(int UserID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -99,7 +109,9 @@ namespace HospitalManager.Repositories
         /// gets all prescriptions that pharmacist has filled
         /// </summary>
         /// <param name="PharmacistID">Id of the Pharmacist</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a list of all prescriptions that the given pharmacist has filled.
+        /// </returns>
         public IQueryable<Prescription> GetAllPrescriptionsByPharmacistID(int PharmacistID)
         {
             var result = from script in prescriptionDb.Prescriptions
@@ -116,7 +128,9 @@ namespace HospitalManager.Repositories
         /// calculates price based on the prescription amounts
         /// </summary>
         /// <param name="prescriptionID">presction ID to get price of</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns the price of a prescription based on the prescription ID
+        /// </returns>
         public decimal GetPriceOfPresciption(int prescriptionID)
         {
             var prescription = (from p in prescriptionDb.Prescriptions
@@ -137,7 +151,9 @@ namespace HospitalManager.Repositories
         /// gets a prescription by its ID number
         /// </summary>
         /// <param name="PresID">prescription ID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns the first result based on the prescription ID
+        /// </returns>
         public Prescription GetPrescriptionByID(int PresID)
         {
             var result = from p in prescriptionDb.Prescriptions
@@ -156,7 +172,9 @@ namespace HospitalManager.Repositories
         /// </summary>
         /// <param name="PharmacistID">ID of Pharmacist</param>
         /// <param name="PrescriptionID">ID of Prescription</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a 0 if the prescription does not exist, returns a 1 if otherwise
+        /// </returns>
         public int FillPrescription(int PharmacistID,int PrescriptionID)
         {
             //get prescription to fill and bill
@@ -188,7 +206,9 @@ namespace HospitalManager.Repositories
         /// delete a prescription from the database
         /// </summary>
         /// <param name="PrescID">prescription ID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns false if the prescription does not exist, returns true if otherwise.
+        /// </returns>
         public bool RemovePrescriptionByID(int PrescID)
         {
             Prescription pres = GetPrescriptionByID(PrescID);
