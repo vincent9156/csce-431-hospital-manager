@@ -23,7 +23,10 @@ namespace HospitalManager.Controllers
         /// by default the index of prescriptions displays 
         /// all prescriptions for the user logged in
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// If the user is a doctor, returns a view with prescriptions the doctor has issued.
+        /// If the user is a patient, returns a view with prescriptions issued to that patient.
+        /// </returns>
         public ActionResult Index()
         {
             User user = SessionRep.GetUser();
@@ -98,7 +101,9 @@ namespace HospitalManager.Controllers
         /// view prescription based on prescriptionID
         /// </summary>
         /// <param name="id">prescriptionID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a view containing prescription information for the selected prescription
+        /// </returns>
         public ActionResult ViewPrescription(int id)
         {
             if (!SessionRep.IsLoggedIn())
@@ -131,7 +136,9 @@ namespace HospitalManager.Controllers
         /// by doctor only to fill in information for a prescription
         /// </summary>
         /// <param name="id">UserID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// returns information for the httppost WritePrescription
+        /// </returns>
         public ActionResult WritePrescription(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.CanWritePrescriptions))
@@ -153,7 +160,9 @@ namespace HospitalManager.Controllers
         /// httppost for writing prescriptions
         /// </summary>
         /// <param name="vm">prescription view Model</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a view to the newly created prescription
+        /// </returns>
         [HttpPost]
         public ActionResult WritePrescription(PrescriptionViewModel vm)
         {
@@ -177,7 +186,9 @@ namespace HospitalManager.Controllers
         /// remove a prescription by doctor or pharmacist only if made in error
         /// </summary>
         /// <param name="id">PrescriptionID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a redirect to the prescription index.
+        /// </returns>
         public ActionResult DeletePrescription(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.FillPrescriptions))
@@ -192,7 +203,9 @@ namespace HospitalManager.Controllers
         /// pharmacist is assigned to the prescription
         /// </summary>
         /// <param name="id">presriptionID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a redirect to Prescription
+        /// </returns>
         public ActionResult Fill(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.FillPrescriptions))
@@ -209,7 +222,9 @@ namespace HospitalManager.Controllers
         /// user clicked on in the search page
         /// </summary>
         /// <param name="id">userID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a view that displays prescription options for the user
+        /// </returns>
         public ActionResult UserPrescriptions(int id)
         {
             IQueryable<Prescription> pres = presRep.GetAllPrescriptionsByUserID(id);
