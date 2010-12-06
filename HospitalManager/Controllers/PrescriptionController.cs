@@ -13,6 +13,9 @@ using HospitalManager.Libraries;
 
 namespace HospitalManager.Controllers
 {
+    /// <summary>
+    /// Handles writing, filling and viewing patient's prescriptions.
+    /// </summary>
     public class PrescriptionController : Controller
     {
         SessionRepository SessionRep = new SessionRepository();
