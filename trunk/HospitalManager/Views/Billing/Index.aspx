@@ -50,7 +50,14 @@
                     * displaying these links (and make the links correct) */ %>
                 <td><%: Html.ActionLink("View Bill", "ViewBill", "Billing", new { id = item.BillID }, null)%></td>
                 <td><a href="#">Pay Bill</a></td>
-         <td><%: Html.ActionLink("Delete Bill", "DeleteBill", "Billing", new { id = item.BillID }, null)%></td>              
+                <% if (Html.ViewData["utype"] != "Patient")
+                   { %>
+                    <td><%: Html.ActionLink("Delete Bill", "DeleteBill", "Billing", new { id = item.BillID }, null)%></td>              
+                <% }
+                   else
+                   { %>
+                    <td>&nbsp;</td>
+                <% } %>
             </tr>
         <% } %>
     <% }

@@ -25,6 +25,7 @@
 <% if (Model.HasAccess(AccessOptions.EditOwnMedicalHistory)) { %>
     <li><%: Html.ActionLink("View Your Medical History", "Index", "PastMedicalHistory")%></li>
     <li><%: Html.ActionLink("Edit Your Medical History", "Edit", "PastMedicalHistory")%></li>
+    <li><%: Html.ActionLink("View Your Hospital Visits", "Index", "CurrentMedicalHistory", new { UserId = Model.UserID }, null)%></li>
 <% } %>
 
 <% if (Model.HasAccess(AccessOptions.SearchUsers)) { %>
