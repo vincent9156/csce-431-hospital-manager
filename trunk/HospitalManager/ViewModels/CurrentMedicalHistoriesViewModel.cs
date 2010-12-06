@@ -6,6 +6,9 @@ using HospitalManager.Models;
 
 namespace HospitalManager.ViewModels
 {
+    /// <summary>
+    /// Just contains a list of current medical histories
+    /// </summary>
     public class CurrentMedicalHistoriesViewModel
     {
         /// <summary>
