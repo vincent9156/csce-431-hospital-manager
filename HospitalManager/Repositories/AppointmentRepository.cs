@@ -101,12 +101,14 @@ namespace HospitalManager.Repositories
         }
 
         /// <summary>
-        /// 
+        /// Get a list of times that a doctor is avaliable for an appointment
         /// </summary>
-        /// <param name="DoctorID"></param>
-        /// <param name="UserID"></param>
-        /// <param name="Date"></param>
-        /// <returns></returns>
+        /// <param name="DoctorID">ID of doctor</param>
+        /// <param name="UserID">ID of user</param>
+        /// <param name="Date">Date used to check for doctor avaliabiltiy</param>
+        /// <returns>
+        /// Returns a list containing the times avaliable for a user to select for an appoitnment
+        /// </returns>
         public List<TimeSpan> GetDoctorAvaliablity(int DoctorID, int UserID, DateTime Date)
         {
             var res1 = from f in _Appdb.Appointments
@@ -123,7 +125,13 @@ namespace HospitalManager.Repositories
             return result.ToList();
         }
 
-        //Return a queryable list of doctor appointments
+        /// <summary>
+        /// Get patients for a given doctor
+        /// </summary>
+        /// <param name="DoctorID">ID of doctor</param>
+        /// <returns>
+        /// Returns a list of patients associted with a doctor
+        /// </returns>
         public IQueryable<VWPatientsByDoctor> GetDoctorPatients(int DoctorID)
         {
             var result = from d in _Appdb.VWPatientsByDoctors
@@ -133,6 +141,14 @@ namespace HospitalManager.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Checks to see if a given patient is a patient for a given doctor
+        /// </summary>
+        /// <param name="DoctorID">ID doctor</param>
+        /// <param name="PatientID">ID of user</param>
+        /// <returns>
+        /// Returns true if the given patient is a patient for the given doctor, otherwise it returns false
+        /// </returns>
         public bool isDoctorsPatient(int DoctorID, int PatientID)
         {
             IQueryable<VWPatientsByDoctor> appointments = GetDoctorPatients(DoctorID);
