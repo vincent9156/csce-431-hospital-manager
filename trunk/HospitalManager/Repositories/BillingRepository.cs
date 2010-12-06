@@ -7,6 +7,10 @@ using HospitalManager.Repositories;
 
 namespace HospitalManager.Repositories
 {
+    /// <summary>
+    /// Handles interactions with the billing database to allow billing of
+    /// patients and generating bill summaries for patients.
+    /// </summary>
     public class BillingRepository
     {
         

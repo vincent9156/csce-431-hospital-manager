@@ -7,6 +7,10 @@ using HospitalManager.Repositories;
 
 namespace HospitalManager.Repositories
 {
+    /// <summary>
+    /// Allows viewing, filling and writing of prescriptions by facilitating
+    /// interaction with the prescriptions database.
+    /// </summary>
     public class PrescriptionRepository
     {
         private PrescriptionsDatabase prescriptionDb = new PrescriptionsDatabase();

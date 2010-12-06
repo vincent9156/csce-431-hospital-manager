@@ -12,6 +12,9 @@ using HospitalManager.Libraries;
 
 namespace HospitalManager.Controllers
 {
+    /// <summary>
+    /// Handles all actions associated with billing and viewing user's bills.
+    /// </summary>
     public class BillingController : Controller
     {
         private BillingRepository BillRep;

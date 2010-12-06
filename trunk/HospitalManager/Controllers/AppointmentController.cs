@@ -10,6 +10,9 @@ using AutoMapper;
 
 namespace HospitalManager.Controllers
 {
+    /// <summary>
+    /// Allows users, both doctors and patients, to create and delete appointments.
+    /// </summary>
     public class AppointmentController : Controller
     {
         private UserRepository        urep;
