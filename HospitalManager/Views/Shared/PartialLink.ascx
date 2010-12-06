@@ -27,6 +27,7 @@
        { %>
             <li> <%:Html.ActionLink("View Medical History", "", "PastMedicalHistory")%></li>
             <li> <%:Html.ActionLink("Edit Medical History", "Edit", "PastMedicalHistory")%></li>
+            <li> <%:Html.ActionLink("View Hospital Visits", "", "CurrentMedicalHistory", new { UserId = Session.GetUser().UserID }, null)%></li>
     <% } %>
     <% if (Session.GetUser().HasAccess(AccessOptions.ViewBills))
        { %>

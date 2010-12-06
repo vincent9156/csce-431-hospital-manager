@@ -74,7 +74,7 @@ namespace HospitalManager.Controllers
             
             // Checks if they are a doctor or if they are viewing their own history 
             if (!sessRep.GetUser().HasAccess(AccessOptions.ViewPastMedicalHistories) 
-                || (sessRep.GetUser().TypeID == 1 && !(sessRep.GetUser().UserID == UserId)))
+                && (sessRep.GetUser().TypeID == 1 && !(sessRep.GetUser().UserID == UserId)))
                 return Redirect("/Home");
 
             // if the user is a doctor, check to make sure the doctor is looking at the doctor's patient
