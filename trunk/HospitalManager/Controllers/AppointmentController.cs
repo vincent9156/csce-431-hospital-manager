@@ -250,8 +250,9 @@ namespace HospitalManager.Controllers
         /// <summary>
         /// Provides a way for doctors to reschedule appointments with patients
         /// </summary>
+        /// <param name="ID">Patient ID from the cancelled appointment</param>
         /// <returns>
-        /// Currently returns nothing to the view
+        /// Directs Doctors to a view to select the time for the rescheduled appointment
         /// </returns>
         public ActionResult Reschedule(int ID)
         {
@@ -266,6 +267,15 @@ namespace HospitalManager.Controllers
             return View(am);
         }
 
+        /// <summary>
+        /// Provides a list of available appointment times based on the doctor's date selection
+        /// </summary>
+        /// <param name="UserID">Patient ID from the cancelled appointment</param>
+        /// <param name="DoctorID">ID of the doctor cancelling the appointment</param>
+        /// <param name="Date">Selected date for the resceduled appointment</param>
+        /// <returns>
+        /// Returns the needed values to the reschedule logic
+        /// </returns>
         public ActionResult RescheduleTime(int UserID, int DoctorID, DateTime Date)
         {
             if (!sessrep.IsLoggedIn())
@@ -278,7 +288,17 @@ namespace HospitalManager.Controllers
             return View(vm);
         }
 
-
+        /// <summary>
+        /// Adds a rescheduled appointment to the database, then redirects to the appointment index.  
+        /// If a user tries to schedule an unavailable time, redirects to the Reschedule page.
+        /// </summary>
+        /// <param name="UserID">Patient ID from the cancelled appointment</param>
+        /// <param name="DoctorID">ID of the doctor rescheduling the appointment</param>
+        /// <param name="Date">Selected date for the rescheduled appointment</param>
+        /// <param name="Time">Selected time for the rescheduled appointment</param>
+        /// <returns>
+        /// A redirect to the appropriate page
+        /// </returns>
         public ActionResult RescheduleApp(int UserID, int DoctorID, DateTime Date, TimeSpan Time)
         {
             User user = sessrep.GetUser();
@@ -292,7 +312,7 @@ namespace HospitalManager.Controllers
                 {
                     if (checkapp.Time == Time)
                     {
-                        return Redirect("/Appointment/Schedule");
+                        return Redirect("/Appointment/Reschedule");
                     }
                 }
             }
@@ -334,7 +354,9 @@ namespace HospitalManager.Controllers
                 int date2 = now.DayOfYear;
                 int diff = date1 - date2;
 
-                if ((diff <= 2) && date1 > date2)
+                //Checks to see if the difference between the dates is less than 24 hours
+                //and if the date of the appointment falls after the current date
+                if ((diff <= 2) && date1 >= date2)
                 {
                     CancellationBill bill = new CancellationBill {
                     DoctorID = DID,
@@ -359,6 +381,7 @@ namespace HospitalManager.Controllers
                 //check for leap year
                 if(!DateTime.IsLeapYear(now.Year))
                 {
+                    //if not, handle regularly
                     if(((date1 == 1) || (date1 == 2)) && ((date2 == 364) || (date2 == 365)))
                     {
                         CancellationBill bill = new CancellationBill {
@@ -375,6 +398,7 @@ namespace HospitalManager.Controllers
                     }                
                 }
                 else
+                    //otherwise, adjust for the extra day
                 if(((date1 == 1) || (date1 == 2)) && ((date2 == 365) || (date2 == 366)))
                 {
                     CancellationBill bill = new CancellationBill {
@@ -417,7 +441,6 @@ namespace HospitalManager.Controllers
 
             if (reschedule)
             {
-//                TempData["ID"] = reschedulePatient;
                 return Redirect("/Appointment/Reschedule?ID="+reschedulePatient);
             }
 
