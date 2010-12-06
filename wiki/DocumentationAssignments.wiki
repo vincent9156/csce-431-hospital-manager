@@ -72,11 +72,11 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 || <font color="green">Matt Bartel</font> || Class Analysis ||
 
 == Current Medical History ==
-|| <font color="brown">William Moore</font> || Overview ||
-|| <font color="brown">William Moore</font> || Stories and Acceptance Criteria ||
-|| <font color="brown">William Moore</font> || Use Cases ||
-|| <font color="brown">William Moore</font> || Database ||
-|| <font color="brown">William Moore</font> || Class Analysis ||
+|| <font color="green">William Moore</font> || Overview ||
+|| <font color="green">William Moore</font> || Stories and Acceptance Criteria ||
+|| <font color="green">William Moore</font> || Use Cases ||
+|| <font color="green">William Moore</font> || Database ||
+|| <font color="green">William Moore</font> || Class Analysis ||
 
 == Medications ==
 || <font color="green">Matthew Miller</font> || Overview ||
