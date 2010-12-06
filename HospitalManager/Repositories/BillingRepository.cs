@@ -36,7 +36,9 @@ namespace HospitalManager.Repositories
         /// create bill from appointment
         /// </summary>
         /// <param name="Bill">Bill to add to DB</param>
-        /// <returns></returns>
+        /// <returns>
+        /// returns the BillID of the bill
+        /// </returns>
         public int BillPatient(Bill Bill)
         {
             _Billdb.Bills.InsertOnSubmit(Bill);
@@ -49,7 +51,9 @@ namespace HospitalManager.Repositories
         /// return a bill based on id
         /// </summary>
         /// <param name="BillID">ID of the Bill</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns the first result for the specified bill
+        /// </returns>
         public Bill GetBillByID(int BillID)
         {
             var result = from b in _Billdb.Bills
@@ -66,7 +70,9 @@ namespace HospitalManager.Repositories
         /// returns all bills from user
         /// </summary>
         /// <param name="UserID">ID of User</param>
-        /// <returns></returns>
+        /// <returns>
+        /// A list of bills based on the specified user
+        /// </returns>
         public IQueryable<Bill> GetAllBillsByUser(int UserID)
         {
             var result = from b in _Billdb.Bills
@@ -83,7 +89,9 @@ namespace HospitalManager.Repositories
         /// returns all bill from doctorID
         /// </summary>
         /// <param name="DocUserID">ID of Doctor</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a list of bills for a specified doctor
+        /// </returns>
         public IQueryable<Bill> GetAllBillsByDoctor(int DocUserID)
         {
             var result = from b in _Billdb.Bills
@@ -100,7 +108,9 @@ namespace HospitalManager.Repositories
         /// create bill from prescription
         /// </summary>
         /// <param name="bill">Prescription Bill to Add</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns the ID for the created bill
+        /// </returns>
         public int BillPrescription(PrescriptionBill bill)
         {
             _Billdb.PrescriptionBills.InsertOnSubmit(bill);
@@ -113,7 +123,9 @@ namespace HospitalManager.Repositories
         /// return prescription bill by ID inputed
         /// </summary>
         /// <param name="BillID">ID of Bill</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns the first result from the specified prescription bill ID 
+        /// </returns>
         public PrescriptionBill GetPrescriptionBillByID(int BillID)
         {
             var result = from b in _Billdb.PrescriptionBills
@@ -131,7 +143,9 @@ namespace HospitalManager.Repositories
         /// get prescription bills by doctor ID
         /// </summary>
         /// <param name="DocUserID">ID of The doctor</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a list of prescription bills based on the prescribing doctor
+        /// </returns>
         public IQueryable<PrescriptionBill> GetAllPrescriptionBillsByDoctor(int DocUserID)
         {
             IQueryable<PrescriptionBill> result = null;
@@ -153,7 +167,9 @@ namespace HospitalManager.Repositories
         /// gets all prescription bills by user
         /// </summary>
         /// <param name="UserID">ID of the user</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a list of all prescription bills for a user.
+        /// </returns>
         public IQueryable<PrescriptionBill> GetAllPrescriptionBillsByUser(int UserID)
         {
             IQueryable<PrescriptionBill> result = null;
@@ -185,7 +201,9 @@ namespace HospitalManager.Repositories
         /// return cancellation bill by the billID input
         /// </summary>
         /// <param name="BillID">ID of the Bill</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns the first result based on the cancellation bill ID
+        /// </returns>
         public CancellationBill GetCancellationBillByID(int BillID)
         {
             var result = from b in _Billdb.CancellationBills
@@ -203,7 +221,9 @@ namespace HospitalManager.Repositories
         /// returns cancellation bills by doctor
         /// </summary>
         /// <param name="DoctorID">ID of the Doctor</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a list of cancellation bills based on the doctor's ID
+        /// </returns>
         public IQueryable<CancellationBill> GetAllCancellationBillsByDoctor(int DoctorID)
         {
 
@@ -223,7 +243,9 @@ namespace HospitalManager.Repositories
         /// returns cancellation bills by user
         /// </summary>
         /// <param name="UserID">ID of the User</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a list containing all cancellation bills for a given user
+        /// </returns>
         public IQueryable<CancellationBill> GetAllCancellationBillsByUser(int UserID)
         {
 
@@ -241,7 +263,9 @@ namespace HospitalManager.Repositories
         /// remove a bill from DB based on billID
         /// </summary>
         /// <param name="BillID">ID of the Bill</param>
-        /// <returns></returns>
+        /// <returns>
+        /// returns false if the bill does not exist, returns true otherwise.
+        /// </returns>
         public bool RemoveBillByID(int BillID)
         {
             Bill bill = GetBillByID(BillID);
