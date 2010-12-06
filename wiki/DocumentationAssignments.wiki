@@ -62,7 +62,7 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 || <font color="green">Charles Smith</font> || Stories and Acceptance Criteria ||
 || <font color="green">Charles Smith</font> || Use Cases ||
 || <font color="green">Charles Smith</font> || Database ||
-|| <font color="brown">Charles Smith</font> || Class Analysis ||
+|| <font color="green">Charles Smith</font> || Class Analysis ||
 
 == Past Medical History ==
 || <font color="green">Matt Bartel</font> || Overview ||
