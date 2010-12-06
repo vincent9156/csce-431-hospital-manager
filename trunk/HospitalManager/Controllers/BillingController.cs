@@ -30,7 +30,13 @@ namespace HospitalManager.Controllers
         /// <summary>
         /// the index should show all bills for the user logged in only
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// If there are no bills for the user, returns a null view.
+        /// If user is a doctor, return a view with a list of bills
+        /// the doctor has issued.
+        /// If the user is a patient, returns a list of bills issued
+        /// to the patient.
+        /// </returns>
         public ActionResult Index()
         {
             User user = SessionRep.GetUser();
@@ -100,7 +106,9 @@ namespace HospitalManager.Controllers
         /// view one bill based on billID
         /// </summary>
         /// <param name="id">BillID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a view to the requested bill
+        /// </returns>
         public ActionResult ViewBill(int? id)
         {
             if (!SessionRep.IsLoggedIn())
@@ -138,7 +146,9 @@ namespace HospitalManager.Controllers
         /// create bill for appointment
         /// </summary>
         /// <param name="id">UserID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// returns data for the httpost CreateBill
+        /// </returns>
         public ActionResult Create(int id)
         {
             if (!SessionRep.IsLoggedIn() || !SessionRep.GetUser().HasAccess(AccessOptions.BillPatient))
@@ -157,7 +167,9 @@ namespace HospitalManager.Controllers
         /// httpost to create a bill for an appointment
         /// </summary>
         /// <param name="BVM">Billing View Model</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a view to the newly created bill
+        /// </returns>
         [HttpPost]
         public ActionResult CreateBill(BillingViewModel BVM)
         {
@@ -197,7 +209,9 @@ namespace HospitalManager.Controllers
         /// remove bill from DB
         /// </summary>
         /// <param name="id">BillID</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns a redirect to the Billing index
+        /// </returns>
         public ActionResult DeleteBill(int id)
         {
             BillRep.RemoveBillByID(id);
