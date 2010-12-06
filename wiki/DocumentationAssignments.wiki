@@ -58,10 +58,10 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 || <font color="green">David Skindell</font> || Class Analysis ||
 
 == Appointments ==
-|| <font color="brown">Charles Smith</font> || Overview ||
-|| <font color="brown">Charles Smith</font> || Stories and Acceptance Criteria ||
-|| <font color="brown">Charles Smith</font> || Use Cases ||
-|| <font color="brown">Charles Smith</font> || Database ||
+|| <font color="green">Charles Smith</font> || Overview ||
+|| <font color="green">Charles Smith</font> || Stories and Acceptance Criteria ||
+|| <font color="green">Charles Smith</font> || Use Cases ||
+|| <font color="green">Charles Smith</font> || Database ||
 || <font color="brown">Charles Smith</font> || Class Analysis ||
 
 == Past Medical History ==
@@ -86,8 +86,8 @@ When the sections are completed, send them to Matt Miller to be added to the doc
 || <font color="green">Matthew Miller</font> || Class Analysis ||
 
 == Billing ==
-|| <font color="brown">Scott Lee</font> || Overview ||
-|| <font color="brown">Scott Lee</font> || Stories and Acceptance Criteria ||
-|| <font color="brown">Scott Lee</font> || Use Cases ||
-|| <font color="brown">Scott Lee</font> || Database ||
-|| <font color="brown">Scott Lee</font> || Class Analysis ||
+|| <font color="green">Scott Lee</font> || Overview ||
+|| <font color="green">Scott Lee</font> || Stories and Acceptance Criteria ||
+|| <font color="green">Scott Lee</font> || Use Cases ||
+|| <font color="green">Scott Lee</font> || Database ||
+|| <font color="green">Scott Lee</font> || Class Analysis ||
