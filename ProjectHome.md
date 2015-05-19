@@ -1,0 +1,1 @@
+This ASP.NET/C# project is a semester-long project for CSCE 431 Fall '10 capable of managing a hospital.
